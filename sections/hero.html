@@ -1,0 +1,62 @@
+<section id="hero" class="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 overflow-hidden px-6">
+  
+  <!-- Decorative Glow Shapes -->
+  <div class="absolute -top-32 left-10 w-72 h-72 bg-indigo-400/30 rounded-full blur-3xl animate-pulse-slow"></div>
+  <div class="absolute bottom-0 right-10 w-96 h-96 bg-purple-500/30 rounded-full blur-3xl animate-pulse-slow"></div>
+
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center z-10">
+    
+    <!-- Text Content -->
+    <div class="space-y-6 animate-fadeIn">
+      <h1 class="text-5xl sm:text-6xl font-extrabold leading-tight">
+        Hi 👋, I'm 
+        <span class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+          Suman K S
+        </span>
+      </h1>
+      <p class="text-lg sm:text-xl text-gray-700 dark:text-gray-300 max-w-lg">
+        Backend Developer · PHP | Laravel | MySQL | REST APIs
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="#projects" 
+           class="px-6 py-3 rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold shadow-xl hover:scale-110 transition-transform">
+          🚀 View Projects
+        </a>
+        <a href="#contact" 
+           class="px-6 py-3 rounded-2xl border border-indigo-500 text-indigo-600 dark:text-indigo-400 dark:border-indigo-400 shadow hover:bg-indigo-50 dark:hover:bg-gray-800 transition-colors">
+          📩 Contact Me
+        </a>
+      </div>
+    </div>
+
+    <!-- Hero Image / Branding -->
+    <div class="flex justify-center animate-fadeIn delay-150">
+      <div class="relative w-64 h-64 rounded-3xl bg-white/10 dark:bg-black/20 backdrop-blur-md border border-white/20 shadow-2xl flex items-center justify-center hover:scale-105 transition-transform">
+        <h1 class="text-4xl sm:text-5xl font-extrabold tracking-wide bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-pulse">
+          Legion
+        </h1>
+        <div class="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-tr from-pink-500 to-yellow-400 rounded-full blur-lg opacity-70"></div>
+        <div class="absolute -bottom-6 -left-6 w-20 h-20 bg-gradient-to-tr from-indigo-400 to-purple-600 rounded-full blur-lg opacity-70"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+@layer utilities {
+  /* Fade-in animation */
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fadeIn { animation: fadeIn 0.9s ease forwards; }
+  .delay-150 { animation-delay: 0.3s; }
+
+  /* Slow floating pulse */
+  @keyframes pulse-slow {
+    0%, 100% { transform: scale(1); opacity: 0.4; }
+    50% { transform: scale(1.15); opacity: 0.7; }
+  }
+  .animate-pulse-slow { animation: pulse-slow 8s infinite; }
+}
+</style>

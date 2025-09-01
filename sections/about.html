@@ -1,0 +1,58 @@
+<section id="about" class="relative py-20 px-6 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 overflow-hidden">
+  <!-- Floating accent shapes -->
+  <div class="absolute -top-32 -left-24 w-72 h-72 bg-indigo-400/20 rounded-full blur-3xl animate-pulse-slow"></div>
+  <div class="absolute -bottom-32 -right-24 w-96 h-96 bg-purple-400/20 rounded-full blur-3xl animate-pulse-slow"></div>
+
+  <!-- About Content -->
+  <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-10">
+    
+    <!-- Avatar -->
+    <div class="w-32 sm:w-36 md:w-40 h-32 sm:h-36 md:h-40 rounded-full bg-indigo-500/30 dark:bg-indigo-700/30 backdrop-blur-md flex items-center justify-center text-5xl sm:text-6xl text-white font-bold animate-bounce">
+      👤
+    </div>
+
+    <!-- Text Content -->
+    <div class="flex-1 text-center md:text-left">
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-indigo-600 mb-6 animate-fadeIn">
+        The Story Behind the Code
+      </h2>
+      
+      <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-base sm:text-lg mb-4 animate-fadeIn delay-150">
+        👋 Hi, I’m <span class="font-semibold text-indigo-500">Suman K S</span>, a passionate backend developer with 
+        <span class="text-indigo-500 font-semibold">4+ years</span> of experience in PHP, Laravel, Lumen, MySQL, REST APIs, and JavaScript.  
+        I love building scalable, high-performance web applications.
+      </p>
+
+      <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-base sm:text-lg animate-fadeIn delay-300">
+        “I specialize in writing clean, maintainable code and building seamless backend architectures. I continuously learn new technologies and frameworks to stay at the forefront of development.”
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+@layer utilities {
+  /* Fade-in animation */
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fadeIn { animation: fadeIn 0.8s ease forwards; }
+  .delay-150 { animation-delay: 0.15s; }
+  .delay-300 { animation-delay: 0.3s; }
+
+  /* Slow pulse for floating shapes */
+  @keyframes pulse-slow {
+    0%, 100% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(1.2); opacity: 0.5; }
+  }
+  .animate-pulse-slow { animation: pulse-slow 6s infinite; }
+
+  /* Smooth bounce for avatar */
+  @keyframes bounce-soft {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  .animate-bounce { animation: bounce-soft 3s ease-in-out infinite; }
+}
+</style>

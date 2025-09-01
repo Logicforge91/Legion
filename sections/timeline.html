@@ -1,0 +1,81 @@
+<!-- Timeline Section -->
+<section id="timeline" aria-label="Timeline" class="relative py-20 px-6 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 overflow-hidden">
+  
+  <!-- Floating accent shapes -->
+  <div class="absolute -top-32 -left-24 w-72 h-72 bg-indigo-400/20 rounded-full blur-3xl animate-pulse-slow"></div>
+  <div class="absolute -bottom-32 -right-24 w-96 h-96 bg-purple-400/20 rounded-full blur-3xl animate-pulse-slow"></div>
+
+  <div class="max-w-5xl mx-auto">
+    <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center text-indigo-600 mb-16 animate-fadeIn">
+      Formal & Professional</h2>
+
+    <!-- Timeline Container -->
+    <div class="relative">
+      <!-- vertical line -->
+      <div class="absolute left-1/2 top-0 h-full w-1 bg-indigo-500 dark:bg-indigo-400 transform -translate-x-1/2"></div>
+
+      <!-- Item 1 -->
+      <div class="mb-16 flex justify-start relative animate-fadeIn">
+        <div class="w-1/2 pr-8 text-right">
+          <h3 class="text-xl font-semibold text-indigo-600 dark:text-indigo-400">Software Developer @HandletechLabs</h3>
+          <time class="block mb-2 text-sm text-gray-500">2023 – Present</time>
+          <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+            Developing dynamic, scalable E-commerce web apps using React.js, Laravel PHP, MySQL, and JavaScript frameworks.
+          </p>
+        </div>
+        <div class="absolute left-1/2 top-0 transform -translate-x-1/2">
+          <span class="flex items-center justify-center w-6 h-6 bg-indigo-500 rounded-full ring-8 ring-gray-50 dark:ring-gray-900"></span>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="mb-16 flex justify-end relative animate-fadeIn delay-150">
+        <div class="w-1/2 pl-8 text-left">
+          <h3 class="text-xl font-semibold text-purple-600 dark:text-purple-400">PHP Programmer @SocialBytes</h3>
+          <time class="block mb-2 text-sm text-gray-500">2021 – 2023</time>
+          <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+            Developed Health and Education websites using Laravel PHP, MySQL, and JavaScript frameworks, and integrated Audit Tally API for educational institutes.
+          </p>
+        </div>
+        <div class="absolute left-1/2 top-0 transform -translate-x-1/2">
+          <span class="flex items-center justify-center w-6 h-6 bg-purple-500 rounded-full ring-8 ring-gray-50 dark:ring-gray-900"></span>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="mb-16 flex justify-start relative animate-fadeIn delay-300">
+        <div class="w-1/2 pr-8 text-right">
+          <h3 class="text-xl font-semibold text-pink-600 dark:text-pink-400">Bachelor of Information Science</h3>
+          <time class="block mb-2 text-sm text-gray-500">2016 – 2020</time>
+          <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+            Graduated with honors. Specialized in software engineering, databases, and system design.
+          </p>
+        </div>
+        <div class="absolute left-1/2 top-0 transform -translate-x-1/2">
+          <span class="flex items-center justify-center w-6 h-6 bg-pink-500 rounded-full ring-8 ring-gray-50 dark:ring-gray-900"></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Animations -->
+<style>
+  /* Fade-in animation */
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fadeIn { animation: fadeIn 0.8s ease forwards; }
+  .delay-150 { animation-delay: 0.15s; }
+  .delay-300 { animation-delay: 0.3s; }
+  .delay-500 { animation-delay: 0.5s; }
+
+  /* Slow pulse for floating shapes */
+  @keyframes pulse-slow {
+    0%, 100% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(1.2); opacity: 0.5; }
+  }
+  .animate-pulse-slow { animation: pulse-slow 6s infinite; }
+</style>

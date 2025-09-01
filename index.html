@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Legion</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script> tailwind.config = { darkMode: 'class' };</script>
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-500">
+
+  <!-- Loader -->
+  <div id="loader" class="fixed inset-0 flex items-center justify-center bg-white dark:bg-gray-900">
+    <h1 class="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 animate-pulse">Legion</h1>
+  </div>
+
+  <div class="flex flex-col min-h-screen">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white/70 dark:bg-gray-900/70 backdrop-blur-md shadow-md">
+      <div class="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
+        <div class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-600">Suman K S</div>
+        <nav class="flex gap-6 text-sm font-medium">
+          <a href="#hero" class="hover:text-indigo-500 dark:hover:text-indigo-400">Home</a>
+          <a href="#about" class="hover:text-indigo-500 dark:hover:text-indigo-400">About</a>
+          <a href="#skills" class="hover:text-indigo-500 dark:hover:text-indigo-400">Skills</a>
+          <a href="#projects" class="hover:text-indigo-500 dark:hover:text-indigo-400">Projects</a>
+          <a href="#contact" class="hover:text-indigo-500 dark:hover:text-indigo-400">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main id="content" class="flex-1 px-6 py-12 space-y-16 max-w-6xl mx-auto"></main>
+
+    <!-- Footer -->
+    <footer class="bg-white/70 dark:bg-gray-900/70 backdrop-blur-md text-gray-500 dark:text-gray-400 text-center text-sm py-6">
+      © <span id="year"></span> Suman K S · Built with ❤️ & Legion
+    </footer>
+  </div>
+
+  <!-- Import Resume Modal -->
+  <div id="resumeContainer"></div>
+
+  <!-- Import Chatbot -->
+  <div id="chatbotContainer"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/resumeModal.js"></script>
+  <script src="js/chatbot.js"></script>
+
+  
+</body>
+</html>

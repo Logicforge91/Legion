@@ -1,0 +1,103 @@
+<section id="achievements" class="relative py-20 px-6 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 overflow-hidden">
+  <!-- Background shapes -->
+  <div class="absolute -top-32 -left-32 w-72 h-72 bg-indigo-400/20 rounded-full filter blur-3xl animate-pulse-slow"></div>
+  <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-purple-400/20 rounded-full filter blur-3xl animate-pulse-slow"></div>
+
+  <h2 class="text-5xl font-extrabold text-indigo-600 text-center mb-16 animate-fadeIn">Achievements</h2>
+
+  <!-- Looping scroll container -->
+  <div class="looping-container">
+    <div class="looping-track">
+      <!-- Duplicate cards for smooth loop -->
+      <div class="achievement-card">
+        <div class="text-5xl mb-4 animate-bounce">🏅</div>
+        <h3 class="font-bold text-xl text-indigo-600 mb-2">Certified Laravel Developer</h3>
+        <p class="text-gray-700 dark:text-gray-300 text-sm">Issued by @SocialBytes, 2023</p>
+      </div>
+      <div class="achievement-card">
+        <div class="text-5xl mb-4 animate-bounce">🚀</div>
+        <h3 class="font-bold text-xl text-indigo-600 mb-2">On-Time Project Delivery</h3>
+        <p class="text-gray-700 dark:text-gray-300 text-sm">
+          Delivered production-ready solutions to clients promptly, ensuring immediate deployment and seamless integration.
+        </p>
+      </div>
+      
+      <div class="achievement-card">
+        <div class="text-5xl mb-4 animate-bounce">📘</div>
+        <h3 class="font-bold text-xl text-indigo-600 mb-2">Mini Projects & Reports</h3>
+        <p class="text-gray-700 dark:text-gray-300 text-sm">
+          Guided mini projects and technical reports designed for college students, covering real-world use cases, documentation, and best practices.
+        </p>
+      </div>
+      
+      <div class="achievement-card">
+        <div class="text-5xl mb-4 animate-bounce">🏆</div>
+        <h3 class="font-bold text-xl text-indigo-600 mb-2">Open Source Contributor</h3>
+        <p class="text-gray-700 dark:text-gray-300 text-sm">Contributed to Laravel & JavaScript frameworks projects</p>
+      </div>
+
+      <div class="achievement-card">
+        <div class="text-5xl mb-4 animate-bounce">🏅</div>
+        <h3 class="font-bold text-xl text-indigo-600 mb-2">Certified Laravel Developer</h3>
+        <p class="text-gray-700 dark:text-gray-300 text-sm">Issued by @SocialBytes, 2023</p>
+      </div>
+      <div class="achievement-card">
+        <div class="text-5xl mb-4 animate-bounce">🚀</div>
+        <h3 class="font-bold text-xl text-indigo-600 mb-2">On-Time Project Delivery</h3>
+        <p class="text-gray-700 dark:text-gray-300 text-sm">
+          Delivered production-ready solutions to clients promptly, ensuring immediate deployment and seamless integration.
+        </p>
+      </div>
+  
+
+  
+    </div>
+  </div>
+</section>
+
+<style>
+.looping-container {
+  overflow: hidden;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.looping-track {
+  display: flex;
+  gap: 2rem;
+  animation: scroll-left 20s linear infinite;
+}
+
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* adjust based on number of duplicate cards */
+}
+
+/* Existing styles */
+.achievement-card {
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-width: 250px; /* ensure horizontal scroll spacing */
+}
+.achievement-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+}
+
+@keyframes fadeIn {0%{opacity:0;transform:translateY(20px);}100%{opacity:1;transform:translateY(0);}}
+.animate-fadeIn { animation: fadeIn 0.8s ease forwards; }
+
+@keyframes pulse-slow {0%,100%{transform:scale(1);opacity:0.3;}50%{transform:scale(1.2);opacity:0.5;}}
+.animate-pulse-slow { animation: pulse-slow 6s infinite; }
+
+@keyframes bounce {0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.animate-bounce { animation: bounce 2s infinite; }
+</style>

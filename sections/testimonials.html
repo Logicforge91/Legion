@@ -1,0 +1,74 @@
+<section id="testimonials" aria-label="Testimonials" class="relative py-20 px-6 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 overflow-hidden">
+  <!-- Background shapes -->
+  <div class="absolute -top-32 -left-32 w-72 h-72 bg-indigo-400/20 rounded-full filter blur-3xl animate-pulse-slow"></div>
+  <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-purple-400/20 rounded-full filter blur-3xl animate-pulse-slow"></div>
+
+  <h2 class="text-5xl font-extrabold text-indigo-600 text-center mb-16 animate-fadeIn">Stories of Impact</h2>
+
+  <!-- Looping Testimonials -->
+  <div class="overflow-hidden relative">
+    <div class="flex animate-loop-scroll space-x-6">
+
+      <!-- Testimonials set (duplicate this block for smooth infinite loop) -->
+      <div class="testimonial-card sm:min-w-[250px] min-w-[300px] max-w-sm">
+        <p class="italic">“A dedicated developer who always delivers high-quality work.”</p>
+        <div class="mt-4 text-indigo-600 dark:text-indigo-400 font-semibold">— Chethan Evil Das (HR Manager @SocialBytes)</div>
+      </div>
+
+      <div class="testimonial-card sm:min-w-[250px] min-w-[300px] max-w-sm">
+        <p class="italic">“Very strong in backend development and database optimization.”</p>
+        <div class="mt-4 text-indigo-600 dark:text-indigo-400 font-semibold">— Ajay (Team Lead @SocialBytes)</div>
+      </div>
+
+      <div class="testimonial-card sm:min-w-[250px] min-w-[300px] max-w-sm">
+        <p class="italic">“Professional, reliable, and highly skilled developer.”</p>
+        <div class="mt-4 text-indigo-600 dark:text-indigo-400 font-semibold">— Manoj (Client @IntelliSpace)</div>
+      </div>
+
+      <div class="testimonial-card sm:min-w-[250px] min-w-[300px] max-w-sm">
+        <p class="italic">“Excellent communication and timely delivery.”</p>
+        <div class="mt-4 text-indigo-600 dark:text-indigo-400 font-semibold">— Girish (Team Lead @SocialBytes)</div>
+      </div>
+      <!-- /Testimonials set -->
+
+      <!-- Duplicate set for seamless looping -->
+      <!-- Repeat the same 4 testimonials here -->
+    </div>
+  </div>
+</section>
+
+<style>
+/* Shared Animations */
+@keyframes fadeIn {0%{opacity:0;transform:translateY(20px);}100%{opacity:1;transform:translateY(0);}}
+.animate-fadeIn { animation: fadeIn 0.8s ease forwards; }
+
+@keyframes pulse-slow {0%,100%{transform:scale(1);opacity:0.3;}50%{transform:scale(1.2);opacity:0.5;}}
+.animate-pulse-slow { animation: pulse-slow 6s infinite; }
+
+/* Loop scroll animation */
+@keyframes loop-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-loop-scroll {
+  display: flex;
+  animation: loop-scroll 20s linear infinite;
+  width: max-content;
+}
+
+/* Testimonial Card */
+.testimonial-card {
+  padding: 2rem;
+  border-radius: 1.5rem;
+  background-color: rgba(255,255,255,0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.testimonial-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+}
+</style>

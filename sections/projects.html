@@ -1,0 +1,124 @@
+<section id="projects" class="relative py-20 px-6 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 overflow-hidden">
+  <!-- Floating background shapes -->
+  <div class="absolute -top-32 -left-24 w-72 h-72 bg-indigo-400/20 rounded-full filter blur-3xl animate-pulse-slow"></div>
+  <div class="absolute -bottom-32 -right-24 w-96 h-96 bg-purple-400/20 rounded-full filter blur-3xl animate-pulse-slow"></div>
+
+  <!-- Section Heading -->
+  <h2 class="text-5xl font-extrabold text-indigo-600 text-center mb-16 animate-fadeIn">Innovations</h2>
+
+  <!-- Looping Projects Container -->
+  <div class="overflow-hidden relative">
+    <div class="projects-loop flex gap-8">
+      
+      <!-- First set of projects -->
+      <!-- Project 1 -->
+      <div class="project-card animate-fadeIn delay-0">
+        <div class="text-5xl mb-4 animate-bounce" aria-label="Hospital">🏥</div>
+        <h3 class="text-xl font-bold text-indigo-600 mb-2">Health Management Web App</h3>
+        <p class="text-gray-700 dark:text-gray-300 text-sm">Laravel-based HMS with patient records and supported by Global Fund for AIDS, TB and Malaria (GFATM).</p>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-card animate-fadeIn delay-150">
+        <div class="text-5xl mb-4 animate-bounce" aria-label="School">🏫</div>
+        <h3 class="text-xl font-bold text-indigo-600 mb-2">School Fees and Admissions Management System</h3>
+        <p class="text-gray-700 dark:text-gray-300 text-sm">Laravel-based admin panel with admissions, fee management, and role-based access control.</p>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-card animate-fadeIn delay-300">
+        <div class="text-5xl mb-4 animate-bounce" aria-label="Laptop">💻</div>
+        <h3 class="text-xl font-bold text-indigo-600 mb-2">Portfolio Website</h3>
+        <p class="text-gray-700 dark:text-gray-300 text-sm">Fully animated Tailwind portfolio with modular sections, dark mode, and interactive design.</p>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="project-card animate-fadeIn delay-0">
+        <div class="text-5xl mb-4 animate-bounce" aria-label="Shopping">🛒</div>
+        <h3 class="text-xl font-bold text-indigo-600 mb-2">E-commerce Projects</h3>
+        <p class="text-gray-700 dark:text-gray-300 text-sm">Full-featured Laravel-based e-commerce platform with product management, shopping cart, and payment integration.</p>
+      </div>
+
+      <!-- Project 5 -->
+      <div class="project-card animate-fadeIn delay-200">
+        <div class="text-5xl mb-4 animate-bounce" aria-label="Payment Websites">💳</div>
+        <h3 class="text-xl font-bold text-indigo-600 mb-2">Payment Websites</h3>
+        <p class="text-gray-700 dark:text-gray-300 text-sm">
+          Secure and scalable payment platforms with integrations for PayU, Stripe, and Razorpay.  
+          Includes transaction tracking, invoicing, refunds, and real-time financial reports.
+        </p>
+      </div>
+      
+
+      <!-- Project 6 -->
+      <div class="project-card animate-fadeIn delay-300">
+        <div class="text-5xl mb-4 animate-bounce" aria-label="Tech Websites">🌐</div>
+        <h3 class="text-xl font-bold text-indigo-600 mb-2">Tech Websites</h3>
+        <p class="text-gray-700 dark:text-gray-300 text-sm">
+          Modern and responsive websites for tech startups, SaaS platforms, and digital products.  
+          Built with Laravel, React, and Tailwind for speed, scalability, and seamless UX.
+        </p>
+      </div>
+      
+
+    
+
+    </div>
+  </div>
+</section>
+
+<style>
+/* Animations */
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn { animation: fadeIn 0.8s ease forwards; }
+
+@keyframes pulse-slow {
+  0%,100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.2); opacity: 0.5; }
+}
+.animate-pulse-slow { animation: pulse-slow 6s infinite; }
+
+@keyframes bounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.animate-bounce { animation: bounce 2s infinite; }
+
+/* Project card styling */
+.project-card {
+  padding: 2rem;
+  border-radius: 1.5rem;
+  background-color: rgba(255,255,255,0.3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+  text-align: center;
+  font-weight: 600;
+  color: #4f46e5;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.project-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 25px rgba(0,0,0,0.2);
+}
+
+/* Looping animation for projects */
+@keyframes slideLoop {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* scroll half of container for seamless loop */
+}
+.projects-loop {
+  display: flex;
+  gap: 2rem;
+  width: max-content;
+  animation: slideLoop 25s linear infinite;
+}
+
+/* Animation delays */
+.delay-0 { animation-delay: 0s; }
+.delay-150 { animation-delay: 0.15s; }
+.delay-300 { animation-delay: 0.3s; }
+</style>

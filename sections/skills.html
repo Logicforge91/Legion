@@ -1,0 +1,131 @@
+<section id="skills" class="relative py-40 px-6 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 overflow-hidden">
+  <!-- Floating accent shapes -->
+  <div class="absolute top-10 left-10 w-32 h-32 bg-indigo-400/20 rounded-full filter blur-3xl animate-circular-shape"></div>
+  <div class="absolute bottom-20 right-20 w-48 h-48 bg-purple-400/20 rounded-full filter blur-3xl animate-circular-shape"></div>
+
+  <!-- Orbit container -->
+  <div class="relative w-[600px] h-[600px] mx-auto flex items-center justify-center">
+    <!-- Section Title in center -->
+    <h2 class="absolute text-5xl font-extrabold text-indigo-600 text-center z-10 animate-fadeIn">Tech Stack</h2>
+
+    <!-- Skill cards orbiting around the title -->
+    <div class="relative w-full h-full animate-orbit">
+      <!-- Skill cards -->
+      <div class="skill-card" style="--i:0;">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP">
+        <p>PHP</p>
+      </div>
+      <div class="skill-card" style="--i:1;">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" alt="Laravel">
+        <p>Laravel</p>
+      </div>
+      <div class="skill-card" style="--i:2;">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL">
+        <p>MySQL</p>
+      </div>
+      <div class="skill-card" style="--i:3;">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JS">
+        <p>JavaScript</p>
+      </div>
+      <div class="skill-card" style="--i:4;">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React.js">
+        <p>React.js</p>
+      </div>
+      <div class="skill-card" style="--i:5;">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js">
+        <p>Node.js</p>
+      </div>
+      <div class="skill-card" style="--i:6;">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express.js">
+        <p>Express.js</p>
+      </div>
+      <div class="skill-card" style="--i:7;">
+        <img src="https://cdn-icons-png.flaticon.com/512/779/779549.png" alt="REST API">
+        <p>REST API</p>
+      </div>
+      <div class="skill-card" style="--i:8;">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
+        <p>Git</p>
+      </div>
+      <div class="skill-card" style="--i:9;">
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968875.png" alt="Jira">
+        <p>Jira</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* Fade-in for title */
+@keyframes fadeIn {
+  0% { opacity:0; transform: translateY(20px); }
+  100% { opacity:1; transform: translateY(0); }
+}
+.animate-fadeIn { animation: fadeIn 0.8s ease forwards; }
+
+/* Floating accent shapes circular motion */
+@keyframes circularShape {
+  0% { transform: translate(0,0); }
+  25% { transform: translate(20px, -10px); }
+  50% { transform: translate(0, 20px); }
+  75% { transform: translate(-20px, -10px); }
+  100% { transform: translate(0,0); }
+}
+.animate-circular-shape {
+  animation: circularShape 12s ease-in-out infinite alternate;
+}
+
+/* Orbit container rotation */
+@keyframes orbit {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.animate-orbit {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  animation: orbit 20s linear infinite;
+  transform-origin: center center;
+}
+
+/* Skill cards */
+.skill-card {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 50%;
+  left: 50%;
+  margin: -50px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  text-align: center;
+  /* evenly spaced 10 items = 360/10 = 36deg */
+  transform: rotate(calc(var(--i) * 36deg)) translateX(250px) rotate(calc(-1 * var(--i) * 36deg));
+  transition: transform 0.3s ease;
+}
+.skill-card img {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 5px auto;
+}
+.skill-card p {
+  font-weight: 600;
+  color: #4f46e5;
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Hover effect */
+.skill-card:hover {
+  transform: rotate(calc(var(--i) * 36deg)) translateX(250px) rotate(calc(-1 * var(--i) * 36deg)) scale(1.2);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+}
+</style>

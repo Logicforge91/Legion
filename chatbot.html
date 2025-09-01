@@ -1,0 +1,29 @@
+<!-- Chatbot Floating Button -->
+<div id="chatbot" 
+  class="fixed bottom-6 right-6 w-14 h-14 bg-purple-600 text-white rounded-full shadow-lg flex items-center justify-center cursor-pointer z-50 hover:scale-110 transition-transform">
+  🤖
+</div>
+
+<!-- Chatbot Window -->
+<div id="chatbotWindow" 
+  class="fixed bottom-24 right-6 w-80 max-w-sm bg-white dark:bg-gray-800 rounded-2xl shadow-2xl overflow-hidden transform scale-95 opacity-0 pointer-events-none transition-all duration-300 z-50 flex flex-col">
+  
+  <!-- Header -->
+  <div class="bg-purple-500 text-white px-4 py-3 flex justify-between items-center rounded-t-2xl">
+    <h3 class="font-semibold">Legion AI</h3>
+    <button id="closeChat" class="font-bold hover:text-gray-200">&times;</button>
+  </div>
+  
+  <!-- Chat Content -->
+  <div id="chatContent" class="flex-1 p-3 flex flex-col gap-2 overflow-y-auto bg-gray-50 dark:bg-gray-900"></div>
+  
+  <!-- Input -->
+  <div class="flex flex-col p-3 gap-2 border-t border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 rounded-b-2xl">
+    <input id="chatInput" type="text" placeholder="Ask me anything..."
+      class="w-full px-3 py-2 rounded-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-400"/>
+    <button id="sendChat" 
+      class="w-full bg-purple-500 hover:bg-purple-400 text-white px-4 py-2 rounded-full font-semibold transition">
+      Send
+    </button>
+  </div>
+</div>
