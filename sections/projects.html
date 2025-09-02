@@ -8,7 +8,7 @@
     Innovations
   </h2>
 
-  <!-- Projects Container -->
+  <!-- Projects Loop -->
   <div class="projects-container overflow-hidden position-relative">
     <div class="projects-loop d-flex gap-4">
       
@@ -54,7 +54,7 @@
       </div>
 
       <!-- Duplicate Set for seamless loop -->
-       <div class="project-card card text-center shadow-lg p-4">
+          <div class="project-card card text-center shadow-lg p-4">
         <div class="fs-1 mb-3">🏥</div>
         <h3 class="h4 fw-bold text-primary">Healthcare Management</h3>
         <p class="text-muted mt-3">
@@ -128,8 +128,8 @@
 
 /* Project card */
 .project-card {
-  min-width: 280px;
-  max-width: 320px;
+  min-width: 220px;
+  max-width: 300px;
   border-radius: 1.5rem !important;
   backdrop-filter: blur(12px);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
@@ -152,21 +152,10 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ✅ Mobile fix */
+/* ✅ Mobile responsive tweaks */
 @media (max-width: 768px) {
-  .projects-loop {
-    animation: none;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-    max-height: 80vh;
-    overflow-y: auto;
-    scroll-snap-type: y mandatory;
-  }
   .project-card {
-    width: 90%;
-    min-width: auto;
-    scroll-snap-align: center;
+    min-width: 70vw; /* wider cards for mobile */
   }
 }
 </style>

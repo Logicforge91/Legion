@@ -33,3 +33,22 @@
   animation: pulse 1.5s infinite;
 }
 
+
+
+
+/* Fade-in effect for sections */
+.fade-section {
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Loader fade-out */
+#loader.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .6s ease, visibility .6s ease;
+}
