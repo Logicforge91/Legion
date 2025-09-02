@@ -26,19 +26,40 @@
     <!-- Header -->
     <header class="sticky top-0 z-50 bg-white/70 dark:bg-gray-900/70 backdrop-blur-md shadow-md">
       <div class="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
-        <div class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-600">Suman K S</div>
-        <nav class="flex gap-6 text-sm font-medium">
+        <!-- Logo -->
+        <div class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-600">
+          Suman K S
+        </div>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex gap-6 text-sm font-medium">
           <a href="#hero" class="hover:text-indigo-500 dark:hover:text-indigo-400">Home</a>
           <a href="#about" class="hover:text-indigo-500 dark:hover:text-indigo-400">About</a>
           <a href="#skills" class="hover:text-indigo-500 dark:hover:text-indigo-400">Skills</a>
           <a href="#projects" class="hover:text-indigo-500 dark:hover:text-indigo-400">Projects</a>
           <a href="#contact" class="hover:text-indigo-500 dark:hover:text-indigo-400">Contact</a>
         </nav>
+
+        <!-- Mobile Menu Button -->
+        <button id="menuBtn" class="md:hidden text-2xl text-gray-700 dark:text-gray-200 focus:outline-none">
+          ☰
+        </button>
+      </div>
+
+      <!-- Mobile Nav -->
+      <div id="mobileMenu" class="hidden flex-col px-6 pb-4 space-y-3 md:hidden bg-white/90 dark:bg-gray-900/90">
+        <a href="#hero" class="block hover:text-indigo-500 dark:hover:text-indigo-400">Home</a>
+        <a href="#about" class="block hover:text-indigo-500 dark:hover:text-indigo-400">About</a>
+        <a href="#skills" class="block hover:text-indigo-500 dark:hover:text-indigo-400">Skills</a>
+        <a href="#projects" class="block hover:text-indigo-500 dark:hover:text-indigo-400">Projects</a>
+        <a href="#contact" class="block hover:text-indigo-500 dark:hover:text-indigo-400">Contact</a>
       </div>
     </header>
 
     <!-- Main content -->
-    <main id="content" class="flex-1 px-6 py-12 space-y-16 max-w-6xl mx-auto"></main>
+    <main id="content" class="flex-1 px-6 py-12 space-y-16 max-w-6xl mx-auto">
+
+    </main>
 
     <!-- Footer -->
     <footer class="bg-white/70 dark:bg-gray-900/70 backdrop-blur-md text-gray-500 dark:text-gray-400 text-center text-sm py-6">
@@ -46,10 +67,16 @@
     </footer>
   </div>
 
-  <!-- Import Resume Modal -->
-  <div id="resumeCgitontainer"></div>
+  <!-- Resume Modal -->
+  <div id="resumeModal">
+    <div>
+      <button id="closeModal">&times;</button>
+      <h2 class="text-2xl font-bold mb-4">My Resume</h2>
+      <p class="text-gray-700 dark:text-gray-300">This is where resume content goes.</p>
+    </div>
+  </div>
 
-  <!-- Import Chatbot -->
+  <!-- Chatbot Container -->
   <div id="chatbotContainer"></div>
 
   <!-- Scripts -->
@@ -58,6 +85,15 @@
   <script src="js/resumeModal.js"></script>
   <script src="js/chatbot.js"></script>
 
-  
+  <script>
+    // Mobile Menu Toggle
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    menuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+
+  </script>
 </body>
 </html>
