@@ -11,7 +11,7 @@ fetch("chatbot.html")
     const chatInput = document.getElementById("chatInput");
     const sendChat = document.getElementById("sendChat");
 
-    // Toggle chatbot (Bootstrap version)
+    // Toggle chatbot
     chatbot.addEventListener("click", () => {
       chatbotWindow.classList.toggle("open");
     });
@@ -44,12 +44,12 @@ fetch("chatbot.html")
       return typingDiv;
     }
 
-    // Portfolio Replies
+    // Predefined replies
     const portfolioReplies = {
       "about": "👋 I'm Suman K S — a passionate developer who loves building clean, modern web applications with PHP, JavaScript, and Bootstrap.",
       "skills": "⚡ My key skills include: PHP, Laravel, JavaScript (ES6+), Bootstrap 5, MySQL, and REST APIs.",
-      "projects": "📂 I've worked on multiple projects, including portfolio websites, chatbots, and scalable web apps. Check out the 'Projects' section for details.",
-      "contact": "📩 You can reach me via the Contact section or directly at my email: sumanks@example.com.",
+      "projects": "📂 I've worked on multiple projects, including portfolio websites, chatbots, and scalable web apps.",
+      "contact": "📩 You can reach me at sumanks@example.com.",
       "resume": "📜 You can view and download my resume by clicking 'Access My Vault' in the Resume Modal.",
       "hello": "🤖 Hi there! How can I help you explore my portfolio today?",
       "hi": "🤖 Hello! Ask me about my skills, projects, or resume."
@@ -63,7 +63,7 @@ fetch("chatbot.html")
       addMessage(message, true);
       chatInput.value = "";
 
-      // Show typing indicator
+      // Show typing
       const typing = showTyping();
 
       setTimeout(() => {
@@ -79,7 +79,7 @@ fetch("chatbot.html")
       }, 1200);
     });
 
-    // Press Enter to send
+    // Enter key
     chatInput.addEventListener("keydown", (e) => {
       if (e.key === "Enter") sendChat.click();
     });
