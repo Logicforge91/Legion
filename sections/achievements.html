@@ -1,10 +1,12 @@
 <section id="achievements" class="py-5 px-3 position-relative bg-light overflow-hidden">
-  <!-- Background shapes -->
-  <div class="position-absolute top-0 start-0 translate-middle bg-primary rounded-circle opacity-25 blur-shape" style="width: 18rem; height: 18rem; animation: pulse-slow 6s infinite;"></div>
-  <div class="position-absolute bottom-0 end-0 translate-middle bg-purple rounded-circle opacity-25 blur-shape" style="width: 24rem; height: 24rem; animation: pulse-slow 7s infinite;"></div>
+  <!-- Background shapes (decorative) -->
+  <div class="achieve-shape shape-primary" aria-hidden="true"></div>
+  <div class="achieve-shape shape-purple" aria-hidden="true"></div>
 
   <!-- Title -->
-  <h2 class="display-5 fw-bold text-primary text-center mb-5 animate-fadeIn">Achievements</h2>
+  <h2 class="display-5 fw-bold text-primary text-center mb-5 fade-in">
+    Achievements
+  </h2>
 
   <!-- Looping scroll container -->
   <div class="looping-container">
@@ -12,14 +14,14 @@
       
       <!-- Card 1 -->
       <div class="achievement-card">
-        <div class="fs-1 mb-3 animate-bounce">🏅</div>
+        <div class="fs-1 mb-3 bounce">🏅</div>
         <h3 class="fw-bold h5 text-primary mb-2">Certified Laravel Developer</h3>
         <p class="text-muted small">Issued by @SocialBytes, 2023</p>
       </div>
 
       <!-- Card 2 -->
       <div class="achievement-card">
-        <div class="fs-1 mb-3 animate-bounce">🚀</div>
+        <div class="fs-1 mb-3 bounce">🚀</div>
         <h3 class="fw-bold h5 text-primary mb-2">On-Time Project Delivery</h3>
         <p class="text-muted small">
           Delivered production-ready solutions to clients promptly, ensuring immediate deployment and seamless integration.
@@ -28,7 +30,7 @@
 
       <!-- Card 3 -->
       <div class="achievement-card">
-        <div class="fs-1 mb-3 animate-bounce">📘</div>
+        <div class="fs-1 mb-3 bounce">📘</div>
         <h3 class="fw-bold h5 text-primary mb-2">Mini Projects & Reports</h3>
         <p class="text-muted small">
           Guided mini projects and reports for college students, covering real-world use cases and best practices.
@@ -37,19 +39,19 @@
 
       <!-- Card 4 -->
       <div class="achievement-card">
-        <div class="fs-1 mb-3 animate-bounce">🏆</div>
+        <div class="fs-1 mb-3 bounce">🏆</div>
         <h3 class="fw-bold h5 text-primary mb-2">Open Source Contributor</h3>
         <p class="text-muted small">Contributed to Laravel & JavaScript frameworks projects</p>
       </div>
 
-      <!-- Duplicate cards for smooth looping -->
+      <!-- Duplicate cards for seamless loop -->
       <div class="achievement-card">
-        <div class="fs-1 mb-3 animate-bounce">🏅</div>
+        <div class="fs-1 mb-3 bounce">🏅</div>
         <h3 class="fw-bold h5 text-primary mb-2">Certified Laravel Developer</h3>
         <p class="text-muted small">Issued by @SocialBytes, 2023</p>
       </div>
       <div class="achievement-card">
-        <div class="fs-1 mb-3 animate-bounce">🚀</div>
+        <div class="fs-1 mb-3 bounce">🚀</div>
         <h3 class="fw-bold h5 text-primary mb-2">On-Time Project Delivery</h3>
         <p class="text-muted small">
           Delivered production-ready solutions to clients promptly, ensuring immediate deployment and seamless integration.
@@ -59,48 +61,3 @@
     </div>
   </div>
 </section>
-
-<style>
-/* Looping scroll */
-.looping-container {
-  overflow: hidden;
-  max-width: 100%;
-  margin: 0 auto;
-}
-.looping-track {
-  display: flex;
-  gap: 2rem;
-  animation: scroll-left 25s linear infinite;
-}
-@keyframes scroll-left {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-/* Achievement Cards */
-.achievement-card {
-  flex: 0 0 auto;
-  padding: 1.5rem;
-  border-radius: 1.25rem;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  text-align: center;
-  min-width: 250px;
-  transition: transform .3s ease, box-shadow .3s ease;
-}
-.achievement-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 12px 24px rgba(0,0,0,0.15);
-}
-
-/* Animations */
-@keyframes fadeIn { 0%{opacity:0; transform:translateY(20px);} 100%{opacity:1; transform:translateY(0);} }
-.animate-fadeIn { animation: fadeIn 1s ease forwards; }
-
-@keyframes pulse-slow { 0%,100%{transform:scale(1);opacity:.3;} 50%{transform:scale(1.15);opacity:.6;} }
-.blur-shape { filter: blur(80px); }
-
-@keyframes bounce { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);} }
-.animate-bounce { animation: bounce 2s infinite; }
-</style>
