@@ -1010,27 +1010,7 @@
   to   { transform: translateY(20px) scale(1.1); }
 }
 
-/* Title */
-/* h2.display-5 {
-  background: linear-gradient(90deg, #007bff, #6f42c1, #ff4081);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 800;
-  letter-spacing: 1px;
-  animation: glowTitle 4s ease-in-out infinite alternate;
-}
 
-
-@keyframes glowTitle {
-  from {
-    text-shadow: 0 0 5px rgba(0,123,255,0.6),
-                 0 0 10px rgba(111,66,193,0.6);
-  }
-  to {
-    text-shadow: 0 0 15px rgba(255,64,129,0.9),
-                 0 0 30px rgba(111,66,193,0.9);
-  }
-} */
 
 /* Looping container */
 .looping-container {
