@@ -2,22 +2,28 @@
 fetch("resumeModal.html")
   .then(res => res.text())
   .then(html => {
+    // Inject modal into container
     document.getElementById("resumeContainer").innerHTML = html;
 
-    const resumeModal = new bootstrap.Modal(document.getElementById("resumeModal"));
-    const closeModal = document.getElementById("closeModal");
-
-    // Show modal function
-    function showResumeModal() {
-      resumeModal.show();
-    }
-
-    // Close modal
-    closeModal.addEventListener("click", () => {
-      resumeModal.hide();
+    // Grab modal element
+    const modalEl = document.getElementById("resumeModal");
+    const resumeModal = new bootstrap.Modal(modalEl, {
+      backdrop: "static", // disable backdrop close
+      keyboard: false     // disable ESC close
     });
 
-    // Auto open
+    // Show modal + auto-hide after 2 min
+    function showResumeModal() {
+      resumeModal.show();
+
+      // Auto-hide after 2 minutes
+      setTimeout(() => {
+        resumeModal.hide();
+      }, 120000);
+    }
+
+    // Auto open modal schedule
     setInterval(showResumeModal, 300000); // every 5 min
-    setTimeout(showResumeModal, 10000);   // initial after 10s
-  });
+    setTimeout(showResumeModal, 10000);   // first after 10s
+  })
+  .catch(err => console.error("Error loading modal:", err));
