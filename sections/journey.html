@@ -2,53 +2,53 @@
 <section id="journey" class="position-relative py-5 px-3 bg-light overflow-hidden">
   
   <!-- Floating Neon Shapes -->
-  <div class="position-absolute top-0 start-0 translate-middle rounded-circle pulse-slow" style="width: 18rem; height: 18rem; background: rgba(99,102,241,0.2); filter: blur(80px);"></div>
-  <div class="position-absolute bottom-0 end-0 translate-middle rounded-circle pulse-slow" style="width: 20rem; height: 20rem; background: rgba(139,92,246,0.2); filter: blur(80px);"></div>
+  <div class="neon-shape top-0 start-0"></div>
+  <div class="neon-shape bottom-0 end-0 delay"></div>
 
   <div class="container position-relative">
     
     <!-- Section Title -->
-    <h2 class="fw-bold text-primary text-center mb-5 fadeIn" style="font-size: 2.5rem;">
+    <h2 class="fw-bold text-primary text-center mb-5 animate-fadeIn">
       Growth Story
     </h2>
 
     <!-- Timeline Container -->
     <div class="overflow-hidden position-relative">
-      <div class="timeline-loop d-flex gap-5">
+      <div class="timeline-loop">
 
-        <!-- Timeline Item 1 -->
-        <div class="timeline-item d-flex flex-column align-items-center text-center fadeIn">
-          <div class="rounded-circle d-flex align-items-center justify-content-center text-white fs-3 shadow bg-primary" style="width: 3rem; height: 3rem;">💻</div>
-          <h3 class="mt-3 fs-6 fw-semibold text-dark">2021</h3>
-          <p class="mt-2 small text-muted">Started with <span class="fw-medium text-primary">PHP & MySQL</span>, building small apps and learning backend fundamentals.</p>
+        <!-- Timeline Item -->
+        <div class="timeline-item animate-fadeIn">
+          <div class="icon bg-primary">💻</div>
+          <h3>2021</h3>
+          <p>Started with <span class="highlight">PHP & MySQL</span>, building small apps and learning backend fundamentals.</p>
         </div>
 
-        <!-- Timeline Item 2 -->
-        <div class="timeline-item d-flex flex-column align-items-center text-center fadeIn delay-150">
-          <div class="rounded-circle d-flex align-items-center justify-content-center text-white fs-3 shadow bg-purple" style="width: 3rem; height: 3rem; background:#8b5cf6;">🚀</div>
-          <h3 class="mt-3 fs-6 fw-semibold text-dark">2022</h3>
-          <p class="mt-2 small text-muted">Learned <span class="fw-medium text-primary">Laravel & REST APIs</span>, building scalable solutions.</p>
+        <!-- Timeline Item -->
+        <div class="timeline-item animate-fadeIn delay-150">
+          <div class="icon bg-purple">🚀</div>
+          <h3>2022</h3>
+          <p>Learned <span class="highlight">Laravel & REST APIs</span>, building scalable solutions.</p>
         </div>
 
-        <!-- Timeline Item 3 -->
-        <div class="timeline-item d-flex flex-column align-items-center text-center fadeIn delay-300">
-          <div class="rounded-circle d-flex align-items-center justify-content-center text-white fs-3 shadow bg-primary" style="width: 3rem; height: 3rem;">⚡</div>
-          <h3 class="mt-3 fs-6 fw-semibold text-dark">2023</h3>
-          <p class="mt-2 small text-muted">Built <span class="fw-medium text-primary">real-world apps</span> with auth, payments & cloud deployment.</p>
+        <!-- Timeline Item -->
+        <div class="timeline-item animate-fadeIn delay-300">
+          <div class="icon bg-primary">⚡</div>
+          <h3>2023</h3>
+          <p>Built <span class="highlight">real-world apps</span> with auth, payments & cloud deployment.</p>
         </div>
 
-        <!-- Timeline Item 4 -->
-        <div class="timeline-item d-flex flex-column align-items-center text-center fadeIn delay-500">
-          <div class="rounded-circle d-flex align-items-center justify-content-center text-white fs-3 shadow bg-purple" style="width: 3rem; height: 3rem; background:#8b5cf6;">🏆</div>
-          <h3 class="mt-3 fs-6 fw-semibold text-dark">2023</h3>
-          <p class="mt-2 small text-muted">Led teams, mentored juniors & built <span class="fw-medium text-primary">enterprise apps</span>.</p>
+        <!-- Timeline Item -->
+        <div class="timeline-item animate-fadeIn delay-500">
+          <div class="icon bg-purple">🏆</div>
+          <h3>2023</h3>
+          <p>Led teams, mentored juniors & built <span class="highlight">enterprise apps</span>.</p>
         </div>
 
-        <!-- Timeline Item 5 -->
-        <div class="timeline-item d-flex flex-column align-items-center text-center fadeIn delay-700">
-          <div class="rounded-circle d-flex align-items-center justify-content-center text-white fs-3 shadow bg-primary" style="width: 3rem; height: 3rem;">🌟</div>
-          <h3 class="mt-3 fs-6 fw-semibold text-dark">2024+</h3>
-          <p class="mt-2 small text-muted">Exploring <span class="fw-medium text-primary">Express.js & React</span> for modern full-stack development.</p>
+        <!-- Timeline Item -->
+        <div class="timeline-item animate-fadeIn delay-700">
+          <div class="icon bg-primary">🌟</div>
+          <h3>2024+</h3>
+          <p>Exploring <span class="highlight">Express.js & React</span> for modern full-stack development.</p>
         </div>
 
       </div>
@@ -56,40 +56,4 @@
   </div>
 </section>
 
-<!-- Custom CSS -->
-<style>
-/* Fade-in animation */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.fadeIn { animation: fadeIn 0.8s ease forwards; }
-.delay-150 { animation-delay: 0.15s; }
-.delay-300 { animation-delay: 0.3s; }
-.delay-500 { animation-delay: 0.5s; }
-.delay-700 { animation-delay: 0.7s; }
 
-/* Pulse floating shapes */
-@keyframes pulse-slow {
-  0%, 100% { transform: scale(1); opacity: 0.3; }
-  50% { transform: scale(1.2); opacity: 0.5; }
-}
-.pulse-slow { animation: pulse-slow 6s infinite; }
-
-/* Timeline sliding loop */
-@keyframes slideLoop {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-.timeline-loop {
-  display: flex;
-  gap: 2.5rem;
-  animation: slideLoop 20s linear infinite;
-  width: max-content;
-}
-
-/* Timeline item */
-.timeline-item {
-  min-width: 220px;
-}
-</style>

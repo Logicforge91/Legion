@@ -1,7 +1,7 @@
 <section id="contact" class="py-5 px-3 position-relative bg-light overflow-hidden">
   <!-- Background shapes -->
-  <div class="position-absolute top-0 start-0 translate-middle bg-primary rounded-circle opacity-25 blur" style="width: 18rem; height: 18rem; animation: float 6s ease-in-out infinite;"></div>
-  <div class="position-absolute bottom-0 end-0 translate-middle bg-purple rounded-circle opacity-25 blur" style="width: 24rem; height: 24rem; animation: float 7s ease-in-out infinite;"></div>
+  <div class="position-absolute top-0 start-0 translate-middle bg-primary rounded-circle opacity-25 blur-shape float-slow" style="width: 18rem; height: 18rem;"></div>
+  <div class="position-absolute bottom-0 end-0 translate-middle bg-purple rounded-circle opacity-25 blur-shape float-slow" style="width: 24rem; height: 24rem; animation-delay: 1s;"></div>
 
   <!-- Title -->
   <h2 class="display-5 fw-bold text-primary text-center mb-5 animate-fadeInUp">
@@ -10,18 +10,9 @@
 
   <!-- Social Icons -->
   <div class="d-flex justify-content-center gap-3 mb-5">
-    <!-- Twitter -->
-    <a href="https://x.com/SumanKS81840" target="_blank" aria-label="Twitter" title="Twitter" class="social-icon">
-      <i class="bi bi-twitter"></i>
-    </a>
-    <!-- LinkedIn -->
-    <a href="https://www.linkedin.com/in/suman-k-s-a55868184/" target="_blank" aria-label="LinkedIn" title="LinkedIn" class="social-icon">
-      <i class="bi bi-linkedin"></i>
-    </a>
-    <!-- GitHub -->
-    <a href="https://github.com/backendlegion91" target="_blank" aria-label="GitHub" title="GitHub" class="social-icon">
-      <i class="bi bi-github"></i>
-    </a>
+    <a href="https://x.com/SumanKS81840" target="_blank" aria-label="Twitter" title="Twitter" class="social-icon"><i class="bi bi-twitter"></i></a>
+    <a href="https://www.linkedin.com/in/suman-k-s-a55868184/" target="_blank" aria-label="LinkedIn" title="LinkedIn" class="social-icon"><i class="bi bi-linkedin"></i></a>
+    <a href="https://github.com/backendlegion91" target="_blank" aria-label="GitHub" title="GitHub" class="social-icon"><i class="bi bi-github"></i></a>
   </div>
 
   <!-- Contact Options & Map -->
@@ -30,28 +21,27 @@
       
       <!-- Contact Options -->
       <div class="col-lg-6">
-        <div class="p-4 rounded-4 shadow bg-white animate-fadeInUp">
+        <div class="p-4 rounded-4 shadow bg-white animate-fadeInUp h-100">
           <h3 class="h4 fw-bold text-primary mb-4">Get in Touch</h3>
 
-          <!-- Email -->
-          <a href="mailto:backendlegion91@gmail.com" class="btn d-flex align-items-center gap-2 mb-3 btn-gradient">
-            <i class="bi bi-envelope-fill"></i> Email Me
-          </a>
-
-          <!-- WhatsApp -->
-          <a href="https://wa.me/7996049769" target="_blank" class="btn d-flex align-items-center gap-2 mb-3 btn-success text-white">
-            <i class="bi bi-whatsapp"></i> WhatsApp
-          </a>
-
-          <!-- Phone -->
-          <a href="tel:+7996049769" class="btn d-flex align-items-center gap-2 mb-3 btn-primary text-white">
-            <i class="bi bi-telephone-fill"></i> Call Me
-          </a>
-
-          <!-- LinkedIn -->
-          <a href="https://www.linkedin.com/in/suman-k-s-a55868184/" target="_blank" class="btn d-flex align-items-center gap-2 mb-3 btn-info text-white">
-            <i class="bi bi-linkedin"></i> LinkedIn
-          </a>
+          <div class="d-grid gap-3">
+            <!-- Email -->
+            <a href="mailto:backendlegion91@gmail.com" class="btn btn-gradient d-flex align-items-center gap-2 btn-email">
+              <i class="bi bi-envelope-fill"></i> Email Me
+            </a>
+            <!-- WhatsApp -->
+            <a href="https://wa.me/7996049769" target="_blank" class="btn btn-success text-white d-flex align-items-center gap-2 btn-whatsapp">
+              <i class="bi bi-whatsapp"></i> WhatsApp
+            </a>
+            <!-- Phone -->
+            <a href="tel:+7996049769" class="btn btn-primary text-white d-flex align-items-center gap-2 btn-phone">
+              <i class="bi bi-telephone-fill"></i> Call Me
+            </a>
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/in/suman-k-s-a55868184/" target="_blank" class="btn btn-info text-white d-flex align-items-center gap-2 btn-linkedin">
+              <i class="bi bi-linkedin"></i> LinkedIn
+            </a>
+          </div>
         </div>
       </div>
 
@@ -62,52 +52,11 @@
         </p>
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.8895805881457!2d77.63335691524039!3d12.910953719741388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae15d087f8894f%3A0x60c9a608d048e2e2!2sHSR%20Layout%2C%20Bengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1693578200000!5m2!1sen!2sin"
-          width="100%" height="350" class="rounded-4 shadow" style="border:0;" allowfullscreen="" loading="lazy">
+          width="100%" height="350" class="rounded-4 shadow border-0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
         </iframe>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Bootstrap Icons CDN -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
-<style>
-/* Animations */
-@keyframes fadeInUp {0%{opacity:0;transform:translateY(40px);}100%{opacity:1;transform:translateY(0);}}
-.animate-fadeInUp {animation: fadeInUp 0.8s ease forwards;}
-
-@keyframes fadeInScale {0%{opacity:0;transform:scale(0.8);}100%{opacity:1;transform:scale(1);}}
-.animate-fadeInScale {animation: fadeInScale 0.8s ease forwards;}
-
-@keyframes float {0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-15px) scale(1.05);}}
-.blur {filter: blur(80px);}
-
-/* Social icons */
-.social-icon {
-  display:flex;align-items:center;justify-content:center;
-  width:50px;height:50px;
-  background:#fff;color:#0d6efd;
-  border-radius:50%;
-  font-size:1.4rem;
-  transition:all .3s ease;
-  box-shadow:0 4px 12px rgba(0,0,0,0.1);
-}
-.social-icon:hover {
-  background:linear-gradient(135deg,#0d6efd,#6610f2);
-  color:#fff;
-  transform:translateY(-5px) scale(1.15);
-}
-
-/* Gradient Button */
-.btn-gradient {
-  background:linear-gradient(135deg,#6366f1,#a78bfa);
-  color:#fff;
-  border:none;
-  transition:all .3s ease;
-}
-.btn-gradient:hover {
-  opacity:.9;
-  transform:scale(1.05);
-}
-</style>

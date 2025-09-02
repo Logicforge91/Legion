@@ -1,8 +1,8 @@
 <!-- About Section -->
 <section id="about" class="position-relative py-5 px-3 bg-light overflow-hidden">
-  <!-- Floating Accent Shapes -->
-  <div class="position-absolute top-0 start-0 translate-middle bg-indigo rounded-circle blur-3xl pulse-slow" style="width: 18rem; height: 18rem; background: rgba(99,102,241,0.2);"></div>
-  <div class="position-absolute bottom-0 end-0 translate-middle bg-purple rounded-circle blur-3xl pulse-slow" style="width: 24rem; height: 24rem; background: rgba(139,92,246,0.2);"></div>
+  <!-- Floating Accent Shapes (decorative) -->
+  <div class="about-shape shape-indigo" aria-hidden="true"></div>
+  <div class="about-shape shape-purple" aria-hidden="true"></div>
 
   <!-- About Content -->
   <div class="container position-relative">
@@ -10,22 +10,22 @@
       
       <!-- Avatar -->
       <div class="col-md-3 text-center">
-        <div class="d-flex align-items-center justify-content-center rounded-circle bg-indigo text-white fw-bold bounce-soft mx-auto" style="width: 8rem; height: 8rem; background: rgba(99,102,241,0.3); backdrop-filter: blur(6px); font-size: 3rem;">
+        <div class="about-avatar bounce" aria-hidden="true">
           👤
         </div>
       </div>
 
       <!-- Text Content -->
       <div class="col-md-9 text-center text-md-start">
-        <h2 class="fw-bold text-primary mb-4 fadeIn" style="font-size: 2.5rem;">
+        <h2 class="fw-bold text-primary mb-4 fade-in" style="font-size: 2.5rem;">
           The Story Behind the Code
         </h2>
-        <p class="text-muted mb-3 fadeIn delay-150">
+        <p class="text-muted mb-3 fade-in delay-150">
           👋 Hi, I’m <span class="fw-semibold text-primary">Suman K S</span>, a passionate backend developer with 
           <span class="fw-semibold text-primary">4+ years</span> of experience in PHP, Laravel, Lumen, MySQL, REST APIs, and JavaScript.  
           I love building scalable, high-performance web applications.
         </p>
-        <p class="text-muted fadeIn delay-300">
+        <p class="text-muted fade-in delay-300">
           “I specialize in writing clean, maintainable code and building seamless backend architectures. I continuously learn new technologies and frameworks to stay at the forefront of development.”
         </p>
       </div>
@@ -33,34 +33,3 @@
     </div>
   </div>
 </section>
-
-<!-- Custom CSS -->
-<style>
-/* Fade In Animation */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.fadeIn { animation: fadeIn 0.8s ease forwards; }
-.delay-150 { animation-delay: 0.15s; }
-.delay-300 { animation-delay: 0.3s; }
-
-/* Pulse for floating shapes */
-@keyframes pulse-slow {
-  0%, 100% { transform: scale(1); opacity: 0.3; }
-  50% { transform: scale(1.2); opacity: 0.5; }
-}
-.pulse-slow { animation: pulse-slow 6s infinite; }
-
-/* Bounce avatar */
-@keyframes bounce-soft {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-.bounce-soft { animation: bounce-soft 3s ease-in-out infinite; }
-
-/* Shape blur */
-.blur-3xl {
-  filter: blur(80px);
-}
-</style>

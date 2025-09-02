@@ -1,32 +1,35 @@
-<!-- Chatbot Floating Button -->
-<div id="chatbot" 
-     class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center shadow-lg"
-     style="position: fixed; bottom: 1.5rem; right: 1.5rem; width: 56px; height: 56px; z-index: 1050; cursor: pointer; font-size: 1.5rem; transition: transform 0.2s;">
-  🤖
-</div>
-
-<!-- Chatbot Window -->
-<div id="chatbotWindow" 
-     class="card shadow-lg"
-     style="position: fixed; bottom: 6rem; right: 1.5rem; width: 320px; max-width: 100%; border-radius: 1rem; transform: scale(0.95); opacity: 0; pointer-events: none; transition: all 0.3s ease; z-index: 1050;">
-
-  <!-- Header -->
-  <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center" 
-       style="border-top-left-radius: 1rem; border-top-right-radius: 1rem;">
-    <h6 class="mb-0">Legion AI</h6>
-    <button id="closeChat" type="button" class="btn-close btn-close-white"></button>
+<!-- Chatbot Container -->
+<div id="chatbotContainer">
+  <!-- Floating Button -->
+  <div id="chatbot" 
+       class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center shadow-lg"
+       style="position: fixed; bottom: 1.5rem; right: 1.5rem; width: 56px; height: 56px; z-index: 1050; cursor: pointer; font-size: 1.5rem; transition: transform 0.2s;">
+    🤖
   </div>
 
-  <!-- Chat Content -->
-  <div id="chatContent" class="card-body p-3" 
-       style="max-height: 300px; overflow-y: auto; background: #f8f9fa;">
-  </div>
+  <!-- Chatbot Window -->
+  <div id="chatbotWindow" 
+       class="card shadow-lg"
+       style="position: fixed; bottom: 6rem; right: 1.5rem; width: 320px; max-width: 100%; border-radius: 1rem; transform: scale(0.95); opacity: 0; pointer-events: none; transition: all 0.3s ease; z-index: 1050;">
 
-  <!-- Input -->
-  <div class="p-3 border-top" 
-       style="background: #f1f3f5; border-bottom-left-radius: 1rem; border-bottom-right-radius: 1rem;">
-    <input id="chatInput" type="text" class="form-control mb-2" placeholder="Ask me anything...">
-    <button id="sendChat" class="btn btn-primary w-100 fw-semibold">Send</button>
+    <!-- Header -->
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center" 
+         style="border-top-left-radius: 1rem; border-top-right-radius: 1rem;">
+      <h6 class="mb-0">Legion AI</h6>
+      <button id="closeChat" type="button" class="btn-close btn-close-white"></button>
+    </div>
+
+    <!-- Chat Content -->
+    <div id="chatContent" class="card-body p-3" 
+         style="max-height: 300px; overflow-y: auto; background: #f8f9fa;">
+    </div>
+
+    <!-- Input -->
+    <div class="p-3 border-top" 
+         style="background: #f1f3f5; border-bottom-left-radius: 1rem; border-bottom-right-radius: 1rem;">
+      <input id="chatInput" type="text" class="form-control mb-2" placeholder="Ask me anything...">
+      <button id="sendChat" class="btn btn-primary w-100 fw-semibold">Send</button>
+    </div>
   </div>
 </div>
 

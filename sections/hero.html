@@ -6,8 +6,7 @@
       <!-- Text Content -->
       <div class="col-lg-6 mb-5 mb-lg-0 animate-fadeIn">
         <h1 class="display-4 fw-bold mb-3">
-          Hi 👋, I'm 
-          <span class="text-gradient">Suman K S</span>
+          Hi 👋, I'm <span class="text-gradient">Suman K S</span>
         </h1>
         <p class="lead text-muted mb-4">
           Backend Developer · PHP | Laravel | MySQL | REST APIs
@@ -26,10 +25,10 @@
       <div class="col-lg-6 animate-fadeIn delay-150">
         <div class="d-flex justify-content-center">
           <div class="hero-box position-relative d-flex align-items-center justify-content-center rounded-4 shadow-lg">
-            <h1 class="legion-text">Legion</h1>
-            <!-- Floating Glow Orbs -->
-            <div class="hero-circle circle-sm top-end gradient-indigo"></div>
-            <div class="hero-circle circle-md bottom-start gradient-pink"></div>
+            <h2 class="legion-text">Legion</h2>
+            <!-- Floating Glow Orbs (decorative) -->
+            <div class="hero-circle circle-sm top-end gradient-indigo" aria-hidden="true"></div>
+            <div class="hero-circle circle-md bottom-start gradient-pink" aria-hidden="true"></div>
           </div>
         </div>
       </div>
@@ -37,115 +36,3 @@
     </div>
   </div>
 </section>
-
-<!-- Hero Styles -->
-<style>
-/* Gradient text */
-.text-gradient {
-  background: linear-gradient(to right, #6366F1, #8B5CF6, #EC4899);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Buttons */
-.btn-gradient {
-  background: linear-gradient(to right, #6366F1, #8B5CF6);
-  color: #fff;
-  border-radius: 2rem;
-  font-weight: 600;
-  transition: transform 0.3s ease;
-}
-.btn-gradient:hover {
-  transform: scale(1.05);
-}
-
-.btn-outline-gradient {
-  border: 2px solid #6366F1;
-  color: #6366F1;
-  border-radius: 2rem;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-.btn-outline-gradient:hover {
-  background: #6366F1;
-  color: #fff;
-}
-
-/* Hero Box */
-.hero-box {
-  width: 280px;
-  height: 280px;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-}
-@media (min-width: 768px) {
-  .hero-box {
-    width: 320px;
-    height: 320px;
-  }
-}
-
-/* Legion Branding Text */
-.legion-text {
-  font-size: 2.5rem;
-  font-weight: 800;
-  letter-spacing: 2px;
-  background: linear-gradient(to right, #6366F1, #8B5CF6, #EC4899);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: pulseText 2s infinite;
-}
-@media (min-width: 768px) {
-  .legion-text {
-    font-size: 3rem;
-  }
-}
-
-@keyframes pulseText {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.85; transform: scale(1.05); }
-}
-
-/* Floating Glow Orbs */
-.hero-circle {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(30px);
-  opacity: 0.7;
-}
-.circle-sm {
-  width: 70px;
-  height: 70px;
-}
-.circle-md {
-  width: 100px;
-  height: 100px;
-}
-.top-end {
-  top: -20px;
-  right: -20px;
-}
-.bottom-start {
-  bottom: -25px;
-  left: -25px;
-}
-.gradient-indigo {
-  background: radial-gradient(circle, #6366F1, transparent);
-}
-.gradient-pink {
-  background: radial-gradient(circle, #EC4899, transparent);
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.animate-fadeIn {
-  animation: fadeIn 1s ease forwards;
-}
-.delay-150 {
-  animation-delay: 0.3s;
-}
-</style>

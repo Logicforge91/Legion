@@ -1,99 +1,67 @@
+<!-- Testimonials Section -->
 <section id="testimonials" class="position-relative py-5 px-3 bg-light overflow-hidden">
-  <!-- Background shapes -->
-  <div class="position-absolute top-0 start-0 translate-middle bg-primary bg-opacity-25 rounded-circle blur-slow"></div>
-  <div class="position-absolute bottom-0 end-0 translate-middle bg-purple bg-opacity-25 rounded-circle blur-slow"></div>
+  <!-- Background Shapes -->
+  <div class="position-absolute top-0 start-0 translate-middle bg-primary bg-opacity-25 rounded-circle blur-shape"></div>
+  <div class="position-absolute bottom-0 end-0 translate-middle bg-purple bg-opacity-25 rounded-circle blur-shape-lg"></div>
 
   <!-- Section Heading -->
   <h2 class="display-4 fw-bold text-center text-primary mb-5 fade-in">Stories of Impact</h2>
 
   <!-- Looping Testimonials -->
   <div class="overflow-hidden position-relative">
-    <div class="d-flex animate-loop-scroll gap-4">
+    <div class="d-flex gap-4 loop-track">
 
-      <!-- Testimonials set -->
+      <!-- Testimonial -->
       <div class="testimonial-card card shadow-lg p-4 text-center">
-        <img src="https://i.pravatar.cc/100?img=12" alt="Chethan Evil Das" class="rounded-circle mx-auto border border-4 border-primary shadow mb-3" width="70" height="70">
+        <img src="https://i.pravatar.cc/100?img=12" alt="Chethan Evil Das" class="testimonial-img">
         <p class="fst-italic">“A dedicated developer who always delivers high-quality work.”</p>
         <div class="mt-3 fw-semibold text-primary">— Chethan Evil Das (HR Manager @SocialBytes)</div>
       </div>
 
       <div class="testimonial-card card shadow-lg p-4 text-center">
-        <img src="https://i.pravatar.cc/100?img=13" alt="Ajay" class="rounded-circle mx-auto border border-4 border-purple shadow mb-3" width="70" height="70">
+        <img src="https://i.pravatar.cc/100?img=13" alt="Ajay" class="testimonial-img">
         <p class="fst-italic">“Very strong in backend development and database optimization.”</p>
         <div class="mt-3 fw-semibold text-primary">— Ajay (Team Lead @SocialBytes)</div>
       </div>
 
       <div class="testimonial-card card shadow-lg p-4 text-center">
-        <img src="https://i.pravatar.cc/100?img=14" alt="Manoj" class="rounded-circle mx-auto border border-4 border-pink shadow mb-3" width="70" height="70">
+        <img src="https://i.pravatar.cc/100?img=14" alt="Manoj" class="testimonial-img">
         <p class="fst-italic">“Professional, reliable, and highly skilled developer.”</p>
         <div class="mt-3 fw-semibold text-primary">— Manoj (Client @IntelliSpace)</div>
       </div>
 
       <div class="testimonial-card card shadow-lg p-4 text-center">
-        <img src="https://i.pravatar.cc/100?img=15" alt="Girish" class="rounded-circle mx-auto border border-4 border-success shadow mb-3" width="70" height="70">
+        <img src="https://i.pravatar.cc/100?img=15" alt="Girish" class="testimonial-img">
         <p class="fst-italic">“Excellent communication and timely delivery.”</p>
         <div class="mt-3 fw-semibold text-primary">— Girish (Team Lead @SocialBytes)</div>
       </div>
-      <!-- /Testimonials set -->
 
-      <!-- Duplicate set for seamless loop -->
-      <div class="testimonial-card card shadow-lg p-4 text-center">🏆 Duplicate #1</div>
-      <div class="testimonial-card card shadow-lg p-4 text-center">🏆 Duplicate #2</div>
-      <div class="testimonial-card card shadow-lg p-4 text-center">🏆 Duplicate #3</div>
-      <div class="testimonial-card card shadow-lg p-4 text-center">🏆 Duplicate #4</div>
+     <div class="testimonial-card card shadow-lg p-4 text-center">
+        <img src="https://i.pravatar.cc/100?img=12" alt="Chethan Evil Das" class="testimonial-img">
+        <p class="fst-italic">“A dedicated developer who always delivers high-quality work.”</p>
+        <div class="mt-3 fw-semibold text-primary">— Chethan Evil Das (HR Manager @SocialBytes)</div>
+      </div>
+
+      <div class="testimonial-card card shadow-lg p-4 text-center">
+        <img src="https://i.pravatar.cc/100?img=13" alt="Ajay" class="testimonial-img">
+        <p class="fst-italic">“Very strong in backend development and database optimization.”</p>
+        <div class="mt-3 fw-semibold text-primary">— Ajay (Team Lead @SocialBytes)</div>
+      </div>
+
+      <div class="testimonial-card card shadow-lg p-4 text-center">
+        <img src="https://i.pravatar.cc/100?img=14" alt="Manoj" class="testimonial-img">
+        <p class="fst-italic">“Professional, reliable, and highly skilled developer.”</p>
+        <div class="mt-3 fw-semibold text-primary">— Manoj (Client @IntelliSpace)</div>
+      </div>
+
+      <div class="testimonial-card card shadow-lg p-4 text-center">
+        <img src="https://i.pravatar.cc/100?img=15" alt="Girish" class="testimonial-img">
+        <p class="fst-italic">“Excellent communication and timely delivery.”</p>
+        <div class="mt-3 fw-semibold text-primary">— Girish (Team Lead @SocialBytes)</div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<style>
-/* Background glow shapes */
-.blur-slow {
-  width: 20rem;
-  height: 20rem;
-  filter: blur(120px);
-  animation: pulse-slow 6s infinite;
-}
-.bg-purple { background-color: #a855f7; }
-.bg-pink { background-color: #ec4899; }
 
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.fade-in { animation: fadeIn 0.8s ease forwards; }
-
-@keyframes pulse-slow {
-  0%,100% { transform: scale(1); opacity: 0.3; }
-  50% { transform: scale(1.2); opacity: 0.5; }
-}
-
-@keyframes loop-scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-.animate-loop-scroll {
-  width: max-content;
-  animation: loop-scroll 25s linear infinite;
-}
-
-/* Testimonial Card */
-.testimonial-card {
-  min-width: 280px;
-  max-width: 320px;
-  border-radius: 1.5rem !important;
-  background-color: rgba(255,255,255,0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.testimonial-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.15) !important;
-}
-
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-  .testimonial-card { min-width: 75vw; }
-}
-</style>

@@ -1,28 +1,32 @@
 <!-- Resume Modal -->
-<div id="resumeModal" class="modal fade" tabindex="-1">
+<div id="resumeModal" class="modal fade" tabindex="-1" aria-labelledby="resumeTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content border-0 rounded-4 shadow-lg" 
+    <div class="modal-content border-0 rounded-4 shadow-lg"
          style="background: linear-gradient(135deg, #eef2ff, #f8f0ff);">
-      
-      <!-- Close Button -->
-      <button id="closeModal" type="button" class="btn-close position-absolute top-0 end-0 m-3" 
-              data-bs-dismiss="modal" aria-label="Close"></button>
+
+      <!-- Close Button (Bootstrap handles it automatically) -->
+      <!-- <button type="button"
+              class="btn-close position-absolute top-0 end-0 m-3"
+              data-bs-dismiss="modal"
+              aria-label="Close"></button> -->
 
       <!-- Modal Body -->
       <div class="modal-body text-center p-5">
-        <!-- Title -->
-        <h1 class="fw-bold display-5 mb-3 text-primary" 
-            style="background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+        <h1 id="resumeTitle"
+            class="fw-bold display-5 mb-3 text-primary"
+            style="background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899); 
+                   -webkit-background-clip: text; 
+                   -webkit-text-fill-color: transparent;">
           Legion
         </h1>
-        
+
         <h2 class="fw-bold h3 mb-3 text-primary">TalentCard</h2>
         <p class="text-muted mb-4">
           Unlock my journey, projects, and expertise. Take a peek at my Legion portfolio!
         </p>
 
         <!-- Access Resume Button -->
-        <a href="assets/resume.pdf" target="_blank" 
+        <a href="assets/resume.pdf" target="_blank"
            class="btn btn-primary btn-lg rounded-pill px-5 fw-semibold shadow-sm">
           Access My Vault
         </a>
