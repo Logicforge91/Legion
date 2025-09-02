@@ -9,6 +9,7 @@ const sections = [
   // "achievements.html",
   "testimonials.html",
   "contact.html"
+ 
 ];
 
 const content = document.getElementById("content");
@@ -39,8 +40,6 @@ async function loadSections() {
 // Run on page load
 document.addEventListener("DOMContentLoaded", loadSections);
 
-// Footer Year
-document.getElementById("year").textContent = new Date().getFullYear();
 
 
 
