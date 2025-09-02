@@ -1137,3 +1137,35 @@ footer .legion {
   font-weight: 700;
   text-shadow: 0 0 8px rgba(111,66,193,0.5);
 }
+
+
+/* ===========================
+   Loader
+=========================== */
+#loader {
+  z-index: 2000; /* stays above everything */
+  background: #fff;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+/* Loader Text Pulse */
+.animate-pulse {
+  animation: pulseGlow 1.5s infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 1;
+    text-shadow: 0 0 5px var(--primary), 0 0 15px var(--purple);
+  }
+  50% {
+    opacity: 0.6;
+    text-shadow: 0 0 20px var(--purple), 0 0 40px var(--primary);
+  }
+}
+
+/* Hide Loader When Page Loads */
+body.loaded #loader {
+  opacity: 0;
+  visibility: hidden;
+}
