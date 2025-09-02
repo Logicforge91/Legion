@@ -669,3 +669,17 @@
 /* Custom Colors */
 .text-purple { color: #8b5cf6; }
 .border-purple { border-color: #8b5cf6 !important; }
+
+
+
+/* Hover effect for chatbot button */
+#chatbot:hover {
+  transform: scale(1.1);
+}
+
+/* Open state for chatbot window */
+#chatbotWindow.open {
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
