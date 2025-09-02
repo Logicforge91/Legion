@@ -1,16 +1,20 @@
-<section id="skills" class="relative py-40 px-6 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 overflow-hidden">
+<!-- Skills Section -->
+<section id="skills" class="position-relative py-5 bg-light text-dark overflow-hidden">
   <!-- Floating accent shapes -->
-  <div class="absolute top-10 left-10 w-32 h-32 bg-indigo-400/20 rounded-full filter blur-3xl animate-circular-shape"></div>
-  <div class="absolute bottom-20 right-20 w-48 h-48 bg-purple-400/20 rounded-full filter blur-3xl animate-circular-shape"></div>
+  <div class="position-absolute top-0 start-0 translate-middle bg-primary opacity-25 rounded-circle blur-shape"></div>
+  <div class="position-absolute bottom-0 end-0 translate-middle bg-purple opacity-25 rounded-circle blur-shape-lg"></div>
 
-  <!-- Orbit container -->
-  <div class="relative w-[600px] h-[600px] mx-auto flex items-center justify-center">
-    <!-- Section Title in center -->
-    <h2 class="absolute text-5xl font-extrabold text-indigo-600 text-center z-10 animate-fadeIn">Tech Stack</h2>
+  <!-- Orbit Container -->
+  <div class="position-relative mx-auto d-flex align-items-center justify-content-center orbit-container">
+    
+    <!-- Section Title (center) -->
+    <h2 class="position-absolute fw-bold display-5 text-primary text-center z-3 animate-fadeIn">
+      Tech Stack
+    </h2>
 
-    <!-- Skill cards orbiting around the title -->
-    <div class="relative w-full h-full animate-orbit">
-      <!-- Skill cards -->
+    <!-- Orbit Wrapper -->
+    <div class="position-relative w-100 h-100 animate-orbit">
+      <!-- Skill Cards -->
       <div class="skill-card" style="--i:0;">
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP">
         <p>PHP</p>
@@ -24,7 +28,7 @@
         <p>MySQL</p>
       </div>
       <div class="skill-card" style="--i:3;">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JS">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
         <p>JavaScript</p>
       </div>
       <div class="skill-card" style="--i:4;">
@@ -55,40 +59,47 @@
   </div>
 </section>
 
+<!-- Custom CSS -->
 <style>
-/* Fade-in for title */
+/* Orbit Container Size */
+.orbit-container {
+  width: 600px;
+  height: 600px;
+  max-width: 100%;
+}
+
+/* Blur Accent Shapes */
+.blur-shape {
+  width: 200px;
+  height: 200px;
+  filter: blur(90px);
+}
+.blur-shape-lg {
+  width: 300px;
+  height: 300px;
+  filter: blur(120px);
+}
+
+/* Fade-in for Title */
 @keyframes fadeIn {
   0% { opacity:0; transform: translateY(20px); }
   100% { opacity:1; transform: translateY(0); }
 }
 .animate-fadeIn { animation: fadeIn 0.8s ease forwards; }
 
-/* Floating accent shapes circular motion */
-@keyframes circularShape {
-  0% { transform: translate(0,0); }
-  25% { transform: translate(20px, -10px); }
-  50% { transform: translate(0, 20px); }
-  75% { transform: translate(-20px, -10px); }
-  100% { transform: translate(0,0); }
-}
-.animate-circular-shape {
-  animation: circularShape 12s ease-in-out infinite alternate;
-}
-
-/* Orbit container rotation */
+/* Orbit Rotation */
 @keyframes orbit {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
 .animate-orbit {
-  position: relative;
   width: 100%;
   height: 100%;
-  animation: orbit 20s linear infinite;
+  animation: orbit 25s linear infinite;
   transform-origin: center center;
 }
 
-/* Skill cards */
+/* Skill Cards */
 .skill-card {
   position: absolute;
   width: 100px;
@@ -97,9 +108,9 @@
   left: 50%;
   margin: -50px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.3);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
   
   display: flex;
   flex-direction: column;
@@ -107,25 +118,66 @@
   justify-content: center;
   
   text-align: center;
-  /* evenly spaced 10 items = 360/10 = 36deg */
   transform: rotate(calc(var(--i) * 36deg)) translateX(250px) rotate(calc(-1 * var(--i) * 36deg));
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .skill-card img {
   width: 40px;
   height: 40px;
-  margin: 0 auto 5px auto;
+  margin-bottom: 5px;
 }
 .skill-card p {
   font-weight: 600;
-  color: #4f46e5;
+  color: #0d6efd; /* Bootstrap primary */
   font-size: 14px;
   margin: 0;
 }
-
-/* Hover effect */
 .skill-card:hover {
-  transform: rotate(calc(var(--i) * 36deg)) translateX(250px) rotate(calc(-1 * var(--i) * 36deg)) scale(1.2);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+  transform: rotate(calc(var(--i) * 36deg)) translateX(250px) rotate(calc(-1 * var(--i) * 36deg)) scale(1.15);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* ------------------ Responsive ------------------ */
+@media (max-width: 992px) { /* Tablets */
+  .orbit-container {
+    width: 450px;
+    height: 450px;
+  }
+  .skill-card {
+    width: 80px;
+    height: 80px;
+    margin: -40px;
+    transform: rotate(calc(var(--i) * 36deg)) translateX(180px) rotate(calc(-1 * var(--i) * 36deg));
+  }
+  .skill-card img {
+    width: 30px;
+    height: 30px;
+  }
+  .skill-card p {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 576px) { /* Mobile */
+  .orbit-container {
+    width: 320px;
+    height: 320px;
+  }
+  .skill-card {
+    width: 60px;
+    height: 60px;
+    margin: -30px;
+    transform: rotate(calc(var(--i) * 36deg)) translateX(120px) rotate(calc(-1 * var(--i) * 36deg));
+  }
+  .skill-card img {
+    width: 24px;
+    height: 24px;
+  }
+  .skill-card p {
+    font-size: 11px;
+  }
+  h2 {
+    font-size: 1.75rem !important;
+  }
 }
 </style>
