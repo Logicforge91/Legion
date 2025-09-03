@@ -1,52 +1,80 @@
 <!-- Skills Section -->
-<section id="skills" class="position-relative py-5 bg-light text-dark overflow-hidden">
-  <!-- Floating accent shapes -->
-  <div class="position-absolute top-0 start-0 translate-middle bg-primary opacity-25 rounded-circle blur-shape"></div>
-  <div class="position-absolute bottom-0 end-0 translate-middle bg-purple opacity-25 rounded-circle blur-shape-lg"></div>
+<section id="skills" class="position-relative py-5 px-3 bg-light overflow-hidden">
 
-  <!-- Orbit Container -->
-  <div class="orbit-container position-relative mx-auto d-flex align-items-center justify-content-center">
-    
-    <!-- Section Title -->
-    <h2 class="section-title position-absolute fw-bold display-5 text-primary text-center z-3">
-      Tech Stack
-    </h2>
+  <!-- Floating background shapes -->
+  <div class="position-absolute top-0 start-0 translate-middle rounded-circle blur-slow bg-primary bg-opacity-25"></div>
+  <div class="position-absolute bottom-0 end-0 translate-middle rounded-circle blur-slow bg-purple bg-opacity-25"></div>
 
-    <!-- Orbit Wrapper -->
-    <div class="orbit-wrapper">
+  <!-- Section Heading -->
+  <h2 class="display-4 fw-bold text-center text-gradient mb-5 fade-in">
+    Tech Stack
+  </h2>
+
+  <!-- Skills Loop -->
+  <div class="skills-container overflow-hidden">
+    <div class="skills-loop d-flex gap-4">
+
       <!-- Skill Cards -->
-      <div class="skill-card" style="--i:0;">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP"><p>PHP</p>
+      <div class="skill-card card text-center shadow-lg p-4">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" class="mx-auto mb-3" width="50" alt="PHP">
+        <h3 class="h5 fw-bold text-primary">PHP</h3>
       </div>
-      <div class="skill-card" style="--i:1;">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" alt="Laravel"><p>Laravel</p>
+
+      <div class="skill-card card text-center shadow-lg p-4">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" class="mx-auto mb-3" width="50" alt="Laravel">
+        <h3 class="h5 fw-bold text-danger">Laravel</h3>
       </div>
-      <div class="skill-card" style="--i:2;">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL"><p>MySQL</p>
+
+      <div class="skill-card card text-center shadow-lg p-4">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" class="mx-auto mb-3" width="50" alt="MySQL">
+        <h3 class="h5 fw-bold text-warning">MySQL</h3>
       </div>
-      <div class="skill-card" style="--i:3;">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript"><p>JavaScript</p>
+
+      <div class="skill-card card text-center shadow-lg p-4">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="mx-auto mb-3" width="50" alt="JavaScript">
+        <h3 class="h5 fw-bold text-warning">JavaScript</h3>
       </div>
-      <div class="skill-card" style="--i:4;">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React.js"><p>React.js</p>
+
+      <div class="skill-card card text-center shadow-lg p-4">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" class="mx-auto mb-3" width="50" alt="React.js">
+        <h3 class="h5 fw-bold text-info">React.js</h3>
       </div>
-      <div class="skill-card" style="--i:5;">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js"><p>Node.js</p>
+
+      <div class="skill-card card text-center shadow-lg p-4">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" class="mx-auto mb-3" width="50" alt="Node.js">
+        <h3 class="h5 fw-bold text-success">Node.js</h3>
       </div>
-      <div class="skill-card" style="--i:6;">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express.js"><p>Express.js</p>
+
+      <div class="skill-card card text-center shadow-lg p-4">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" class="mx-auto mb-3" width="50" alt="Express.js">
+        <h3 class="h5 fw-bold text-primary">Express.js</h3>
       </div>
-      <div class="skill-card" style="--i:7;">
-        <img src="https://cdn-icons-png.flaticon.com/512/779/779549.png" alt="REST API"><p>REST API</p>
+
+      <div class="skill-card card text-center shadow-lg p-4">
+        <img src="https://cdn-icons-png.flaticon.com/512/779/779549.png" class="mx-auto mb-3" width="50" alt="REST API">
+        <h3 class="h5 fw-bold text-primary">REST API</h3>
       </div>
-      <div class="skill-card" style="--i:8;">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git"><p>Git</p>
+
+      <div class="skill-card card text-center shadow-lg p-4">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" class="mx-auto mb-3" width="50" alt="Git">
+        <h3 class="h5 fw-bold text-danger">Git</h3>
       </div>
-      <div class="skill-card" style="--i:9;">
-        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968875.png" alt="Jira"><p>Jira</p>
+
+      <div class="skill-card card text-center shadow-lg p-4">
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968875.png" class="mx-auto mb-3" width="50" alt="Jira">
+        <h3 class="h5 fw-bold text-warning">Jira</h3>
       </div>
+
+      <!-- Duplicate set for seamless loop -->
+      <div class="skill-card card text-center shadow-lg p-4">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" class="mx-auto mb-3" width="50" alt="PHP">
+        <h3 class="h5 fw-bold text-primary">PHP</h3>
+      </div>
+      <div class="skill-card card text-center shadow-lg p-4">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" class="mx-auto mb-3" width="50" alt="Laravel">
+        <h3 class="h5 fw-bold text-danger">Laravel</h3>
+      </div>
+      <!-- (repeat others as needed) -->
     </div>
   </div>
 </section>
-
-
