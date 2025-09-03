@@ -1169,3 +1169,9 @@ body.loaded #loader {
   opacity: 0;
   visibility: hidden;
 }
+
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Adjust for header height */
+}

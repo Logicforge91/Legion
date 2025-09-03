@@ -17,8 +17,7 @@
 
   <!-- Custom CSS -->
   <!-- <link rel="stylesheet" href="css/style.css" /> -->
-    <link rel="stylesheet" href="css/new.css" />
-
+  <link rel="stylesheet" href="css/new.css" />
 </head>
 <body class="bg-light text-dark">
 
@@ -29,25 +28,59 @@
 
   <div class="d-flex flex-column min-vh-100">
 
-    <!-- Header (loaded dynamically) -->
-    <div id="headerContainer"></div>
+    <!-- Header -->
+    <header class="sticky-top bg-white bg-opacity-75 backdrop-blur shadow-sm border-bottom">
+      <div class="container d-flex justify-content-between align-items-center py-3">
+        
+        <!-- Logo -->
+        <a href="#hero" class="fs-3 fw-bold text-decoration-none text-gradient">
+          Suman K S
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="d-none d-md-flex align-items-center gap-4 fw-medium" aria-label="Main navigation">
+          <a href="#hero" class="nav-link px-0">Home</a>
+          <a href="#about" class="nav-link px-0">About</a>
+          <a href="#skills" class="nav-link px-0">Skills</a>
+          <a href="#projects" class="nav-link px-0">Projects</a>
+          <a href="#contact" class="nav-link px-0">Contact</a>
+          <a href="assets/resume.pdf" target="_blank" class="btn btn-gradient rounded-pill px-4 py-2 fw-semibold shadow-sm ms-2">
+            Hire Me
+          </a>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <button class="btn d-md-none fs-3" type="button" data-bs-toggle="collapse" data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle navigation">
+          ☰
+        </button>
+      </div>
+
+      <!-- Mobile Nav -->
+      <nav id="mobileMenu" class="collapse bg-white bg-opacity-95 backdrop-blur px-4 pb-3" aria-label="Mobile navigation">
+        <a href="#hero" class="d-block py-2">Home</a>
+        <a href="#about" class="d-block py-2">About</a>
+        <a href="#skills" class="d-block py-2">Skills</a>
+        <a href="#projects" class="d-block py-2">Projects</a>
+        <a href="#contact" class="d-block py-2">Contact</a>
+        <a href="assets/resume.pdf" target="_blank" class="btn btn-gradient rounded-pill w-100 mt-3 py-2 fw-semibold shadow-sm">
+          Hire Me
+        </a>
+      </nav>
+    </header>
 
     <!-- Main content -->
     <main id="content" class="flex-grow-1 container py-5">
       <!-- Sections go here -->
     </main>
 
-    <!-- Footer (loaded dynamically) -->
+    <!-- Footer -->
     <div id="footerContainer"></div>
   </div>
 
-
-
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js" defer></script>
   <script src="js/main.js" defer></script>
-  <script src="js/layout.js" defer></script> <!-- NEW -->
+  <script src="js/layout.js" defer></script>
 </body>
 </html>
