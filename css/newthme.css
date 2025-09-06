@@ -1,0 +1,118 @@
+  /* === Header Section  Start === */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.7);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+/* Container */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Logo */
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-decoration: none;
+  background: linear-gradient(45deg, #ff6b6b, #5f27cd);
+
+  /* background-clip compatibility */
+  background-clip: text;          /* Standard */
+  -webkit-background-clip: text; /* Safari/Chrome */
+
+  color: transparent;             /* Standard */
+  -webkit-text-fill-color: transparent; /* Safari/Chrome */
+}
+
+/* Desktop Nav */
+.nav {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav a {
+  text-decoration: none;
+  font-weight: 500;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.nav a:hover {
+  color: #5f27cd;
+}
+
+/* Button Style */
+.btn {
+  padding: 0.5rem 1.2rem;
+  border-radius: 999px;
+  font-weight: 600;
+  background: linear-gradient(45deg, #5f27cd, #ff6b6b);
+  color: #fff !important;
+  text-decoration: none;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+/* ============ MOBILE NAV ============ */
+.menu-btn {
+  display: none;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Mobile Nav Panel */
+.mobile-nav {
+  display: none;
+  flex-direction: column;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(8px);
+  padding: 1rem 2rem;
+  border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.mobile-nav a {
+  padding: 0.75rem 0;
+  font-weight: 500;
+  color: #333;
+  text-decoration: none;
+}
+
+.mobile-nav .btn {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 768px) {
+  .nav {
+    display: none;
+  }
+  .menu-btn {
+    display: block;
+  }
+  .mobile-nav.active {
+    display: flex;
+  }
+}
+
+
+
+
+
+  /* === Header Section  End === */
