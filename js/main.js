@@ -7,8 +7,8 @@ const sections = [
   "skills.html",
   "projects.html",
   // // "achievements.html",
-  // "testimonials.html",
-  // "contact.html"
+  "testimonials.html",
+  "contact.html"
  
 ];
 

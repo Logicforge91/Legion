@@ -878,3 +878,220 @@
     animation: scrollLoop 25s linear infinite;
   }
 }
+
+
+/* ==== TESTIMONIALS ==== */
+.testimonials-section {
+  padding: 5rem 1.5rem;
+  background: #f9fafc;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonials-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+
+  background: linear-gradient(45deg, #6c5ce7, #00cec9);
+
+  /* Standard (Firefox + spec) */
+  background-clip: text;
+  color: transparent;
+
+  /* WebKit (Chrome, Safari, Edge) */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  margin-bottom: 0.5rem;
+}
+
+
+.testimonials-subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 3rem;
+}
+
+/* Carousel */
+.testimonials-carousel {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+.testimonials-track {
+  display: flex;
+  gap: 2rem;
+  width: max-content;
+  animation: slideLoop 40s linear infinite;
+}
+
+@keyframes slideLoop {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Testimonial Card */
+.testimonial-card {
+  flex: 0 0 300px;
+  background: #fff;
+  padding: 2rem 1.5rem;
+  border-radius: 1.2rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+}
+
+.testimonial-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  border: 3px solid #6c5ce7;
+}
+
+.testimonial-text {
+  font-size: 0.95rem;
+  font-style: italic;
+  color: #444;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.testimonial-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #222;
+}
+
+.testimonial-role {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .testimonials-title {
+    font-size: 2rem;
+  }
+  .testimonial-card {
+    flex: 0 0 240px;
+    padding: 1.5rem 1rem;
+  }
+  .testimonials-track {
+    gap: 1rem;
+    animation: slideLoop 25s linear infinite;
+  }
+}
+
+/* ==== CONTACT SECTION ==== */
+.contact-section {
+  padding: 5rem 1.5rem;
+  background: linear-gradient(135deg, #f9fafc, #eef1f7);
+  position: relative;
+  text-align: center;
+}
+
+.contact-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+
+  background: linear-gradient(45deg, #6c5ce7, #00cec9);
+
+  /* Standard (Firefox + spec-compliant browsers) */
+  background-clip: text;
+  color: transparent;
+
+  /* WebKit browsers (Chrome, Safari, Edge) */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  margin-bottom: 0.5rem;
+}
+
+.contact-subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 3rem;
+}
+
+/* Contact Card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  border-radius: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+/* Buttons */
+.contact-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.9rem 1.2rem;
+  font-weight: 600;
+  border-radius: 0.8rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  color: #fff;
+}
+
+.contact-btn i {
+  font-size: 1.2rem;
+}
+
+/* Button Colors */
+.contact-btn.email { background: linear-gradient(45deg, #6c5ce7, #a29bfe); }
+.contact-btn.whatsapp { background: linear-gradient(45deg, #25d366, #128c7e); }
+.contact-btn.phone { background: linear-gradient(45deg, #0984e3, #74b9ff); }
+.contact-btn.linkedin { background: linear-gradient(45deg, #0e76a8, #4dabf7); }
+
+.contact-btn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-3px);
+}
+
+/* Social Icons */
+.social-links a {
+  font-size: 1.5rem;
+  color: #555;
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #6c5ce7;
+  transform: scale(1.2);
+}
+
+/* Map */
+.map-container {
+  padding: 1rem;
+  background: #fff;
+  border-radius: 1.5rem;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .contact-section {
+    text-align: center;
+  }
+  .contact-title {
+    font-size: 2rem;
+  }
+  .contact-btn {
+    font-size: 0.9rem;
+    padding: 0.8rem 1rem;
+  }
+}
