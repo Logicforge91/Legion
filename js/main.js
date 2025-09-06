@@ -6,7 +6,7 @@ const sections = [
   "timeline.html",
   "skills.html",
   "projects.html",
-  // "achievements.html",
+  // // "achievements.html",
   "testimonials.html",
   "contact.html"
  

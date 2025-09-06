@@ -1,100 +1,77 @@
-<!-- Projects Section -->
-<section id="projects" class="position-relative py-5 px-3 bg-light overflow-hidden">
+<!-- PROJECTS SECTION -->
+<section id="projects" class="projects-section">
+  <div class="container">
 
-  <!-- Floating background shapes -->
-  <div class="position-absolute top-0 start-0 translate-middle rounded-circle blur-slow bg-primary bg-opacity-25"></div>
-  <div class="position-absolute bottom-0 end-0 translate-middle rounded-circle blur-slow bg-purple bg-opacity-25"></div>
+    <!-- Section Heading -->
+    <h2 class="projects-title">💡 Innovations</h2>
+    <p class="projects-subtitle">Some of the impactful solutions I’ve built.</p>
 
-  <!-- Section Heading -->
-  <h2 class="display-4 fw-bold text-center text-gradient mb-5 fade-in">
-    Innovations
-  </h2>
+    <!-- Looping Projects Carousel -->
+    <div class="projects-carousel">
+      <div class="projects-track">
 
-  <!-- Projects Loop -->
-  <div class="projects-container overflow-hidden">
-    <div class="projects-loop d-flex gap-4">
+        <!-- Project Cards -->
+        <div class="project-card">
+          <div class="project-icon">🏥</div>
+          <h3>Healthcare Management</h3>
+          <p>Laravel & MySQL app for patient records with Redis caching. Scalable & secure for healthcare institutions.</p>
+        </div>
 
-      <!-- Project Cards -->
-      <div class="project-card card text-center shadow-lg p-4">
-        <div class="fs-1 mb-3">🏥</div>
-        <h3 class="h4 fw-bold text-primary">Healthcare Management</h3>
-        <p class="text-muted mt-3">
-          Laravel & MySQL app for patient records with Redis caching. Scalable & secure for healthcare institutions.
-        </p>
-      </div>
+        <div class="project-card">
+          <div class="project-icon">🏫</div>
+          <h3>Education ERP</h3>
+          <p>Admissions & fee system with Audit Tally API, role-based access, and cron-based fee reminders.</p>
+        </div>
 
-      <div class="project-card card text-center shadow-lg p-4">
-        <div class="fs-1 mb-3">🏫</div>
-        <h3 class="h4 fw-bold text-purple">Education ERP</h3>
-        <p class="text-muted mt-3">
-          Admissions & fee system with Audit Tally API, role-based access, and cron-based fee reminders.
-        </p>
-      </div>
+        <div class="project-card">
+          <div class="project-icon">🛒</div>
+          <h3>E-commerce Platform</h3>
+          <p>Laravel store with cart, checkout, PayU, Stripe & Razorpay integration, manual payments & email engine.</p>
+        </div>
 
-      <div class="project-card card text-center shadow-lg p-4">
-        <div class="fs-1 mb-3">🛒</div>
-        <h3 class="h4 fw-bold text-danger">E-commerce Platform</h3>
-        <p class="text-muted mt-3">
-          Laravel store with cart, checkout, PayU, Stripe & Razorpay integration, manual payments & email engine.
-        </p>
-      </div>
+        <div class="project-card">
+          <div class="project-icon">🔗</div>
+          <h3>API Integrations</h3>
+          <p>Integrated SMS, Email & Payment APIs with real-time notifications for high-performance apps.</p>
+        </div>
 
-      <div class="project-card card text-center shadow-lg p-4">
-        <div class="fs-1 mb-3">🔗</div>
-        <h3 class="h4 fw-bold text-success">API Integrations</h3>
-        <p class="text-muted mt-3">
-          Integrated SMS, Email & Payment APIs with real-time notifications for high-performance apps.
-        </p>
-      </div>
+        <div class="project-card">
+          <div class="project-icon">💻</div>
+          <h3>Portfolio Website</h3>
+          <p>Bootstrap site with dark mode, animations & modular UI. Showcases career journey interactively.</p>
+        </div>
 
-      <div class="project-card card text-center shadow-lg p-4">
-        <div class="fs-1 mb-3">💻</div>
-        <h3 class="h4 fw-bold text-warning">Portfolio Website</h3>
-        <p class="text-muted mt-3">
-          Bootstrap site with dark mode, animations & modular UI. Showcases career journey interactively.
-        </p>
-      </div>
+        <!-- Duplicate set for seamless infinite loop -->
+        <div class="project-card">
+          <div class="project-icon">🏥</div>
+          <h3>Healthcare Management</h3>
+          <p>Laravel & MySQL app for patient records with Redis caching. Scalable & secure for healthcare institutions.</p>
+        </div>
 
-      <!-- Duplicate set for seamless loop -->
-      <!-- (Cloned dynamically via CSS/JS for maintainability if needed) -->
-      <div class="project-card card text-center shadow-lg p-4">
-        <div class="fs-1 mb-3">🏥</div>
-        <h3 class="h4 fw-bold text-primary">Healthcare Management</h3>
-        <p class="text-muted mt-3">
-          Laravel & MySQL app for patient records with Redis caching. Scalable & secure for healthcare institutions.
-        </p>
-      </div>
+        <div class="project-card">
+          <div class="project-icon">🏫</div>
+          <h3>Education ERP</h3>
+          <p>Admissions & fee system with Audit Tally API, role-based access, and cron-based fee reminders.</p>
+        </div>
 
-      <div class="project-card card text-center shadow-lg p-4">
-        <div class="fs-1 mb-3">🏫</div>
-        <h3 class="h4 fw-bold text-purple">Education ERP</h3>
-        <p class="text-muted mt-3">
-          Admissions & fee system with Audit Tally API, role-based access, and cron-based fee reminders.
-        </p>
-      </div>
+        <div class="project-card">
+          <div class="project-icon">🛒</div>
+          <h3>E-commerce Platform</h3>
+          <p>Laravel store with cart, checkout, PayU, Stripe & Razorpay integration, manual payments & email engine.</p>
+        </div>
 
-      <div class="project-card card text-center shadow-lg p-4">
-        <div class="fs-1 mb-3">🛒</div>
-        <h3 class="h4 fw-bold text-danger">E-commerce Platform</h3>
-        <p class="text-muted mt-3">
-          Laravel store with cart, checkout, PayU, Stripe & Razorpay integration, manual payments & email engine.
-        </p>
-      </div>
+        <div class="project-card">
+          <div class="project-icon">🔗</div>
+          <h3>API Integrations</h3>
+          <p>Integrated SMS, Email & Payment APIs with real-time notifications for high-performance apps.</p>
+        </div>
 
-      <div class="project-card card text-center shadow-lg p-4">
-        <div class="fs-1 mb-3">🔗</div>
-        <h3 class="h4 fw-bold text-success">API Integrations</h3>
-        <p class="text-muted mt-3">
-          Integrated SMS, Email & Payment APIs with real-time notifications for high-performance apps.
-        </p>
-      </div>
+        <div class="project-card">
+          <div class="project-icon">💻</div>
+          <h3>Portfolio Website</h3>
+          <p>Bootstrap site with dark mode, animations & modular UI. Showcases career journey interactively.</p>
+        </div>
 
-      <div class="project-card card text-center shadow-lg p-4">
-        <div class="fs-1 mb-3">💻</div>
-        <h3 class="h4 fw-bold text-warning">Portfolio Website</h3>
-        <p class="text-muted mt-3">
-          Bootstrap site with dark mode, animations & modular UI. Showcases career journey interactively.
-        </p>
       </div>
     </div>
   </div>
