@@ -1,11 +1,11 @@
 // Sections to load dynamically
 const sections = [
   "hero.html",
-  // "about.html",
-  // "journey.html",
-  // "timeline.html",
-  // "skills.html",
-  // "projects.html",
+  "about.html",
+  "journey.html",
+  "timeline.html",
+  "skills.html",
+  "projects.html",
   // // "achievements.html",
   // "testimonials.html",
   // "contact.html"
