@@ -6,84 +6,44 @@
   <meta name="description" content="Portfolio website of Suman K S - Web Developer, showcasing skills, projects, and contact details." />
   <title>Legion | Suman K S</title>
 
-  <!-- Bootstrap CSS -->
+  <!-- Bootstrap CSS (preload + onload) -->
   <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-
+  
   <!-- Swiper CSS -->
   <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   
   <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-
+  
   <!-- Custom CSS -->
-  <!-- <link rel="stylesheet" href="css/new.css" /> -->
-   <link rel="stylesheet" href="css/newthme.css" />
+  <link rel="stylesheet" href="css/newdesign.css" />
+  <!-- <link rel="stylesheet" href="css/newthme.css" /> -->
 </head>
 <body class="bg-light text-dark">
 
-  <!-- Loader -->
-  <!-- <div id="loader" class="position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center bg-white">
-    <h1 class="display-3 fw-bold text-gradient animate-pulse">Legion</h1>
-  </div> -->
-
   <div class="d-flex flex-column min-vh-100">
 
-    <!-- Header -->
-    <header class="sticky-top bg-white bg-opacity-75 backdrop-blur shadow-sm border-bottom">
-      <div class="container d-flex justify-content-between align-items-center py-3">
-        
-        <!-- Logo -->
-        <a href="#hero" class="fs-3 fw-bold text-decoration-none text-gradient">
-          Suman K S
-        </a>
-
-        <!-- Desktop Nav -->
-        <nav class="d-none d-md-flex align-items-center gap-4 fw-medium" aria-label="Main navigation">
-          <a href="#hero" class="nav-link px-0">Home</a>
-          <a href="#about" class="nav-link px-0">About</a>
-          <a href="#skills" class="nav-link px-0">Skills</a>
-          <a href="#projects" class="nav-link px-0">Projects</a>
-          <a href="#contact" class="nav-link px-0">Contact</a>
-          <a href="assets/resume.pdf" target="_blank" class="btn btn-gradient rounded-pill px-4 py-2 fw-semibold shadow-sm ms-2">
-            Hire Me
-          </a>
-        </nav>
-
-        <!-- Mobile Menu Button -->
-        <button class="btn d-md-none fs-3" type="button" data-bs-toggle="collapse" data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle navigation">
-          ☰
-        </button>
-      </div>
-
-      <!-- Mobile Nav -->
-      <nav id="mobileMenu" class="collapse bg-white bg-opacity-95 backdrop-blur px-4 pb-3" aria-label="Mobile navigation">
-        <a href="#hero" class="d-block py-2">Home</a>
-        <a href="#about" class="d-block py-2">About</a>
-        <a href="#skills" class="d-block py-2">Skills</a>
-        <a href="#projects" class="d-block py-2">Projects</a>
-        <a href="#contact" class="d-block py-2">Contact</a>
-        <a href="assets/resume.pdf" target="_blank" class="btn btn-gradient rounded-pill w-100 mt-3 py-2 fw-semibold shadow-sm">
-          Hire Me
-        </a>
-      </nav>
-    </header>
+    <!-- Header include -->
+    <div id="headerContainer"></div>
 
     <!-- Main content -->
     <main id="content" class="flex-grow-1 container py-5">
       <!-- Sections go here -->
     </main>
 
-  <!-- Footer container (footer.html will be injected here) -->
-  <div id="footerContainer"></div>
+    <!-- Footer include -->
+    <div id="footerContainer"></div>
 
   </div>
 
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js" defer></script>
-  <script src="js/main.js" defer></script>
-  <!-- <script src="js/layout.js" defer></script>  -->
-    <script src="js/newtheme.js" defer></script>
+  <!-- Bootstrap JS bundle (deferred loading) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
 
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js" defer></script>
+
+  <!-- Custom JS -->
+  <script src="js/main.js" defer></script>
+  <script src="js/newdesign.js" defer></script>
 </body>
 </html>

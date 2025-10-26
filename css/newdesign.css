@@ -1,0 +1,153 @@
+/* ---------- Header Container ---------- */
+header {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.85);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  z-index: 1000;
+  transition: all 0.3s ease-in-out;
+}
+
+/* ---------- Logo ---------- */
+header a.fs-3 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  background: linear-gradient(90deg, #6a11cb, #2575fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: transform 0.3s ease;
+}
+
+header a.fs-3:hover {
+  transform: scale(1.05);
+}
+
+/* ---------- Desktop Nav Links ---------- */
+header nav a.nav-link {
+  font-weight: 500;
+  color: #333;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+header nav a.nav-link:hover {
+  color: #2575fc;
+}
+
+header nav a.nav-link::after {
+  content: '';
+  display: block;
+  height: 2px;
+  width: 0%;
+  background: #2575fc;
+  transition: width 0.3s ease;
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+}
+
+header nav a.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ---------- Hire Me Button ---------- */
+header .btn-gradient {
+  background: linear-gradient(90deg, #6a11cb, #2575fc);
+  color: #fff;
+  font-weight: 600;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+header .btn-gradient:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(37, 117, 252, 0.4);
+}
+
+/* ---------- Mobile Menu Button ---------- */
+header button.btn {
+  color: #333;
+  border: none;
+  background: transparent;
+  transition: transform 0.2s ease;
+}
+
+header button.btn:hover {
+  transform: scale(1.1);
+}
+
+/* ---------- Mobile Nav ---------- */
+#mobileMenu a {
+  font-weight: 500;
+  color: #333;
+  transition: color 0.3s ease, background 0.3s ease;
+}
+
+#mobileMenu a:hover {
+  color: #fff;
+  background: #2575fc;
+  border-radius: 8px;
+  padding-left: 0.75rem;
+}
+
+/* ---------- Mobile "Hire Me" Button ---------- */
+#mobileMenu .btn-gradient {
+  display: block;
+  width: 100%;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+/* ---------- Sticky Scroll Effect ---------- */
+header.scrolled {
+  backdrop-filter: blur(15px);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ---------- Responsive Adjustments ---------- */
+@media (max-width: 768px) {
+  #mobileMenu {
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+  }
+}
+
+
+
+/* ---------- Footer ---------- */
+footer {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.85);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  color: #666;
+  transition: all 0.3s ease-in-out;
+}
+
+footer span#year {
+  font-weight: 600;
+  color: #2575fc;
+}
+
+footer a {
+  color: #2575fc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #6a11cb;
+}
+
+footer p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  footer {
+    font-size: 0.9rem;
+    padding: 1rem 0.5rem;
+  }
+}
