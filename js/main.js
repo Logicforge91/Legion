@@ -37,6 +37,7 @@ async function loadSections() {
   setTimeout(() => loader.classList.add("fade-out"), 600);
 }
 
+
 // Run on page load
 document.addEventListener("DOMContentLoaded", loadSections);
 
