@@ -806,19 +806,12 @@ footer p {
 }
 
 /* Project Icon */
+
 .project-icon {
-  font-size: 2rem;
-  background: linear-gradient(90deg, #6a11cb, #2575fc);
-  color: #fff;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: -60px auto 1rem;
-  box-shadow: 0 5px 15px rgba(37,117,252,0.2);
-  border: 4px solid #f4f6fb;
+  font-size: 3rem; /* bigger icons */
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "NotoColorEmoji", "Segoe UI Symbol", sans-serif;
 }
 
 /* Card Headings */
@@ -930,4 +923,5 @@ footer p {
 @media (max-width: 992px) {
   .glass-card { margin-bottom: 2rem; }
 }
+
 
