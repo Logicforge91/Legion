@@ -1,78 +1,71 @@
 <!-- PROJECTS SECTION -->
-<section id="projects" class="projects-section">
+<section id="projects" class="projects-section py-5" style="background-color: #F8F9FA;">
   <div class="container">
 
     <!-- Section Heading -->
-    <h2 class="projects-title">💡 Innovations</h2>
-    <p class="projects-subtitle">Some of the impactful solutions I’ve built.</p>
+    <h2 class="projects-title text-center mb-2" style="color: #212529; font-weight: 700; font-size: 2.5rem;">💡 Innovations</h2>
+    <p class="projects-subtitle text-center mb-5" style="color: #6C757D; font-size: 1.1rem;">Some of the impactful solutions I’ve built.</p>
 
-    <!-- Looping Projects Carousel -->
-    <div class="projects-carousel">
-      <div class="projects-track">
+    <!-- Horizontal Scroll Container -->
+    <div class="projects-scroll d-flex gap-4 overflow-x-auto pb-3" 
+         style="scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scroll-behavior: smooth;">
 
-        <!-- Project Cards -->
-        <div class="project-card">
-          <div class="project-icon">🏥</div>
-          <h3>Healthcare Management</h3>
-          <p>Laravel & MySQL app for patient records with Redis caching. Scalable & secure for healthcare institutions.</p>
-        </div>
+      <!-- Individual Projects -->
+      <div class="project-card flex-shrink-0 p-4 text-center"
+           style="scroll-snap-align: start; min-width: 300px; background: rgba(255,255,255,0.6); 
+                  backdrop-filter: blur(15px); border-radius: 24px; box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+                  transition: transform 0.3s, box-shadow 0.3s;">
 
-        <div class="project-card">
-          <div class="project-icon">🏫</div>
-          <h3>Education ERP</h3>
-          <p>Admissions & fee system with Audit Tally API, role-based access, and cron-based fee reminders.</p>
-        </div>
-
-        <div class="project-card">
-          <div class="project-icon">🛒</div>
-          <h3>E-commerce Platform</h3>
-          <p>Laravel store with cart, checkout, PayU, Stripe & Razorpay integration, manual payments & email engine.</p>
-        </div>
-
-        <div class="project-card">
-          <div class="project-icon">🔗</div>
-          <h3>API Integrations</h3>
-          <p>Integrated SMS, Email & Payment APIs with real-time notifications for high-performance apps.</p>
-        </div>
-
-        <div class="project-card">
-          <div class="project-icon">💻</div>
-          <h3>Portfolio Website</h3>
-          <p>Bootstrap site with dark mode, animations & modular UI. Showcases career journey interactively.</p>
-        </div>
-
-        <!-- Duplicate set for seamless infinite loop -->
-        <div class="project-card">
-          <div class="project-icon">🏥</div>
-          <h3>Healthcare Management</h3>
-          <p>Laravel & MySQL app for patient records with Redis caching. Scalable & secure for healthcare institutions.</p>
-        </div>
-
-        <div class="project-card">
-          <div class="project-icon">🏫</div>
-          <h3>Education ERP</h3>
-          <p>Admissions & fee system with Audit Tally API, role-based access, and cron-based fee reminders.</p>
-        </div>
-
-        <div class="project-card">
-          <div class="project-icon">🛒</div>
-          <h3>E-commerce Platform</h3>
-          <p>Laravel store with cart, checkout, PayU, Stripe & Razorpay integration, manual payments & email engine.</p>
-        </div>
-
-        <div class="project-card">
-          <div class="project-icon">🔗</div>
-          <h3>API Integrations</h3>
-          <p>Integrated SMS, Email & Payment APIs with real-time notifications for high-performance apps.</p>
-        </div>
-
-        <div class="project-card">
-          <div class="project-icon">💻</div>
-          <h3>Portfolio Website</h3>
-          <p>Bootstrap site with dark mode, animations & modular UI. Showcases career journey interactively.</p>
-        </div>
-
+        <div class="project-icon mb-3" style="font-size:2.8rem;">🏥</div>
+        <h3 style="color:#0D6EFD; font-weight: 700; font-size: 1.3rem;">Healthcare Management</h3>
+        <p style="color:#212529; font-size: 0.95rem;">Laravel & MySQL app for patient records with Redis caching. Scalable & secure for healthcare institutions.</p>
       </div>
+
+      <div class="project-card flex-shrink-0 p-4 text-center"
+           style="scroll-snap-align: start; min-width: 300px; background: rgba(255,255,255,0.6); 
+                  backdrop-filter: blur(15px); border-radius: 24px; box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+                  transition: transform 0.3s, box-shadow 0.3s;">
+        <div class="project-icon mb-3" style="font-size:2.8rem;">🏫</div>
+        <h3 style="color:#0D6EFD; font-weight: 700; font-size: 1.3rem;">Education ERP</h3>
+        <p style="color:#212529; font-size: 0.95rem;">Admissions & fee system with Audit Tally API, role-based access, and cron-based fee reminders.</p>
+      </div>
+
+      <div class="project-card flex-shrink-0 p-4 text-center"
+           style="scroll-snap-align: start; min-width: 300px; background: rgba(255,255,255,0.6); 
+                  backdrop-filter: blur(15px); border-radius: 24px; box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+                  transition: transform 0.3s, box-shadow 0.3s;">
+        <div class="project-icon mb-3" style="font-size:2.8rem;">🛒</div>
+        <h3 style="color:#0D6EFD; font-weight: 700; font-size: 1.3rem;">E-commerce Platform</h3>
+        <p style="color:#212529; font-size: 0.95rem;">Laravel store with cart, checkout, PayU, Stripe & Razorpay integration, manual payments & email engine.</p>
+      </div>
+
+      <div class="project-card flex-shrink-0 p-4 text-center"
+           style="scroll-snap-align: start; min-width: 300px; background: rgba(255,255,255,0.6); 
+                  backdrop-filter: blur(15px); border-radius: 24px; box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+                  transition: transform 0.3s, box-shadow 0.3s;">
+        <div class="project-icon mb-3" style="font-size:2.8rem;">🔗</div>
+        <h3 style="color:#0D6EFD; font-weight: 700; font-size: 1.3rem;">API Integrations</h3>
+        <p style="color:#212529; font-size: 0.95rem;">Integrated SMS, Email & Payment APIs with real-time notifications for high-performance apps.</p>
+      </div>
+
+      <div class="project-card flex-shrink-0 p-4 text-center"
+           style="scroll-snap-align: start; min-width: 300px; background: rgba(255,255,255,0.6); 
+                  backdrop-filter: blur(15px); border-radius: 24px; box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+                  transition: transform 0.3s, box-shadow 0.3s;">
+        <div class="project-icon mb-3" style="font-size:2.8rem;">💻</div>
+        <h3 style="color:#0D6EFD; font-weight: 700; font-size: 1.3rem;">Portfolio Website</h3>
+        <p style="color:#212529; font-size: 0.95rem;">Bootstrap site with dark mode, animations & modular UI. Showcases career journey interactively.</p>
+      </div>
+
+      <div class="project-card flex-shrink-0 p-4 text-center"
+           style="scroll-snap-align: start; min-width: 300px; background: rgba(255,255,255,0.6); 
+                  backdrop-filter: blur(15px); border-radius: 24px; box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+                  transition: transform 0.3s, box-shadow 0.3s;">
+        <div class="project-icon mb-3" style="font-size:2.8rem;">📝</div>
+        <h3 style="color:#0D6EFD; font-weight: 700; font-size: 1.3rem;">Task Management System</h3>
+        <p style="color:#212529; font-size: 0.95rem; text-align: left;">Task Tracker – Daily tasks, deadlines & priorities.</p>
+      </div>
+
     </div>
   </div>
 </section>
