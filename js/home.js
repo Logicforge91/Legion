@@ -49,7 +49,7 @@ async function loadHTML(file, containerId){
 }
 
 /* ==========================
-   Load Sections
+   Load Sections (FIXED 🔥)
 ========================== */
 async function loadSections(){
     const content = document.getElementById("content");
@@ -62,12 +62,23 @@ async function loadSections(){
                 throw new Error(name + " missing");
             }
 
-            const section = document.createElement("section");
-            section.id = name;
-            section.className = "fade-section";
-            section.innerHTML = await response.text();
+            const html = await response.text();
 
-            return section;
+            //  TEMP WRAPPER (prevents nested section issue)
+            const temp = document.createElement("div");
+            temp.innerHTML = html;
+
+            //  GET REAL SECTION
+            const section = temp.querySelector("section");
+
+            if(section){
+                section.id = name; // important for scroll spy
+                section.classList.add("fade-section");
+                return section;
+            }
+
+            return null;
+
         }catch(error){
             console.error(error);
             return null;
@@ -175,7 +186,7 @@ function initScrollSpy(){
             });
         });
     }, {
-        threshold:.4
+        threshold: .4
     });
 
     SECTIONS.forEach(function(id){
@@ -200,7 +211,7 @@ function initRevealAnimation(){
             }
         });
     }, {
-        threshold:.2
+        threshold: .2
     });
 
     sections.forEach(function(section){
@@ -244,8 +255,8 @@ function initScrollTop(){
 
     btn.addEventListener("click", function(){
         window.scrollTo({
-            top:0,
-            behavior:"smooth"
+            top: 0,
+            behavior: "smooth"
         });
     });
 }
