@@ -1,137 +1,77 @@
-<section id="projects" class="projects-section" aria-label="Featured projects">
+<section class="projects-section" aria-label="Featured backend systems">
     <div class="container">
-        <div class="projects-header">
-            <p class="section-tag">FEATURED SYSTEMS</p>
-            <h2>Production Projects</h2>
-            <p>
-                Scalable, high-performance systems designed 
-                to solve real-world business problems.
-            </p>
+        <div class="section-heading" data-reveal>
+            <p class="eyebrow"><span></span> Featured Systems</p>
+            <h2>Case studies that show the backend thinking.</h2>
+            <p>Each project is framed by the engineering problem: security, throughput, data integrity, integrations, or team workflow.</p>
         </div>
-
         <div class="projects-grid" role="list">
-
-            <!-- Healthcare -->
-            <div class="project-card" role="listitem" tabindex="0" aria-label="Healthcare Management System">
-                <div class="project-card-top">
-                    <div class="project-icon" aria-hidden="true">🏥</div>
-                    <span class="project-badge">Healthcare</span>
-                </div>
-                <h3>Healthcare Management System</h3>
-                <p>
-                    Built a secure patient management platform handling 
-                    records, appointments, and role-based access with 
-                    <span class="highlight">Laravel, MySQL & Redis</span>. 
-                    Optimized performance using caching and ensured 
-                    data security with authentication layers.
-                </p>
-                <div class="project-tech">
-                    <span>Laravel</span>
-                    <span>Redis</span>
-                    <span>MySQL</span>
-                </div>
-            </div>
-
-            <!-- ERP -->
-            <div class="project-card" role="listitem" tabindex="0" aria-label="Education ERP System">
-                <div class="project-card-top">
-                    <div class="project-icon" aria-hidden="true">🏫</div>
-                    <span class="project-badge">ERP</span>
-                </div>
-                <h3>Education ERP System</h3>
-                <p>
-                    Developed a full-scale ERP system managing admissions, 
-                    fee processing, audit integrations, and automation using 
-                    <span class="highlight">cron jobs & REST APIs</span>, 
-                    improving operational efficiency.
-                </p>
-                <div class="project-tech">
-                    <span>PHP</span>
-                    <span>REST API</span>
-                    <span>Scheduler</span>
-                </div>
-            </div>
-
-            <!-- E-commerce -->
-            <div class="project-card" role="listitem" tabindex="0" aria-label="E-Commerce Platform">
-                <div class="project-card-top">
-                    <div class="project-icon" aria-hidden="true">🛒</div>
-                    <span class="project-badge">E-commerce</span>
-                </div>
-                <h3>E-Commerce Platform</h3>
-                <p>
-                    Engineered a scalable e-commerce system with 
-                    cart management, secure checkout, and integrated 
-                    <span class="highlight">Stripe & Razorpay</span> 
-                    payment gateways, supporting transactional workflows.
-                </p>
-                <div class="project-tech">
-                    <span>Laravel</span>
-                    <span>Stripe</span>
-                    <span>Razorpay</span>
-                </div>
-            </div>
-
-            <!-- APIs -->
-            <div class="project-card" role="listitem" tabindex="0" aria-label="API Integration Hub">
-                <div class="project-card-top">
-                    <div class="project-icon" aria-hidden="true">🔗</div>
-                    <span class="project-badge">API</span>
-                </div>
-                <h3>API Integration Hub</h3>
-                <p>
-                    Integrated multiple third-party services including 
-                    SMS, email, and payment APIs using 
-                    <span class="highlight">REST, Webhooks & Queues</span>, 
-                    enabling real-time communication and automation.
-                </p>
-                <div class="project-tech">
-                    <span>REST</span>
-                    <span>Webhooks</span>
-                    <span>Queues</span>
-                </div>
-            </div>
-
-            <!-- Task Manager -->
-            <div class="project-card" role="listitem" tabindex="0" aria-label="Task Management System">
-                <div class="project-card-top">
-                    <div class="project-icon" aria-hidden="true">📝</div>
-                    <span class="project-badge">Collaboration</span>
-                </div>
-                <h3>Task Management System</h3>
-                <p>
-                    Built a collaborative task platform with workflows, 
-                    priorities, deadlines, and team coordination using 
-                    <span class="highlight">Node.js & React</span>, 
-                    improving productivity and tracking.
-                </p>
-                <div class="project-tech">
-                    <span>Node.js</span>
-                    <span>Java</span>
-                    <span>React</span>
-                    <span>MySQL</span>
-                </div>
-            </div>
-
-            <!-- Portfolio -->
-            <div class="project-card" role="listitem" tabindex="0" aria-label="Legion Portfolio">
-                <div class="project-card-top">
-                    <div class="project-icon" aria-hidden="true">💻</div>
-                    <span class="project-badge">Portfolio</span>
-                </div>
-                <h3>Legion Portfolio</h3>
-                <p>
-                    Designed a modern developer portfolio with modular 
-                    architecture, animations, and optimized performance 
-                    using <span class="highlight">HTML, CSS & JavaScript</span>.
-                </p>
-                <div class="project-tech">
-                    <span>HTML</span>
-                    <span>CSS</span>
-                    <span>JavaScript</span>
-                </div>
-            </div>
-
+            <article class="project-card spotlight-card featured" role="listitem" data-reveal>
+                <div class="project-top"><span>Healthcare</span><i class="bi bi-heart-pulse" aria-hidden="true"></i></div>
+                <h3>Healthcare management platform</h3>
+                <p>Secure patient records, appointments, role-based access, and staff workflows built around privacy and fast lookups.</p>
+                <ul>
+                    <li>Laravel service layer with permission-aware endpoints</li>
+                    <li>MySQL query tuning for appointment and patient search</li>
+                    <li>Redis-backed performance paths for high-traffic screens</li>
+                </ul>
+                <div class="tag-row"><span>Laravel</span><span>MySQL</span><span>Redis</span><span>RBAC</span></div>
+            </article>
+            <article class="project-card spotlight-card" role="listitem" data-reveal>
+                <div class="project-top"><span>Education ERP</span><i class="bi bi-building-gear" aria-hidden="true"></i></div>
+                <h3>Campus operations ERP</h3>
+                <p>Admissions, fee processing, audit data, automated reports, and admin workflows for day-to-day institutional operations.</p>
+                <ul>
+                    <li>Scheduler-driven automation for repetitive operations</li>
+                    <li>REST APIs for cross-module communication</li>
+                    <li>Validation-first forms to reduce bad operational data</li>
+                </ul>
+                <div class="tag-row"><span>PHP</span><span>Laravel</span><span>Cron</span><span>REST</span></div>
+            </article>
+            <article class="project-card spotlight-card" role="listitem" data-reveal>
+                <div class="project-top"><span>Commerce</span><i class="bi bi-cart-check" aria-hidden="true"></i></div>
+                <h3>Transactional e-commerce backend</h3>
+                <p>Checkout, cart state, order lifecycle, payment gateway callbacks, and admin visibility into purchase flows.</p>
+                <ul>
+                    <li>Stripe and Razorpay integration paths</li>
+                    <li>Webhook handling designed for retry-safe updates</li>
+                    <li>Order state modeled for support and reconciliation</li>
+                </ul>
+                <div class="tag-row"><span>Laravel</span><span>Stripe</span><span>Razorpay</span><span>Webhooks</span></div>
+            </article>
+            <article class="project-card spotlight-card" role="listitem" data-reveal>
+                <div class="project-top"><span>Integration Hub</span><i class="bi bi-node-plus" aria-hidden="true"></i></div>
+                <h3>API automation layer</h3>
+                <p>Third-party SMS, email, payment, and notification APIs combined behind cleaner internal contracts.</p>
+                <ul>
+                    <li>Normalized request and response handling</li>
+                    <li>Queue-friendly architecture for slower providers</li>
+                    <li>Failure logging that makes debugging faster</li>
+                </ul>
+                <div class="tag-row"><span>REST</span><span>Queues</span><span>Webhooks</span><span>Logs</span></div>
+            </article>
+            <article class="project-card spotlight-card" role="listitem" data-reveal>
+                <div class="project-top"><span>Collaboration</span><i class="bi bi-kanban" aria-hidden="true"></i></div>
+                <h3>Task workflow system</h3>
+                <p>Team tasks, priorities, deadlines, status movement, and reporting across backend APIs and a responsive frontend.</p>
+                <ul>
+                    <li>Task state transitions with clear ownership rules</li>
+                    <li>Dashboard APIs for workload visibility</li>
+                    <li>Full-stack delivery with Node.js, Java, React, MySQL</li>
+                </ul>
+                <div class="tag-row"><span>Node.js</span><span>Java</span><span>React</span><span>MySQL</span></div>
+            </article>
+            <article class="project-card spotlight-card project-card-wide" role="listitem" data-reveal>
+                <div class="project-top"><span>Game Web App</span><i class="bi bi-controller" aria-hidden="true"></i></div>
+                <h3>Realtime browser game platform</h3>
+                <p>Interactive web game experience with player sessions, realtime rooms, score tracking, leaderboards, and admin controls.</p>
+                <ul>
+                    <li>Realtime gameplay events with WebSocket-ready architecture</li>
+                    <li>Redis-backed room state, matchmaking, and leaderboard caching</li>
+                    <li>Secure player profiles, match history, and anti-spam request guards</li>
+                </ul>
+                <div class="tag-row"><span>Node.js</span><span>WebSockets</span><span>Redis</span><span>MySQL</span><span>React</span></div>
+            </article>
         </div>
     </div>
 </section>

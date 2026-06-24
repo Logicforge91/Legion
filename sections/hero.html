@@ -1,112 +1,67 @@
-<section class="hero-wrapper" aria-label="Hero introduction">
-    <div class="container">
-        <div class="hero-grid">
-
-            <!-- Left -->
-            <div class="hero-left">
-                <p class="hero-tag">
-                    BACKEND DEVELOPER · SYSTEM BUILDER
-                </p>
-                <p class="hero-highlight">Building fast APIs, resilient services, and backend systems for modern teams.</p>
-
-                <h1>
-                    Suman K S
-                </h1>
-
-                <h2>
-                    Backend Developer
-                    <br>
-                    Laravel · Java Spring Boot Developer
-                </h2>
-
-                <p class="hero-description">
-                    Backend Software Developer with 5+ years of experience building scalable APIs,
-                    high-performance systems, and cloud-ready applications using Laravel and Java.
-                    Specialized in REST API development, database optimization, caching (Redis),
-                    and production-grade backend architectures.
-                </p>
-
-                <div class="hero-buttons">
-                    <a href="#projects" class="btn-primary">
-                        View Projects
-                    </a>
-
-                    <a href="assets/resume.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer" download>
-                        Download Resume
-                    </a>
-                </div>
-
-                <div class="hero-social" aria-label="Social links">
-                    <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
-                        <i class="bi bi-github" aria-hidden="true"></i>
-                    </a>
-
-                    <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
-                        <i class="bi bi-linkedin" aria-hidden="true"></i>
-                    </a>
-
-                    <a href="mailto:sumanks1307@gmail.com" aria-label="Send email">
-                        <i class="bi bi-envelope" aria-hidden="true"></i>
-                    </a>
-                </div>
+<section class="hero-section" aria-label="Hero introduction">
+    <div class="container hero-grid">
+        <div class="hero-copy" data-reveal>
+            <p class="eyebrow"><span></span> Backend Engineer / API Architect</p>
+            <h1>I build the server-side systems users never have to think about.</h1>
+            <p class="hero-lede">
+                I am Suman K S, a backend developer focused on Laravel, Spring Boot, MySQL,
+                Redis, queues, integrations, and deployment pipelines. I turn messy product
+                requirements into dependable APIs and calm production systems.
+            </p>
+            <div class="hero-terminal-line" aria-live="polite">
+                <span class="prompt">$</span>
+                <span id="typingText">booting backend profile...</span>
             </div>
+            <div class="hero-actions">
+                <a href="#projects" class="btn btn-primary">Explore systems</a>
+                <a href="assets/resume.pdf" class="btn btn-ghost" target="_blank" rel="noopener noreferrer" download>Download resume</a>
+            </div>
+            <div class="hero-social" aria-label="Social links">
+                <a href="https://github.com/backendlegion91" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile"><i class="bi bi-github" aria-hidden="true"></i></a>
+                <a href="https://www.linkedin.com/in/suman-k-s-a55868184/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile"><i class="bi bi-linkedin" aria-hidden="true"></i></a>
+                <a href="mailto:backendlegion91@gmail.com" aria-label="Send email"><i class="bi bi-envelope" aria-hidden="true"></i></a>
+            </div>
+        </div>
 
-            <!-- Right -->
-            <div class="hero-right">
-
-                <!-- Terminal -->
-                <div class="terminal-box">
-                    <div class="terminal-header">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-
-                    <div class="terminal-body">
-                        <p>
-                            <span class="terminal-green">$</span> whoami
-                        </p>
-
-                        <p id="typingText" role="status" aria-live="polite">
-                            Backend Developer | Laravel | Java | API Specialist
-                        </p>
-
-                        <br>
-
-                        <p>
-                            <span class="terminal-green">$</span> stack --show
-                        </p>
-
-                        <p>
-                            Laravel · PHP · Java · Spring Boot · MySQL
-                            · Redis · Docker · REST APIs
-                        </p>
-                    </div>
+        <div class="ops-panel spotlight-card" data-reveal>
+            <div class="panel-topline">
+                <div>
+                    <span class="panel-kicker">Production Readiness</span>
+                    <h2>System health: green</h2>
                 </div>
-
-                <!-- Metrics -->
-                <div class="metric-grid">
-                    <div class="metric-card">
-                        <h3 class="counter" data-count="50">50+</h3>
-                        <p>APIs Built</p>
-                    </div>
-
-                    <div class="metric-card">
-                        <h3 class="counter" data-count="5">5</h3>
-                        <p>Years Experience</p>
-                    </div>
-
-                    <div class="metric-card">
-                        <h3 class="counter" data-count="15">15+</h3>
-                        <p>Projects Delivered</p>
-                    </div>
-
-                    <div class="metric-card">
-                        <h3 class="counter" data-count="10">10+</h3>
-                        <p>Deployments</p>
-                    </div>
+                <span class="status-pill"><span></span> Online</span>
+            </div>
+            <div class="console-card" aria-label="Backend console sample">
+                <div class="console-toolbar" aria-hidden="true">
+                    <span></span><span></span><span></span>
+                    <strong>api-gateway.log</strong>
                 </div>
+                <pre><code><span class="muted">POST</span> /api/v1/orders
+<span class="accent">200 OK</span> 86ms cache_hit=true
 
+queue: payments.reconcile
+worker: 8 active / 0 failed
+
+release: zero-downtime
+observability: traces + metrics</code></pre>
+            </div>
+            <div class="metric-grid" aria-label="Backend impact metrics">
+                <article class="metric-card">
+                    <strong class="counter" data-count="50" data-suffix="+">0</strong>
+                    <span>APIs shipped</span>
+                </article>
+                <article class="metric-card">
+                    <strong class="counter" data-count="5" data-suffix="+">0</strong>
+                    <span>Years building</span>
+                </article>
+                <article class="metric-card">
+                    <strong class="counter" data-count="15" data-suffix="+">0</strong>
+                    <span>Projects delivered</span>
+                </article>
+                <article class="metric-card">
+                    <strong class="counter" data-count="99.9" data-decimals="1" data-suffix="%">0</strong>
+                    <span>Reliability mindset</span>
+                </article>
             </div>
         </div>
     </div>
