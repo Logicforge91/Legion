@@ -1,9 +1,5 @@
 :root {
     --bg: #07110f;
-    --bg-soft: #0d1915;
-    --panel: rgba(15, 29, 24, 0.82);
-    --panel-solid: #111f1a;
-    --panel-lift: #162720;
     --text: #f7f3e8;
     --muted: #a7b4a6;
     --soft: #d8e5cc;
@@ -17,8 +13,6 @@
     --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.25);
     --radius-xl: 34px;
     --radius-lg: 26px;
-    --radius-md: 18px;
-    --radius-sm: 12px;
     --font-display: "Space Grotesk", "Trebuchet MS", sans-serif;
     --font-mono: "IBM Plex Mono", "Courier New", monospace;
 }
@@ -92,6 +86,10 @@ svg,
 video {
     display: block;
     max-width: 100%;
+}
+
+[hidden] {
+    display: none !important;
 }
 
 a {
@@ -335,6 +333,11 @@ section {
     padding-top: clamp(34px, 5vw, 62px);
 }
 
+#content > section:not(:first-child) {
+    content-visibility: auto;
+    contain-intrinsic-size: 900px;
+}
+
 [data-reveal] {
     opacity: 0;
     transform: translateY(26px);
@@ -488,8 +491,7 @@ p {
     margin-top: 26px;
 }
 
-.hero-social a,
-.social-links a {
+.hero-social a {
     display: grid;
     width: 46px;
     height: 46px;
@@ -503,9 +505,7 @@ p {
 }
 
 .hero-social a:hover,
-.hero-social a:focus-visible,
-.social-links a:hover,
-.social-links a:focus-visible {
+.hero-social a:focus-visible {
     transform: translateY(-3px);
     border-color: var(--line-strong);
     color: var(--accent);
@@ -880,6 +880,40 @@ p {
     gap: 18px;
 }
 
+.project-filter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: -16px auto 28px;
+}
+
+.project-filter button {
+    min-height: 42px;
+    padding: 0 16px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--soft);
+    background: rgba(255, 255, 255, 0.045);
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.project-filter button:hover,
+.project-filter button:focus-visible,
+.project-filter button.active {
+    border-color: var(--line-strong);
+    color: #07110f;
+    background: var(--accent);
+    outline: none;
+    transform: translateY(-1px);
+}
+
 .project-card {
     grid-column: span 3;
     display: flex;
@@ -1199,6 +1233,10 @@ footer {
 
     .projects-grid {
         grid-template-columns: 1fr;
+    }
+
+    .project-filter {
+        justify-content: flex-start;
     }
 
     .project-card,

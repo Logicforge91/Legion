@@ -1,12 +1,20 @@
-<section class="projects-section" aria-label="Featured backend systems">
+<section class="projects-section" aria-labelledby="projectsTitle">
     <div class="container">
         <div class="section-heading" data-reveal>
             <p class="eyebrow"><span></span> Featured Systems</p>
-            <h2>Case studies that show the backend thinking.</h2>
+            <h2 id="projectsTitle">Case studies that show the backend thinking.</h2>
             <p>Each project is framed by the engineering problem: security, throughput, data integrity, integrations, or team workflow.</p>
         </div>
-        <div class="projects-grid" role="list">
-            <article class="project-card spotlight-card featured" role="listitem" data-reveal>
+        <div class="project-filter" data-reveal aria-label="Filter featured systems">
+            <button class="active" type="button" data-filter="all" aria-controls="projectsGrid" aria-pressed="true">All systems</button>
+            <button type="button" data-filter="backend" aria-controls="projectsGrid" aria-pressed="false">Backend</button>
+            <button type="button" data-filter="integration" aria-controls="projectsGrid" aria-pressed="false">Integrations</button>
+            <button type="button" data-filter="product" aria-controls="projectsGrid" aria-pressed="false">Product</button>
+            <button type="button" data-filter="realtime" aria-controls="projectsGrid" aria-pressed="false">Realtime</button>
+        </div>
+        <p id="projectFilterStatus" class="visually-hidden" aria-live="polite">Showing all featured systems.</p>
+        <div id="projectsGrid" class="projects-grid" role="list" aria-describedby="projectFilterStatus">
+            <article class="project-card spotlight-card featured" role="listitem" data-project-tags="backend product" data-reveal>
                 <div class="project-top"><span>Healthcare</span><i class="bi bi-heart-pulse" aria-hidden="true"></i></div>
                 <h3>Healthcare management platform</h3>
                 <p>Secure patient records, appointments, role-based access, and staff workflows built around privacy and fast lookups.</p>
@@ -17,7 +25,7 @@
                 </ul>
                 <div class="tag-row"><span>Laravel</span><span>MySQL</span><span>Redis</span><span>RBAC</span></div>
             </article>
-            <article class="project-card spotlight-card" role="listitem" data-reveal>
+            <article class="project-card spotlight-card" role="listitem" data-project-tags="backend product" data-reveal>
                 <div class="project-top"><span>Education ERP</span><i class="bi bi-building-gear" aria-hidden="true"></i></div>
                 <h3>Campus operations ERP</h3>
                 <p>Admissions, fee processing, audit data, automated reports, and admin workflows for day-to-day institutional operations.</p>
@@ -28,7 +36,7 @@
                 </ul>
                 <div class="tag-row"><span>PHP</span><span>Laravel</span><span>Cron</span><span>REST</span></div>
             </article>
-            <article class="project-card spotlight-card" role="listitem" data-reveal>
+            <article class="project-card spotlight-card" role="listitem" data-project-tags="backend integration product" data-reveal>
                 <div class="project-top"><span>Commerce</span><i class="bi bi-cart-check" aria-hidden="true"></i></div>
                 <h3>Transactional e-commerce backend</h3>
                 <p>Checkout, cart state, order lifecycle, payment gateway callbacks, and admin visibility into purchase flows.</p>
@@ -39,7 +47,7 @@
                 </ul>
                 <div class="tag-row"><span>Laravel</span><span>Stripe</span><span>Razorpay</span><span>Webhooks</span></div>
             </article>
-            <article class="project-card spotlight-card" role="listitem" data-reveal>
+            <article class="project-card spotlight-card" role="listitem" data-project-tags="backend integration" data-reveal>
                 <div class="project-top"><span>Integration Hub</span><i class="bi bi-node-plus" aria-hidden="true"></i></div>
                 <h3>API automation layer</h3>
                 <p>Third-party SMS, email, payment, and notification APIs combined behind cleaner internal contracts.</p>
@@ -50,7 +58,7 @@
                 </ul>
                 <div class="tag-row"><span>REST</span><span>Queues</span><span>Webhooks</span><span>Logs</span></div>
             </article>
-            <article class="project-card spotlight-card" role="listitem" data-reveal>
+            <article class="project-card spotlight-card" role="listitem" data-project-tags="backend product" data-reveal>
                 <div class="project-top"><span>Collaboration</span><i class="bi bi-kanban" aria-hidden="true"></i></div>
                 <h3>Task workflow system</h3>
                 <p>Team tasks, priorities, deadlines, status movement, and reporting across backend APIs and a responsive frontend.</p>
@@ -61,7 +69,7 @@
                 </ul>
                 <div class="tag-row"><span>Node.js</span><span>Java</span><span>React</span><span>MySQL</span></div>
             </article>
-            <article class="project-card spotlight-card project-card-wide" role="listitem" data-reveal>
+            <article class="project-card spotlight-card project-card-wide" role="listitem" data-project-tags="backend realtime product" data-reveal>
                 <div class="project-top"><span>Game Web App</span><i class="bi bi-controller" aria-hidden="true"></i></div>
                 <h3>Realtime browser game platform</h3>
                 <p>Interactive web game experience with player sessions, realtime rooms, score tracking, leaderboards, and admin controls.</p>
