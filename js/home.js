@@ -21,7 +21,9 @@ const el = {
 };
 
 const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+const hasIntersectionObserver = 'IntersectionObserver' in window;
 const closestElement = (target, selector) => target instanceof Element ? target.closest(selector) : null;
+const prefersReducedMotion = () => motionQuery.matches;
 
 async function init() {
     try {
@@ -33,13 +35,12 @@ async function init() {
 
         cacheElements();
         initNavigation();
-        initHeaderState();
+        initScrollEffects();
         initHero();
         initScrollSpy();
         initRevealAnimation();
         initSpotlightCards();
         initProjectFilters();
-        initScrollTop();
         setYear();
     } catch (error) {
         console.error('Portfolio init error:', error);
@@ -139,17 +140,6 @@ function initNavigation() {
     });
 }
 
-function initHeaderState() {
-    if (!el.header) return;
-
-    const update = () => {
-        el.header.classList.toggle('is-scrolled', window.scrollY > 12);
-    };
-
-    update();
-    window.addEventListener('scroll', update, { passive: true });
-}
-
 function initHero() {
     typeHeroText();
     animateCounters();
@@ -160,7 +150,7 @@ function typeHeroText() {
     const text = 'Suman K S / Laravel / Spring Boot / APIs / queues / reliable deploys';
     if (!target) return;
 
-    if (motionQuery.matches) {
+    if (prefersReducedMotion()) {
         target.textContent = text;
         return;
     }
@@ -192,7 +182,7 @@ function animateCounters() {
         const decimals = Number(counter.dataset.decimals || 0);
         const prefix = counter.dataset.prefix || '';
         const suffix = counter.dataset.suffix || '';
-        const duration = motionQuery.matches ? 0 : 1050;
+        const duration = prefersReducedMotion() ? 0 : 1050;
         const startTime = performance.now();
 
         const render = value => {
@@ -220,7 +210,7 @@ function animateCounters() {
         requestAnimationFrame(frame);
     };
 
-    if (!('IntersectionObserver' in window)) {
+    if (!hasIntersectionObserver) {
         counters.forEach(runCounter);
         return;
     }
@@ -239,7 +229,7 @@ function animateCounters() {
 
 function initScrollSpy() {
     const links = document.querySelectorAll('#navLinks a[href^="#"]');
-    if (!links.length || !('IntersectionObserver' in window)) return;
+    if (!links.length || !hasIntersectionObserver) return;
 
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
@@ -271,7 +261,7 @@ function initRevealAnimation() {
     const revealItems = document.querySelectorAll('[data-reveal]');
     if (!revealItems.length) return;
 
-    if (motionQuery.matches || !('IntersectionObserver' in window)) {
+    if (prefersReducedMotion() || !hasIntersectionObserver) {
         revealItems.forEach(item => item.classList.add('is-visible'));
         return;
     }
@@ -292,8 +282,7 @@ function initRevealAnimation() {
 }
 
 function initSpotlightCards() {
-    const cards = document.querySelectorAll('.spotlight-card');
-    if (!cards.length || motionQuery.matches) return;
+    if (!document.querySelector('.spotlight-card') || prefersReducedMotion()) return;
 
     let frame = 0;
     let latestEvent = null;
@@ -361,19 +350,42 @@ function initProjectFilters() {
     });
 }
 
-function initScrollTop() {
+function initScrollEffects() {
+    const header = el.header;
     const btn = el.scrollTopBtn;
-    if (!btn) return;
+    if (!header && !btn) return;
 
-    const updateVisibility = () => {
-        const visible = window.scrollY > 420;
-        btn.classList.toggle('show', visible);
-        btn.setAttribute('aria-hidden', visible ? 'false' : 'true');
+    let ticking = false;
+
+    const update = () => {
+        if (header) {
+            header.classList.toggle('is-scrolled', window.scrollY > 12);
+        }
+
+        if (btn) {
+            const visible = window.scrollY > 420;
+            btn.classList.toggle('show', visible);
+            btn.setAttribute('aria-hidden', visible ? 'false' : 'true');
+        }
+
+        ticking = false;
     };
 
-    updateVisibility();
-    window.addEventListener('scroll', updateVisibility, { passive: true });
-    btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: motionQuery.matches ? 'auto' : 'smooth' }));
+    const requestUpdate = () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+
+    if (btn) {
+        btn.addEventListener('click', () => window.scrollTo({
+            top: 0,
+            behavior: prefersReducedMotion() ? 'auto' : 'smooth'
+        }));
+    }
 }
 
 function setYear() {
