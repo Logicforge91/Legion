@@ -10,6 +10,8 @@ const SECTIONS = [
     'testimonials',
     'contact'
 ];
+const CRITICAL_SECTIONS = ['hero'];
+const DEFERRED_SECTIONS = SECTIONS.filter(section => !CRITICAL_SECTIONS.includes(section));
 
 const el = {
     navToggle: null,
@@ -24,28 +26,39 @@ const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 const hasIntersectionObserver = 'IntersectionObserver' in window;
 const closestElement = (target, selector) => target instanceof Element ? target.closest(selector) : null;
 const prefersReducedMotion = () => motionQuery.matches;
+const runWhenIdle = callback => {
+    if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(callback, { timeout: 900 });
+        return;
+    }
+
+    window.setTimeout(callback, 80);
+};
+
+let deferredSectionsPromise = null;
+let spotlightCardsInitialized = false;
 
 async function init() {
     try {
         await Promise.all([
             loadHTML('header.html', 'headerContainer'),
-            loadHTML('footer.html', 'footerContainer'),
-            loadSections()
+            loadSections(CRITICAL_SECTIONS)
         ]);
 
         cacheElements();
         initNavigation();
+        initDeferredAnchorLoading();
         initScrollEffects();
         initHero();
-        initScrollSpy();
         initRevealAnimation();
         initSpotlightCards();
-        initProjectFilters();
-        setYear();
+
+        hideLoader();
+        scheduleDeferredSections();
     } catch (error) {
         console.error('Portfolio init error:', error);
-    } finally {
         hideLoader();
+        scheduleDeferredSections();
     }
 }
 
@@ -70,15 +83,17 @@ async function loadHTML(file, containerId) {
     container.innerHTML = await response.text();
 }
 
-async function loadSections() {
+async function loadSections(sectionNames = SECTIONS) {
     const content = document.getElementById('content');
     if (!content) return;
 
-    const sections = await Promise.all(SECTIONS.map(loadSection));
+    const sections = await Promise.all(sectionNames.map(loadSection));
     const fragment = document.createDocumentFragment();
 
     sections.forEach(section => {
-        if (section) fragment.appendChild(section);
+        if (!section || document.getElementById(section.id)) return;
+
+        fragment.appendChild(section);
     });
 
     content.appendChild(fragment);
@@ -106,6 +121,50 @@ async function loadSection(name) {
     return null;
 }
 
+function scheduleDeferredSections() {
+    if (deferredSectionsPromise) return deferredSectionsPromise;
+
+    deferredSectionsPromise = new Promise(resolve => {
+        runWhenIdle(async () => {
+            await Promise.all([
+                loadHTML('footer.html', 'footerContainer'),
+                loadSections(DEFERRED_SECTIONS)
+            ]);
+            cacheElements();
+            setYear();
+            initScrollSpy();
+            initRevealAnimation();
+            initProjectFilters();
+            scrollToDeferredHash();
+            resolve();
+        });
+    });
+
+    return deferredSectionsPromise;
+}
+
+async function ensureDeferredSectionsLoaded() {
+    return deferredSectionsPromise || scheduleDeferredSections();
+}
+
+function scrollToSection(id, updateHash = false) {
+    if (updateHash && window.location.hash !== `#${id}`) {
+        history.pushState(null, '', `#${id}`);
+    }
+
+    document.getElementById(id)?.scrollIntoView({
+        behavior: prefersReducedMotion() ? 'auto' : 'smooth',
+        block: 'start'
+    });
+}
+
+function scrollToDeferredHash() {
+    const targetId = window.location.hash.slice(1);
+    if (DEFERRED_SECTIONS.includes(targetId)) {
+        scrollToSection(targetId);
+    }
+}
+
 function initNavigation() {
     if (!el.navToggle || !el.navLinks) return;
 
@@ -119,8 +178,18 @@ function initNavigation() {
         el.navToggle.setAttribute('aria-expanded', String(opened));
     });
 
-    el.navLinks.addEventListener('click', event => {
-        if (closestElement(event.target, 'a')) closeMenu();
+    el.navLinks.addEventListener('click', async event => {
+        const link = closestElement(event.target, 'a[href^="#"]');
+        if (!link) return;
+
+        const targetId = link.hash.slice(1);
+        if (targetId && !document.getElementById(targetId)) {
+            event.preventDefault();
+            await ensureDeferredSectionsLoaded();
+            scrollToSection(targetId, true);
+        }
+
+        closeMenu();
     });
 
     document.addEventListener('click', event => {
@@ -140,6 +209,22 @@ function initNavigation() {
     });
 }
 
+function initDeferredAnchorLoading() {
+    document.addEventListener('click', async event => {
+        if (event.defaultPrevented) return;
+
+        const link = closestElement(event.target, 'a[href^="#"]');
+        if (!link) return;
+
+        const targetId = link.hash.slice(1);
+        if (!targetId || document.getElementById(targetId)) return;
+
+        event.preventDefault();
+        await ensureDeferredSectionsLoaded();
+        scrollToSection(targetId, true);
+    });
+}
+
 function initHero() {
     typeHeroText();
     animateCounters();
@@ -147,7 +232,7 @@ function initHero() {
 
 function typeHeroText() {
     const target = el.typingText;
-    const text = 'Suman K S / Laravel / Spring Boot / APIs / queues / reliable deploys';
+    const text = 'Backend Developer / PHP Laravel Developer / Java Backend Developer';
     if (!target) return;
 
     if (prefersReducedMotion()) {
@@ -282,7 +367,8 @@ function initRevealAnimation() {
 }
 
 function initSpotlightCards() {
-    if (!document.querySelector('.spotlight-card') || prefersReducedMotion()) return;
+    if (spotlightCardsInitialized || !document.querySelector('.spotlight-card') || prefersReducedMotion()) return;
+    spotlightCardsInitialized = true;
 
     let frame = 0;
     let latestEvent = null;
