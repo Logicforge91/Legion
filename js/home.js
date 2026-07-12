@@ -28,15 +28,18 @@ const closestElement = (target, selector) => target instanceof Element ? target.
 const prefersReducedMotion = () => motionQuery.matches;
 const runWhenIdle = callback => {
     if ('requestIdleCallback' in window) {
-        window.requestIdleCallback(callback, { timeout: 900 });
-        return;
+        const handle = window.requestIdleCallback(callback, { timeout: 900 });
+        return () => window.cancelIdleCallback(handle);
     }
 
-    window.setTimeout(callback, 80);
+    const handle = window.setTimeout(callback, 80);
+    return () => window.clearTimeout(handle);
 };
 
 let deferredSectionsPromise = null;
+let cancelDeferredSchedule = null;
 let spotlightCardsInitialized = false;
+let projectFiltersInitialized = false;
 
 async function init() {
     try {
@@ -123,28 +126,43 @@ async function loadSection(name) {
 
 function scheduleDeferredSections() {
     if (deferredSectionsPromise) return deferredSectionsPromise;
+    if (cancelDeferredSchedule) return null;
 
-    deferredSectionsPromise = new Promise(resolve => {
-        runWhenIdle(async () => {
-            await Promise.all([
-                loadHTML('footer.html', 'footerContainer'),
-                loadSections(DEFERRED_SECTIONS)
-            ]);
-            cacheElements();
-            setYear();
-            initScrollSpy();
-            initRevealAnimation();
-            initProjectFilters();
-            scrollToDeferredHash();
-            resolve();
-        });
+    cancelDeferredSchedule = runWhenIdle(() => {
+        cancelDeferredSchedule = null;
+        loadDeferredSections();
     });
 
     return deferredSectionsPromise;
 }
 
+function loadDeferredSections() {
+    if (deferredSectionsPromise) return deferredSectionsPromise;
+
+    if (cancelDeferredSchedule) {
+        cancelDeferredSchedule();
+        cancelDeferredSchedule = null;
+    }
+
+    deferredSectionsPromise = (async () => {
+        await Promise.all([
+            loadHTML('footer.html', 'footerContainer'),
+            loadSections(DEFERRED_SECTIONS)
+        ]);
+        cacheElements();
+        setYear();
+        animateCounters();
+        initScrollSpy();
+        initRevealAnimation();
+        initProjectFilters();
+        scrollToDeferredHash();
+    })();
+
+    return deferredSectionsPromise;
+}
+
 async function ensureDeferredSectionsLoaded() {
-    return deferredSectionsPromise || scheduleDeferredSections();
+    return deferredSectionsPromise || loadDeferredSections();
 }
 
 function scrollToSection(id, updateHash = false) {
@@ -343,11 +361,14 @@ function initScrollSpy() {
 }
 
 function initRevealAnimation() {
-    const revealItems = document.querySelectorAll('[data-reveal]');
+    const revealItems = document.querySelectorAll('[data-reveal]:not([data-reveal-ready="true"])');
     if (!revealItems.length) return;
 
     if (prefersReducedMotion() || !hasIntersectionObserver) {
-        revealItems.forEach(item => item.classList.add('is-visible'));
+        revealItems.forEach(item => {
+            item.dataset.revealReady = 'true';
+            item.classList.add('is-visible');
+        });
         return;
     }
 
@@ -363,7 +384,10 @@ function initRevealAnimation() {
         threshold: 0.12
     });
 
-    revealItems.forEach(item => observer.observe(item));
+    revealItems.forEach(item => {
+        item.dataset.revealReady = 'true';
+        observer.observe(item);
+    });
 }
 
 function initSpotlightCards() {
@@ -395,10 +419,13 @@ function initSpotlightCards() {
 }
 
 function initProjectFilters() {
+    if (projectFiltersInitialized) return;
+
     const filter = document.querySelector('.project-filter');
     const cards = document.querySelectorAll('.project-card[data-project-tags]');
     if (!filter || !cards.length) return;
 
+    projectFiltersInitialized = true;
     const buttons = filter.querySelectorAll('button[data-filter]');
     const status = document.getElementById('projectFilterStatus');
 
@@ -484,5 +511,5 @@ function hideLoader() {
     const loader = document.getElementById('loader');
     if (!loader) return;
 
-    window.setTimeout(() => loader.classList.add('fade-out'), 280);
+    window.setTimeout(() => loader.classList.add('fade-out'), 80);
 }
