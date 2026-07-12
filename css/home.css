@@ -147,7 +147,7 @@ a {
     background:
         radial-gradient(circle at center, rgba(85, 240, 216, 0.12), transparent 24rem),
         var(--bg);
-    transition: opacity 0.45s ease, visibility 0.45s ease;
+    transition: opacity 0.22s ease, visibility 0.22s ease;
 }
 
 #loader.fade-out {
