@@ -24,6 +24,115 @@
   .ambient-orb { @apply pointer-events-none fixed -z-10 rounded-full blur-3xl; }
   .tech-chip { @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 font-mono text-xs text-stone-300 backdrop-blur-md transition hover:-translate-y-0.5 hover:border-mint-300/40 hover:text-mint-300; }
   .scroll-progress { @apply fixed inset-x-0 top-0 z-[1100] h-0.5 origin-left bg-gradient-to-r from-mint-300 via-aqua-300 to-amber-300 shadow-[0_0_18px_rgba(85,240,216,.65)]; }
+
+  /* Premium portfolio shell */
+  .site-container { width: min(calc(100% - 48px), 1280px); }
+
+  .site-noise { z-index: 2; opacity: 0.025; }
+
+  .site-header {
+    @apply border-0 bg-transparent px-0 py-3 backdrop-blur-none;
+  }
+
+  .site-header.is-scrolled { @apply bg-transparent shadow-none; }
+
+  .nav-shell {
+    @apply min-h-16 rounded-[22px] border border-white/10 bg-ink-950/80 px-3 shadow-[0_18px_60px_rgba(0,0,0,.3)] backdrop-blur-2xl;
+  }
+
+  .logo-mark { @apply rounded-xl shadow-[0_0_30px_rgba(199,255,107,.16)]; }
+
+  #navLinks a { @apply px-3.5 text-[0.86rem]; }
+
+  section { @apply py-20; }
+
+  .hero-section { @apply pb-14 pt-10; }
+
+  .hero-grid {
+    grid-template-columns: minmax(0, 1.08fr) minmax(440px, .92fr);
+    gap: clamp(44px, 5vw, 76px);
+  }
+
+  .hero-copy h1 {
+    @apply max-w-3xl text-[clamp(2.7rem,4.3vw,4.4rem)] leading-[.98] tracking-[-.055em];
+  }
+
+  .hero-title-accent {
+    @apply bg-gradient-to-r from-mint-300 via-aqua-300 to-emerald-200 bg-clip-text text-transparent;
+  }
+
+  .hero-lede { @apply mt-6 max-w-2xl text-[clamp(1rem,1.15vw,1.1rem)] leading-8; }
+
+  .hero-terminal-line {
+    @apply mt-6 min-h-12 rounded-2xl border-white/10 bg-black/20 px-4 py-3 shadow-none;
+  }
+
+  .hero-actions { @apply mt-7; }
+
+  .btn { @apply min-h-12 px-5 text-[.92rem]; }
+
+  .hero-meta { @apply mt-6 flex flex-wrap items-center gap-x-5 gap-y-3 font-mono text-xs text-stone-400; }
+  .hero-meta-item { @apply inline-flex items-center gap-2; }
+  .hero-meta-dot { @apply size-2 rounded-full bg-mint-300 shadow-[0_0_14px_rgba(199,255,107,.8)]; }
+
+  .hero-social { @apply mt-5; }
+  .hero-social a { @apply size-10 rounded-xl; }
+
+  .spotlight-card {
+    @apply transition-[transform,border-color,box-shadow] duration-300;
+    border-color: rgba(255,255,255,.09);
+    background: radial-gradient(circle at var(--mx,50%) var(--my,0%),rgba(199,255,107,.11),transparent 17rem),linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.018));
+  }
+
+  .spotlight-card:hover {
+    @apply -translate-y-1 border-mint-300/20 shadow-[0_28px_80px_rgba(0,0,0,.35)];
+  }
+
+  .ops-panel { @apply gap-4 rounded-[30px] p-5; }
+  .console-card { @apply rounded-[20px] border-white/8; }
+  .console-card pre { @apply p-5 text-[.82rem] leading-7; }
+  .metric-grid { @apply gap-2.5; }
+  .metric-card { @apply min-h-24 rounded-[18px] p-4; }
+  .metric-card strong { @apply text-[clamp(1.55rem,2.5vw,2.15rem)]; }
+
+  .section-heading { @apply mb-12; }
+  .section-heading h2 { @apply text-[clamp(1.9rem,3vw,3.1rem)] tracking-[-.05em]; }
+  .section-heading p:not(.eyebrow) { @apply mt-4; }
+
+  .stack-card, .project-card, .proof-card, .testimonial-card, .profile-card, .contact-panel {
+    @apply border-white/8;
+  }
+
+  .stack-card { @apply min-h-64 p-6; }
+  .project-card { @apply min-h-[390px]; }
+  .proof-card { @apply min-h-64; }
+
+  .tech-chip { @apply bg-black/20 px-3.5 py-2 text-[.7rem]; }
+
+  footer { @apply border-white/8 bg-black/20; }
+}
+
+@media (max-width: 1080px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-copy { max-width: 780px; }
+}
+
+@media (max-width: 860px) {
+  .site-header { @apply py-2; }
+  .nav-shell { @apply rounded-[18px]; }
+  #siteNav { top: calc(100% + 8px); }
+  #navLinks { @apply border-white/10 bg-ink-950/95; }
+}
+
+@media (max-width: 640px) {
+  .site-container { width: min(calc(100% - 28px), 1280px); }
+  section { @apply py-14; }
+  .hero-section { @apply pb-10 pt-5; }
+  .hero-copy h1 { @apply text-[clamp(2.35rem,12vw,3.35rem)] leading-[1.01]; }
+  .hero-lede { @apply mt-5 leading-7; }
+  .hero-terminal-line { @apply rounded-xl; }
+  .ops-panel { @apply rounded-[24px] p-4; }
+  .section-heading { @apply mb-8; }
 }
 
 @utility text-balance { text-wrap: balance; }

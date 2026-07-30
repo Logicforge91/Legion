@@ -107,3 +107,13 @@ Users who request reduced motion receive immediate text and metrics without anim
 ## Deployment
 
 Deploy the generated `dist/` directory to any static host, including Netlify, Vercel, Cloudflare Pages, or GitHub Pages. Configure the build command as `npm run build` and the output directory as `dist`.
+
+### Netlify
+
+The included `netlify.toml` configures Netlify to run `npm run build` and publish only `dist/`. Do not set the publish directory to the repository root: the source `index.html` references JSX that must be transformed by Vite.
+
+If the Netlify dashboard contains older manual build settings, use:
+
+- Build command: `npm run build`
+- Publish directory: `dist`
+- Node version: `22`
