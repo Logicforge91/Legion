@@ -1,0 +1,33 @@
+@import "tailwindcss";
+@import "../css/home.css" layer(components);
+
+@theme {
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+  --color-ink-950: #050b0a;
+  --color-ink-900: #07110f;
+  --color-mint-300: #c7ff6b;
+  --color-aqua-300: #55f0d8;
+  --animate-float: float 8s ease-in-out infinite;
+  --animate-grid: grid-drift 18s linear infinite;
+  @keyframes float { 0%, 100% { transform: translate3d(0,0,0) scale(1); } 50% { transform: translate3d(0,-22px,0) scale(1.04); } }
+  @keyframes grid-drift { to { background-position: 44px 44px; } }
+}
+
+@layer base {
+  html { @apply scroll-smooth bg-ink-900; }
+  body { @apply overflow-x-hidden bg-ink-900 font-display text-stone-50 antialiased selection:bg-mint-300 selection:text-ink-950; }
+  button, a { @apply touch-manipulation; }
+}
+
+@layer components {
+  .ambient-orb { @apply pointer-events-none fixed -z-10 rounded-full blur-3xl; }
+  .tech-chip { @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 font-mono text-xs text-stone-300 backdrop-blur-md transition hover:-translate-y-0.5 hover:border-mint-300/40 hover:text-mint-300; }
+  .scroll-progress { @apply fixed inset-x-0 top-0 z-[1100] h-0.5 origin-left bg-gradient-to-r from-mint-300 via-aqua-300 to-amber-300 shadow-[0_0_18px_rgba(85,240,216,.65)]; }
+}
+
+@utility text-balance { text-wrap: balance; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float, .animate-grid { animation: none !important; }
+}
