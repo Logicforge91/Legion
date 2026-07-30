@@ -133,68 +133,15 @@ a {
     transform: translateY(0);
 }
 
-.container {
+.site-container {
     width: min(100% - 40px, 1180px);
     margin-inline: auto;
 }
 
-#loader {
-    position: fixed;
-    inset: 0;
-    z-index: 10001;
-    display: grid;
-    place-items: center;
-    background:
-        radial-gradient(circle at center, rgba(85, 240, 216, 0.12), transparent 24rem),
-        var(--bg);
-    transition: opacity 0.22s ease, visibility 0.22s ease;
-}
-
-#loader.fade-out {
-    opacity: 0;
-    visibility: hidden;
-}
-
-.loader-shell {
-    position: relative;
-    display: grid;
-    grid-template-columns: repeat(3, 12px);
-    gap: 8px;
-    padding: 22px;
-    border: 1px solid var(--line);
-    border-radius: 22px;
-    background: rgba(255, 255, 255, 0.04);
-    box-shadow: var(--shadow-soft);
-}
-
-.loader-shell span {
-    width: 12px;
-    height: 44px;
-    border-radius: 999px;
-    background: linear-gradient(to top, var(--accent-2), var(--accent));
-    animation: loaderPulse 0.82s ease-in-out infinite alternate;
-}
-
-.loader-shell span:nth-child(2) {
-    animation-delay: 0.14s;
-}
-
-.loader-shell span:nth-child(3) {
-    animation-delay: 0.28s;
-}
-
-@keyframes loaderPulse {
-    from { transform: scaleY(0.38); opacity: 0.55; }
-    to { transform: scaleY(1); opacity: 1; }
-}
-
-#headerContainer {
+.site-header {
     position: sticky;
     top: 0;
     z-index: 1000;
-}
-
-.site-header {
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     background: rgba(7, 17, 15, 0.72);
     backdrop-filter: blur(24px);
@@ -895,6 +842,21 @@ p {
     gap: 18px;
 }
 
+.projects-grid > [data-reveal] {
+    grid-column: span 3;
+}
+
+.projects-grid > [data-reveal].featured,
+.projects-grid > [data-reveal].project-card-wide {
+    grid-column: span 6;
+}
+
+.stack-board > [data-reveal] > .stack-card,
+.proof-grid > [data-reveal] > .proof-card,
+.testimonial-rail > [data-reveal] > .testimonial-card {
+    height: 100%;
+}
+
 .project-filter {
     display: flex;
     flex-wrap: wrap;
@@ -1257,7 +1219,8 @@ footer {
 
     .project-card,
     .project-card.featured,
-    .project-card-wide {
+    .project-card-wide,
+    .projects-grid > [data-reveal] {
         grid-column: span 1;
         min-height: auto;
     }
@@ -1277,7 +1240,7 @@ footer {
 }
 
 @media (max-width: 640px) {
-    .container {
+    .site-container {
         width: min(100% - 28px, 1180px);
     }
 
