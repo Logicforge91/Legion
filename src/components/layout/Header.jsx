@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { navigationItems } from '../../config/navigation';
 
-export default function Header({ activeSection, scrolled }) {
+export default function Header({ activeSection, scrolled, onOpenCommandPalette }) {
   const [open, setOpen] = useState(false);
   const menuRef = useRef(null);
 
@@ -26,6 +26,7 @@ export default function Header({ activeSection, scrolled }) {
           <ul id="navLinks" className={open ? 'show' : ''}>
             {navigationItems.map(([id, label]) => <li key={id}><a href={`#${id}`} className={activeSection === id ? 'active' : ''} aria-current={activeSection === id ? 'page' : undefined} onClick={() => setOpen(false)}>{label}</a></li>)}
             <li><a href="#contact" className="nav-cta" onClick={() => setOpen(false)}>Build with me</a></li>
+            <li><button className="nav-command" type="button" aria-label="Open command palette" onClick={() => { setOpen(false); onOpenCommandPalette(); }}><i className="bi bi-search" aria-hidden="true" /><kbd>Ctrl K</kbd></button></li>
           </ul>
         </nav>
       </div>

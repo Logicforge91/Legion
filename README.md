@@ -13,6 +13,12 @@ A responsive, single-page developer portfolio for Suman K S. The project is impl
 - Reduced-motion support
 - Responsive desktop, tablet, and mobile layouts
 - Downloadable résumé served as a public asset
+- Netlify-powered recruiter contact form with loading, success, error, and spam-protection states
+- Search-engine, Open Graph, Twitter, and canonical metadata
+- Verified employer website links in the experience timeline
+- Production integrations showcase covering payments, messaging, external APIs, queues, webhooks, retries, and observability
+- Evidence-based working principles in place of unverifiable testimonial copy
+- On-demand JavaScript chunks for the command palette and project case-study dialogs
 
 ## Technology
 
@@ -93,6 +99,10 @@ Every project has a `filters` array. Its values must match the filter names rend
 - `AppErrorBoundary` provides a resilient recovery screen if an unexpected render error reaches the application root.
 
 Performance-sensitive pointer and scroll handlers are synchronized with `requestAnimationFrame`, derived project results are memoized, and observers disconnect as soon as their work is complete.
+
+Reveal and counter components share pooled Intersection Observers, reduced-motion consumers share one media-query listener, counters update their isolated text nodes without React frame-by-frame rendering, and scroll progress is written through a CSS custom property so the application tree does not re-render on every scroll frame.
+
+Secondary overlays use `React.lazy` and `Suspense`, so visitors do not download the command palette or project-dialog implementation until they use those features.
 - `AmbientCanvas` uses Tailwind arbitrary properties and theme animations for the grid and ambient lighting.
 - `TechMarquee` renders the core stack as reusable Tailwind component utilities.
 
@@ -111,6 +121,8 @@ Deploy the generated `dist/` directory to any static host, including Netlify, Ve
 ### Netlify
 
 The included `netlify.toml` configures Netlify to run `npm run build` and publish only `dist/`. Do not set the publish directory to the repository root: the source `index.html` references JSX that must be transformed by Vite.
+
+The hidden static form in `index.html` allows Netlify to register the React contact form during deployment. Submissions appear under the site's **Forms** tab in the Netlify dashboard.
 
 If the Netlify dashboard contains older manual build settings, use:
 

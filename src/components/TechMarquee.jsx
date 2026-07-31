@@ -1,6 +1,6 @@
 import { Reveal } from './ui';
 
-const technologies = ['Laravel', 'PHP', 'Spring Boot', 'Java', 'MySQL', 'Redis', 'Docker', 'REST APIs', 'React'];
+const technologies = ['Laravel', 'PHP', 'Spring Boot', 'Java', 'MySQL', 'Redis', 'Docker', 'REST APIs', 'React','AWS'];
 
 export default function TechMarquee() {
   return <div className="site-container pb-8" aria-label="Core technologies">

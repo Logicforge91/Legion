@@ -3,6 +3,7 @@ export const navigationItems = [
   ['about', 'Profile'],
   ['journey', 'Journey'],
   ['skills', 'Stack'],
+  ['integrations', 'Integrations'],
   ['projects', 'Systems'],
   ['achievements', 'Proof'],
 ];

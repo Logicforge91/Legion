@@ -4,10 +4,10 @@
 @theme {
   --font-display: "Space Grotesk", sans-serif;
   --font-mono: "IBM Plex Mono", monospace;
-  --color-ink-950: #050b0a;
-  --color-ink-900: #07110f;
-  --color-mint-300: #c7ff6b;
-  --color-aqua-300: #55f0d8;
+  --color-ink-950: #050611;
+  --color-ink-900: #080914;
+  --color-mint-300: #a78bfa;
+  --color-aqua-300: #22d3ee;
   --animate-float: float 8s ease-in-out infinite;
   --animate-grid: grid-drift 18s linear infinite;
   @keyframes float { 0%, 100% { transform: translate3d(0,0,0) scale(1); } 50% { transform: translate3d(0,-22px,0) scale(1.04); } }
@@ -23,7 +23,7 @@
 @layer components {
   .ambient-orb { @apply pointer-events-none fixed -z-10 rounded-full blur-3xl; }
   .tech-chip { @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 font-mono text-xs text-stone-300 backdrop-blur-md transition hover:-translate-y-0.5 hover:border-mint-300/40 hover:text-mint-300; }
-  .scroll-progress { @apply fixed inset-x-0 top-0 z-[1100] h-0.5 origin-left bg-gradient-to-r from-mint-300 via-aqua-300 to-amber-300 shadow-[0_0_18px_rgba(85,240,216,.65)]; }
+  .scroll-progress { @apply fixed inset-x-0 top-0 z-[1100] h-0.5 origin-left bg-gradient-to-r from-mint-300 via-aqua-300 to-amber-300 shadow-[0_0_18px_rgba(34,211,238,.65)]; transform: scaleX(var(--scroll-progress, 0)); }
 
   /* Premium portfolio shell */
   .site-container { width: min(calc(100% - 48px), 1280px); }
@@ -40,9 +40,12 @@
     @apply min-h-16 rounded-[22px] border border-white/10 bg-ink-950/80 px-3 shadow-[0_18px_60px_rgba(0,0,0,.3)] backdrop-blur-2xl;
   }
 
-  .logo-mark { @apply rounded-xl shadow-[0_0_30px_rgba(199,255,107,.16)]; }
+  .logo-mark { @apply rounded-xl shadow-[0_0_30px_rgba(167,139,250,.16)]; }
 
   #navLinks a { @apply px-3.5 text-[0.86rem]; }
+
+  .nav-command { @apply inline-flex min-h-10 items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 text-stone-400 transition hover:border-aqua-300/25 hover:text-aqua-300 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-aqua-300/10; }
+  .nav-command kbd { @apply rounded-md border border-white/8 bg-black/20 px-1.5 py-0.5 font-mono text-[.58rem] text-stone-500; }
 
   section { @apply py-20; }
 
@@ -55,6 +58,11 @@
 
   .hero-copy h1 {
     @apply max-w-3xl text-[clamp(2.7rem,4.3vw,4.4rem)] leading-[.98] tracking-[-.055em];
+  }
+
+  .hero-copy::before {
+    content: "";
+    @apply pointer-events-none absolute -left-20 -top-20 -z-10 size-72 rounded-full bg-mint-300/10 blur-[90px];
   }
 
   .hero-title-accent {
@@ -73,7 +81,7 @@
 
   .hero-meta { @apply mt-6 flex flex-wrap items-center gap-x-5 gap-y-3 font-mono text-xs text-stone-400; }
   .hero-meta-item { @apply inline-flex items-center gap-2; }
-  .hero-meta-dot { @apply size-2 rounded-full bg-mint-300 shadow-[0_0_14px_rgba(199,255,107,.8)]; }
+  .hero-meta-dot { @apply size-2 rounded-full bg-mint-300 shadow-[0_0_14px_rgba(167,139,250,.8)]; }
 
   .hero-social { @apply mt-5; }
   .hero-social a { @apply size-10 rounded-xl; }
@@ -81,14 +89,22 @@
   .spotlight-card {
     @apply transition-[transform,border-color,box-shadow] duration-300;
     border-color: rgba(255,255,255,.09);
-    background: radial-gradient(circle at var(--mx,50%) var(--my,0%),rgba(199,255,107,.11),transparent 17rem),linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.018));
+    background: radial-gradient(circle at var(--mx,50%) var(--my,0%),rgba(167,139,250,.11),transparent 17rem),linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.018));
   }
 
   .spotlight-card:hover {
     @apply -translate-y-1 border-mint-300/20 shadow-[0_28px_80px_rgba(0,0,0,.35)];
   }
 
-  .ops-panel { @apply gap-4 rounded-[30px] p-5; }
+  .ops-panel {
+    @apply gap-4 rounded-[30px] p-5 shadow-[0_40px_120px_rgba(0,0,0,.45)];
+    isolation: isolate;
+  }
+
+  .ops-panel::after {
+    content: "";
+    @apply pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-aqua-300/80 to-transparent;
+  }
   .console-card { @apply rounded-[20px] border-white/8; }
   .console-card pre { @apply p-5 text-[.82rem] leading-7; }
   .metric-grid { @apply gap-2.5; }
@@ -99,6 +115,49 @@
   .section-heading h2 { @apply text-[clamp(1.9rem,3vw,3.1rem)] tracking-[-.05em]; }
   .section-heading p:not(.eyebrow) { @apply mt-4; }
 
+  .company-link {
+    @apply mb-2 inline-flex items-center gap-1.5 font-mono text-[.7rem] font-bold uppercase tracking-[.08em] text-aqua-300 no-underline transition hover:text-white focus-visible:rounded focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-aqua-300/10;
+  }
+
+  .company-link i { @apply text-[.65rem] transition; }
+  .company-link:hover i { @apply translate-x-0.5 -translate-y-0.5; }
+
+  .integrations-section {
+    background: radial-gradient(circle at 6% 45%, rgba(34,211,238,.07), transparent 24rem);
+  }
+
+  .integration-layout { @apply grid gap-5; }
+  .integration-flow { @apply rounded-[30px] p-6; }
+  .flow-heading { @apply flex flex-wrap items-end justify-between gap-3; }
+  .flow-heading .panel-kicker { @apply mb-0; }
+  .flow-heading strong { @apply text-lg; }
+  .flow-track { @apply mt-7 grid grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr] items-center gap-3; }
+  .flow-node { @apply grid min-h-32 place-items-center content-center gap-1.5 rounded-2xl border border-white/8 bg-black/20 p-4 text-center; }
+  .flow-node > i { @apply mb-1 text-2xl text-stone-500; }
+  .flow-node > span { @apply text-sm font-bold text-stone-200; }
+  .flow-node > small { @apply font-mono text-[.62rem] text-stone-600; }
+  .flow-node.active { @apply border-aqua-300/25 bg-aqua-300/[.07] shadow-[0_0_40px_rgba(34,211,238,.08)]; }
+  .flow-node.active > i { @apply text-aqua-300; }
+  .flow-arrow { @apply text-stone-700; }
+  .flow-signals { @apply mt-5 flex flex-wrap gap-2; }
+  .flow-signals span { @apply inline-flex items-center gap-2 rounded-full border border-white/8 bg-black/20 px-3 py-2 font-mono text-[.63rem] text-stone-400; }
+  .flow-signals i { @apply text-mint-300; }
+
+  .integration-grid { @apply grid grid-cols-4 gap-4; }
+  .integration-grid > [data-reveal] { @apply h-full; }
+  .integration-card { @apply flex h-full min-h-64 flex-col gap-5 rounded-[24px] p-5; }
+  .integration-icon { @apply grid size-11 place-items-center rounded-xl border border-mint-300/20 bg-mint-300/[.08] text-xl text-mint-300; }
+  .integration-card h3 { @apply mb-2; }
+  .integration-card p { @apply text-[.88rem] leading-6; }
+  .integration-card .tag-row { @apply mt-5; }
+
+  .about-section,
+  .projects-section,
+  .testimonials-section {
+    @apply border-y border-white/[.04];
+    background: linear-gradient(180deg, rgba(255,255,255,.018), rgba(255,255,255,.006));
+  }
+
   .stack-card, .project-card, .proof-card, .testimonial-card, .profile-card, .contact-panel {
     @apply border-white/8;
   }
@@ -106,6 +165,146 @@
   .stack-card { @apply min-h-64 p-6; }
   .project-card { @apply min-h-[390px]; }
   .proof-card { @apply min-h-64; }
+
+  .stack-card i {
+    @apply border-mint-300/25 bg-mint-300/10 text-mint-300 shadow-[inset_0_1px_rgba(255,255,255,.08)];
+  }
+
+  .projects-grid > [data-reveal] { counter-increment: project-card; }
+  .projects-grid { counter-reset: project-card; }
+
+  .project-card::after {
+    content: "0" counter(project-card);
+    @apply pointer-events-none absolute bottom-5 right-6 font-mono text-5xl font-bold tracking-[-.08em] text-white/[.025];
+  }
+
+  .project-details-button {
+    @apply mt-1 inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/[.035] px-4 py-2.5 text-xs font-bold text-stone-200 transition hover:border-aqua-300/35 hover:bg-aqua-300/[.07] hover:text-aqua-300 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-aqua-300/10;
+  }
+
+  .project-dialog {
+    @apply m-auto max-h-[min(88vh,760px)] overflow-y-auto rounded-[30px] border border-white/10 bg-ink-950 p-0 text-stone-100 shadow-[0_50px_160px_rgba(0,0,0,.75)] outline-none;
+    width: min(calc(100% - 32px), 760px);
+  }
+
+  .project-dialog::backdrop {
+    background: rgba(3, 4, 12, .78);
+    backdrop-filter: blur(12px);
+  }
+
+  .project-dialog-shell {
+    @apply relative overflow-hidden p-[clamp(24px,5vw,48px)];
+    background: radial-gradient(circle at 100% 0%, rgba(167,139,250,.18), transparent 22rem),linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.012));
+  }
+
+  .project-dialog-topline { @apply mb-8 flex items-center justify-between gap-4; }
+  .project-dialog-category { @apply inline-flex items-center gap-2 rounded-full border border-aqua-300/20 bg-aqua-300/[.07] px-3 py-2 font-mono text-[.7rem] font-bold uppercase tracking-[.08em] text-aqua-300; }
+  .project-dialog-close { @apply grid size-10 place-items-center rounded-full border border-white/10 bg-white/5 text-stone-300 transition hover:rotate-90 hover:border-white/25 hover:text-white focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-mint-300/15; }
+  .project-dialog h2 { @apply max-w-2xl text-[clamp(1.8rem,4vw,3rem)] tracking-[-.05em]; }
+  .project-dialog-summary { @apply mt-5 max-w-2xl text-base leading-7 text-stone-400; }
+  .project-dialog-grid { @apply mt-8 grid grid-cols-[1.25fr_.75fr] gap-8 border-y border-white/8 py-7; }
+  .project-dialog-label { @apply mb-4 block font-mono text-[.68rem] font-bold uppercase tracking-[.1em] text-stone-500; }
+  .project-dialog ul { @apply grid gap-3; }
+  .project-dialog li { @apply flex items-start gap-2.5 text-sm leading-6 text-stone-300; }
+  .project-dialog li i { @apply mt-1 text-aqua-300; }
+  .project-dialog .tag-row { @apply mt-0; }
+  .project-dialog-footer { @apply mt-7 flex flex-wrap items-center justify-between gap-4; }
+  .project-dialog-footer p { @apply text-sm; }
+  .dialog-open { overflow: hidden; }
+
+  .command-dialog { @apply m-auto w-[min(calc(100%_-_28px),680px)] overflow-visible border-0 bg-transparent p-0 text-stone-100 outline-none; }
+  .command-dialog::backdrop { background: rgba(3,4,12,.72); backdrop-filter: blur(12px); }
+  .command-shell { @apply overflow-hidden rounded-[26px] border border-white/10 bg-ink-950/95 shadow-[0_50px_160px_rgba(0,0,0,.75)] backdrop-blur-2xl; }
+  .command-search { @apply flex items-center gap-3 border-b border-white/8 px-5; }
+  .command-search > i { @apply text-lg text-aqua-300; }
+  .command-search input { @apply min-h-16 min-w-0 flex-1 border-0 bg-transparent text-base text-white outline-none placeholder:text-stone-600; }
+  .command-search kbd,
+  .command-footer kbd { @apply rounded-md border border-white/10 bg-white/5 px-2 py-1 font-mono text-[.6rem] text-stone-500; }
+  .command-results { @apply max-h-[min(55vh,430px)] overflow-y-auto p-2; }
+  .command-results button { @apply grid w-full grid-cols-[36px_1fr_auto_24px] items-center gap-3 rounded-2xl px-3 py-3 text-left text-sm text-stone-300 transition; }
+  .command-results button > i:first-child { @apply grid size-9 place-items-center rounded-xl border border-white/8 bg-white/[.035] text-stone-500; }
+  .command-results button small { @apply font-mono text-[.62rem] uppercase tracking-[.08em] text-stone-600; }
+  .command-results button .command-enter { @apply opacity-0 text-aqua-300 transition; }
+  .command-results button.active { @apply bg-gradient-to-r from-mint-300/[.12] to-aqua-300/[.06] text-white; }
+  .command-results button.active > i:first-child { @apply border-aqua-300/20 bg-aqua-300/10 text-aqua-300; }
+  .command-results button.active .command-enter { @apply opacity-100; }
+  .command-empty { @apply grid min-h-40 place-items-center content-center gap-2 text-center text-stone-600; }
+  .command-empty i { @apply text-2xl; }
+  .command-footer { @apply flex flex-wrap items-center gap-5 border-t border-white/8 px-5 py-3 font-mono text-[.6rem] text-stone-600; }
+  .command-footer span { @apply inline-flex items-center gap-1.5; }
+
+  .project-top > span {
+    @apply border-aqua-300/20 bg-aqua-300/[.07] text-aqua-300;
+  }
+
+  .tag-row span {
+    @apply border-white/8 bg-black/20 text-[.69rem];
+  }
+
+  .proof-card:first-child,
+  .project-card.featured {
+    background: radial-gradient(circle at 85% 5%, rgba(34,211,238,.12), transparent 18rem),linear-gradient(145deg,rgba(167,139,250,.09),rgba(255,255,255,.018));
+  }
+
+  .profile-ring {
+    background: conic-gradient(from 180deg, var(--accent), var(--accent-2), var(--amber), var(--accent));
+    box-shadow: 0 24px 70px rgba(167,139,250,.2);
+  }
+
+  .contact-panel {
+    background: radial-gradient(circle at 100% 0%, rgba(167,139,250,.16), transparent 18rem),linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.02));
+  }
+
+  .contact-panel h3 { @apply mb-6 text-[clamp(1.5rem,2vw,2rem)]; }
+
+  .contact-form { @apply grid gap-4; }
+  .contact-form-row { @apply grid grid-cols-2 gap-3; }
+
+  .contact-form label { @apply grid gap-2; }
+  .contact-form label > span { @apply font-mono text-[.7rem] font-semibold uppercase tracking-[.08em] text-stone-400; }
+  .contact-form label small { @apply ml-1 font-normal normal-case tracking-normal text-stone-600; }
+
+  .contact-form input,
+  .contact-form textarea {
+    @apply w-full rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-sm text-stone-100 outline-none transition placeholder:text-stone-600 hover:border-white/20 focus:border-aqua-300/50 focus:bg-black/35 focus:ring-4 focus:ring-aqua-300/[.07];
+  }
+
+  .contact-form textarea { @apply min-h-28 resize-y; }
+  .contact-form-footer { @apply flex min-h-12 flex-wrap items-center gap-4; }
+
+  .contact-submit {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-mint-300 to-aqua-300 px-5 text-sm font-bold text-ink-950 shadow-[0_14px_36px_rgba(167,139,250,.2)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_44px_rgba(34,211,238,.2)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-aqua-300/20 disabled:cursor-wait disabled:opacity-60;
+  }
+
+  .contact-submit:disabled i { @apply animate-spin; }
+  .form-status { @apply m-0 text-xs; }
+  .form-status.success { @apply text-emerald-300; }
+  .form-status.error { @apply text-red-300; }
+  .form-status a { @apply underline underline-offset-2; }
+
+  .contact-divider { @apply my-5 flex items-center gap-3 font-mono text-[.65rem] uppercase tracking-[.12em] text-stone-600; }
+  .contact-divider::before,
+  .contact-divider::after { content: ""; @apply h-px flex-1 bg-white/8; }
+
+  .contact-panel .contact-links { @apply grid grid-cols-2 gap-2; }
+  .contact-panel .contact-links a { @apply min-w-0 min-h-11 justify-start gap-2 rounded-xl px-3 py-2 text-xs; }
+  .contact-panel .contact-links a:first-child { @apply col-span-2; }
+  .contact-panel .contact-links a span { @apply min-w-0 overflow-hidden text-ellipsis whitespace-nowrap; }
+  .contact-panel .contact-links i { @apply size-7 rounded-lg text-xs; }
+
+  .contact-links a:hover,
+  .contact-links a:focus-visible { @apply border-aqua-300/35 bg-aqua-300/[.07] text-aqua-300; }
+
+  .contact-links i { @apply bg-gradient-to-br from-mint-300 to-aqua-300 text-ink-950; }
+
+  .work-style-card { @apply min-h-[320px] gap-6; }
+  .work-style-top { @apply flex items-center justify-between; }
+  .work-style-top span { @apply font-mono text-xs tracking-[.12em] text-stone-600; }
+  .work-style-top i { @apply grid size-11 place-items-center rounded-xl border border-aqua-300/20 bg-aqua-300/[.07] text-xl text-aqua-300; }
+  .work-style-card h3 { @apply mb-3 text-xl; }
+  .work-style-card p { @apply text-[.92rem] leading-7; }
+  .work-style-signal { @apply mt-auto inline-flex items-center gap-2 font-mono text-[.68rem] uppercase tracking-[.08em] text-mint-300; }
+  .work-style-signal span { @apply size-1.5 rounded-full bg-mint-300 shadow-[0_0_12px_rgba(167,139,250,.8)]; }
 
   .tech-chip { @apply bg-black/20 px-3.5 py-2 text-[.7rem]; }
 
@@ -115,6 +314,7 @@
 @media (max-width: 1080px) {
   .hero-grid { grid-template-columns: 1fr; }
   .hero-copy { max-width: 780px; }
+  .integration-grid { @apply grid-cols-2; }
 }
 
 @media (max-width: 860px) {
@@ -122,6 +322,10 @@
   .nav-shell { @apply rounded-[18px]; }
   #siteNav { top: calc(100% + 8px); }
   #navLinks { @apply border-white/10 bg-ink-950/95; }
+  .nav-command { @apply w-full justify-center; }
+  .flow-track { @apply grid-cols-1; }
+  .flow-arrow { @apply rotate-90 justify-self-center; }
+  .flow-node { @apply min-h-24; }
 }
 
 @media (max-width: 640px) {
@@ -133,6 +337,18 @@
   .hero-terminal-line { @apply rounded-xl; }
   .ops-panel { @apply rounded-[24px] p-4; }
   .section-heading { @apply mb-8; }
+  .contact-form-row { @apply grid-cols-1; }
+  .contact-panel .contact-links { @apply grid-cols-1; }
+  .contact-panel .contact-links a:first-child { @apply col-span-1; }
+  .contact-panel .contact-links a span { @apply whitespace-normal break-words; }
+  .project-dialog { @apply max-h-[92vh] rounded-[24px]; width: calc(100% - 20px); }
+  .project-dialog-grid { @apply grid-cols-1 gap-6; }
+  .project-dialog-footer { @apply items-stretch; }
+  .project-dialog-footer .btn { @apply w-full; }
+  .integration-grid { @apply grid-cols-1; }
+  .command-results button { @apply grid-cols-[36px_1fr_24px]; }
+  .command-results button small { @apply hidden; }
+  .command-footer { @apply gap-3; }
 }
 
 @utility text-balance { text-wrap: balance; }
