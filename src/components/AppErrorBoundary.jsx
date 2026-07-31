@@ -21,7 +21,7 @@ export default class AppErrorBoundary extends Component {
         <p className="mt-4 text-stone-400">Reload the page to retry. If the problem continues, please get in touch by email.</p>
         <div className="mt-7 flex flex-wrap justify-center gap-3">
           <button className="rounded-full bg-mint-300 px-5 py-3 font-bold text-ink-950" type="button" onClick={() => window.location.reload()}>Reload page</button>
-          <a className="rounded-full border border-white/15 px-5 py-3 font-bold" href="mailto:logicforge073@gmail.com">Email me</a>
+          <a className="rounded-full border border-white/15 px-5 py-3 font-bold" href="mailto:sumanks1307@gmail.com">Email me</a>
         </div>
       </div>
     </main>;

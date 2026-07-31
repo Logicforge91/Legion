@@ -1,9 +1,16 @@
 export const journey = [
-  ['Apr 2021', 'Started professional Backend Developer work at SocialBytes Technologies', 'Worked on PHP and Laravel applications, authentication flows, SQL-backed features, and third-party integrations while building a strong production foundation.'],
-  ['2022', 'Expanded into Laravel business systems and API delivery', 'Built REST endpoints, validation, reusable modules, data workflows, and backend features used by real teams and customers.'],
-  ['Aug 2023', 'Joined Swipewire Technologies as PHP Laravel Developer', 'Built scalable Laravel applications, integrated APIs, improved MySQL queries, and contributed to backend security and reliability.'],
-  ['2024', 'Deeper ownership across optimization and integrations', 'Handled feature delivery, query tuning, access control, third-party integrations, and issue resolution for live systems.'],
-  ['2025–26', 'Broadening the stack for larger product work', 'Growing into Java backend work with Spring Boot, Redis, Docker, and system design while keeping Laravel delivery as a core strength.'],
+  { period: 'Apr 2021', title: 'Started professional Backend Developer work', company: 'Socialbytes Technologies', companyUrl: 'https://thesocialbytes.com/', text: 'Worked on PHP and Laravel applications, authentication flows, SQL-backed features, and third-party integrations while building a strong production foundation.' },
+  { period: '2022', title: 'Expanded into Laravel business systems and API delivery', text: 'Built REST endpoints, validation, reusable modules, data workflows, and backend features used by real teams and customers.' },
+  { period: 'Aug 2023', title: 'Joined as PHP Laravel Developer', company: 'Swipewire Technologies', companyUrl: 'https://theswipewire.com/', text: 'Built scalable Laravel applications, integrated APIs, improved MySQL queries, and contributed to backend security and reliability.' },
+  { period: '2024', title: 'Deeper ownership across optimization and integrations', text: 'Handled feature delivery, query tuning, access control, third-party integrations, and issue resolution for live systems.' },
+  { period: '2025–26', title: 'Broadening the stack for larger product work', text: 'Growing into Java backend work with Spring Boot, Redis, Docker, and system design while keeping Laravel delivery as a core strength.' },
+];
+
+export const integrations = [
+  { icon: 'bi-credit-card-2-front', title: 'Payments', description: 'Reliable checkout and reconciliation flows with signed callbacks, retry-safe state changes, and auditable payment events.', tools: ['Stripe', 'Razorpay', 'Webhooks'] },
+  { icon: 'bi-chat-dots', title: 'Messaging', description: 'Transactional communication through normalized provider contracts, background queues, templates, and delivery tracking.', tools: ['SMS APIs', 'Email', 'Notifications'] },
+  { icon: 'bi-arrow-left-right', title: 'External APIs', description: 'Clean adapters around third-party services with validation, timeout handling, failure logging, and stable internal contracts.', tools: ['REST', 'OAuth', 'JSON'] },
+  { icon: 'bi-diagram-3', title: 'Async workflows', description: 'Queue-driven work that keeps requests fast while handling retries, scheduled operations, and provider failures safely.', tools: ['Redis', 'Queues', 'Cron'] },
 ];
 
 export const skills = [
