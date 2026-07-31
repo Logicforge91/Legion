@@ -19,6 +19,10 @@ A responsive, single-page developer portfolio for Suman K S. The project is impl
 - Production integrations showcase covering payments, messaging, external APIs, queues, webhooks, retries, and observability
 - Evidence-based working principles in place of unverifiable testimonial copy
 - On-demand JavaScript chunks for the command palette and project case-study dialogs
+- System-font rendering with no blocking Google Fonts request
+- Deferred icon stylesheet and automatic stale-chunk recovery after deployments
+- Native profile sharing with clipboard fallback
+- Offline repeat-visit support through a lightweight service worker
 
 ## Technology
 
