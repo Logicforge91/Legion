@@ -5,7 +5,6 @@ export function usePageState() {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [headerScrolled, setHeaderScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
-  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     let animationFrame = 0;
@@ -13,7 +12,8 @@ export function usePageState() {
       const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
       setShowScrollTop(window.scrollY > 420);
       setHeaderScrolled(window.scrollY > 12);
-      setScrollProgress(scrollableHeight > 0 ? window.scrollY / scrollableHeight : 0);
+      const progress = scrollableHeight > 0 ? window.scrollY / scrollableHeight : 0;
+      document.documentElement.style.setProperty('--scroll-progress', String(progress));
     };
     const scheduleUpdate = () => {
       if (animationFrame) return;
@@ -49,5 +49,5 @@ export function usePageState() {
     return () => observer.disconnect();
   }, []);
 
-  return { activeSection, headerScrolled, scrollProgress, showScrollTop };
+  return { activeSection, headerScrolled, showScrollTop };
 }

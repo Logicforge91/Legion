@@ -1,0 +1,17 @@
+{
+  "name": "Suman K S — Backend Developer",
+  "short_name": "Suman K S",
+  "description": "Backend developer portfolio focused on Laravel, Java, APIs, integrations, and reliable systems.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080914",
+  "theme_color": "#080914",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

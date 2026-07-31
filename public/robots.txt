@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://legion91.netlify.app/sitemap.xml

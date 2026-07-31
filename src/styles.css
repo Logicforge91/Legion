@@ -23,7 +23,7 @@
 @layer components {
   .ambient-orb { @apply pointer-events-none fixed -z-10 rounded-full blur-3xl; }
   .tech-chip { @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 font-mono text-xs text-stone-300 backdrop-blur-md transition hover:-translate-y-0.5 hover:border-mint-300/40 hover:text-mint-300; }
-  .scroll-progress { @apply fixed inset-x-0 top-0 z-[1100] h-0.5 origin-left bg-gradient-to-r from-mint-300 via-aqua-300 to-amber-300 shadow-[0_0_18px_rgba(34,211,238,.65)]; }
+  .scroll-progress { @apply fixed inset-x-0 top-0 z-[1100] h-0.5 origin-left bg-gradient-to-r from-mint-300 via-aqua-300 to-amber-300 shadow-[0_0_18px_rgba(34,211,238,.65)]; transform: scaleX(var(--scroll-progress, 0)); }
 
   /* Premium portfolio shell */
   .site-container { width: min(calc(100% - 48px), 1280px); }
@@ -296,6 +296,15 @@
   .contact-links a:focus-visible { @apply border-aqua-300/35 bg-aqua-300/[.07] text-aqua-300; }
 
   .contact-links i { @apply bg-gradient-to-br from-mint-300 to-aqua-300 text-ink-950; }
+
+  .work-style-card { @apply min-h-[320px] gap-6; }
+  .work-style-top { @apply flex items-center justify-between; }
+  .work-style-top span { @apply font-mono text-xs tracking-[.12em] text-stone-600; }
+  .work-style-top i { @apply grid size-11 place-items-center rounded-xl border border-aqua-300/20 bg-aqua-300/[.07] text-xl text-aqua-300; }
+  .work-style-card h3 { @apply mb-3 text-xl; }
+  .work-style-card p { @apply text-[.92rem] leading-7; }
+  .work-style-signal { @apply mt-auto inline-flex items-center gap-2 font-mono text-[.68rem] uppercase tracking-[.08em] text-mint-300; }
+  .work-style-signal span { @apply size-1.5 rounded-full bg-mint-300 shadow-[0_0_12px_rgba(167,139,250,.8)]; }
 
   .tech-chip { @apply bg-black/20 px-3.5 py-2 text-[.7rem]; }
 

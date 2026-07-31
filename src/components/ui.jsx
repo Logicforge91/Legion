@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { useInView } from '../hooks/useInView';
 import { useReducedMotion } from '../hooks/useReducedMotion';
 
@@ -31,7 +31,6 @@ export function Spotlight({ as: Tag = 'article', className = '', children, ...pr
 
 export function Counter({ value, decimals = 0, suffix = '' }) {
   const [ref, visible] = useInView({ threshold: 0.35 });
-  const [shown, setShown] = useState(0);
   const reducedMotion = useReducedMotion();
 
   useEffect(() => {
@@ -41,15 +40,16 @@ export function Counter({ value, decimals = 0, suffix = '' }) {
 
     const draw = (now) => {
       const progress = reducedMotion ? 1 : Math.min((now - startedAt) / 1050, 1);
-      setShown(value * (1 - Math.pow(1 - progress, 3)));
+      const shown = value * (1 - Math.pow(1 - progress, 3));
+      if (ref.current) ref.current.textContent = `${decimals ? shown.toFixed(decimals) : Math.round(shown)}${suffix}`;
       if (progress < 1) frame = requestAnimationFrame(draw);
     };
 
     frame = requestAnimationFrame(draw);
     return () => cancelAnimationFrame(frame);
-  }, [decimals, reducedMotion, visible, value]);
+  }, [decimals, reducedMotion, suffix, value, visible]);
 
-  return <span ref={ref}>{decimals ? shown.toFixed(decimals) : Math.round(shown)}{suffix}</span>;
+  return <span ref={ref}>0{suffix}</span>;
 }
 
 export function SectionHeading({ eyebrow, id, title, children, compact = false }) {

@@ -19,12 +19,12 @@ import TestimonialsSection from './pages/TestimonialsSection';
 const CommandPalette = lazy(() => import('./components/CommandPalette'));
 
 export default function App() {
-  const { activeSection, headerScrolled, scrollProgress, showScrollTop } = usePageState();
+  const { activeSection, headerScrolled, showScrollTop } = usePageState();
   const { commandPaletteOpen, openCommandPalette, closeCommandPalette } = useCommandPalette();
 
   return <>
     <a className="skip-link" href="#content">Skip to content</a>
-    <div className="scroll-progress" style={{ transform: `scaleX(${scrollProgress})` }} aria-hidden="true" />
+    <div className="scroll-progress" aria-hidden="true" />
     <AmbientCanvas />
     <div className="site-noise" aria-hidden="true" />
     <Header activeSection={activeSection} scrolled={headerScrolled} onOpenCommandPalette={openCommandPalette} />
