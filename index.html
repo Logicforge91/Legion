@@ -49,10 +49,10 @@
   </head>
   <body>
     <form name="contact" netlify netlify-honeypot="bot-field" hidden>
-      <input type="text" name="name" />
-      <input type="email" name="email" />
-      <input type="text" name="company" />
-      <textarea name="message"></textarea>
+      <input type="text" name="name" maxlength="100" />
+      <input type="email" name="email" maxlength="254" />
+      <input type="text" name="company" maxlength="150" />
+      <textarea name="message" maxlength="3000"></textarea>
       <input name="bot-field" />
     </form>
     <div id="root"></div>

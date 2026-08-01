@@ -15,7 +15,7 @@ export default function ContactForm() {
     event.preventDefault();
     setStatus('submitting');
 
-    const body = new URLSearchParams({ 'form-name': 'contact', ...fields });
+    const body = new URLSearchParams(new FormData(event.currentTarget));
 
     try {
       const response = await fetch('/', {
@@ -37,11 +37,11 @@ export default function ContactForm() {
     <input type="hidden" name="form-name" value="contact" />
     <p className="visually-hidden"><label>Do not fill this field<input name="bot-field" tabIndex="-1" autoComplete="off" /></label></p>
     <div className="contact-form-row">
-      <label><span>Your name</span><input name="name" value={fields.name} onChange={updateField} autoComplete="name" placeholder="Jane Smith" required /></label>
-      <label><span>Work email</span><input type="email" name="email" value={fields.email} onChange={updateField} autoComplete="email" placeholder="jane@company.com" required /></label>
+      <label><span>Your name</span><input name="name" value={fields.name} onChange={updateField} autoComplete="name" placeholder="Jane Smith" maxLength="100" required /></label>
+      <label><span>Work email</span><input type="email" name="email" value={fields.email} onChange={updateField} autoComplete="email" placeholder="jane@company.com" maxLength="254" required /></label>
     </div>
-    <label><span>Company <small>optional</small></span><input name="company" value={fields.company} onChange={updateField} autoComplete="organization" placeholder="Company or team" /></label>
-    <label><span>How can I help?</span><textarea name="message" value={fields.message} onChange={updateField} rows="4" placeholder="Share the role, project, stack, or timeline…" required /></label>
+    <label><span>Company <small>optional</small></span><input name="company" value={fields.company} onChange={updateField} autoComplete="organization" placeholder="Company or team" maxLength="150" /></label>
+    <label><span>How can I help?</span><textarea name="message" value={fields.message} onChange={updateField} rows="4" placeholder="Share the role, project, stack, or timeline…" minLength="20" maxLength="3000" required /></label>
     <div className="contact-form-footer">
       <button className="contact-submit" type="submit" disabled={status === 'submitting'}>
         {status === 'submitting' ? 'Sending…' : 'Send message'}

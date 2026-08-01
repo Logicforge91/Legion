@@ -14,6 +14,7 @@ A responsive, single-page developer portfolio for Suman K S. The project is impl
 - Responsive desktop, tablet, and mobile layouts
 - Downloadable résumé served as a public asset
 - Netlify-powered recruiter contact form with loading, success, error, and spam-protection states
+- Contact payload limits and a submission-preserved honeypot for stronger abuse resistance
 - Search-engine, Open Graph, Twitter, and canonical metadata
 - Verified employer website links in the experience timeline
 - Production integrations showcase covering payments, messaging, external APIs, queues, webhooks, retries, and observability
