@@ -21,14 +21,14 @@ A responsive, single-page developer portfolio for Suman K S. The project is impl
 - Evidence-based working principles in place of unverifiable testimonial copy
 - On-demand JavaScript for the command palette; case-study dialogs remain in the main bundle for deployment-safe opening
 - System-font rendering with no blocking Google Fonts request
-- Deferred icon stylesheet and automatic stale-chunk recovery after deployments
+- Tree-shaken inline SVG icon masks and automatic stale-chunk recovery after deployments
 - Native profile sharing with clipboard fallback
 - Offline repeat-visit support through a lightweight service worker
 - Nine decision-focused case studies spanning health, fintech, education ERP, custom websites, ecommerce, integrations, game applications, and two Java/Spring Boot systems
 - Clearly labeled representative runtime flows for every system, showing a realistic request, domain event, and operational result
 - Branded large-format social preview for LinkedIn, WhatsApp, and other link unfurls
 - Automated validation for case-study completeness, unique slugs, required assets, icon coverage, and Playwright test compilation
-- Intent-preloaded case studies with Back-button support, dynamic metadata, and non-blocking project filtering
+- Deployment-safe case-study dialogs with Back-button support, dynamic metadata, and non-blocking project filtering
 - Playwright desktop and mobile smoke tests for layout, filters, dialogs, keyboard navigation, and contact validation
 
 ## Technology
@@ -139,7 +139,7 @@ The hero typing effect updates one isolated text node instead of re-rendering th
 
 Reveal and counter components share pooled Intersection Observers, reduced-motion consumers share one media-query listener, counters update their isolated text nodes without React frame-by-frame rendering, and scroll progress is written through a CSS custom property so the application tree does not re-render on every scroll frame.
 
-Secondary overlays use `React.lazy` and `Suspense`, so visitors do not download the command palette or project-dialog implementation until they use those features.
+The command palette uses `React.lazy` and `Suspense`, so visitors do not download it until requested. The compact project dialog stays in the main bundle to avoid a deployment-time chunk mismatch on the primary case-study interaction.
 - `AmbientCanvas` uses Tailwind arbitrary properties and theme animations for the grid and ambient lighting.
 - `TechMarquee` renders the core stack as reusable Tailwind component utilities.
 

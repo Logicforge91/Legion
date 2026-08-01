@@ -20,6 +20,13 @@
   html { @apply scroll-smooth bg-ink-900; }
   body { @apply overflow-x-hidden bg-ink-900 font-display text-stone-50 antialiased selection:bg-mint-300 selection:text-ink-950; }
   button, a { @apply touch-manipulation; }
+
+  @supports (content-visibility: auto) {
+    main > section:not(.hero-section) {
+      content-visibility: auto;
+      contain-intrinsic-size: auto 900px;
+    }
+  }
 }
 
 @layer components {

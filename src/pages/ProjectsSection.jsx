@@ -3,6 +3,16 @@ import { projects } from '../data';
 import { Reveal, SectionHeading, Spotlight } from '../components/ui';
 import ProjectDialog from '../components/ProjectDialog';
 const systemNumbers = new Map(projects.map((project, index) => [project.slug, index + 1]));
+const projectsBySlug = new Map(projects.map((project) => [project.slug, project]));
+const defaultMetadata = {
+  title: 'Suman K S | Laravel & Java Backend Engineer',
+  description: 'Suman K S builds production-minded Laravel and Java backends: clear APIs, intentional data paths, reliable integrations, and operable workflows.',
+};
+
+function updatePageMetadata(project) {
+  document.title = project ? `${project.title} | Suman K S` : defaultMetadata.title;
+  document.querySelector('meta[name="description"]')?.setAttribute('content', project?.text ?? defaultMetadata.description);
+}
 
 const filters = [
   ['all', 'All systems'],
@@ -15,6 +25,7 @@ const filters = [
   ['integrations', 'Integrations'],
   ['gaming', 'Game applications'],
 ];
+const filterLabels = new Map(filters);
 
 export default function ProjectsSection() {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -23,16 +34,15 @@ export default function ProjectsSection() {
     () => projects.filter((project) => activeFilter === 'all' || project.filters.includes(activeFilter)),
     [activeFilter],
   );
-  const activeFilterLabel = filters.find(([value]) => value === activeFilter)?.[1] ?? 'Featured';
+  const activeFilterLabel = filterLabels.get(activeFilter) ?? 'Featured';
   const statusFilterLabel = activeFilter === 'java' ? 'Java' : activeFilterLabel;
 
   useEffect(() => {
     const syncProjectFromUrl = () => {
       const slug = new URLSearchParams(window.location.search).get('case');
-      const project = slug ? projects.find((item) => item.slug === slug) ?? null : null;
+      const project = slug ? projectsBySlug.get(slug) ?? null : null;
       setSelectedProject(project);
-      document.title = project ? `${project.title} | Suman K S` : 'Suman K S | Laravel & Java Backend Engineer';
-      document.querySelector('meta[name="description"]')?.setAttribute('content', project?.text ?? 'Suman K S builds production-minded Laravel and Java backends: clear APIs, intentional data paths, reliable integrations, and operable workflows.');
+      updatePageMetadata(project);
     };
     syncProjectFromUrl();
     window.addEventListener('popstate', syncProjectFromUrl);
@@ -43,8 +53,7 @@ export default function ProjectsSection() {
     const url = new URL(window.location.href);
     url.searchParams.set('case', project.slug);
     window.history.pushState({ portfolioCaseStudy: true }, '', url);
-    document.title = `${project.title} | Suman K S`;
-    document.querySelector('meta[name="description"]')?.setAttribute('content', project.text);
+    updatePageMetadata(project);
     setSelectedProject(project);
   }, []);
 
@@ -63,8 +72,7 @@ export default function ProjectsSection() {
     const url = new URL(window.location.href);
     url.searchParams.delete('case');
     window.history.replaceState({}, '', url);
-    document.title = 'Suman K S | Laravel & Java Backend Engineer';
-    document.querySelector('meta[name="description"]')?.setAttribute('content', 'Suman K S builds production-minded Laravel and Java backends: clear APIs, intentional data paths, reliable integrations, and operable workflows.');
+    updatePageMetadata(null);
     setSelectedProject(null);
     navigateAfterClose();
   }, []);
