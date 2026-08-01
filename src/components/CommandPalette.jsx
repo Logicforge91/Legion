@@ -29,7 +29,7 @@ export default function CommandPalette({ open, onClose }) {
     return () => document.body.classList.remove('dialog-open');
   }, [open]);
 
-  useEffect(() => { setActiveIndex(0); }, [query]);
+  const selectedIndex = Math.min(activeIndex, Math.max(filteredCommands.length - 1, 0));
 
   const runCommand = (command) => {
     if (!command) return;
@@ -49,15 +49,15 @@ export default function CommandPalette({ open, onClose }) {
     if (!filteredCommands.length) return;
     if (event.key === 'ArrowDown') { event.preventDefault(); setActiveIndex((index) => (index + 1) % filteredCommands.length); }
     if (event.key === 'ArrowUp') { event.preventDefault(); setActiveIndex((index) => (index - 1 + filteredCommands.length) % filteredCommands.length); }
-    if (event.key === 'Enter') { event.preventDefault(); runCommand(filteredCommands[activeIndex]); }
+    if (event.key === 'Enter') { event.preventDefault(); runCommand(filteredCommands[selectedIndex]); }
   };
 
   return <dialog ref={dialogRef} className="command-dialog" onClose={onClose} onClick={(event) => { if (event.target === dialogRef.current) onClose(); }}>
     <div className="command-shell" onKeyDown={handleKeyDown}>
-      <div className="command-search"><i className="bi bi-search" aria-hidden="true" /><input ref={inputRef} value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search portfolio or run an action…" aria-label="Search commands" /><kbd>ESC</kbd></div>
-      <div className="command-results" role="listbox" aria-label="Available commands">
-        {filteredCommands.map((command, index) => <button key={command.label} className={index === activeIndex ? 'active' : ''} type="button" role="option" aria-selected={index === activeIndex} onMouseEnter={() => setActiveIndex(index)} onClick={() => runCommand(command)}><i className={`bi ${command.icon}`} aria-hidden="true" /><span>{command.label}</span><small>{command.hint}</small><i className="bi bi-arrow-return-left command-enter" aria-hidden="true" /></button>)}
-        {!filteredCommands.length && <div className="command-empty"><i className="bi bi-search" /><p>No matching action found.</p></div>}
+      <div className="command-search"><i className="bi bi-search" aria-hidden="true" /><input ref={inputRef} value={query} onChange={(event) => { setQuery(event.target.value); setActiveIndex(0); }} placeholder="Search portfolio or run an action…" aria-label="Search commands" /><kbd>ESC</kbd></div>
+      <div className="command-results" aria-label="Available commands">
+        {filteredCommands.map((command, index) => <button key={command.label} className={index === selectedIndex ? 'active' : ''} type="button" onMouseEnter={() => setActiveIndex(index)} onFocus={() => setActiveIndex(index)} onClick={() => runCommand(command)}><i className={`bi ${command.icon}`} aria-hidden="true" /><span>{command.label}</span><small>{command.hint}</small><i className="bi bi-arrow-return-left command-enter" aria-hidden="true" /></button>)}
+        {!filteredCommands.length && <div className="command-empty"><i className="bi bi-search" aria-hidden="true" /><p>No matching action found.</p></div>}
       </div>
       <div className="command-footer"><span><kbd>↑</kbd><kbd>↓</kbd> Navigate</span><span><kbd>↵</kbd> Select</span><span><kbd>Esc</kbd> Close</span></div>
     </div>

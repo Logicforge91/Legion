@@ -19,6 +19,14 @@ A responsive, single-page developer portfolio for Suman K S. The project is impl
 - Production integrations showcase covering payments, messaging, external APIs, queues, webhooks, retries, and observability
 - Evidence-based working principles in place of unverifiable testimonial copy
 - On-demand JavaScript chunks for the command palette and project case-study dialogs
+- System-font rendering with no blocking Google Fonts request
+- Deferred icon stylesheet and automatic stale-chunk recovery after deployments
+- Native profile sharing with clipboard fallback
+- Offline repeat-visit support through a lightweight service worker
+- Six decision-focused case studies with deep-linkable, shareable URLs
+- Branded large-format social preview for LinkedIn, WhatsApp, and other link unfurls
+- Automated content validation for case-study completeness, unique slugs, and required assets
+- Intent-preloaded case studies with Back-button support, dynamic metadata, and non-blocking project filtering
 
 ## Technology
 
@@ -71,7 +79,13 @@ npm run build
 npm run preview
 ```
 
-The optimized site is generated in `dist/`. Source maps are enabled in `vite.config.js` to make production debugging easier.
+Run the complete content and production-build check before deployment:
+
+```bash
+npm run check
+```
+
+The optimized site is generated in `dist/`. Production source maps are disabled to keep deployment output smaller and avoid publishing application source unnecessarily.
 
 ## Editing portfolio content
 
