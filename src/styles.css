@@ -1,4 +1,5 @@
 @import "tailwindcss" source(none);
+@import "./icons.css";
 @source "./**/*.{js,jsx}";
 @import "../css/home.css" layer(components);
 
@@ -19,13 +20,19 @@
   html { @apply scroll-smooth bg-ink-900; }
   body { @apply overflow-x-hidden bg-ink-900 font-display text-stone-50 antialiased selection:bg-mint-300 selection:text-ink-950; }
   button, a { @apply touch-manipulation; }
+
+  @supports (content-visibility: auto) {
+    main > section:not(.hero-section) {
+      content-visibility: auto;
+      contain-intrinsic-size: auto 900px;
+    }
+  }
 }
 
 @layer components {
   .ambient-orb { @apply pointer-events-none fixed -z-10 rounded-full blur-3xl; }
   .tech-chip { @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 font-mono text-xs text-stone-300 backdrop-blur-md transition hover:-translate-y-0.5 hover:border-mint-300/40 hover:text-mint-300; }
   .scroll-progress { @apply fixed inset-x-0 top-0 z-[1100] h-0.5 origin-left bg-gradient-to-r from-mint-300 via-aqua-300 to-amber-300 shadow-[0_0_18px_rgba(34,211,238,.65)]; transform: scaleX(var(--scroll-progress, 0)); }
-  .dialog-loading { @apply fixed left-1/2 top-1/2 z-[1200] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10 bg-ink-950/95 px-5 py-3 font-mono text-xs uppercase tracking-widest text-aqua-300 shadow-2xl; }
 
   /* Premium portfolio shell */
   .site-container { width: min(calc(100% - 48px), 1280px); }
@@ -185,6 +192,78 @@
     @apply mt-1 inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/[.035] px-4 py-2.5 text-xs font-bold text-stone-200 transition hover:border-aqua-300/35 hover:bg-aqua-300/[.07] hover:text-aqua-300 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-aqua-300/10;
   }
 
+  /* Featured Systems — editorial system library */
+  .systems-showcase {
+    @apply relative overflow-hidden;
+    background: radial-gradient(circle at 8% 18%,rgba(34,211,238,.07),transparent 25rem),radial-gradient(circle at 92% 72%,rgba(167,139,250,.09),transparent 30rem),linear-gradient(180deg,rgba(255,255,255,.018),rgba(255,255,255,.004));
+  }
+  .systems-showcase::before {
+    content: "";
+    @apply pointer-events-none absolute inset-0 opacity-30;
+    background-image: linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+    background-size: 72px 72px;
+    mask-image: linear-gradient(to bottom,transparent,black 16%,black 84%,transparent);
+  }
+  .system-toolbar { @apply relative z-10 mb-7 flex items-center gap-4 rounded-[26px] border border-white/8 bg-black/20 p-2.5 shadow-[inset_0_1px_rgba(255,255,255,.035)] backdrop-blur-xl; }
+  .system-directory { @apply grid min-w-48 grid-cols-[auto_1fr] items-center gap-x-3 rounded-[18px] border border-white/8 bg-white/[.035] px-4 py-3; }
+  .system-directory-label { @apply col-span-2 font-mono text-[.58rem] font-bold uppercase tracking-[.16em] text-stone-600; }
+  .system-directory strong { @apply font-mono text-2xl tracking-[-.08em] text-aqua-300; }
+  .system-directory > span:last-child { @apply text-[.68rem] font-semibold text-stone-400; }
+  .systems-showcase .project-filter { @apply m-0 flex min-w-0 flex-1 flex-nowrap justify-start gap-1.5 overflow-x-auto p-1; scrollbar-width: none; }
+  .systems-showcase .project-filter::-webkit-scrollbar { display: none; }
+  .systems-showcase .project-filter button { @apply min-h-12 shrink-0 gap-2 border-transparent bg-transparent px-3 text-[.66rem] normal-case tracking-normal; }
+  .systems-showcase .project-filter button small { @apply font-mono text-[.52rem] text-stone-700 transition; }
+  .systems-showcase .project-filter button:hover,
+  .systems-showcase .project-filter button:focus-visible { @apply translate-y-0 border-white/10 bg-white/5 text-stone-100; }
+  .systems-showcase .project-filter button.active { @apply translate-y-0 border-aqua-300/25 bg-aqua-300/10 text-aqua-300 shadow-[inset_0_0_20px_rgba(34,211,238,.05)]; }
+  .systems-showcase .project-filter button.active small { @apply text-aqua-300; }
+
+  .systems-grid { @apply relative z-10 grid grid-cols-12 gap-4; }
+  .systems-grid > [data-reveal] { @apply col-span-4 h-full; }
+  .systems-grid.paired-results > [data-reveal] { @apply col-span-6; }
+  .systems-grid.single-result > [data-reveal] { @apply col-span-12; }
+
+  .system-card { @apply relative isolate flex h-full min-h-[460px] overflow-hidden rounded-[28px] border border-white/8 bg-ink-950/70 p-[clamp(20px,2.2vw,26px)] shadow-[0_24px_70px_rgba(0,0,0,.2)] backdrop-blur-xl transition duration-300; }
+  .system-card::before { content: ""; @apply pointer-events-none absolute inset-x-7 top-0 h-px; background: linear-gradient(90deg,transparent,var(--system-accent,#22d3ee),transparent); opacity: .55; }
+  .system-card-glow { @apply pointer-events-none absolute -right-20 -top-24 -z-10 size-64 rounded-full opacity-[.11] blur-3xl transition duration-500; background: var(--system-accent,#22d3ee); }
+  .system-card:hover .system-card-glow { @apply scale-125 opacity-[.18]; }
+  .system-card:hover { @apply -translate-y-1 border-white/15 shadow-[0_34px_90px_rgba(0,0,0,.3)]; }
+  [data-system="health"] { --system-accent: #34d399; }
+  [data-system="java"] { --system-accent: #f97316; }
+  [data-system="fintech"] { --system-accent: #fbbf24; }
+  [data-system="education"] { --system-accent: #a78bfa; }
+  [data-system="websites"] { --system-accent: #22d3ee; }
+  [data-system="ecommerce"] { --system-accent: #fb7185; }
+  [data-system="integrations"] { --system-accent: #60a5fa; }
+  [data-system="gaming"] { --system-accent: #c084fc; }
+  .system-card .project-top { @apply items-center justify-start gap-3; }
+  .system-icon { @apply grid size-11 shrink-0 place-items-center rounded-[14px] border border-white/10 bg-white/[.045] text-lg shadow-[inset_0_1px_rgba(255,255,255,.06)]; color: var(--system-accent,#22d3ee); }
+  .system-card-meta { @apply grid gap-0.5; }
+  .system-card-meta > span { @apply border-0 bg-transparent p-0 text-[.68rem]; color: var(--system-accent,#22d3ee); }
+  .system-card-meta small { @apply font-mono text-[.57rem] uppercase tracking-[.12em] text-stone-600; }
+  .system-availability { @apply ml-auto inline-flex items-center gap-1.5 font-mono text-[.5rem] uppercase tracking-[.08em] text-stone-600; }
+  .system-availability i { @apply size-1.5 rounded-full; background: var(--system-accent,#22d3ee); box-shadow: 0 0 10px var(--system-accent,#22d3ee); }
+  .system-card-copy { @apply mt-2 grid gap-3; }
+  .system-card h3 { @apply max-w-xl text-[clamp(1.35rem,1.65vw,1.75rem)] leading-[1.1] tracking-[-.04em]; }
+  .system-card-copy > p { @apply max-w-2xl text-[.82rem] leading-6 text-stone-400; }
+  .system-scenario { @apply overflow-hidden rounded-2xl border border-white/[.07] bg-black/25; }
+  .system-scenario-head { @apply flex items-center justify-between border-b border-white/[.06] px-3.5 py-2; }
+  .system-scenario-head > span { @apply inline-flex items-center gap-2 font-mono text-[.57rem] font-bold uppercase tracking-[.1em] text-stone-500; }
+  .system-scenario-head > span i { @apply size-1.5 rounded-full; background: var(--system-accent,#22d3ee); box-shadow: 0 0 12px var(--system-accent,#22d3ee); }
+  .system-scenario-head small { @apply font-mono text-[.5rem] uppercase tracking-[.1em] text-stone-700; }
+  .system-scenario > code { @apply block overflow-hidden text-ellipsis whitespace-nowrap px-3.5 pt-3 font-mono text-[.65rem]; color: var(--system-accent,#22d3ee); }
+  .system-scenario-route { @apply flex min-w-0 items-center gap-2 px-3.5 pb-3 pt-2 font-mono text-[.59rem]; }
+  .system-scenario-route span { @apply min-w-0 shrink overflow-hidden text-ellipsis whitespace-nowrap text-stone-400; }
+  .system-scenario-route i { @apply shrink-0 text-stone-700; }
+  .system-scenario-route strong { @apply min-w-0 overflow-hidden text-ellipsis whitespace-nowrap font-medium text-stone-300; }
+  .system-card-footer { @apply mt-auto flex items-end justify-between gap-4 border-t border-white/[.06] pt-5; }
+  .system-card .tag-row { @apply m-0; }
+  .system-card .tag-row span { @apply border-0 bg-transparent px-0 py-0 text-[.6rem] text-stone-600; }
+  .system-card .tag-row span:not(:last-child)::after { content: "/"; @apply ml-2 text-stone-800; }
+  .system-card .project-details-button { @apply m-0 shrink-0 border-white/10 bg-white/[.04]; }
+  .system-card:hover .project-details-button { color: var(--system-accent,#22d3ee); border-color: color-mix(in srgb,var(--system-accent,#22d3ee) 32%,transparent); }
+  .system-card::after { @apply hidden; }
+
   .project-dialog {
     @apply m-auto max-h-[min(88vh,760px)] overflow-y-auto rounded-[30px] border border-white/10 bg-ink-950 p-0 text-stone-100 shadow-[0_50px_160px_rgba(0,0,0,.75)] outline-none;
     width: min(calc(100% - 32px), 760px);
@@ -205,6 +284,13 @@
   .project-dialog-close { @apply grid size-10 place-items-center rounded-full border border-white/10 bg-white/5 text-stone-300 transition hover:rotate-90 hover:border-white/25 hover:text-white focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-mint-300/15; }
   .project-dialog h2 { @apply max-w-2xl text-[clamp(1.8rem,4vw,3rem)] tracking-[-.05em]; }
   .project-dialog-summary { @apply mt-5 max-w-2xl text-base leading-7 text-stone-400; }
+  .project-dialog-scenario { @apply mt-7 grid grid-cols-[1fr_auto_1fr] items-center gap-5 rounded-2xl border border-aqua-300/15 bg-aqua-300/[.045] p-4; }
+  .project-dialog-scenario > div { @apply grid min-w-0 gap-1.5; }
+  .project-dialog-scenario .project-dialog-label { @apply mb-0; }
+  .project-dialog-scenario code { @apply overflow-hidden text-ellipsis whitespace-nowrap font-mono text-xs text-aqua-300; }
+  .project-dialog-scenario > i { @apply text-stone-600; }
+  .project-dialog-scenario > div:last-child span { @apply font-mono text-[.65rem] text-stone-500; }
+  .project-dialog-scenario > div:last-child strong { @apply text-xs font-semibold text-stone-200; }
   .project-dialog-grid { @apply mt-8 grid grid-cols-[1.25fr_.75fr] gap-8 border-y border-white/8 py-7; }
   .project-dialog-label { @apply mb-4 block font-mono text-[.68rem] font-bold uppercase tracking-[.1em] text-stone-500; }
   .project-dialog ul { @apply grid gap-3; }
@@ -317,6 +403,12 @@
   .hero-grid { grid-template-columns: 1fr; }
   .hero-copy { max-width: 780px; }
   .integration-grid { @apply grid-cols-2; }
+  .systems-grid > [data-reveal],
+  .systems-grid > .system-card-1,
+  .systems-grid > .system-card-2,
+  .systems-grid > .system-card-3,
+  .systems-grid > .system-card-4,
+  .systems-grid > .system-card-5 { @apply col-span-6; }
 }
 
 @media (max-width: 860px) {
@@ -328,6 +420,8 @@
   .flow-track { @apply grid-cols-1; }
   .flow-arrow { @apply rotate-90 justify-self-center; }
   .flow-node { @apply min-h-24; }
+  .system-toolbar { @apply block p-2; }
+  .system-directory { @apply mb-2 min-w-0 grid-cols-[auto_1fr]; }
 }
 
 @media (max-width: 640px) {
@@ -343,8 +437,24 @@
   .contact-panel .contact-links { @apply grid-cols-1; }
   .contact-panel .contact-links a:first-child { @apply col-span-1; }
   .contact-panel .contact-links a span { @apply whitespace-normal break-words; }
+  .systems-grid > [data-reveal],
+  .systems-grid > .system-card-1,
+  .systems-grid > .system-card-2,
+  .systems-grid > .system-card-3,
+  .systems-grid > .system-card-4,
+  .systems-grid > .system-card-5 { @apply col-span-12; }
+  .system-directory { @apply px-3 py-2.5; }
+  .system-card { @apply min-h-0 rounded-[24px] p-5; }
+  .system-scenario-route { @apply grid grid-cols-[1fr_auto] gap-y-1; }
+  .system-scenario-route i { @apply hidden; }
+  .system-scenario-route strong { @apply col-span-2; }
+  .system-card-footer { @apply items-stretch flex-col; }
+  .system-card .project-details-button { @apply w-full justify-center; }
+  .system-card .tag-row { @apply mb-1; }
   .project-dialog { @apply max-h-[92vh] rounded-[24px]; width: calc(100% - 20px); }
   .project-dialog-grid { @apply grid-cols-1 gap-6; }
+  .project-dialog-scenario { @apply grid-cols-1 gap-3; }
+  .project-dialog-scenario > i { @apply rotate-90 justify-self-center; }
   .project-dialog-footer { @apply items-stretch; }
   .project-dialog-footer .btn { @apply w-full; }
   .integration-grid { @apply grid-cols-1; }

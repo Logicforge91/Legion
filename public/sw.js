@@ -1,4 +1,4 @@
-const CACHE_NAME = 'legion-shell-v1';
+const CACHE_NAME = 'legion-shell-v2';
 const SHELL_FILES = ['/', '/favicon.svg', '/site.webmanifest'];
 
 self.addEventListener('install', (event) => {

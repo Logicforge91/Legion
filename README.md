@@ -19,15 +19,17 @@ A responsive, single-page developer portfolio for Suman K S. The project is impl
 - Verified employer website links in the experience timeline
 - Production integrations showcase covering payments, messaging, external APIs, queues, webhooks, retries, and observability
 - Evidence-based working principles in place of unverifiable testimonial copy
-- On-demand JavaScript chunks for the command palette and project case-study dialogs
+- On-demand JavaScript for the command palette; case-study dialogs remain in the main bundle for deployment-safe opening
 - System-font rendering with no blocking Google Fonts request
-- Deferred icon stylesheet and automatic stale-chunk recovery after deployments
+- Tree-shaken inline SVG icon masks and automatic stale-chunk recovery after deployments
 - Native profile sharing with clipboard fallback
 - Offline repeat-visit support through a lightweight service worker
-- Six decision-focused case studies with deep-linkable, shareable URLs
+- Nine decision-focused case studies spanning health, fintech, education ERP, custom websites, ecommerce, integrations, game applications, and two Java/Spring Boot systems
+- Clearly labeled representative runtime flows for every system, showing a realistic request, domain event, and operational result
 - Branded large-format social preview for LinkedIn, WhatsApp, and other link unfurls
-- Automated content validation for case-study completeness, unique slugs, and required assets
-- Intent-preloaded case studies with Back-button support, dynamic metadata, and non-blocking project filtering
+- Automated validation for case-study completeness, unique slugs, required assets, icon coverage, and Playwright test compilation
+- Deployment-safe case-study dialogs with Back-button support, dynamic metadata, and non-blocking project filtering
+- Playwright desktop and mobile smoke tests for layout, filters, dialogs, keyboard navigation, and contact validation
 
 ## Technology
 
@@ -36,7 +38,8 @@ A responsive, single-page developer portfolio for Suman K S. The project is impl
 - Vite 6
 - Modern JavaScript and JSX
 - CSS custom properties, Grid, Flexbox, and media queries
-- Bootstrap Icons
+- Self-hosted Bootstrap Icons bundled by Vite
+- Generated inline SVG icon masks containing only selectors used by the portfolio, with no icon-font request
 
 ## Project structure
 
@@ -86,6 +89,23 @@ Run the complete content and production-build check before deployment:
 npm run check
 ```
 
+## Browser tests
+
+Install the Chromium test browser once, then run the desktop and mobile suites:
+
+```bash
+npx playwright install chromium
+npm run test:e2e
+```
+
+Use `npm run test:e2e:list` to verify test discovery without launching a browser.
+
+When adding or removing an icon, regenerate the optimized SVG-mask stylesheet:
+
+```bash
+npm run icons:generate
+```
+
 The optimized site is generated in `dist/`. Production source maps are disabled to keep deployment output smaller and avoid publishing application source unnecessarily.
 
 ## Editing portfolio content
@@ -99,7 +119,7 @@ Most repeated content lives in `src/data.js`:
 
 Page-specific copy and contact links live in their corresponding section components under `src/pages/`.
 
-Every project has a `filters` array. Its values must match the filter names rendered by the `Projects` component (`backend`, `integration`, `product`, or `realtime`).
+Every project has a `filters` array. Its values must match the category filters rendered by `ProjectsSection` (`java`, `health`, `fintech`, `education`, `websites`, `ecommerce`, `integrations`, or `gaming`).
 
 ## Component design
 
@@ -115,9 +135,11 @@ Every project has a `filters` array. Its values must match the filter names rend
 
 Performance-sensitive pointer and scroll handlers are synchronized with `requestAnimationFrame`, derived project results are memoized, and observers disconnect as soon as their work is complete.
 
+The hero typing effect updates one isolated text node instead of re-rendering the complete hero component on every character.
+
 Reveal and counter components share pooled Intersection Observers, reduced-motion consumers share one media-query listener, counters update their isolated text nodes without React frame-by-frame rendering, and scroll progress is written through a CSS custom property so the application tree does not re-render on every scroll frame.
 
-Secondary overlays use `React.lazy` and `Suspense`, so visitors do not download the command palette or project-dialog implementation until they use those features.
+The command palette uses `React.lazy` and `Suspense`, so visitors do not download it until requested. The compact project dialog stays in the main bundle to avoid a deployment-time chunk mismatch on the primary case-study interaction.
 - `AmbientCanvas` uses Tailwind arbitrary properties and theme animations for the grid and ambient lighting.
 - `TechMarquee` renders the core stack as reusable Tailwind component utilities.
 
