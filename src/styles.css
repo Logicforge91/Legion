@@ -26,7 +26,6 @@
   .ambient-orb { @apply pointer-events-none fixed -z-10 rounded-full blur-3xl; }
   .tech-chip { @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 font-mono text-xs text-stone-300 backdrop-blur-md transition hover:-translate-y-0.5 hover:border-mint-300/40 hover:text-mint-300; }
   .scroll-progress { @apply fixed inset-x-0 top-0 z-[1100] h-0.5 origin-left bg-gradient-to-r from-mint-300 via-aqua-300 to-amber-300 shadow-[0_0_18px_rgba(34,211,238,.65)]; transform: scaleX(var(--scroll-progress, 0)); }
-  .dialog-loading { @apply fixed left-1/2 top-1/2 z-[1200] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10 bg-ink-950/95 px-5 py-3 font-mono text-xs uppercase tracking-widest text-aqua-300 shadow-2xl; }
 
   /* Premium portfolio shell */
   .site-container { width: min(calc(100% - 48px), 1280px); }
@@ -213,18 +212,15 @@
   .systems-showcase .project-filter button.active small { @apply text-aqua-300; }
 
   .systems-grid { @apply relative z-10 grid grid-cols-12 gap-4; }
-  .systems-grid > [data-reveal] { @apply col-span-6 h-full; }
-  .systems-grid > .system-card-1 { @apply col-span-7; }
-  .systems-grid > .system-card-2 { @apply col-span-5; }
-  .systems-grid > .system-card-3,
-  .systems-grid > .system-card-4,
-  .systems-grid > .system-card-5 { @apply col-span-4; }
+  .systems-grid > [data-reveal] { @apply col-span-4 h-full; }
+  .systems-grid.paired-results > [data-reveal] { @apply col-span-6; }
   .systems-grid.single-result > [data-reveal] { @apply col-span-12; }
 
-  .system-card { @apply relative isolate flex h-full min-h-[520px] overflow-hidden rounded-[30px] border border-white/8 bg-ink-950/70 p-[clamp(22px,3vw,32px)] shadow-[0_26px_80px_rgba(0,0,0,.22)] backdrop-blur-xl; }
+  .system-card { @apply relative isolate flex h-full min-h-[460px] overflow-hidden rounded-[28px] border border-white/8 bg-ink-950/70 p-[clamp(20px,2.2vw,26px)] shadow-[0_24px_70px_rgba(0,0,0,.2)] backdrop-blur-xl transition duration-300; }
   .system-card::before { content: ""; @apply pointer-events-none absolute inset-x-7 top-0 h-px; background: linear-gradient(90deg,transparent,var(--system-accent,#22d3ee),transparent); opacity: .55; }
   .system-card-glow { @apply pointer-events-none absolute -right-20 -top-24 -z-10 size-64 rounded-full opacity-[.11] blur-3xl transition duration-500; background: var(--system-accent,#22d3ee); }
   .system-card:hover .system-card-glow { @apply scale-125 opacity-[.18]; }
+  .system-card:hover { @apply -translate-y-1 border-white/15 shadow-[0_34px_90px_rgba(0,0,0,.3)]; }
   [data-system="health"] { --system-accent: #34d399; }
   [data-system="java"] { --system-accent: #f97316; }
   [data-system="fintech"] { --system-accent: #fbbf24; }
@@ -233,14 +229,16 @@
   [data-system="ecommerce"] { --system-accent: #fb7185; }
   [data-system="integrations"] { --system-accent: #60a5fa; }
   [data-system="gaming"] { --system-accent: #c084fc; }
-  .system-card .project-top { @apply items-start justify-start gap-3; }
-  .system-icon { @apply grid size-12 shrink-0 place-items-center rounded-2xl border border-white/10 bg-white/[.045] text-xl shadow-[inset_0_1px_rgba(255,255,255,.06)]; color: var(--system-accent,#22d3ee); }
+  .system-card .project-top { @apply items-center justify-start gap-3; }
+  .system-icon { @apply grid size-11 shrink-0 place-items-center rounded-[14px] border border-white/10 bg-white/[.045] text-lg shadow-[inset_0_1px_rgba(255,255,255,.06)]; color: var(--system-accent,#22d3ee); }
   .system-card-meta { @apply grid gap-0.5; }
   .system-card-meta > span { @apply border-0 bg-transparent p-0 text-[.68rem]; color: var(--system-accent,#22d3ee); }
   .system-card-meta small { @apply font-mono text-[.57rem] uppercase tracking-[.12em] text-stone-600; }
+  .system-availability { @apply ml-auto inline-flex items-center gap-1.5 font-mono text-[.5rem] uppercase tracking-[.08em] text-stone-600; }
+  .system-availability i { @apply size-1.5 rounded-full; background: var(--system-accent,#22d3ee); box-shadow: 0 0 10px var(--system-accent,#22d3ee); }
   .system-card-copy { @apply mt-2 grid gap-3; }
-  .system-card h3 { @apply max-w-xl text-[clamp(1.45rem,2.1vw,2.15rem)] leading-[1.08] tracking-[-.045em]; }
-  .system-card-copy > p { @apply max-w-2xl text-[.88rem] leading-6 text-stone-400; }
+  .system-card h3 { @apply max-w-xl text-[clamp(1.35rem,1.65vw,1.75rem)] leading-[1.1] tracking-[-.04em]; }
+  .system-card-copy > p { @apply max-w-2xl text-[.82rem] leading-6 text-stone-400; }
   .system-scenario { @apply overflow-hidden rounded-2xl border border-white/[.07] bg-black/25; }
   .system-scenario-head { @apply flex items-center justify-between border-b border-white/[.06] px-3.5 py-2; }
   .system-scenario-head > span { @apply inline-flex items-center gap-2 font-mono text-[.57rem] font-bold uppercase tracking-[.1em] text-stone-500; }
@@ -251,16 +249,13 @@
   .system-scenario-route span { @apply min-w-0 shrink overflow-hidden text-ellipsis whitespace-nowrap text-stone-400; }
   .system-scenario-route i { @apply shrink-0 text-stone-700; }
   .system-scenario-route strong { @apply min-w-0 overflow-hidden text-ellipsis whitespace-nowrap font-medium text-stone-300; }
-  .system-points { @apply grid gap-2.5 border-l border-white/8 pl-4; }
-  .system-points li { @apply flex items-start gap-2.5 text-[.78rem] leading-5 text-stone-400; }
-  .system-points i { @apply mt-0.5; color: var(--system-accent,#22d3ee); }
   .system-card-footer { @apply mt-auto flex items-end justify-between gap-4 border-t border-white/[.06] pt-5; }
   .system-card .tag-row { @apply m-0; }
   .system-card .tag-row span { @apply border-0 bg-transparent px-0 py-0 text-[.6rem] text-stone-600; }
   .system-card .tag-row span:not(:last-child)::after { content: "/"; @apply ml-2 text-stone-800; }
   .system-card .project-details-button { @apply m-0 shrink-0 border-white/10 bg-white/[.04]; }
   .system-card:hover .project-details-button { color: var(--system-accent,#22d3ee); border-color: color-mix(in srgb,var(--system-accent,#22d3ee) 32%,transparent); }
-  .system-card::after { @apply bottom-auto right-6 top-5 text-4xl; }
+  .system-card::after { @apply hidden; }
 
   .project-dialog {
     @apply m-auto max-h-[min(88vh,760px)] overflow-y-auto rounded-[30px] border border-white/10 bg-ink-950 p-0 text-stone-100 shadow-[0_50px_160px_rgba(0,0,0,.75)] outline-none;

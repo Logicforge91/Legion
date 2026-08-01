@@ -19,7 +19,7 @@ A responsive, single-page developer portfolio for Suman K S. The project is impl
 - Verified employer website links in the experience timeline
 - Production integrations showcase covering payments, messaging, external APIs, queues, webhooks, retries, and observability
 - Evidence-based working principles in place of unverifiable testimonial copy
-- On-demand JavaScript chunks for the command palette and project case-study dialogs
+- On-demand JavaScript for the command palette; case-study dialogs remain in the main bundle for deployment-safe opening
 - System-font rendering with no blocking Google Fonts request
 - Deferred icon stylesheet and automatic stale-chunk recovery after deployments
 - Native profile sharing with clipboard fallback
