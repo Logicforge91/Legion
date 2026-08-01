@@ -20,7 +20,7 @@ export default function IntegrationsSection() {
               <i className="bi bi-arrow-right flow-arrow" aria-hidden="true" />
               <div className="flow-node"><i className="bi bi-cloud-check" aria-hidden="true" /><span>Provider</span><small>tracked outcome</small></div>
             </div>
-            <div className="flow-signals"><span><i className="bi bi-shield-check" />Signed webhooks</span><span><i className="bi bi-arrow-repeat" />Idempotent retries</span><span><i className="bi bi-activity" />Structured logs</span></div>
+            <div className="flow-signals"><span><i className="bi bi-shield-check" aria-hidden="true" />Signed webhooks</span><span><i className="bi bi-arrow-repeat" aria-hidden="true" />Idempotent retries</span><span><i className="bi bi-activity" aria-hidden="true" />Structured logs</span></div>
           </Spotlight>
         </Reveal>
         <div className="integration-grid">

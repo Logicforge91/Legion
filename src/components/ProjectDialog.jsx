@@ -1,7 +1,9 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function ProjectDialog({ project, onClose }) {
   const dialogRef = useRef(null);
+  const closeDestinationRef = useRef(undefined);
+  const [shareStatus, setShareStatus] = useState('idle');
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -10,7 +12,7 @@ export default function ProjectDialog({ project, onClose }) {
     dialog.showModal();
     document.body.classList.add('dialog-open');
 
-    const handleClose = () => onClose();
+    const handleClose = () => onClose(closeDestinationRef.current);
     dialog.addEventListener('close', handleClose);
     return () => {
       dialog.removeEventListener('close', handleClose);
@@ -25,6 +27,32 @@ export default function ProjectDialog({ project, onClose }) {
     if (event.target === dialogRef.current) dialogRef.current.close();
   };
 
+  const shareCaseStudy = async () => {
+    const shareData = { title: `${project.title} | Suman K S`, text: project.text, url: window.location.href };
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+        setShareStatus('shared');
+        return;
+      } catch (error) {
+        if (error.name === 'AbortError') return;
+      }
+    }
+    try {
+      if (!navigator.clipboard?.writeText) throw new Error('Clipboard API unavailable');
+      await navigator.clipboard.writeText(window.location.href);
+      setShareStatus('copied');
+    } catch {
+      setShareStatus('error');
+    }
+  };
+
+  const goToContact = (event) => {
+    event.preventDefault();
+    closeDestinationRef.current = 'contact';
+    dialogRef.current.close();
+  };
+
   return <dialog ref={dialogRef} className="project-dialog" aria-labelledby="projectDialogTitle" onClick={closeOnBackdrop}>
     <div className="project-dialog-shell">
       <div className="project-dialog-topline">
@@ -35,12 +63,15 @@ export default function ProjectDialog({ project, onClose }) {
       <h2 id="projectDialogTitle">{project.title}</h2>
       <p className="project-dialog-summary">{project.text}</p>
       <div className="project-dialog-grid">
-        <div><span className="project-dialog-label">Delivery highlights</span><ul>{project.points.map((point) => <li key={point}><i className="bi bi-check2" aria-hidden="true" />{point}</li>)}</ul></div>
+        <div><span className="project-dialog-label">The constraint</span><p>{project.challenge}</p></div>
+        <div><span className="project-dialog-label">Engineering decisions</span><ul>{project.decisions.map((decision) => <li key={decision}><i className="bi bi-check2" aria-hidden="true" />{decision}</li>)}</ul></div>
+        <div><span className="project-dialog-label">Resulting system shape</span><p>{project.outcome}</p></div>
         <div><span className="project-dialog-label">Technology stack</span><div className="tag-row">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div></div>
       </div>
       <div className="project-dialog-footer">
         <p>Interested in similar backend work?</p>
-        <a href="#contact" className="btn btn-primary" onClick={() => dialogRef.current.close()}>Discuss a project <i className="bi bi-arrow-up-right" aria-hidden="true" /></a>
+        <button type="button" className="btn btn-ghost" onClick={shareCaseStudy} aria-live="polite"><i className={`bi ${shareStatus === 'idle' ? 'bi-link-45deg' : shareStatus === 'error' ? 'bi-exclamation-circle' : 'bi-check2'}`} aria-hidden="true" />{shareStatus === 'copied' ? 'Link copied' : shareStatus === 'shared' ? 'Shared' : shareStatus === 'error' ? 'Copy unavailable' : 'Share case study'}</button>
+        <a href="#contact" className="btn btn-primary" onClick={goToContact}>Discuss a project <i className="bi bi-arrow-up-right" aria-hidden="true" /></a>
       </div>
     </div>
   </dialog>;

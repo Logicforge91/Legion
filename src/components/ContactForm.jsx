@@ -8,6 +8,7 @@ export default function ContactForm() {
 
   const updateField = (event) => {
     setFields((current) => ({ ...current, [event.target.name]: event.target.value }));
+    setStatus((current) => current === 'success' || current === 'error' ? 'idle' : current);
   };
 
   const submitForm = async (event) => {
@@ -32,7 +33,7 @@ export default function ContactForm() {
     }
   };
 
-  return <form className="contact-form" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={submitForm}>
+  return <form className="contact-form" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" aria-busy={status === 'submitting'} onSubmit={submitForm}>
     <input type="hidden" name="form-name" value="contact" />
     <p className="visually-hidden"><label>Do not fill this field<input name="bot-field" tabIndex="-1" autoComplete="off" /></label></p>
     <div className="contact-form-row">

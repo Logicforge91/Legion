@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 const shareData = {
-  title: 'Suman K S — Backend Developer',
+  title: 'Suman K S — Backend Engineer',
   text: 'Backend developer portfolio focused on Laravel, Java, APIs, integrations, and reliable systems.',
   url: 'https://legion91.netlify.app/',
 };
@@ -24,5 +24,5 @@ export default function ShareProfileButton() {
   };
 
   const label = status === 'copied' ? 'Link copied' : status === 'shared' ? 'Shared' : status === 'error' ? 'Copy failed' : 'Share profile';
-  return <button className="btn btn-share" type="button" onClick={shareProfile} aria-live="polite"><i className={`bi ${status === 'copied' || status === 'shared' ? 'bi-check2' : 'bi-share'}`} aria-hidden="true" />{label}</button>;
+  return <button className="btn btn-share" type="button" onClick={shareProfile} aria-live="polite"><i className={`bi ${status === 'copied' || status === 'shared' ? 'bi-check2' : status === 'error' ? 'bi-exclamation-circle' : 'bi-share'}`} aria-hidden="true" />{label}</button>;
 }

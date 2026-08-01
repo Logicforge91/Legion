@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "check": "node scripts/validate-content.mjs && vite build",
     "build": "vite build",
     "preview": "vite preview"
   },

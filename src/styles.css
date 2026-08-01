@@ -25,6 +25,7 @@
   .ambient-orb { @apply pointer-events-none fixed -z-10 rounded-full blur-3xl; }
   .tech-chip { @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 font-mono text-xs text-stone-300 backdrop-blur-md transition hover:-translate-y-0.5 hover:border-mint-300/40 hover:text-mint-300; }
   .scroll-progress { @apply fixed inset-x-0 top-0 z-[1100] h-0.5 origin-left bg-gradient-to-r from-mint-300 via-aqua-300 to-amber-300 shadow-[0_0_18px_rgba(34,211,238,.65)]; transform: scaleX(var(--scroll-progress, 0)); }
+  .dialog-loading { @apply fixed left-1/2 top-1/2 z-[1200] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10 bg-ink-950/95 px-5 py-3 font-mono text-xs uppercase tracking-widest text-aqua-300 shadow-2xl; }
 
   /* Premium portfolio shell */
   .site-container { width: min(calc(100% - 48px), 1280px); }
@@ -270,7 +271,6 @@
   .contact-form textarea {
     @apply w-full rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-sm text-stone-100 outline-none transition placeholder:text-stone-600 hover:border-white/20 focus:border-aqua-300/50 focus:bg-black/35 focus:ring-4 focus:ring-aqua-300/[.07];
   }
-
   .contact-form textarea { @apply min-h-28 resize-y; }
   .contact-form-footer { @apply flex min-h-12 flex-wrap items-center gap-4; }
 
