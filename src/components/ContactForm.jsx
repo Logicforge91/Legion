@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const initialState = { name: '', email: '', company: '', message: '' };
 
 export default function ContactForm() {
   const [fields, setFields] = useState(initialState);
   const [status, setStatus] = useState('idle');
+  const submittingRef = useRef(false);
+  const requestRef = useRef(null);
+
+  useEffect(() => () => requestRef.current?.abort(), []);
 
   const updateField = (event) => {
     setFields((current) => ({ ...current, [event.target.name]: event.target.value }));
@@ -13,23 +17,32 @@ export default function ContactForm() {
 
   const submitForm = async (event) => {
     event.preventDefault();
+    if (submittingRef.current) return;
+    submittingRef.current = true;
     setStatus('submitting');
 
     const body = new URLSearchParams(new FormData(event.currentTarget));
+    const controller = new AbortController();
+    requestRef.current = controller;
 
     try {
       const response = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: body.toString(),
+        signal: controller.signal,
       });
 
       if (!response.ok) throw new Error(`Form submission failed with ${response.status}`);
       setFields(initialState);
       setStatus('success');
     } catch (error) {
+      if (error.name === 'AbortError') return;
       console.error('Contact form submission failed', error);
       setStatus('error');
+    } finally {
+      submittingRef.current = false;
+      requestRef.current = null;
     }
   };
 
