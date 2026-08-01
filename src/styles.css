@@ -1,4 +1,5 @@
 @import "tailwindcss" source(none);
+@import "./icons.css";
 @source "./**/*.{js,jsx}";
 @import "../css/home.css" layer(components);
 

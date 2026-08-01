@@ -28,6 +28,7 @@ A responsive, single-page developer portfolio for Suman K S. The project is impl
 - Branded large-format social preview for LinkedIn, WhatsApp, and other link unfurls
 - Automated content validation for case-study completeness, unique slugs, and required assets
 - Intent-preloaded case studies with Back-button support, dynamic metadata, and non-blocking project filtering
+- Playwright desktop and mobile smoke tests for layout, filters, dialogs, keyboard navigation, and contact validation
 
 ## Technology
 
@@ -36,7 +37,8 @@ A responsive, single-page developer portfolio for Suman K S. The project is impl
 - Vite 6
 - Modern JavaScript and JSX
 - CSS custom properties, Grid, Flexbox, and media queries
-- Bootstrap Icons
+- Self-hosted Bootstrap Icons bundled by Vite
+- A reduced icon stylesheet containing only selectors used by the portfolio, with WOFF2-only delivery
 
 ## Project structure
 
@@ -85,6 +87,17 @@ Run the complete content and production-build check before deployment:
 ```bash
 npm run check
 ```
+
+## Browser tests
+
+Install the Chromium test browser once, then run the desktop and mobile suites:
+
+```bash
+npx playwright install chromium
+npm run test:e2e
+```
+
+Use `npm run test:e2e:list` to verify test discovery without launching a browser.
 
 The optimized site is generated in `dist/`. Production source maps are disabled to keep deployment output smaller and avoid publishing application source unnecessarily.
 
