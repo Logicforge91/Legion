@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "check": "node scripts/validate-content.mjs && vite build",
+    "icons:generate": "node scripts/generate-icons.mjs",
+    "check": "node scripts/validate-content.mjs && playwright test --list && vite build",
     "build": "vite build",
     "preview": "vite preview",
     "test:e2e": "npm run build && playwright test",

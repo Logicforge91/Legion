@@ -62,6 +62,7 @@ export default function ProjectDialog({ project, onClose }) {
       <p className="panel-kicker">Selected system</p>
       <h2 id="projectDialogTitle">{project.title}</h2>
       <p className="project-dialog-summary">{project.text}</p>
+      <div className="project-dialog-scenario"><div><span className="project-dialog-label">Representative runtime flow</span><code>{project.scenario.request}</code></div><i className="bi bi-arrow-right" aria-hidden="true" /><div><span>{project.scenario.event}</span><strong>{project.scenario.result}</strong></div></div>
       <div className="project-dialog-grid">
         <div><span className="project-dialog-label">The constraint</span><p>{project.challenge}</p></div>
         <div><span className="project-dialog-label">Engineering decisions</span><ul>{project.decisions.map((decision) => <li key={decision}><i className="bi bi-check2" aria-hidden="true" />{decision}</li>)}</ul></div>

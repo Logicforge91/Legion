@@ -24,9 +24,10 @@ A responsive, single-page developer portfolio for Suman K S. The project is impl
 - Deferred icon stylesheet and automatic stale-chunk recovery after deployments
 - Native profile sharing with clipboard fallback
 - Offline repeat-visit support through a lightweight service worker
-- Six decision-focused case studies with deep-linkable, shareable URLs
+- Nine decision-focused case studies spanning health, fintech, education ERP, custom websites, ecommerce, integrations, game applications, and two Java/Spring Boot systems
+- Clearly labeled representative runtime flows for every system, showing a realistic request, domain event, and operational result
 - Branded large-format social preview for LinkedIn, WhatsApp, and other link unfurls
-- Automated content validation for case-study completeness, unique slugs, and required assets
+- Automated validation for case-study completeness, unique slugs, required assets, icon coverage, and Playwright test compilation
 - Intent-preloaded case studies with Back-button support, dynamic metadata, and non-blocking project filtering
 - Playwright desktop and mobile smoke tests for layout, filters, dialogs, keyboard navigation, and contact validation
 
@@ -38,7 +39,7 @@ A responsive, single-page developer portfolio for Suman K S. The project is impl
 - Modern JavaScript and JSX
 - CSS custom properties, Grid, Flexbox, and media queries
 - Self-hosted Bootstrap Icons bundled by Vite
-- A reduced icon stylesheet containing only selectors used by the portfolio, with WOFF2-only delivery
+- Generated inline SVG icon masks containing only selectors used by the portfolio, with no icon-font request
 
 ## Project structure
 
@@ -99,6 +100,12 @@ npm run test:e2e
 
 Use `npm run test:e2e:list` to verify test discovery without launching a browser.
 
+When adding or removing an icon, regenerate the optimized SVG-mask stylesheet:
+
+```bash
+npm run icons:generate
+```
+
 The optimized site is generated in `dist/`. Production source maps are disabled to keep deployment output smaller and avoid publishing application source unnecessarily.
 
 ## Editing portfolio content
@@ -112,7 +119,7 @@ Most repeated content lives in `src/data.js`:
 
 Page-specific copy and contact links live in their corresponding section components under `src/pages/`.
 
-Every project has a `filters` array. Its values must match the filter names rendered by the `Projects` component (`backend`, `integration`, `product`, or `realtime`).
+Every project has a `filters` array. Its values must match the category filters rendered by `ProjectsSection` (`java`, `health`, `fintech`, `education`, `websites`, `ecommerce`, `integrations`, or `gaming`).
 
 ## Component design
 
@@ -127,6 +134,8 @@ Every project has a `filters` array. Its values must match the filter names rend
 - `AppErrorBoundary` provides a resilient recovery screen if an unexpected render error reaches the application root.
 
 Performance-sensitive pointer and scroll handlers are synchronized with `requestAnimationFrame`, derived project results are memoized, and observers disconnect as soon as their work is complete.
+
+The hero typing effect updates one isolated text node instead of re-rendering the complete hero component on every character.
 
 Reveal and counter components share pooled Intersection Observers, reduced-motion consumers share one media-query listener, counters update their isolated text nodes without React frame-by-frame rendering, and scroll progress is written through a CSS custom property so the application tree does not re-render on every scroll frame.
 
