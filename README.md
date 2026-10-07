@@ -159,7 +159,13 @@ Deploy the generated `dist/` directory to any static host, including Netlify, Ve
 
 The included `netlify.toml` configures Netlify to run `npm run build` and publish only `dist/`. Do not set the publish directory to the repository root: the source `index.html` references JSX that must be transformed by Vite.
 
-The hidden static form in `index.html` allows Netlify to register the React contact form during deployment. Submissions appear under the site's **Forms** tab in the Netlify dashboard.
+The contact form sends mail through the `netlify/functions/contact.mjs` serverless function and Resend. Configure these environment variables in Netlify before deploying:
+
+- `RESEND_API_KEY`: a Resend API key with permission to send email
+- `CONTACT_FROM_EMAIL`: a sender on a domain verified in Resend (for example, `Portfolio <contact@example.com>`)
+- `CONTACT_TO_EMAIL`: the inbox that receives enquiries (defaults to `sumanks1307@gmail.com`)
+
+The visitor's address is assigned as the reply-to address, so replying from the receiving inbox responds directly to them. API credentials remain server-side.
 
 If the Netlify dashboard contains older manual build settings, use:
 
