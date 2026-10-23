@@ -24,6 +24,12 @@
     Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
+  for = "/assets/resume.pdf"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+    Content-Disposition = "inline; filename=\"Suman-K-S-Resume.pdf\""
+
+[[headers]]
   for = "/*.html"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"

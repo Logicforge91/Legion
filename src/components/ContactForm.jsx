@@ -26,18 +26,22 @@ export default function ContactForm() {
     requestRef.current = controller;
 
     try {
+      const timeout = window.setTimeout(() => controller.abort(), 12_000);
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
         signal: controller.signal,
-      });
+      }).finally(() => window.clearTimeout(timeout));
 
       if (!response.ok) throw new Error(`Form submission failed with ${response.status}`);
       setFields(initialState);
       setStatus('success');
     } catch (error) {
-      if (error.name === 'AbortError') return;
+      if (error.name === 'AbortError') {
+        setStatus('error');
+        return;
+      }
       console.error('Contact form submission failed', error);
       setStatus('error');
     } finally {
