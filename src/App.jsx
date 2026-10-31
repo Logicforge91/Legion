@@ -6,30 +6,50 @@ import Header from './components/layout/Header';
 import ScrollTopButton from './components/layout/ScrollTopButton';
 import { useCommandPalette } from './hooks/useCommandPalette';
 import { usePageState } from './hooks/usePageState';
-import AboutSection from './pages/AboutSection';
-import AchievementsSection from './pages/AchievementsSection';
-import ContactSection from './pages/ContactSection';
 import HeroSection from './pages/HeroSection';
-import JourneySection from './pages/JourneySection';
-import IntegrationsSection from './pages/IntegrationsSection';
-import ProjectsSection from './pages/ProjectsSection';
-import SkillsSection from './pages/SkillsSection';
-import TestimonialsSection from './pages/TestimonialsSection';
 
+const AboutSection = lazy(() => import('./pages/AboutSection'));
+const AchievementsSection = lazy(() => import('./pages/AchievementsSection'));
+const ContactSection = lazy(() => import('./pages/ContactSection'));
+const IntegrationsSection = lazy(() => import('./pages/IntegrationsSection'));
+const JourneySection = lazy(() => import('./pages/JourneySection'));
+const ProjectsSection = lazy(() => import('./pages/ProjectsSection'));
+const SkillsSection = lazy(() => import('./pages/SkillsSection'));
+const TestimonialsSection = lazy(() => import('./pages/TestimonialsSection'));
 const CommandPalette = lazy(() => import('./components/CommandPalette'));
+
+function SectionFallback() {
+  return <div aria-hidden="true" className="section-loading" />;
+}
 
 const PortfolioContent = memo(function PortfolioContent() {
   return <main id="content">
     <HeroSection />
     <TechMarquee />
-    <AboutSection />
-    <JourneySection />
-    <SkillsSection />
-    <IntegrationsSection />
-    <ProjectsSection />
-    <AchievementsSection />
-    <TestimonialsSection />
-    <ContactSection />
+    <Suspense fallback={<SectionFallback />}>
+      <AboutSection />
+    </Suspense>
+    <Suspense fallback={<SectionFallback />}>
+      <JourneySection />
+    </Suspense>
+    <Suspense fallback={<SectionFallback />}>
+      <SkillsSection />
+    </Suspense>
+    <Suspense fallback={<SectionFallback />}>
+      <IntegrationsSection />
+    </Suspense>
+    <Suspense fallback={<SectionFallback />}>
+      <ProjectsSection />
+    </Suspense>
+    <Suspense fallback={<SectionFallback />}>
+      <AchievementsSection />
+    </Suspense>
+    <Suspense fallback={<SectionFallback />}>
+      <TestimonialsSection />
+    </Suspense>
+    <Suspense fallback={<SectionFallback />}>
+      <ContactSection />
+    </Suspense>
   </main>;
 });
 
