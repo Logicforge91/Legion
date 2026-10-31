@@ -7,29 +7,90 @@ export default function Header({ activeSection, scrolled, onOpenCommandPalette }
 
   useEffect(() => {
     const closeMenu = (event) => {
-      if (event.key === 'Escape' || !menuRef.current?.contains(event.target)) setOpen(false);
+      if (event.key === 'Escape') {
+        setOpen(false);
+        return;
+      }
+
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setOpen(false);
+      }
     };
+
     document.addEventListener('click', closeMenu);
     document.addEventListener('keydown', closeMenu);
+
     return () => {
       document.removeEventListener('click', closeMenu);
       document.removeEventListener('keydown', closeMenu);
     };
   }, []);
 
-  return <header className={`site-header${scrolled ? ' is-scrolled' : ''}`}>
-    <div className="site-container nav-shell">
-      <a href="#hero" className="logo" aria-label="Go to home"><span className="logo-mark" aria-hidden="true">SK</span><span className="logo-text">Suman K S</span></a>
-      <div ref={menuRef}>
-        <button id="navToggle" type="button" aria-controls="navLinks" aria-expanded={open} aria-label="Toggle navigation" onClick={(event) => { event.stopPropagation(); setOpen((value) => !value); }}><span /><span /><span /></button>
-        <nav id="siteNav" aria-label="Main navigation">
-          <ul id="navLinks" className={open ? 'show' : ''}>
-            {navigationItems.map(([id, label]) => <li key={id}><a href={`#${id}`} className={activeSection === id ? 'active' : ''} aria-current={activeSection === id ? 'page' : undefined} onClick={() => setOpen(false)}>{label}</a></li>)}
-            <li><a href="#contact" className="nav-cta" onClick={() => setOpen(false)}>Build with me</a></li>
-            <li><button className="nav-command" type="button" aria-label="Open command palette" onClick={() => { setOpen(false); onOpenCommandPalette(); }}><i className="bi bi-search" aria-hidden="true" /><kbd>Ctrl K</kbd></button></li>
-          </ul>
-        </nav>
+  return (
+    <header className={`site-header${scrolled ? ' is-scrolled' : ''}`}>
+      <div className="site-container nav-shell">
+        <a href="#hero" className="logo" aria-label="Go to home">
+          <span className="logo-mark" aria-hidden="true">SK</span>
+          <span className="logo-text">Suman K S</span>
+        </a>
+
+        <div ref={menuRef} style={{ position: 'relative' }}>
+          <button
+            id="navToggle"
+            type="button"
+            aria-controls="navLinks"
+            aria-expanded={open}
+            aria-label="Toggle navigation"
+            onClick={(event) => {
+              event.stopPropagation();
+              setOpen((value) => !value);
+            }}
+          >
+            <span aria-hidden="true" />
+            <span aria-hidden="true" />
+            <span aria-hidden="true" />
+          </button>
+
+          <nav id="siteNav" className={open ? 'is-open' : ''} aria-label="Main navigation">
+            <ul id="navLinks" className={open ? 'show' : ''}>
+              {navigationItems.map(([id, label]) => (
+                <li key={id}>
+                  <a
+                    href={`#${id}`}
+                    className={activeSection === id ? 'active' : ''}
+                    aria-current={activeSection === id ? 'page' : undefined}
+                    onClick={() => setOpen(false)}
+                  >
+                    {label}
+                  </a>
+                </li>
+              ))}
+
+              <li>
+                <a href="#contact" className="nav-cta" onClick={() => setOpen(false)}>
+                  Build with me
+                </a>
+              </li>
+
+              <li>
+                <button
+                  className="nav-command"
+                  type="button"
+                  aria-label="Open command palette"
+                  onClick={() => {
+                    setOpen(false);
+                    onOpenCommandPalette();
+                  }}
+                >
+                  <i className="bi bi-search" aria-hidden="true" />
+                  <span>Search</span>
+                  <kbd>⌘K</kbd>
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
-    </div>
-  </header>;
+    </header>
+  );
 }
