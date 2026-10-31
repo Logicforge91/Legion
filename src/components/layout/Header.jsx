@@ -26,71 +26,25 @@ export default function Header({ activeSection, scrolled, onOpenCommandPalette }
     };
   }, []);
 
-  return (
-    <header className={`site-header${scrolled ? ' is-scrolled' : ''}`}>
-      <div className="site-container nav-shell">
-        <a href="#hero" className="logo" aria-label="Go to home">
-          <span className="logo-mark" aria-hidden="true">SK</span>
-          <span className="logo-text">Suman K S</span>
-        </a>
+  const collapsed = scrolled;
 
-        <div ref={menuRef} style={{ position: 'relative' }}>
-          <button
-            id="navToggle"
-            type="button"
-            aria-controls="navLinks"
-            aria-expanded={open}
-            aria-label="Toggle navigation"
-            onClick={(event) => {
-              event.stopPropagation();
-              setOpen((value) => !value);
-            }}
-          >
-            <span aria-hidden="true" />
-            <span aria-hidden="true" />
-            <span aria-hidden="true" />
-          </button>
-
-          <nav id="siteNav" className={open ? 'is-open' : ''} aria-label="Main navigation">
-            <ul id="navLinks" className={open ? 'show' : ''}>
-              {navigationItems.map(([id, label]) => (
-                <li key={id}>
-                  <a
-                    href={`#${id}`}
-                    className={activeSection === id ? 'active' : ''}
-                    aria-current={activeSection === id ? 'page' : undefined}
-                    onClick={() => setOpen(false)}
-                  >
-                    {label}
-                  </a>
-                </li>
-              ))}
-
-              <li>
-                <a href="#contact" className="nav-cta" onClick={() => setOpen(false)}>
-                  Build with me
-                </a>
-              </li>
-
-              <li>
-                <button
-                  className="nav-command"
-                  type="button"
-                  aria-label="Open command palette"
-                  onClick={() => {
-                    setOpen(false);
-                    onOpenCommandPalette();
-                  }}
-                >
-                  <i className="bi bi-search" aria-hidden="true" />
-                  <span>Search</span>
-                  <kbd>⌘K</kbd>
-                </button>
-              </li>
-            </ul>
-          </nav>
-        </div>
+  return <header className={`site-header${collapsed ? ' is-scrolled is-collapsed' : ''}`}>
+    <div className="site-container nav-shell">
+      <a href="#hero" className="logo" aria-label="Go to home"><span className="logo-mark" aria-hidden="true">SK</span><span className="logo-text">Suman K S</span></a>
+      <div ref={menuRef}>
+        <button id="navToggle" type="button" aria-controls="navLinks" aria-expanded={open} aria-label="Toggle navigation" onClick={(event) => { event.stopPropagation(); setOpen((value) => !value); }}>
+          <span aria-hidden="true" />
+          <span aria-hidden="true" />
+          <span aria-hidden="true" />
+        </button>
+        <nav id="siteNav" aria-label="Main navigation">
+          <ul id="navLinks" className={open ? 'show' : ''}>
+            {navigationItems.map(([id, label]) => <li key={id}><a href={`#${id}`} className={activeSection === id ? 'active' : ''} aria-current={activeSection === id ? 'page' : undefined} onClick={() => setOpen(false)}>{label}</a></li>)}
+            <li><a href="#contact" className="nav-cta" onClick={() => setOpen(false)}>Build with me</a></li>
+            <li><button className="nav-command" type="button" aria-label="Open command palette" onClick={() => { setOpen(false); onOpenCommandPalette(); }}><i className="bi bi-search" aria-hidden="true" />Cmd</button></li>
+          </ul>
+        </nav>
       </div>
-    </header>
-  );
+    </div>
+  </header>;
 }
