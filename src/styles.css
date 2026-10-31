@@ -13,19 +13,41 @@
 
   .section-heading h2 {
     margin: 0;
-    font-size: clamp(2.3rem, 4vw, 3.3rem);
-    letter-spacing: -0.06em;
-    line-height: 1.06;
+    font-size: clamp(2.5rem, 4vw, 3.7rem);
+    letter-spacing: -0.075em;
+    line-height: 0.97;
     font-weight: 900;
     color: #f8fbff;
+    text-wrap: balance;
   }
 
   .section-heading p:not(.eyebrow) {
-    margin-top: 16px;
+    margin-top: 18px;
     max-width: 700px;
-    color: rgba(185, 199, 220, 0.8);
-    font-size: 1rem;
+    color: rgba(185, 199, 220, 0.82);
+    font-size: 1.04rem;
     line-height: 1.8;
+  }
+
+  .section-heading .eyebrow {
+    margin-bottom: 16px;
+  }
+
+  .section-heading h2 {
+    position: relative;
+    display: inline-block;
+  }
+
+  .section-heading h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -12px;
+    width: 84px;
+    height: 3px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgba(214,247,106,0.8), rgba(138,232,255,0.2));
+    box-shadow: 0 0 22px rgba(214,247,106,0.25);
   }
 
   .split-layout,
@@ -69,12 +91,13 @@
     border: 1px solid rgba(166,177,194,0.12);
     background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(12,17,23,0.28));
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
-    transition: transform 0.2s ease, border-color 0.2s ease;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   }
 
   .value-list > div:hover {
-    transform: translateY(-1px);
+    transform: translateY(-2px);
     border-color: rgba(214,247,106,0.18);
+    box-shadow: 0 18px 34px rgba(4, 6, 11, 0.16);
   }
 
   .value-list i {
@@ -103,6 +126,12 @@
     border: 1px solid rgba(166,177,194,0.12);
     background: linear-gradient(180deg, rgba(18,24,34,0.76), rgba(12,17,23,0.9));
     box-shadow: 0 25px 62px rgba(4, 6, 11, 0.3);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .profile-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(214,247,106,0.18);
   }
 
   .profile-card::before {
@@ -179,12 +208,13 @@
     border-radius: 22px;
     background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(10,14,20,0.4));
     box-shadow: 0 16px 48px rgba(4, 6, 11, 0.18);
-    transition: border-color 0.2s ease, transform 0.2s ease;
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
 
   .timeline-item:hover {
     border-color: rgba(214,247,106,0.2);
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    box-shadow: 0 24px 52px rgba(8, 11, 17, 0.28);
   }
 
   .timeline-year {
@@ -271,7 +301,7 @@
     border-radius: 24px;
     background: linear-gradient(180deg, rgba(18,24,34,0.74), rgba(12,17,23,0.88));
     box-shadow: 0 18px 42px rgba(4, 6, 11, 0.2);
-    transition: transform 0.2s ease, border-color 0.2s ease;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   }
 
   .stack-card:hover,
@@ -279,8 +309,9 @@
   .system-card:hover,
   .proof-card:hover,
   .work-style-card:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
     border-color: rgba(214,247,106,0.2);
+    box-shadow: 0 25px 54px rgba(4, 6, 11, 0.26);
   }
 
   .stack-card i,
@@ -365,6 +396,12 @@
     background: rgba(255,255,255,0.02);
     color: rgba(233, 240, 252, 0.88);
     text-decoration: none;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .contact-panel .contact-links a:hover {
+    transform: translateY(-1px);
+    border-color: rgba(214,247,106,0.2);
   }
 
   .contact-panel .contact-links i {
@@ -388,11 +425,17 @@
     border-radius: 999px;
     text-decoration: none;
     font-weight: 700;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .contact-panel .cta-row a:hover {
+    transform: translateY(-1px);
   }
 
   .contact-panel .cta-row a:first-child {
     background: linear-gradient(135deg, #eefab1, #b7f0ff);
     color: #0a0d13;
+    box-shadow: 0 18px 28px rgba(214, 247, 106, 0.15);
   }
 
   .contact-panel .cta-row a:last-child {
@@ -401,13 +444,193 @@
     color: #edf4ff;
   }
 
+  .project-dialog {
+    border: 1px solid rgba(166,177,194,0.14);
+    border-radius: 28px;
+    background: rgba(9, 12, 18, 0.9);
+    box-shadow: 0 28px 88px rgba(2, 5, 9, 0.74);
+    padding: 0;
+    max-width: 960px;
+    width: min(92vw, 960px);
+    color: #edf4ff;
+    overflow: hidden;
+  }
+
+  .project-dialog::backdrop {
+    background: rgba(2, 5, 9, 0.62);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .project-dialog-shell {
+    padding: 24px 24px 18px;
+  }
+
+  .project-dialog-topline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .project-dialog-category {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(214,247,106,0.16);
+    background: rgba(214,247,106,0.06);
+    color: var(--accent);
+    font-size: 0.6rem;
+    font-family: var(--font-mono);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .project-dialog-close {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    border: 1px solid rgba(166,177,194,0.14);
+    background: rgba(255,255,255,0.02);
+    color: #edf4ff;
+    cursor: pointer;
+  }
+
+  .project-dialog h2 {
+    margin: 18px 0 10px;
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    letter-spacing: -0.06em;
+    color: #f8fbff;
+  }
+
+  .project-dialog-summary {
+    color: rgba(182,196,216,0.82);
+    line-height: 1.82;
+    margin: 0 0 20px;
+  }
+
+  .project-dialog-scenario {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 14px;
+    align-items: center;
+    padding: 16px 18px;
+    border: 1px solid rgba(166,177,194,0.12);
+    border-radius: 18px;
+    background: rgba(255,255,255,0.02);
+  }
+
+  .project-dialog-label {
+    display: block;
+    margin-bottom: 8px;
+    color: rgba(166,177,194,0.8);
+    font-size: 0.56rem;
+    font-family: var(--font-mono);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .project-dialog-scenario code {
+    font-family: var(--font-mono);
+    color: #eff7ff;
+  }
+
+  .project-dialog-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 18px;
+  }
+
+  .project-dialog-grid > div {
+    padding: 18px;
+    border: 1px solid rgba(166,177,194,0.1);
+    border-radius: 18px;
+    background: rgba(255,255,255,0.02);
+  }
+
+  .project-dialog-grid p,
+  .project-dialog-grid li {
+    color: rgba(182,196,216,0.8);
+    line-height: 1.8;
+  }
+
+  .project-dialog-grid ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 8px;
+  }
+
+  .project-dialog-grid li {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .project-dialog-grid li i {
+    color: var(--accent);
+    margin-top: 4px;
+  }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag-row span {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(166,177,194,0.12);
+    background: rgba(255,255,255,0.02);
+    color: rgba(231,239,250,0.8);
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-family: var(--font-mono);
+  }
+
+  .project-dialog-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding-top: 18px;
+    margin-top: 18px;
+    border-top: 1px solid rgba(166,177,194,0.1);
+  }
+
+  .project-dialog-footer p {
+    margin: 0;
+    color: rgba(182,196,216,0.8);
+  }
+
+  .project-dialog-footer .btn {
+    min-height: 44px;
+    padding: 0 18px;
+    border-radius: 999px;
+  }
+
   @media (max-width: 860px) {
     section {
       padding: 78px 0;
     }
 
+    .section-heading h2 {
+      font-size: clamp(2.2rem, 9vw, 3.1rem);
+    }
+
     .split-layout,
-    .contact-grid {
+    .contact-grid,
+    .project-dialog-grid {
       grid-template-columns: 1fr;
       gap: 24px;
     }
@@ -424,6 +647,11 @@
 
     .timeline-item {
       flex-direction: column;
+    }
+
+    .project-dialog-footer {
+      flex-direction: column;
+      align-items: flex-start;
     }
   }
 }
