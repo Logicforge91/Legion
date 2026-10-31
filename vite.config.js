@@ -1,9 +1,8 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  plugins: [react()],
   build: {
     target: 'es2020',
     sourcemap: false,
@@ -14,7 +13,7 @@ export default defineConfig({
 
           if (id.includes('react')) return 'react-vendor';
           if (id.includes('bootstrap-icons')) return 'icons';
-          if (id.includes('@tailwindcss')) return 'tailwind';
+          if (id.includes('bootstrap')) return 'bootstrap';
 
           return 'vendor';
         },
