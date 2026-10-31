@@ -21,23 +21,27 @@ export default function ContactForm() {
     submittingRef.current = true;
     setStatus('submitting');
 
-    const body = new URLSearchParams(new FormData(event.currentTarget));
+    const body = Object.fromEntries(new FormData(event.currentTarget));
     const controller = new AbortController();
     requestRef.current = controller;
 
     try {
-      const response = await fetch('/', {
+      const timeout = window.setTimeout(() => controller.abort(), 12_000);
+      const response = await fetch('/api/contact', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: body.toString(),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
         signal: controller.signal,
-      });
+      }).finally(() => window.clearTimeout(timeout));
 
       if (!response.ok) throw new Error(`Form submission failed with ${response.status}`);
       setFields(initialState);
       setStatus('success');
     } catch (error) {
-      if (error.name === 'AbortError') return;
+      if (error.name === 'AbortError') {
+        setStatus('error');
+        return;
+      }
       console.error('Contact form submission failed', error);
       setStatus('error');
     } finally {
@@ -46,8 +50,7 @@ export default function ContactForm() {
     }
   };
 
-  return <form className="contact-form" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" aria-busy={status === 'submitting'} onSubmit={submitForm}>
-    <input type="hidden" name="form-name" value="contact" />
+  return <form className="contact-form" aria-busy={status === 'submitting'} onSubmit={submitForm}>
     <p className="visually-hidden"><label>Do not fill this field<input name="bot-field" tabIndex="-1" autoComplete="off" /></label></p>
     <div className="contact-form-row">
       <label><span>Your name</span><input name="name" value={fields.name} onChange={updateField} autoComplete="name" placeholder="Jane Smith" maxLength="100" required /></label>

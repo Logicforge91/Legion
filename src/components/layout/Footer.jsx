@@ -1,6 +1,20 @@
 export default function Footer() {
-  return <footer><div className="site-container footer-inner">
-    <div><a href="#hero" className="footer-logo">Suman K S</a><p className="footer-tagline">Backend Developer focused on reliable APIs, data, queues, and products.</p></div>
-    <div className="footer-meta"><p>&copy; {new Date().getFullYear()} Legion</p><p>Bengaluru, India &middot; Available for backend roles</p></div>
-  </div></footer>;
+  return <footer>
+    <div className="site-container footer-main">
+      <div className="footer-intro">
+        <a href="#hero" className="footer-logo" aria-label="Back to the top">Suman K S<span>.</span></a>
+        <p className="footer-tagline">Backend engineering for products that need reliable APIs, intentional data paths, and integrations that hold up in production.</p>
+        <a className="footer-availability" href="#contact"><i aria-hidden="true" />Available for backend opportunities</a>
+      </div>
+      <nav className="footer-nav" aria-label="Footer navigation">
+        <p>Explore</p>
+        <a href="#about">Profile</a><a href="#journey">Journey</a><a href="#skills">Stack</a><a href="#projects">Systems</a>
+      </nav>
+      <div className="footer-nav">
+        <p>Connect</p>
+        <a href="mailto:sumanks1307@gmail.com">Email</a><a href="https://github.com/Logicforge91" target="_blank" rel="noreferrer">GitHub <i className="bi bi-arrow-up-right" aria-hidden="true" /></a><a href="https://www.linkedin.com/in/suman-k-s-a55868184/" target="_blank" rel="noreferrer">LinkedIn <i className="bi bi-arrow-up-right" aria-hidden="true" /></a><a href="/assets/resume.pdf" download>Résumé <i className="bi bi-download" aria-hidden="true" /></a>
+      </div>
+    </div>
+    <div className="site-container footer-bottom"><p>&copy; {new Date().getFullYear()} Suman K S</p><p>Designed and engineered in Bengaluru, India</p><a href="#hero">Back to top <i className="bi bi-arrow-up" aria-hidden="true" /></a></div>
+  </footer>;
 }

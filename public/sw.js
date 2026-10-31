@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'legion-shell-';
-const CACHE_NAME = `${CACHE_PREFIX}v3`;
+const CACHE_NAME = `${CACHE_PREFIX}v4`;
 const SHELL_FILES = ['/', '/favicon.svg', '/site.webmanifest'];
 
 self.addEventListener('install', (event) => {
@@ -25,6 +25,15 @@ self.addEventListener('fetch', (event) => {
       }
       return response;
     }).catch(() => caches.match('/')));
+    return;
+  }
+
+  // Documents that can be replaced at a stable URL should always be refreshed.
+  if (url.pathname === '/assets/resume.pdf') {
+    event.respondWith(fetch(request).then((response) => {
+      if (response.ok) caches.open(CACHE_NAME).then((cache) => cache.put(request, response.clone()));
+      return response;
+    }).catch(() => caches.match(request)));
     return;
   }
 
