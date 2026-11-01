@@ -53,9 +53,14 @@ Legion/
 │   │   ├── forms/                 # Contact form
 │   │   ├── layout/                # Header, footer, and scroll controls
 │   │   ├── overlays/              # Command palette and case-study dialog
+│   │   ├── projects/               # Project cards, filters, and grid
 │   │   └── shared/                # UI primitives, sharing, and technology rail
-│   ├── config/                    # Navigation configuration
-│   ├── data/portfolio.js          # Portfolio content used by sections
+│   ├── config/
+│   │   ├── navigation.js          # Section navigation and observed IDs
+│   │   └── projectFilters.js      # Project category filter options
+│   ├── data/
+│   │   ├── portfolio/             # Journey, integrations, skills, projects, and proof data
+│   │   └── portfolio.js           # Stable exports for portfolio datasets
 │   ├── hooks/                     # Reusable state and browser hooks
 │   ├── sections/                  # Page section components
 │   ├── styles/
@@ -116,14 +121,15 @@ The optimized site is generated in `dist/`. Production source maps are disabled 
 
 ## Editing portfolio content
 
-Most repeated content lives in `src/data/portfolio.js`:
+Portfolio content is grouped by domain in `src/data/portfolio/` and re-exported from `src/data/portfolio.js`:
 
 - `journey` controls experience timeline entries.
+- `integrations` controls integration cards.
 - `skills` controls technology cards.
 - `projects` controls project details, tags, filters, icons, and card sizing.
 - `proof` controls animated achievement metrics.
 
-Section copy and styles live together in `src/sections/`. Reusable interface elements live under `src/components/`, grouped by purpose.
+Section copy and markup live in `src/sections/`; their styles live in `src/styles/sections/`. Reusable interface elements live under `src/components/`, grouped by purpose. Project category labels and filter keys are defined in `src/config/projectFilters.js`.
 
 Every project has a `filters` array. Its values must match the category filters rendered by `ProjectsSection` (`java`, `health`, `fintech`, `education`, `websites`, `ecommerce`, `integrations`, or `gaming`).
 
@@ -134,18 +140,18 @@ Every project has a `filters` array. Its values must match the category filters 
 - `Spotlight` calculates pointer position and updates CSS variables for interactive lighting.
 - `Counter` animates metrics using `requestAnimationFrame` and an ease-out curve.
 - `Header` owns mobile-menu state and keyboard behavior.
-- `ProjectsSection` owns filter state and derives visible cards without direct DOM mutation.
-- `usePageState` centralizes scroll progress, sticky-header state, scroll-to-top visibility, and section observation.
+- `ProjectsSection` composes dedicated filter, grid, and card components; `useProjectCaseStudy` owns URL history and case-study metadata.
+- `usePageState` composes `useScrollState` and `useActiveSection` so scroll effects and section observation stay independent.
 - `useReducedMotion` reacts to operating-system preference changes and is shared by motion-heavy components.
 - `AppErrorBoundary` provides a resilient recovery screen if an unexpected render error reaches the application root.
 
 Reveal and counter components share pooled Intersection Observers. Reduced-motion consumers share one media-query listener, while scroll progress is written through a CSS custom property so scrolling does not re-render the application tree.
 
-The command palette is lazy-loaded with `React.lazy` and `Suspense`. Section components and their styles are grouped under `src/sections/`; shared UI primitives are in `src/components/shared/`.
+The command palette and page sections are lazy-loaded with `React.lazy` and `Suspense`. Shared UI primitives are in `src/components/shared/`; project-specific UI is in `src/components/projects/`.
 
 ## Styling
 
-Global theme tokens live in `src/styles/index.css`; shared responsive layout rules live in `src/styles/base.css`. Each section keeps its specific styles beside its component. Tailwind CSS 4 is available for small JSX utilities; use the shared CSS variables for colors, typography, borders, and surfaces so the design remains consistent.
+Design tokens live in `src/styles/tokens.css`, global presentation rules in `src/styles/index.css`, and foundational responsive rules in `src/styles/base.css`. Section-specific styles live in `src/styles/sections/`, separate from the JSX. Tailwind CSS 4 is available for small JSX utilities; use the shared CSS variables for colors, typography, borders, and surfaces so the design remains consistent.
 
 Users who request reduced motion receive immediate text and metrics without animated transitions.
 
