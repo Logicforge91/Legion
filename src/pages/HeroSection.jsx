@@ -17,8 +17,8 @@ export default function HeroSection() {
         <div className="studio-visual-label"><span>Request lifecycle</span><span>Designed for reliability</span></div>
         <div className="studio-flow" aria-label="Backend request flow">
           <div className="studio-flow-node"><i className="bi bi-window" aria-hidden="true" /><span>Client</span><small>request</small></div><i className="bi bi-arrow-right studio-flow-arrow" aria-hidden="true" />
-          <div className="studio-flow-node studio-flow-core"><i className="bi bi-braces" aria-hidden="true" /><span>API</span><small>validate · authorize</small></div><i className="bi bi-arrow-right studio-flow-arrow" aria-hidden="true" />
-          <div className="studio-flow-node"><i className="bi bi-database" aria-hidden="true" /><span>Data</span><small>persist · respond</small></div>
+          <div className="studio-flow-node studio-flow-core"><i className="bi bi-hdd-network" aria-hidden="true" /><span>API</span><small>validate · authorize</small></div><i className="bi bi-arrow-right studio-flow-arrow" aria-hidden="true" />
+          <div className="studio-flow-node"><i className="bi bi-database-check" aria-hidden="true" /><span>Data</span><small>persist · respond</small></div>
         </div>
         <div className="studio-system-readout"><div><span>01 / Protect</span><strong>Validate every boundary</strong></div><div><span>02 / Preserve</span><strong>Keep state transitions explicit</strong></div><div className="studio-signal"><i />03 / Operate — make failures diagnosable</div></div>
         <a className="studio-resume" href="/assets/resume.pdf" download>Download résumé <i className="bi bi-arrow-up-right" aria-hidden="true" /></a>
