@@ -29,8 +29,8 @@ function JourneyLoop() {
       </svg>
 
       <div className="journey-loop__center">
-        <span className="journey-loop__eyebrow">Journey</span>
-        <strong>Career in<br />motion</strong>
+        <span className="journey-loop__eyebrow">Career timeline</span>
+        <strong>Built through<br />experience</strong>
       </div>
 
       {journey.map((item, index) => (
@@ -48,25 +48,29 @@ export default function JourneySection() {
   return (
     <section id="journey" className="journey-section" aria-labelledby="journeyTitle">
       <div className="site-container">
-        <SectionHeading eyebrow="Journey" id="journeyTitle" title="Built in layers: from fundamentals to production ownership.">
-          A career progression shaped by systems, constraints, and real product pressure.
+        <SectionHeading eyebrow="The journey" id="journeyTitle" title="A steady progression toward stronger systems.">
+          Each chapter added a new layer of ownership, from shipping features to making the whole product more dependable.
         </SectionHeading>
         <div className="journey-layout">
-          <JourneyLoop />
+          <div className="journey-overview">
+            <JourneyLoop />
+            <p className="journey-overview__caption">Five chapters. One growing engineering mindset.</p>
+          </div>
           <div className="timeline" role="list" aria-label="Career milestones">
             {journey.map((item, index) => (
-              <Reveal key={`${item.period}-${item.title}`} role="listitem">
+              <Reveal className="journey-milestone" key={`${item.period}-${item.title}`} role="listitem" style={{ '--milestone-index': index }}>
                 <Spotlight className="timeline-item">
-                  <div>
-                    <h3><span className="timeline-index">{String(index + 1).padStart(2, '0')}</span>{item.title}</h3>
+                  <header className="journey-milestone__header">
+                    <span className="timeline-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
                     <span className="timeline-year">{item.period}</span>
-                    {item.company && (
-                      <a href={item.companyUrl} target="_blank" rel="noreferrer" className="company-link">
-                        {item.company}
-                      </a>
-                    )}
-                    <p>{item.text}</p>
-                  </div>
+                  </header>
+                  <h3>{item.title}</h3>
+                  {item.company && (
+                    <a href={item.companyUrl} target="_blank" rel="noreferrer" className="company-link">
+                      {item.company}<i className="bi bi-arrow-up-right" aria-hidden="true" />
+                    </a>
+                  )}
+                  <p>{item.text}</p>
                 </Spotlight>
               </Reveal>
             ))}

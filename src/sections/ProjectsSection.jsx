@@ -2,17 +2,14 @@ import { startTransition, useMemo, useState } from 'react';
 import { projects } from '../data/portfolio';
 import { projectFilters, projectFilterLabels } from '../config/projectFilters';
 import { Reveal, SectionHeading } from '../components/shared/ui';
-import ProjectDialog from '../components/overlays/ProjectDialog';
 import ProjectFilterBar from '../components/projects/ProjectFilterBar';
 import ProjectGrid from '../components/projects/ProjectGrid';
-import { useProjectCaseStudy } from '../hooks/useProjectCaseStudy';
 import '../styles/sections/ProjectsSection.css';
 
 const projectNumbers = new Map(projects.map((project, index) => [project.slug, index + 1]));
 
 export default function ProjectsSection() {
   const [activeFilter, setActiveFilter] = useState('all');
-  const { selectedProject, openProject, closeProject } = useProjectCaseStudy();
 
   const visibleProjects = useMemo(() => projects.filter((project) => (
     activeFilter === 'all' || project.filters.includes(activeFilter)
@@ -51,12 +48,7 @@ export default function ProjectsSection() {
         <ProjectGrid
           projects={visibleProjects}
           projectNumbers={projectNumbers}
-          onOpen={openProject}
         />
-
-        {selectedProject && (
-          <ProjectDialog project={selectedProject} onClose={closeProject} />
-        )}
       </div>
     </section>
   );

@@ -1,5 +1,6 @@
 import { access, readFile, readdir } from 'node:fs/promises';
-import { projects } from '../src/data/portfolio.js';
+import { projects, proof, skills } from '../src/data/portfolio.js';
+import { projectFilters } from '../src/config/projectFilters.js';
 
 async function collectSourceFiles(directory) {
   const entries = await readdir(directory, { withFileTypes: true });
@@ -11,8 +12,9 @@ async function collectSourceFiles(directory) {
   return files.flat();
 }
 
-const requiredText = ['slug', 'category', 'title', 'text', 'challenge', 'outcome'];
+const requiredText = ['slug', 'category', 'title', 'text'];
 const slugs = new Set();
+const allowedFilters = new Set(projectFilters.map(([value]) => value).filter((value) => value !== 'all'));
 
 for (const project of projects) {
   for (const field of requiredText) {
@@ -22,15 +24,38 @@ for (const project of projects) {
   }
   if (slugs.has(project.slug)) throw new Error(`Duplicate project slug: ${project.slug}`);
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(project.slug)) throw new Error(`Invalid project slug: ${project.slug}`);
-  if (!Array.isArray(project.decisions) || project.decisions.length < 3) {
-    throw new Error(`Project "${project.title}" needs at least three engineering decisions.`);
+  if (!Array.isArray(project.filters) || !project.filters.length) {
+    throw new Error(`Project "${project.title}" needs at least one category filter.`);
   }
-  for (const field of ['request', 'event', 'result']) {
-    if (typeof project.scenario?.[field] !== 'string' || !project.scenario[field].trim()) {
-      throw new Error(`Project "${project.title}" is missing scenario.${field}.`);
+  const projectFilterSet = new Set(project.filters);
+  if (projectFilterSet.size !== project.filters.length) {
+    throw new Error(`Project "${project.title}" has duplicate category filters.`);
+  }
+  for (const filter of project.filters) {
+    if (!allowedFilters.has(filter)) {
+      throw new Error(`Project "${project.title}" uses unknown filter "${filter}".`);
     }
   }
   slugs.add(project.slug);
+}
+
+for (const [index, skill] of skills.entries()) {
+  for (const field of ['icon', 'title', 'description']) {
+    if (typeof skill[field] !== 'string' || !skill[field].trim()) {
+      throw new Error(`Skill ${index + 1} is missing ${field}.`);
+    }
+  }
+}
+
+for (const [index, item] of proof.entries()) {
+  if (!Number.isFinite(item.value) || item.value < 0) {
+    throw new Error(`Proof metric ${index + 1} needs a non-negative numeric value.`);
+  }
+  for (const field of ['suffix', 'label', 'description']) {
+    if (typeof item[field] !== 'string' || (field !== 'suffix' && !item[field].trim())) {
+      throw new Error(`Proof metric ${index + 1} is missing ${field}.`);
+    }
+  }
 }
 
 await Promise.all([
@@ -56,4 +81,4 @@ const unusedIcons = [...configuredIcons].filter((icon) => !usedIcons.has(icon)).
 if (missingIcons.length) throw new Error(`Missing icon selectors: ${missingIcons.join(', ')}`);
 if (unusedIcons.length) console.warn(`Unused icon selectors: ${unusedIcons.join(', ')}`);
 
-console.log(`Content check passed: ${projects.length} case studies, ${usedIcons.size} icons, and required public assets.`);
+console.log(`Content check passed: ${projects.length} projects, ${skills.length} skills, ${proof.length} proof metrics, ${usedIcons.size} icons, and required public assets.`);

@@ -5,29 +5,6 @@ export const projects = [
     "icon": "bi-heart-pulse",
     "title": "A care platform where access is part of the data model",
     "text": "Patient records, appointments, and staff workflows designed around privacy, role boundaries, and fast retrieval under daily operational pressure.",
-    "challenge": "Clinical and administrative users need different views of the same sensitive records without turning every endpoint into a collection of exceptions.",
-    "decisions": [
-      "Model permissions around roles and actions instead of hiding controls only in the interface",
-      "Keep patient and appointment lookup paths explicit and indexable",
-      "Cache frequently read reference data without weakening authorization checks"
-    ],
-    "outcome": "A backend shape that keeps privacy rules close to the data path and makes common care workflows easier to reason about.",
-    "points": [
-      "Permission-aware service boundaries",
-      "Appointment and patient search paths",
-      "Safe caching for frequent workflows"
-    ],
-    "scenario": {
-      "request": "POST /api/v1/appointments",
-      "event": "appointment.booked",
-      "result": "Slot reserved · reminder queued"
-    },
-    "tags": [
-      "Laravel",
-      "MySQL",
-      "Redis",
-      "RBAC"
-    ],
     "filters": [
       "health"
     ]
@@ -38,29 +15,6 @@ export const projects = [
     "icon": "bi-credit-card-2-front",
     "title": "A transaction workflow designed around traceability",
     "text": "Payment initiation, provider callbacks, ledger-facing state, reconciliation, and operator visibility treated as one accountable financial workflow.",
-    "challenge": "Money movement cannot depend on a single request succeeding; duplicate callbacks, delayed provider responses, and reconciliation gaps must remain explainable.",
-    "decisions": [
-      "Use idempotency keys around transaction-changing operations",
-      "Separate provider status from the internal transaction lifecycle",
-      "Record immutable event context for reconciliation and support"
-    ],
-    "outcome": "A financial workflow that favors traceable state transitions and recoverable operations over optimistic success screens.",
-    "points": [
-      "Idempotent transaction boundaries",
-      "Reconciliation-ready event history",
-      "Explicit provider state mapping"
-    ],
-    "scenario": {
-      "request": "POST /api/v1/transactions",
-      "event": "payment.authorized",
-      "result": "Ledger pending · reconciliation open"
-    },
-    "tags": [
-      "Laravel",
-      "REST",
-      "Webhooks",
-      "MySQL"
-    ],
     "filters": [
       "fintech"
     ]
@@ -71,29 +25,6 @@ export const projects = [
     "icon": "bi-building-gear",
     "title": "An operations backbone for a busy campus",
     "text": "Admissions, fees, audits, reports, and administrative workflows connected as one dependable institutional data flow.",
-    "challenge": "Independent campus modules must share trustworthy data while repetitive operational work continues on predictable schedules.",
-    "decisions": [
-      "Define module boundaries through stable request and response contracts",
-      "Move repetitive work into scheduled jobs with observable outcomes",
-      "Validate data at entry points so downstream reports remain dependable"
-    ],
-    "outcome": "A connected operational model that reduces hidden coupling between admissions, finance, administration, and reporting.",
-    "points": [
-      "Scheduled operational automation",
-      "Module-to-module REST contracts",
-      "Report-protecting validation"
-    ],
-    "scenario": {
-      "request": "POST /api/v1/fees/receipts",
-      "event": "fee.received",
-      "result": "Balance updated · receipt issued"
-    },
-    "tags": [
-      "PHP",
-      "Laravel",
-      "Cron",
-      "REST"
-    ],
     "filters": [
       "education"
     ]
@@ -104,29 +35,6 @@ export const projects = [
     "icon": "bi-window-stack",
     "title": "Custom websites built around the business behind the pages",
     "text": "Fast public experiences, structured content, lead capture, administration, and backend workflows shaped for the organization operating them.",
-    "challenge": "A custom website must stay easy to update while protecting performance, search visibility, form delivery, and future feature growth.",
-    "decisions": [
-      "Separate reusable content structures from presentation",
-      "Treat forms and administrative actions as validated backend workflows",
-      "Design responsive delivery and metadata into the initial architecture"
-    ],
-    "outcome": "A maintainable web platform that serves visitors quickly and gives the business a clear operational path behind the interface.",
-    "points": [
-      "Purpose-built responsive interfaces",
-      "Content and administration workflows",
-      "SEO and performance foundations"
-    ],
-    "scenario": {
-      "request": "POST /api/v1/contact-leads",
-      "event": "lead.qualified",
-      "result": "CRM queued · owner notified"
-    },
-    "tags": [
-      "React",
-      "Laravel",
-      "Tailwind CSS",
-      "SEO"
-    ],
     "filters": [
       "websites"
     ]
@@ -137,29 +45,6 @@ export const projects = [
     "icon": "bi-cart-check",
     "title": "An order lifecycle built for imperfect payment networks",
     "text": "Catalog, cart, checkout, payment callbacks, fulfillment states, and support visibility treated as one traceable transactional workflow.",
-    "challenge": "Payment providers retry, delay, and occasionally contradict the state visible to customers, inventory operations, and support teams.",
-    "decisions": [
-      "Separate provider payloads from the internal order contract",
-      "Make callback processing idempotent and validate every state transition",
-      "Retain reconciliation context instead of treating a successful HTTP response as completion"
-    ],
-    "outcome": "An order workflow designed to explain what happened, safely accept retries, and give operations useful state.",
-    "points": [
-      "Provider-independent payments",
-      "Retry-safe callback processing",
-      "Fulfillment-aware order states"
-    ],
-    "scenario": {
-      "request": "POST /webhooks/payment",
-      "event": "payment.captured",
-      "result": "Order confirmed · fulfillment queued"
-    },
-    "tags": [
-      "Laravel",
-      "Stripe",
-      "Razorpay",
-      "Webhooks"
-    ],
     "filters": [
       "ecommerce"
     ]
@@ -170,29 +55,6 @@ export const projects = [
     "icon": "bi-node-plus",
     "title": "One internal language for many external providers",
     "text": "SMS, email, payment, and notification services normalized behind contracts the rest of the product can use without provider-specific branching.",
-    "challenge": "Provider-specific authentication, payloads, timeouts, and errors leak complexity into every product workflow that uses them.",
-    "decisions": [
-      "Expose one internal contract and keep provider mapping inside adapters",
-      "Move slow delivery paths to queues with deliberate retry policies",
-      "Capture request context and normalized failure reasons for diagnosis"
-    ],
-    "outcome": "Product code can request an outcome without knowing which provider delivers it or how that provider represents failure.",
-    "points": [
-      "Consistent provider contracts",
-      "Queue-ready delivery handling",
-      "Diagnostic failure context"
-    ],
-    "scenario": {
-      "request": "POST /webhooks/provider",
-      "event": "delivery.requested",
-      "result": "Adapter selected · retry policy attached"
-    },
-    "tags": [
-      "REST",
-      "Queues",
-      "Webhooks",
-      "Logs"
-    ],
     "filters": [
       "integrations"
     ]
@@ -203,30 +65,6 @@ export const projects = [
     "icon": "bi-controller",
     "title": "A game platform built around live room state",
     "text": "Player identity, rooms, matches, scores, leaderboards, history, and administration framed as concurrent state with clear persistence boundaries.",
-    "challenge": "Fast-changing room state must feel immediate without losing durable match history or allowing unaccountable client actions.",
-    "decisions": [
-      "Use event-oriented interactions for live room changes",
-      "Keep transient room and leaderboard state in Redis",
-      "Persist authoritative results and guard every player action at the boundary"
-    ],
-    "outcome": "A clearer separation between live coordination, durable history, and administrative visibility.",
-    "points": [
-      "Event-oriented live interactions",
-      "Redis-backed room state",
-      "Accountable player history"
-    ],
-    "scenario": {
-      "request": "WS /rooms/alpha/join",
-      "event": "room.player_joined",
-      "result": "Room state broadcast · history retained"
-    },
-    "tags": [
-      "Node.js",
-      "WebSockets",
-      "Redis",
-      "MySQL",
-      "React"
-    ],
     "filters": [
       "gaming"
     ]
@@ -237,29 +75,6 @@ export const projects = [
     "icon": "bi-layers",
     "title": "A Spring Boot transaction service with explicit boundaries",
     "text": "A Java service that separates transport, validation, transaction policy, persistence, and provider communication so financial behavior remains testable and observable.",
-    "challenge": "Transaction APIs become fragile when controller code, provider calls, persistence, and retry behavior share the same execution boundary.",
-    "decisions": [
-      "Use DTO validation and service-layer policies before persistence",
-      "Protect state changes with transactional boundaries and idempotency",
-      "Expose structured failures and correlation identifiers for operations"
-    ],
-    "outcome": "A Spring Boot service shape that keeps financial rules readable while supporting retries, diagnostics, and incremental provider integration.",
-    "points": [
-      "Layered Spring Boot architecture",
-      "Transactional state transitions",
-      "Traceable API failure contracts"
-    ],
-    "scenario": {
-      "request": "POST /v1/transfers",
-      "event": "transaction.accepted",
-      "result": "Commit complete · outbox event ready"
-    },
-    "tags": [
-      "Java",
-      "Spring Boot",
-      "JPA",
-      "MySQL"
-    ],
     "filters": [
       "java",
       "fintech"
@@ -271,29 +86,6 @@ export const projects = [
     "icon": "bi-diagram-3",
     "title": "A workflow service that makes business transitions explicit",
     "text": "Assignments, approvals, deadlines, notifications, and audit history modeled as controlled Java domain behavior instead of disconnected CRUD updates.",
-    "challenge": "Enterprise workflows lose accountability when any client can update status directly and side effects run inside the original request.",
-    "decisions": [
-      "Represent permitted transitions in domain services",
-      "Publish slow notifications and integrations to asynchronous workers",
-      "Retain actor, timestamp, and transition context as audit history"
-    ],
-    "outcome": "A maintainable workflow boundary that supports operational reporting, controlled change, and future service integrations.",
-    "points": [
-      "Guarded domain transitions",
-      "Asynchronous side effects",
-      "Audit-ready workflow history"
-    ],
-    "scenario": {
-      "request": "PATCH /v1/tasks/482/approve",
-      "event": "workflow.transitioned",
-      "result": "Audit written · notification queued"
-    },
-    "tags": [
-      "Java",
-      "Spring Boot",
-      "REST",
-      "MySQL"
-    ],
     "filters": [
       "java",
       "integrations"

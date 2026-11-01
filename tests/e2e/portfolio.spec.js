@@ -47,7 +47,6 @@ test('filters systems and announces the result count', async ({ page }) => {
   await javaFilter.click();
   await expect(javaFilter).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('.project-card')).toHaveCount(2);
-  await expect(page.getByRole('button', { name: 'Open case study' })).toHaveCount(2);
   await expect(page.locator('#projectFilterStatus')).toContainText('Showing 2 Java systems');
 });
 
@@ -57,23 +56,6 @@ test('tracks sections that load after the initial render', async ({ page }) => {
   await contactSection.waitFor();
   await contactSection.scrollIntoViewIfNeeded();
   await expect(page.locator('#navLinks a[href="#contact"]')).toHaveClass(/active/);
-});
-
-test('opens a deep-linked case study and closes it with browser-compatible history', async ({ page }) => {
-  await page.goto('/?case=resilient-order-lifecycle');
-  const dialog = page.locator('dialog.project-dialog');
-  await expect(dialog).toBeVisible();
-  await expect(dialog.getByRole('heading', { level: 2 })).toContainText('order lifecycle');
-  await page.keyboard.press('Escape');
-  await expect(dialog).toBeHidden();
-  await expect(page).not.toHaveURL(/case=/);
-});
-
-test('opens a case study from the system card button', async ({ page }) => {
-  await page.goto('/#projects');
-  await page.getByRole('button', { name: 'Open case study' }).first().click();
-  await expect(page.locator('dialog.project-dialog')).toBeVisible();
-  await expect(page).toHaveURL(/case=care-access-platform/);
 });
 
 test('supports keyboard command search', async ({ page }) => {

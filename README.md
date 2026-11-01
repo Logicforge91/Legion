@@ -19,17 +19,15 @@ A responsive, single-page developer portfolio for Suman K S. The project is impl
 - Verified employer website links in the experience timeline
 - Production integrations showcase covering payments, messaging, external APIs, queues, webhooks, retries, and observability
 - Evidence-based working principles in place of unverifiable testimonial copy
-- On-demand JavaScript for the command palette; case-study dialogs remain in the main bundle for deployment-safe opening
+- On-demand JavaScript for the command palette and page sections
 - System-font rendering with no blocking Google Fonts request
 - Tree-shaken inline SVG icon masks and automatic stale-chunk recovery after deployments
 - Native profile sharing with clipboard fallback
 - Offline repeat-visit support through a lightweight service worker
-- Nine decision-focused case studies spanning health, fintech, education ERP, custom websites, ecommerce, integrations, game applications, and two Java/Spring Boot systems
-- Clearly labeled representative runtime flows for every system, showing a realistic request, domain event, and operational result
+- Nine project cards spanning health, fintech, education ERP, custom websites, ecommerce, integrations, game applications, and two Java/Spring Boot systems
 - Branded large-format social preview for LinkedIn, WhatsApp, and other link unfurls
-- Automated validation for case-study completeness, unique slugs, required assets, icon coverage, and Playwright test compilation
-- Deployment-safe case-study dialogs with Back-button support, dynamic metadata, and non-blocking project filtering
-- Playwright desktop and mobile smoke tests for layout, filters, dialogs, keyboard navigation, and contact validation
+- Automated validation for project data, unique slugs, required assets, icon coverage, and Playwright test compilation
+- Playwright desktop and mobile smoke tests for layout, filters, keyboard navigation, and contact validation
 
 ## Technology
 
@@ -52,7 +50,7 @@ Legion/
 │   │   ├── feedback/              # Error recovery UI
 │   │   ├── forms/                 # Contact form
 │   │   ├── layout/                # Header, footer, and scroll controls
-│   │   ├── overlays/              # Command palette and case-study dialog
+│   │   ├── overlays/              # Command palette
 │   │   ├── projects/               # Project cards, filters, and grid
 │   │   └── shared/                # UI primitives, sharing, and technology rail
 │   ├── config/
@@ -126,7 +124,7 @@ Portfolio content is grouped by domain in `src/data/portfolio/` and re-exported 
 - `journey` controls experience timeline entries.
 - `integrations` controls integration cards.
 - `skills` controls technology cards.
-- `projects` controls project details, tags, filters, icons, and card sizing.
+- `projects` controls project cards, filters, and icons.
 - `proof` controls animated achievement metrics.
 
 Section copy and markup live in `src/sections/`; their styles live in `src/styles/sections/`. Reusable interface elements live under `src/components/`, grouped by purpose. Project category labels and filter keys are defined in `src/config/projectFilters.js`.
@@ -140,7 +138,7 @@ Every project has a `filters` array. Its values must match the category filters 
 - `Spotlight` calculates pointer position and updates CSS variables for interactive lighting.
 - `Counter` animates metrics using `requestAnimationFrame` and an ease-out curve.
 - `Header` owns mobile-menu state and keyboard behavior.
-- `ProjectsSection` composes dedicated filter, grid, and card components; `useProjectCaseStudy` owns URL history and case-study metadata.
+- `ProjectsSection` composes dedicated filter, grid, and card components.
 - `usePageState` composes `useScrollState` and `useActiveSection` so scroll effects and section observation stay independent.
 - `useReducedMotion` reacts to operating-system preference changes and is shared by motion-heavy components.
 - `AppErrorBoundary` provides a resilient recovery screen if an unexpected render error reaches the application root.

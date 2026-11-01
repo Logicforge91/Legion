@@ -1,6 +1,6 @@
 import ProjectCard from './ProjectCard';
 
-export default function ProjectGrid({ projects, projectNumbers, onOpen }) {
+export default function ProjectGrid({ projects, projectNumbers }) {
   const resultLayout = projects.length === 1
     ? 'single-result'
     : projects.length === 2
@@ -14,7 +14,6 @@ export default function ProjectGrid({ projects, projectNumbers, onOpen }) {
           key={project.slug}
           project={project}
           number={String(projectNumbers.get(project.slug) ?? 0).padStart(2, '0')}
-          onOpen={onOpen}
         />
       ))}
     </div>

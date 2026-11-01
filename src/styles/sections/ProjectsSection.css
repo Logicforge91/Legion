@@ -78,13 +78,3 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
-
-.read-more {
-  margin-top: auto;
-  border: none;
-  background: transparent;
-  color: var(--accent);
-  font-weight: 700;
-  cursor: pointer;
-  text-align: left;
-}
