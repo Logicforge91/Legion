@@ -1,20 +1,20 @@
 /* ============================================================
-   LEGION PORTFOLIO — Senior-level clarity and premium polish
+   LEGION PORTFOLIO — product-fit premium senior backend polish
    ============================================================ */
 
 .hero-copy h1 {
-  max-width: 680px;
+  max-width: 700px;
   text-wrap: balance;
 }
 
 .hero-lede {
   max-width: 610px;
-  font-size: 1.04rem;
+  font-size: 1.05rem;
   line-height: 1.8;
 }
 
 .hero-title-accent {
-  background: linear-gradient(135deg, #f4f7d2 0%, #d9f8ff 42%, #d5d9ff 100%);
+  background: linear-gradient(135deg, #f1f7ba 0%, #d7f6ff 40%, #dfe0ff 100%);
 }
 
 .studio-card {
@@ -35,7 +35,7 @@
 }
 
 .contact-panel h3 {
-  line-height: 1.24;
+  line-height: 1.25;
 }
 
 .footer-availability {
@@ -59,6 +59,6 @@
   }
 }
 
-/* End senior-level clarity and premium polish */
+/* End product-fit premium backend polish */
 
 message
