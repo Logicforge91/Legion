@@ -1,4 +1,4 @@
-import { startTransition, useMemo, useState } from 'react';
+import { startTransition, useState } from 'react';
 import { projects } from '../data/portfolio';
 import { projectFilters, projectFilterLabels } from '../config/projectFilters';
 import { Reveal, SectionHeading } from '../components/shared/ui';
@@ -11,9 +11,9 @@ const projectNumbers = new Map(projects.map((project, index) => [project.slug, i
 export default function ProjectsSection() {
   const [activeFilter, setActiveFilter] = useState('all');
 
-  const visibleProjects = useMemo(() => projects.filter((project) => (
+  const visibleProjects = projects.filter((project) => (
     activeFilter === 'all' || project.filters.includes(activeFilter)
-  )), [activeFilter]);
+  ));
 
   const activeFilterLabel = projectFilterLabels.get(activeFilter) ?? 'Featured';
   const statusFilterLabel = activeFilter === 'java' ? 'Java' : activeFilterLabel;

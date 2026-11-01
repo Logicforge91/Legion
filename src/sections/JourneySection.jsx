@@ -1,8 +1,9 @@
 import { journey } from '../data/portfolio';
-import { Reveal, SectionHeading, Spotlight } from '../components/shared/ui';
+import { Reveal, SectionHeading } from '../components/shared/ui';
 import '../styles/sections/JourneySection.css';
 
 const nodePositions = ['top', 'right', 'lower-right', 'lower-left', 'left'];
+const formatMilestoneNumber = (index) => String(index + 1).padStart(2, '0');
 
 function JourneyLoop() {
   return (
@@ -56,12 +57,12 @@ export default function JourneySection() {
             <JourneyLoop />
             <p className="journey-overview__caption">Five chapters. One growing engineering mindset.</p>
           </div>
-          <div className="timeline" role="list" aria-label="Career milestones">
+          <ol className="timeline" aria-label="Career milestones">
             {journey.map((item, index) => (
-              <Reveal className="journey-milestone" key={`${item.period}-${item.title}`} role="listitem" style={{ '--milestone-index': index }}>
-                <Spotlight className="timeline-item">
+              <Reveal as="li" className="journey-milestone" key={`${item.period}-${item.title}`}>
+                <article className="timeline-item">
                   <header className="journey-milestone__header">
-                    <span className="timeline-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+                    <span className="timeline-index" aria-hidden="true">{formatMilestoneNumber(index)}</span>
                     <span className="timeline-year">{item.period}</span>
                   </header>
                   <h3>{item.title}</h3>
@@ -71,10 +72,10 @@ export default function JourneySection() {
                     </a>
                   )}
                   <p>{item.text}</p>
-                </Spotlight>
+                </article>
               </Reveal>
             ))}
-          </div>
+          </ol>
         </div>
       </div>
     </section>

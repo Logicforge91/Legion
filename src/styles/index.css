@@ -96,15 +96,11 @@ p { color:var(--muted); }
 .profile-ring,.stack-card>i { background:var(--surface-hover); color:var(--text); }
 .profile-ring { border:0; box-shadow:none; }
 .profile-ring span { color:white; background:var(--text); }
-.value-list>div,.timeline-item { border-color:var(--line); background:rgba(255,255,255,.62); box-shadow:none; }
-.timeline { gap:14px; }
-.timeline-item { border:1px solid var(--line); border-radius:18px; }
-.timeline-item::before { background:var(--accent); }
-.timeline-year { color:var(--accent); border-color:rgba(61,88,245,.2); background:rgba(61,88,245,.07); }
+.value-list>div { border-color:var(--line); background:rgba(255,255,255,.62); box-shadow:none; }
 .company-link { display:inline-block; margin:0 0 10px; color:var(--accent); font-size:.8rem; font-weight:700; text-decoration:none; }
 .company-link:hover { text-decoration:underline; }
-.timeline-item h3,.stack-card h3,.integration-card h3,.system-card h3,.proof-card h3,.testimonial-card h3,.contact-panel h3,.project-card h3 { color:var(--text); }
-.timeline-item p,.stack-card p,.integration-card p,.system-card p,.proof-card p,.testimonial-card p,.contact-panel p,.project-card p { color:var(--muted); }
+.stack-card h3,.integration-card h3,.system-card h3,.proof-card h3,.testimonial-card h3,.contact-panel h3,.project-card h3 { color:var(--text); }
+.stack-card p,.integration-card p,.system-card p,.proof-card p,.testimonial-card p,.contact-panel p,.project-card p { color:var(--muted); }
 .card-icon,.integration-icon,.system-icon { color:var(--accent); border-color:rgba(61,88,245,.18); background:rgba(61,88,245,.08); }
 .stack-card i { border:0; }
 .integration-flow { border:1px solid rgba(16,24,40,.1); border-radius:22px; background:var(--panel); }
@@ -255,7 +251,6 @@ footer { border-color:rgba(255,255,255,.12); color:white; background:var(--panel
   .site-shell .systems-grid,.site-shell .systems-grid.paired-results,.site-shell .integration-grid { grid-template-columns:1fr; }
   .site-shell .flow-track { grid-template-columns:1fr; }
   .site-shell .skills-section .stack-board,.site-shell .testimonial-rail,.site-shell .achievements-section .proof-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
-  .site-shell .journey-section .timeline-item { flex-direction:column; gap:12px; }
 }
 @media(max-width:520px) {
   .site-shell .skills-section .stack-board,.site-shell .testimonial-rail,.site-shell .achievements-section .proof-grid { grid-template-columns:1fr; }
@@ -331,20 +326,17 @@ footer { border-color:rgba(255,255,255,.12); color:white; background:var(--panel
 .site-shell .tech-chip-dot { background:var(--accent); }
 .site-shell .profile-card,.site-shell .stack-card,.site-shell .integration-card,.site-shell .system-card,.site-shell .proof-card,.site-shell .testimonial-card,.site-shell .work-style-card,.site-shell .contact-panel,.site-shell .project-card,.site-shell .availability-card { color:var(--text); border-color:rgba(16,24,40,.09); background:rgba(255,255,255,.88); box-shadow:0 12px 38px rgba(16,24,40,.055); }
 .site-shell .profile-card:hover,.site-shell .stack-card:hover,.site-shell .system-card:hover,.site-shell .project-card:hover { border-color:rgba(61,88,245,.3); box-shadow:0 18px 48px rgba(16,24,40,.11); }
-.site-shell .profile-card h3,.site-shell .stack-card h3,.site-shell .integration-card h3,.site-shell .system-card h3,.site-shell .proof-card h3,.site-shell .testimonial-card h3,.site-shell .contact-panel h3,.site-shell .project-card h3,.site-shell .timeline-item h3 { color:#101828; }
-.site-shell .profile-card p,.site-shell .stack-card p,.site-shell .integration-card p,.site-shell .system-card p,.site-shell .proof-card p,.site-shell .testimonial-card p,.site-shell .contact-panel p,.site-shell .project-card p,.site-shell .timeline-item p,.site-shell .section-copy p { color:#526078; }
+.site-shell .profile-card h3,.site-shell .stack-card h3,.site-shell .integration-card h3,.site-shell .system-card h3,.site-shell .proof-card h3,.site-shell .testimonial-card h3,.site-shell .contact-panel h3,.site-shell .project-card h3 { color:#101828; }
+.site-shell .profile-card p,.site-shell .stack-card p,.site-shell .integration-card p,.site-shell .system-card p,.site-shell .proof-card p,.site-shell .testimonial-card p,.site-shell .contact-panel p,.site-shell .project-card p,.site-shell .section-copy p { color:#526078; }
 .site-shell .profile-ring,.site-shell .stack-card>i { color:var(--accent); background:#edf0ff; }
 .site-shell .profile-ring span { color:white; background:var(--panel); }
-.site-shell .profile-facts>div,.site-shell .value-list>div,.site-shell .timeline-item { border-color:var(--line); background:rgba(255,255,255,.72); }
+.site-shell .profile-facts>div,.site-shell .value-list>div { border-color:var(--line); background:rgba(255,255,255,.72); }
 .site-shell .value-list>div { color:#344054; }
 .site-shell .profile-facts dt,.site-shell .card-icon,.site-shell .integration-icon,.site-shell .system-icon,.site-shell .proof-number,.site-shell .work-style-top i { color:var(--accent); }
 .site-shell .profile-facts dd,.site-shell .work-style-top span,.site-shell .work-style-signal { color:#526078; }
 .site-shell .card-icon,.site-shell .integration-icon,.site-shell .system-icon { border-color:rgba(61,88,245,.18); background:rgba(61,88,245,.07); }
 .site-shell .card-icon,.site-shell .integration-icon,.site-shell .system-icon { display:grid; width:42px; height:42px; place-items:center; border:1px solid rgba(61,88,245,.18); border-radius:13px; }
-.site-shell .timeline-year { color:var(--accent); border-color:rgba(61,88,245,.2); background:rgba(61,88,245,.06); }
-.site-shell .timeline-item::before,.site-shell .work-style-signal span { background:var(--accent); }
-.site-shell .company-link { color:var(--accent); }
-.site-shell .company-link:hover { color:var(--accent-hover); }
+.site-shell .work-style-signal span { background:var(--accent); }
 .site-shell .system-directory { color:#526078; border-color:var(--line); background:rgba(255,255,255,.72); }
 .site-shell .system-directory strong { color:var(--text); }
 .site-shell .filter-button { color:#526078; border-color:var(--line); background:rgba(255,255,255,.72); }
@@ -392,7 +384,6 @@ footer { border-color:rgba(255,255,255,.12); color:white; background:var(--panel
   .site-shell .systems-grid,.site-shell .systems-grid.paired-results,.site-shell .integration-grid { grid-template-columns:1fr; }
   .site-shell .flow-track { grid-template-columns:1fr; }
   .site-shell .skills-section .stack-board,.site-shell .testimonial-rail,.site-shell .achievements-section .proof-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
-  .site-shell .journey-section .timeline-item { flex-direction:column; gap:12px; }
 }
 @media(max-width:520px) {
   .site-shell .skills-section .stack-board,.site-shell .testimonial-rail,.site-shell .achievements-section .proof-grid { grid-template-columns:1fr; }
