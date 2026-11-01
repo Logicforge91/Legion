@@ -1,5 +1,5 @@
 import { Reveal, Spotlight } from '../components/shared/ui';
-import './AboutSection.css';
+import '../styles/sections/AboutSection.css';
 
 const values = [['bi-shield-check', 'Make authorization and validation part of the workflow—not decoration around it.'], ['bi-speedometer2', 'Shape schemas, queries, indexes, and caches around homegrown business rules.'], ['bi-arrows-angle-contract', 'Design for failure, permissions, and observability before the happy path becomes a release story.']];
 

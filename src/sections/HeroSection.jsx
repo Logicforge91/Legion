@@ -1,5 +1,6 @@
 ﻿import { Reveal, Spotlight } from '../components/shared/ui';
 import ShareProfileButton from '../components/shared/ShareProfileButton';
+import '../styles/sections/HeroSection.css';
 
 export default function HeroSection() {
   return <section id="hero" className="hero-section hero-studio-section" aria-labelledby="heroTitle">

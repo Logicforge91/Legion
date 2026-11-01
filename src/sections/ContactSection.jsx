@@ -1,6 +1,6 @@
 import { Reveal, Spotlight } from '../components/shared/ui';
 import ContactForm from '../components/forms/ContactForm';
-import './ContactSection.css';
+import '../styles/sections/ContactSection.css';
 
 const contactLinks = [
   ['mailto:sumanks1307@gmail.com', 'bi-envelope-fill', 'sumanks1307@gmail.com'],

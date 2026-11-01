@@ -1,6 +1,6 @@
 import { integrations } from '../data/portfolio';
 import { Reveal, SectionHeading, Spotlight } from '../components/shared/ui';
-import './IntegrationsSection.css';
+import '../styles/sections/IntegrationsSection.css';
 
 export default function IntegrationsSection() {
   return <section id="integrations" className="integrations-section" aria-labelledby="integrationsTitle">

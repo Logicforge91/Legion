@@ -47,7 +47,7 @@ if (width !== 1200 || height !== 630) {
 
 const sourceFiles = await collectSourceFiles(new URL('../src/', import.meta.url));
 const sourceText = (await Promise.all(sourceFiles.map((file) => readFile(file, 'utf8')))).join('\n');
-const iconCss = await readFile(new URL('../src/icons.css', import.meta.url), 'utf8');
+const iconCss = await readFile(new URL('../src/styles/icons.css', import.meta.url), 'utf8');
 const usedIcons = new Set(sourceText.match(/\bbi-[a-z0-9-]+\b/g) ?? []);
 const configuredIcons = new Set(iconCss.match(/(?<=\.)bi-[a-z0-9-]+(?=::before)/g) ?? []);
 const missingIcons = [...usedIcons].filter((icon) => !configuredIcons.has(icon)).sort();

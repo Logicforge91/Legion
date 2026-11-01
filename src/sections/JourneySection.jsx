@@ -1,6 +1,6 @@
 import { journey } from '../data/portfolio';
 import { Reveal, SectionHeading, Spotlight } from '../components/shared/ui';
-import './JourneySection.css';
+import '../styles/sections/JourneySection.css';
 
 const nodePositions = ['top', 'right', 'lower-right', 'lower-left', 'left'];
 

@@ -57,13 +57,15 @@ Legion/
 │   ├── config/                    # Navigation configuration
 │   ├── data/portfolio.js          # Portfolio content used by sections
 │   ├── hooks/                     # Reusable state and browser hooks
-│   ├── sections/                  # Components and styles for each site section
+│   ├── sections/                  # Page section components
 │   ├── styles/
+│   │   ├── sections/              # Styles scoped to page sections
 │   │   ├── base.css               # Shared responsive layout styles
-│   │   └── index.css              # Global theme and design tokens
+│   │   ├── icons.css              # Generated, tree-shaken icon masks
+│   │   ├── index.css              # Global layout and component styles
+│   │   └── tokens.css             # Design tokens
 │   ├── App.jsx                    # Page composition and lazy-loaded sections
 │   ├── main.jsx                   # React application entry point
-│   └── icons.css                  # Generated, tree-shaken icon masks
 ├── index.html                     # Vite host document and metadata
 ├── vite.config.js                 # React plugin and production build settings
 └── package.json

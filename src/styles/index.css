@@ -1,37 +1,8 @@
 @import "tailwindcss" source(none);
-@import "../icons.css";
+@import "./icons.css";
+@import "./tokens.css";
 @import "./base.css";
 @source "../**/*.{js,jsx}";
-
-:root {
-  color-scheme: light;
-  --content-width: 1280px;
-  --page-gutter: clamp(15px, 3vw, 24px);
-  --section-space: clamp(68px, 8vw, 116px);
-  --radius-card: 20px;
-  --focus-ring: color-mix(in srgb, var(--accent) 48%, transparent);
-  --bg: #f4f6fa;
-  --text: #101828;
-  --muted: #526078;
-  --soft: #344054;
-  --line: rgba(16, 24, 40, .11);
-  --line-strong: rgba(61, 88, 245, .38);
-  --accent: #3d58f5;
-  --accent-hover: #2943d1;
-  --accent-2: #c8ec68;
-  --accent-2-ink: #34450b;
-  --panel: #172033;
-  --panel-strong: #101625;
-  --surface-hover: #edf0ff;
-  --on-panel: #fff;
-  --on-panel-muted: #c3cad7;
-  --card: #fff;
-  --shadow: 0 24px 70px rgba(16, 24, 40, .09);
-  --shadow-soft: 0 12px 36px rgba(16, 24, 40, .06);
-  --font-display: Inter, "Aptos", "Segoe UI", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-heading: "Iowan Old Style", "Baskerville", "Palatino Linotype", Georgia, serif;
-  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-}
 
 html { scroll-behavior: smooth; scroll-padding-top: 6rem; background: var(--bg); -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 body { min-height:100vh; overflow-x:hidden; color:var(--text); background:radial-gradient(ellipse at 84% 0,color-mix(in srgb,var(--accent) 8%,transparent),transparent 34rem),radial-gradient(ellipse at 4% 43%,color-mix(in srgb,var(--accent-2) 10%,transparent),transparent 29rem),var(--bg); font-family:var(--font-display); font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; font-kerning:normal; }
