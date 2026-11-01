@@ -4,13 +4,17 @@ import { navigationItems } from '../../config/navigation';
 export default function Header({ activeSection, scrolled, onOpenCommandPalette }) {
   const [open, setOpen] = useState(false);
   const menuRef = useRef(null);
+  const toggleRef = useRef(null);
 
   useEffect(() => {
     const closeOnOutsidePointer = (event) => {
       if (!menuRef.current?.contains(event.target)) setOpen(false);
     };
     const closeOnEscape = (event) => {
-      if (event.key === 'Escape') setOpen(false);
+      if (event.key === 'Escape' && open && !document.querySelector('dialog[open]')) {
+        setOpen(false);
+        toggleRef.current?.focus();
+      }
     };
 
     document.addEventListener('pointerdown', closeOnOutsidePointer);
@@ -19,7 +23,7 @@ export default function Header({ activeSection, scrolled, onOpenCommandPalette }
       document.removeEventListener('pointerdown', closeOnOutsidePointer);
       document.removeEventListener('keydown', closeOnEscape);
     };
-  }, []);
+  }, [open]);
 
   const closeMenu = () => setOpen(false);
 
@@ -33,6 +37,7 @@ export default function Header({ activeSection, scrolled, onOpenCommandPalette }
 
         <div ref={menuRef}>
           <button
+            ref={toggleRef}
             id="navToggle"
             type="button"
             aria-controls="navLinks"

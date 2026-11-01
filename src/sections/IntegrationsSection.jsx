@@ -10,7 +10,7 @@ export default function IntegrationsSection() {
       </SectionHeading>
       <div className="integration-layout">
         <Reveal className="integration-flow-wrap">
-          <Spotlight as="div" className="integration-flow" aria-label="Integration request flow">
+          <Spotlight as="div" className="integration-flow" role="group" aria-label="Integration request flow">
             <div className="flow-heading"><span className="panel-kicker">Reference flow</span><strong>From request to reliable delivery</strong></div>
             <div className="flow-track">
               <div className="flow-node"><i className="bi bi-window" aria-hidden="true" /><span>Client</span><small>validated request</small></div>

@@ -12,6 +12,8 @@ const commands = [
   { label: 'Send an email', hint: 'Email', icon: 'bi-envelope', href: 'mailto:sumanks1307@gmail.com', keywords: 'email contact message' },
 ];
 
+const getCommandId = (command) => `command-${command.label.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+
 export default function CommandPalette({ open, onClose }) {
   const reducedMotion = useReducedMotion();
   const dialogRef = useRef(null);
@@ -49,16 +51,24 @@ export default function CommandPalette({ open, onClose }) {
 
   const handleKeyDown = (event) => {
     if (!filteredCommands.length) return;
-    if (event.key === 'ArrowDown') { event.preventDefault(); setActiveIndex((index) => (index + 1) % filteredCommands.length); }
-    if (event.key === 'ArrowUp') { event.preventDefault(); setActiveIndex((index) => (index - 1 + filteredCommands.length) % filteredCommands.length); }
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      const isSearchInput = event.target === inputRef.current;
+      const nextIndex = event.key === 'ArrowDown'
+        ? (isSearchInput ? selectedIndex : (selectedIndex + 1) % filteredCommands.length)
+        : (selectedIndex - 1 + filteredCommands.length) % filteredCommands.length;
+
+      setActiveIndex(nextIndex);
+      requestAnimationFrame(() => document.getElementById(getCommandId(filteredCommands[nextIndex]))?.focus());
+    }
     if (event.key === 'Enter') { event.preventDefault(); runCommand(filteredCommands[selectedIndex]); }
   };
 
   return <dialog ref={dialogRef} className="command-dialog" aria-label="Portfolio commands" onClose={onClose} onClick={(event) => { if (event.target === dialogRef.current) onClose(); }}>
     <div className="command-shell" onKeyDown={handleKeyDown}>
       <div className="command-search"><i className="bi bi-search" aria-hidden="true" /><input ref={inputRef} value={query} onChange={(event) => { setQuery(event.target.value); setActiveIndex(0); }} placeholder="Search portfolio or run an action…" aria-label="Search commands" /><kbd>ESC</kbd></div>
-      <div className="command-results" aria-label="Available commands">
-        {filteredCommands.map((command, index) => <button key={command.label} className={index === selectedIndex ? 'active' : ''} type="button" onMouseEnter={() => setActiveIndex(index)} onFocus={() => setActiveIndex(index)} onClick={() => runCommand(command)}><i className={`bi ${command.icon}`} aria-hidden="true" /><span>{command.label}</span><small>{command.hint}</small><i className="bi bi-arrow-return-left command-enter" aria-hidden="true" /></button>)}
+      <div className="command-results" role="group" aria-label="Available commands">
+        {filteredCommands.map((command, index) => <button id={getCommandId(command)} key={command.label} className={index === selectedIndex ? 'active' : ''} type="button" onMouseEnter={() => setActiveIndex(index)} onFocus={() => setActiveIndex(index)} onClick={() => runCommand(command)}><i className={`bi ${command.icon}`} aria-hidden="true" /><span>{command.label}</span><small>{command.hint}</small><i className="bi bi-arrow-return-left command-enter" aria-hidden="true" /></button>)}
         {!filteredCommands.length && <div className="command-empty"><i className="bi bi-search" aria-hidden="true" /><p>No matching action found.</p></div>}
       </div>
       <div className="command-footer"><span><kbd>↑</kbd><kbd>↓</kbd> Navigate</span><span><kbd>↵</kbd> Select</span><span><kbd>Esc</kbd> Close</span></div>

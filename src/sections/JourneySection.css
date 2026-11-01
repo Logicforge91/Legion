@@ -68,7 +68,7 @@
 
 .journey-loop__center {
   display: grid;
-  width: 41%;
+  width: 34%;
   gap: 8px;
   justify-items: center;
   text-align: center;
@@ -93,7 +93,7 @@
 .journey-loop__node {
   position: absolute;
   display: grid;
-  width: 34%;
+  width: 32%;
   gap: 4px;
   justify-items: center;
   text-align: center;
@@ -107,22 +107,22 @@
 
 .journey-loop__node--right {
   top: 27%;
-  right: -4%;
+  right: 0;
 }
 
 .journey-loop__node--lower-right {
-  right: 2%;
+  right: 12%;
   bottom: 5%;
 }
 
 .journey-loop__node--lower-left {
   bottom: 5%;
-  left: 2%;
+  left: 12%;
 }
 
 .journey-loop__node--left {
   top: 27%;
-  left: -4%;
+  left: 0;
 }
 
 .journey-loop__node-number {
@@ -150,7 +150,7 @@
   overflow: hidden;
   max-width: 100%;
   color: var(--text, #101828);
-  font-size: clamp(0.57rem, 0.86vw, 0.72rem);
+  font-size: clamp(0.64rem, 0.86vw, 0.76rem);
   font-weight: 650;
   line-height: 1.35;
   -webkit-box-orient: vertical;
@@ -233,6 +233,8 @@
     font-size: clamp(0.94rem, 4vw, 1.2rem);
   }
 
+  .journey-loop__node { width: 34%; }
+
   .journey-loop__node-year {
     font-size: clamp(0.66rem, 2.8vw, 0.78rem);
   }
@@ -247,7 +249,8 @@
     width: min(100%, 350px);
   }
 
-  .journey-loop__node {
-    width: 36%;
-  }
+  .journey-loop__node { width: 35%; }
+
+  .journey-loop__node--lower-right { right: 11%; }
+  .journey-loop__node--lower-left { left: 11%; }
 }

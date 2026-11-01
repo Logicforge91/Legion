@@ -5,17 +5,25 @@ import App from './App';
 import AppErrorBoundary from './components/feedback/AppErrorBoundary';
 import { registerServiceWorker } from './registerServiceWorker';
 
+const chunkRecoveryKey = 'legion-chunk-recovery';
+const chunkRecoveryCooldown = 30_000;
+
+function shouldRecoverStaleChunk() {
+  try {
+    const lastRecovery = Number(window.sessionStorage.getItem(chunkRecoveryKey));
+    if (lastRecovery && Date.now() - lastRecovery < chunkRecoveryCooldown) return false;
+
+    window.sessionStorage.setItem(chunkRecoveryKey, String(Date.now()));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 window.addEventListener('vite:preloadError', (event) => {
   event.preventDefault();
-  const recoveryKey = 'legion-chunk-recovery';
-  if (window.sessionStorage.getItem(recoveryKey)) return;
-  window.sessionStorage.setItem(recoveryKey, '1');
-  window.location.reload();
+  if (shouldRecoverStaleChunk()) window.location.reload();
 });
-
-window.addEventListener('load', () => {
-  window.sessionStorage.removeItem('legion-chunk-recovery');
-}, { once: true });
 
 registerServiceWorker();
 
