@@ -46,15 +46,15 @@ export default function HeroSection() {
       <Reveal className="hero-copy hero-studio-copy">
         <p className="eyebrow"><span />Suman K S / Backend Engineer</p>
         <h1 id="heroTitle">Systems that feel <span className="hero-title-accent">effortless.</span></h1>
-        <p className="hero-lede">I turn complex business rules into calm, dependable backend experiences—clear APIs, intentional data, resilient integrations, and workflows that stay understandable as products grow.</p>
-        <div className="hero-actions"><a href="#projects" className="btn btn-primary">View selected work <i className="bi bi-arrow-down-right" aria-hidden="true" /></a><a href="#contact" className="btn btn-ghost">Get in touch</a></div>
-        <div className="hero-footer-row"><div className="hero-meta" aria-label="Current availability"><span className="hero-meta-item"><span className="hero-meta-dot" />Open to backend roles</span><span className="hero-meta-item">Remote / hybrid · India</span></div><ShareProfileButton /></div>
+        <p className="hero-lede">I turn complex business rules into calm, dependable backend experiences—clear APIs, intentional data, resilient integrations, and workflows that stay understandable under pressure.</p>
+        <div className="hero-actions"><a href="#projects" className="btn btn-primary">View selected work <i className="bi bi-arrow-down-right" aria-hidden="true" /></a><a href="#contact" className="btn btn-secondary">Let's build</a></div>
+        <div className="hero-footer-row"><div className="hero-meta" aria-label="Current availability"><span className="hero-meta-item"><span className="hero-meta-dot" />Open to backend roles</span></div><ShareProfileButton /></div>
       </Reveal>
       <Reveal className="hero-studio-visual"><Spotlight as="aside" className="studio-card" aria-label="Developer profile overview">
         <div className="studio-orb studio-orb-one" aria-hidden="true" /><div className="studio-orb studio-orb-two" aria-hidden="true" />
         <div className="studio-card-head"><span>Selected practice</span><span className="studio-live"><i />Currently available</span></div>
         <div className="studio-monogram" aria-hidden="true">SK</div>
-        <div className="studio-copy"><p>Building reliable foundations for workflow-heavy products.</p><div className="studio-role"><i className="bi bi-stars" aria-hidden="true" /><span ref={typedTextRef} /></div></div>
+        <div className="studio-copy"><p>Building reliable foundations for workflow-heavy products.</p><div className="studio-role"><i className="bi bi-stars" aria-hidden="true" /><span ref={typedTextRef} aria-live="polite" /></div></div>
         <div className="studio-metrics">{metrics.map(([value, suffix, label, decimals]) => <div key={label}><strong><Counter value={value} suffix={suffix} decimals={decimals} /></strong><span>{label}</span></div>)}</div>
         <a className="studio-resume" href="/assets/resume.pdf" download>Download résumé <i className="bi bi-arrow-up-right" aria-hidden="true" /></a>
       </Spotlight></Reveal>
