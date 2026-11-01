@@ -1,99 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
-import { navigationItems } from '../../config/navigation';
+import { useEffect, useRef } from 'react';
+import { Counter, Reveal, Spotlight } from '../components/ui';
+import { useReducedMotion } from '../hooks/useReducedMotion';
+import ShareProfileButton from '../components/ShareProfileButton';
 
-export default function Header({ activeSection, scrolled, onOpenCommandPalette }) {
-  const [open, setOpen] = useState(false);
-  const menuRef = useRef(null);
-
-  useEffect(() => {
-    const closeMenu = (event) => {
-      if (event.key === 'Escape') {
-        setOpen(false);
-        return;
-      }
-
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setOpen(false);
-      }
-    };
-
-    document.addEventListener('click', closeMenu);
-    document.addEventListener('keydown', closeMenu);
-
-    return () => {
-      document.removeEventListener('click', closeMenu);
-      document.removeEventListener('keydown', closeMenu);
-    };
-  }, []);
-
-  const collapsed = scrolled;
-
-  return (
-    <header className={`site-header ${collapsed ? 'is-scrolled is-collapsed' : ''} border-b border-white/10 bg-slate-950/70 shadow-[0_10px_30px_rgba(2,6,23,0.3)] backdrop-blur-xl`}>
-      <div className="site-container nav-shell flex items-center justify-between gap-4">
-        <a href="#hero" className="logo inline-flex items-center gap-3 text-slate-50 hover:text-lime-300" aria-label="Go to home">
-          <span className="logo-mark inline-flex h-8 w-8 items-center justify-center rounded-full border border-lime-300/40 bg-lime-300/10 text-[0.7rem] font-black text-lime-300" aria-hidden="true">SK</span>
-          <span className="logo-text text-sm font-semibold tracking-[0.18em] text-slate-200 uppercase">Suman K S</span>
-        </a>
-
-        <div ref={menuRef} className="relative">
-          <button
-            id="navToggle"
-            type="button"
-            aria-controls="navLinks"
-            aria-expanded={open}
-            aria-label="Toggle navigation"
-            onClick={(event) => {
-              event.stopPropagation();
-              setOpen((value) => !value);
-            }}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-100 transition hover:border-lime-300/50 hover:bg-lime-300/10 md:hidden"
-          >
-            <span aria-hidden="true" className="sr-only">Open menu</span>
-            <span aria-hidden="true" className="flex h-4 w-4 flex-col justify-between">
-              <span className="block h-px w-full rounded-full bg-current" />
-              <span className="block h-px w-full rounded-full bg-current" />
-              <span className="block h-px w-full rounded-full bg-current" />
-            </span>
-          </button>
-
-          <nav id="siteNav" aria-label="Main navigation" className="block">
-            <ul id="navLinks" className={`${open ? 'show' : ''} md:flex`}>
-              {navigationItems.map(([id, label]) => (
-                <li key={id}>
-                  <a
-                    href={`#${id}`}
-                    className={activeSection === id ? 'active text-slate-50 bg-white/8' : 'text-slate-300 hover:text-slate-50 hover:bg-white/5'}
-                    aria-current={activeSection === id ? 'page' : undefined}
-                    onClick={() => setOpen(false)}
-                  >
-                    {label}
-                  </a>
-                </li>
-              ))}
-              <li>
-                <a href="#contact" className="nav-cta inline-flex items-center rounded-full border border-lime-300/30 bg-lime-300/10 px-3 py-2 text-sm font-medium text-lime-200 transition hover:border-lime-300/60 hover:bg-lime-300/20" onClick={() => setOpen(false)}>
-                  Build with me
-                </a>
-              </li>
-              <li>
-                <button
-                  className="nav-command inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm font-medium text-slate-100 transition hover:border-sky-300/50 hover:bg-sky-400/10"
-                  type="button"
-                  aria-label="Open command palette"
-                  onClick={() => {
-                    setOpen(false);
-                    onOpenCommandPalette();
-                  }}
-                >
-                  <i className="bi bi-search" aria-hidden="true" />
-                  Search
-                </button>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </header>
-  );
+const metrics = [[50, '+', 'backend systems'], [5, '+', 'years in production'], [15, '+', 'product contexts'], [4, '', 'core concerns']];
+const roleText = 'Laravel · Java · APIs · product-ready systems';
+export default function HeroSection() {
+  const typedTextRef = useRef(null); const reducedMotion = useReducedMotion();
+  useEffect(() => { const node = typedTextRef.current; if (!node) return undefined; if (reducedMotion) { node.textContent = roleText; return undefined; } let index = 0; node.textContent = ''; const timer = window.setInterval(() => { index += 1; node.textContent = roleText.slice(0, index); if (index === roleText.length) window.clearInterval(timer); }, 34); return () => window.clearInterval(timer); }, [reducedMotion]);
+  return <section id="hero" className="hero-section hero-studio-section" aria-labelledby="heroTitle"><div className="site-container hero-statusbar"><span><i />Available for selected backend roles</span><span>Independent portfolio / {new Date().getFullYear()}</span><span>Bengaluru, India</span></div><div className="site-container hero-studio-grid"><Reveal className="hero-copy hero-studio-copy"><p className="eyebrow"><span />Suman K S / Backend Engineer</p><h1 id="heroTitle">Systems that feel <span className="hero-title-accent">effortless.</span></h1><p className="hero-lede">I turn complex business rules into calm, dependable backend experiences—clear APIs, intentional data, resilient integrations, and workflows that stay understandable as products grow.</p><div className="hero-actions"><a href="#projects" className="btn btn-primary">View selected work <i className="bi bi-arrow-down-right" aria-hidden="true" /></a><a href="#contact" className="btn btn-ghost">Get in touch</a></div><div className="hero-footer-row"><div className="hero-meta"><span><i />Open to backend roles</span><span>Remote / hybrid · India</span></div><ShareProfileButton /></div></Reveal><Reveal className="hero-studio-visual"><Spotlight as="aside" className="studio-card"><div className="studio-orb studio-orb-one" /><div className="studio-orb studio-orb-two" /><div className="studio-card-head"><span>Selected practice</span><span className="studio-live"><i />Currently available</span></div><div className="studio-monogram" aria-hidden="true">SK</div><div className="studio-copy"><p>Building reliable foundations for workflow-heavy products.</p><div className="studio-role"><i className="bi bi-stars" aria-hidden="true" /><span ref={typedTextRef} /></div></div><div className="studio-metrics">{metrics.map(([value, suffix, label]) => <div key={label}><strong><Counter value={value} suffix={suffix} /></strong><span>{label}</span></div>)}</div><a className="studio-resume" href="/assets/resume.pdf" download>Download résumé <i className="bi bi-arrow-up-right" aria-hidden="true" /></a></Spotlight></Reveal></div></section>;
 }
