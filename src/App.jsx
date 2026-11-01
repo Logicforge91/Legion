@@ -1,5 +1,4 @@
 import { lazy, memo, Suspense } from 'react';
-import AmbientCanvas from './components/AmbientCanvas';
 import TechMarquee from './components/TechMarquee';
 import Footer from './components/layout/Footer';
 import Header from './components/layout/Header';
@@ -61,14 +60,8 @@ export default function App() {
 
   return (
     <div className="site-shell min-h-screen bg-slate-950 text-slate-50 antialiased">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_top_left,rgba(214,247,106,0.14),transparent_26%),radial-gradient(circle_at_top_right,rgba(138,232,255,0.13),transparent_28%),radial-gradient(circle_at_bottom,rgba(96,165,250,0.1),transparent_30%)]"
-      />
       <a className="skip-link" href="#content">Skip to content</a>
       <div className="scroll-progress" aria-hidden="true" />
-      <AmbientCanvas />
-      <div className="site-noise" aria-hidden="true" />
       <div className="relative z-10">
         <Header activeSection={activeSection} scrolled={headerScrolled} onOpenCommandPalette={openCommandPalette} />
         <PortfolioContent />
