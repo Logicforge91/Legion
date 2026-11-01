@@ -23,7 +23,7 @@ function SectionFallback() {
 }
 
 const PortfolioContent = memo(function PortfolioContent() {
-  return <main id="content">
+  return <main id="content" className="relative z-10">
     <HeroSection />
     <TechMarquee />
     <Suspense fallback={<SectionFallback />}>
@@ -57,15 +57,20 @@ export default function App() {
   const { activeSection, headerScrolled, showScrollTop } = usePageState();
   const { commandPaletteOpen, openCommandPalette, closeCommandPalette } = useCommandPalette();
 
-  return <>
-    <a className="skip-link" href="#content">Skip to content</a>
-    <div className="scroll-progress" aria-hidden="true" />
-    <AmbientCanvas />
-    <div className="site-noise" aria-hidden="true" />
-    <Header activeSection={activeSection} scrolled={headerScrolled} onOpenCommandPalette={openCommandPalette} />
-    <PortfolioContent />
-    <Footer />
-    <ScrollTopButton visible={showScrollTop} />
-    {commandPaletteOpen && <Suspense fallback={null}><CommandPalette open onClose={closeCommandPalette} /></Suspense>}
-  </>;
+  return (
+    <div className="site-shell min-h-screen bg-slate-950 text-slate-50 antialiased">
+      <div aria-hidden="true" className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_top_left,rgba(214,247,106,0.14),transparent_26%),radial-gradient(circle_at_top_right,rgba(138,232,255,0.13),transparent_28%),radial-gradient(circle_at_bottom,rgba(96,165,250,0.1),transparent_30%)]" />
+      <a className="skip-link" href="#content">Skip to content</a>
+      <div className="scroll-progress" aria-hidden="true" />
+      <AmbientCanvas />
+      <div className="site-noise" aria-hidden="true" />
+      <div className="relative z-10">
+        <Header activeSection={activeSection} scrolled={headerScrolled} onOpenCommandPalette={openCommandPalette} />
+        <PortfolioContent />
+        <Footer />
+        <ScrollTopButton visible={showScrollTop} />
+      </div>
+      {commandPaletteOpen && <Suspense fallback={null}><CommandPalette open onClose={closeCommandPalette} /></Suspense>}
+    </div>
+  );
 }
