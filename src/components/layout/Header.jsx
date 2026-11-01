@@ -7,10 +7,19 @@ export default function Header({ activeSection, scrolled, onOpenCommandPalette }
 
   useEffect(() => {
     const closeMenu = (event) => {
-      if (event.key === 'Escape' || !menuRef.current?.contains(event.target)) setOpen(false);
+      if (event.key === 'Escape') {
+        setOpen(false);
+        return;
+      }
+
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setOpen(false);
+      }
     };
+
     document.addEventListener('click', closeMenu);
     document.addEventListener('keydown', closeMenu);
+
     return () => {
       document.removeEventListener('click', closeMenu);
       document.removeEventListener('keydown', closeMenu);
