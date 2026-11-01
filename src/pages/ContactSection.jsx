@@ -1,17 +1,14 @@
 import { Reveal, Spotlight } from '../components/ui';
-import ContactForm from '../components/ContactForm';
 
-const contactLinks = [
-  ['mailto:sumanks1307@gmail.com', 'bi-envelope-fill', 'sumanks1307@gmail.com'],
-  ['tel:+917996049769', 'bi-telephone-fill', '+91 79960 49769'],
-  ['https://wa.me/917996049769', 'bi-whatsapp', 'WhatsApp'],
-  ['https://www.linkedin.com/in/suman-k-s-a55868184/', 'bi-linkedin', 'LinkedIn'],
-  ['https://github.com/Logicforge91', 'bi-github', 'GitHub'],
+const values = [
+  ['bi-shield-check', 'I design auth, validation, and permission boundaries so the business logic stays predictable.'],
+  ['bi-speedometer2', 'I optimize schemas, queries, and service flow around real user behavior and production bottlenecks.'],
+  ['bi-diagram-3', 'I build integrations that fail safely, retry smartly, and stay understandable when the system is under pressure.'],
 ];
 
-export default function ContactSection() {
-  return <section id="contact" className="contact-section" aria-labelledby="contactTitle"><div className="site-container contact-grid">
-    <Reveal className="contact-copy"><p className="eyebrow"><span />Next conversation</p><h2 id="contactTitle">If the role involves APIs, data, integrations, and ownership—we should talk.</h2><p>Send the product context, the backend challenge, and what success should look like. I am most useful where business workflows need clear engineering decisions.</p><Spotlight as="div" className="availability-card"><span className="status-pill"><span />Open to work</span><p>Best fit: backend-heavy products, Laravel platforms, API and integration work, and Java teams that value production-minded ownership.</p></Spotlight></Reveal>
-    <Reveal><Spotlight as="div" className="contact-panel"><p className="panel-kicker">Direct message · replies typically within 1–2 business days</p><h3>Start with the problem, not the job description.</h3><ContactForm /><div className="contact-divider"><span>or connect directly</span></div><div className="contact-links">{contactLinks.map(([href, icon, label]) => { const external = href.startsWith('http'); return <a key={label} href={href} target={external ? '_blank' : undefined} rel={external ? 'noreferrer' : undefined} aria-label={label}><i className={`bi ${icon}`} aria-hidden="true" /><span>{label}</span></a>; })}</div></Spotlight></Reveal>
+export default function AboutSection() {
+  return <section id="about" className="about-section" aria-labelledby="aboutTitle"><div className="site-container split-layout">
+    <Reveal className="section-copy"><p className="eyebrow"><span />Profile</p><h2 id="aboutTitle">Laravel-first. Java-forward. Built for real product work.</h2><p>I’m Suman K S, a backend engineer who enjoys the part where product intent meets system detail. I care about APIs that scale, data patterns that hold up, and integrations that stay resilient long after launch.</p><p>My work sits at the intersection of engineering discipline and business clarity: turning messy workflows into structured systems, reducing operational risk, and making the backend feel calm even when the product is growing fast.</p><div className="value-list">{values.map(([icon, text]) => <div key={text}><i className={`bi ${icon}`} aria-hidden="true" /><span>{text}</span></div>)}</div></Reveal>
+    <Reveal><Spotlight as="aside" className="profile-card" aria-label="Developer profile summary"><div className="profile-ring"><span>SK</span></div><h3>Suman K S</h3><p>Backend engineer for workflow-heavy products. I help teams turn complexity into maintainable systems with clean boundaries, strong data logic, and dependable execution.</p><dl className="profile-facts"><div><dt>Focus</dt><dd>API design, data integrity, integrations, workflow orchestration</dd></div><div><dt>Stack</dt><dd>Laravel, Java, Spring Boot, MySQL, Redis, Docker, REST, queues</dd></div><div><dt>Location</dt><dd>Bengaluru, India</dd></div></dl></Spotlight></Reveal>
   </div></section>;
 }

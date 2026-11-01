@@ -1,10 +1,50 @@
-import { Reveal, Spotlight } from '../components/ui';
+import { useEffect, useRef } from 'react';
+import { Counter, Reveal, Spotlight } from '../components/ui';
+import { useReducedMotion } from '../hooks/useReducedMotion';
+import ShareProfileButton from '../components/ShareProfileButton';
 
-const values = [['bi-shield-check', 'Make authorization and validation part of the workflow—not decoration around it.'], ['bi-speedometer2', 'Shape schemas, queries, indexes, and caches around how the product is actually used.'], ['bi-diagram-3', 'Keep controllers thin, contracts explicit, and business behavior readable across Laravel and Spring Boot.']];
+const metrics = [[50, '+', 'backend systems', 0], [5, '+', 'years in production', 0], [15, '+', 'product contexts', 0], [4, '', 'core concerns', 0]];
+const roleText = 'Laravel · Java · APIs · resilient systems';
 
-export default function AboutSection() {
-  return <section id="about" className="about-section" aria-labelledby="aboutTitle"><div className="site-container split-layout">
-    <Reveal className="section-copy"><p className="eyebrow"><span />Profile</p><h2 id="aboutTitle">Laravel-first. Java-forward. Grounded in production reality.</h2><p>I am Suman K S, a Bengaluru-based backend developer shaped by business software: systems where permissions matter, data outlives screens, and a small integration failure can become an operational problem.</p><p>Laravel is where I have the deepest delivery experience. Java and Spring Boot are where I am expanding that foundation—carrying forward the same habits around boundaries, transactions, observability, and maintainable change.</p><div className="value-list">{values.map(([icon, text]) => <div key={icon}><i className={`bi ${icon}`} aria-hidden="true" /><span>{text}</span></div>)}</div></Reveal>
-    <Reveal><Spotlight as="aside" className="profile-card" aria-label="Developer profile summary"><div className="profile-ring"><span>SK</span></div><h3>Suman K S</h3><p>Backend engineer for workflow-heavy products and connected systems.</p><dl className="profile-facts"><div><dt>Based in</dt><dd>Bengaluru, India</dd></div><div><dt>Deepest experience</dt><dd>Laravel, PHP, MySQL, APIs, integrations</dd></div><div><dt>Expanding into</dt><dd>Java, Spring Boot, Redis, Docker</dd></div></dl></Spotlight></Reveal>
-  </div></section>;
+export default function HeroSection() {
+  const typedTextRef = useRef(null);
+  const reducedMotion = useReducedMotion();
+
+  useEffect(() => {
+    const node = typedTextRef.current;
+    if (!node) return undefined;
+    if (reducedMotion) { node.textContent = roleText; return undefined; }
+    let index = 0;
+    node.textContent = '';
+    const timer = window.setInterval(() => {
+      index += 1;
+      node.textContent = roleText.slice(0, index);
+      if (index === roleText.length) window.clearInterval(timer);
+    }, 34);
+    return () => window.clearInterval(timer);
+  }, [reducedMotion]);
+
+  return <section id="hero" className="hero-section hero-studio-section" aria-labelledby="heroTitle">
+    <div className="site-container hero-statusbar" aria-label="Portfolio status">
+      <span><i />Available for selected backend roles</span><span>Independent portfolio / {new Date().getFullYear()}</span><span className="hero-statusbar-time">Bengaluru, India</span>
+    </div>
+    <div className="site-container hero-studio-grid">
+      <Reveal className="hero-copy hero-studio-copy">
+        <p className="eyebrow"><span />Suman K S / Backend Engineer</p>
+        <h1 id="heroTitle">I build backend systems that make products feel <span className="hero-title-accent">effortless.</span></h1>
+        <p className="hero-lede">I’m Suman — a backend engineer focused on reliable APIs, clean data flows, and integrations that keep production systems calm under real pressure. I help teams turn messy business rules into maintainable software that ships with confidence.</p>
+        <div className="hero-actions"><a href="#projects" className="btn btn-primary">View selected work <i className="bi bi-arrow-down-right" aria-hidden="true" /></a><a href="#contact" className="btn btn-ghost">Hire me <i className="bi bi-arrow-up-right" aria-hidden="true" /></a></div>
+        <div className="hero-footer-row"><div className="hero-meta" aria-label="Current availability"><span className="hero-meta-item"><span className="hero-meta-dot" />Open to backend roles</span><span className="hero-meta-item"><span className="hero-meta-dot hero-meta-dot-alt" />Remote-friendly</span></div><ShareProfileButton /></div>
+      </Reveal>
+      <Reveal className="hero-studio-visual"><Spotlight as="aside" className="studio-card" aria-label="Developer profile overview">
+        <div className="studio-orb studio-orb-one" aria-hidden="true" /><div className="studio-orb studio-orb-two" aria-hidden="true" />
+        <div className="studio-card-head"><span>Selected practice</span><span className="studio-live"><i />Available now</span></div>
+        <div className="studio-monogram" aria-hidden="true">SK</div>
+        <div className="studio-copy"><p>Backend systems built for product teams that care about reliability.</p><div className="studio-role"><i className="bi bi-stars" aria-hidden="true" /><span ref={typedTextRef} aria-live="polite" /></div></div>
+        <div className="studio-metrics">{metrics.map(([value, suffix, label, decimals]) => <div key={label}><strong><Counter value={value} suffix={suffix} decimals={decimals} /></strong><span>{label}</span></div>)}</div>
+        <a className="studio-resume" href="/assets/resume.pdf" download>Download résumé <i className="bi bi-arrow-up-right" aria-hidden="true" /></a>
+      </Spotlight></Reveal>
+    </div>
+    <div className="site-container hero-scroll-cue" aria-hidden="true"><span>Scroll to explore</span><i className="bi bi-arrow-down" /></div>
+  </section>;
 }
