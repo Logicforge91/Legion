@@ -344,3 +344,186 @@
     transition: none;
   }
 }
+
+.journey-carousel {
+  min-width: 0;
+}
+
+.journey-carousel__stepper {
+  display: grid;
+  grid-template-columns: repeat(var(--journey-count, 5), minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid color-mix(in srgb, var(--journey-ink) 9%, transparent);
+}
+
+.journey-carousel__stepper button {
+  display: grid;
+  min-width: 0;
+  gap: 5px;
+  padding: 9px 7px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  color: var(--journey-muted);
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  transition: color 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.journey-carousel__stepper button > span {
+  color: color-mix(in srgb, var(--journey-muted) 65%, transparent);
+  font: 600 .57rem var(--font-mono);
+}
+
+.journey-carousel__stepper button small {
+  overflow: hidden;
+  color: inherit;
+  font: 600 clamp(.48rem, .7vw, .62rem) var(--font-mono);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.journey-carousel__stepper button:hover,
+.journey-carousel__stepper button.is-active {
+  border-color: color-mix(in srgb, var(--journey-accent) 24%, transparent);
+  color: var(--journey-ink);
+  background: color-mix(in srgb, var(--journey-accent) 8%, var(--panel));
+}
+
+.journey-carousel__stepper button.is-active > span { color: var(--journey-accent); }
+
+.journey-section .timeline {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;
+  grid-template-rows: minmax(0, 1fr);
+  gap: 16px;
+  min-width: 0;
+  overflow-x: auto;
+  padding: 4px 2px 10px;
+  overscroll-behavior-inline: contain;
+  scroll-behavior: auto;
+  scroll-snap-type: inline mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.journey-section .timeline::-webkit-scrollbar { display: none; }
+.journey-section .timeline::before { display: none; }
+.journey-section .timeline > li { min-width: 0; scroll-snap-align: start; scroll-snap-stop: always; }
+.journey-section .timeline > li::before { display: none; }
+
+.journey-section .timeline-item {
+  position: relative;
+  display: flex;
+  min-height: 380px;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  padding: clamp(24px, 3vw, 42px);
+  border-color: color-mix(in srgb, var(--journey-accent) 17%, var(--line));
+}
+
+.journey-section .timeline-item::after {
+  position: absolute;
+  right: -96px;
+  bottom: -170px;
+  width: 300px;
+  aspect-ratio: 1;
+  border: 1px solid color-mix(in srgb, var(--journey-accent) 10%, transparent);
+  border-radius: 50%;
+  box-shadow: 0 0 0 28px color-mix(in srgb, var(--journey-accent) 3%, transparent), 0 0 0 62px color-mix(in srgb, var(--journey-accent) 2%, transparent);
+  content: "";
+  pointer-events: none;
+}
+
+.journey-section .timeline-item > * { position: relative; z-index: 1; }
+.journey-section .timeline-item h3 { max-width: 24ch; font-family: var(--font-heading); font-size: clamp(1.5rem, 2.5vw, 2.35rem); }
+.journey-section .timeline-item p { max-width: 52ch; font-size: clamp(.9rem, 1vw, 1rem); line-height: 1.8; }
+
+.journey-loop__nodes circle {
+  fill: var(--panel);
+  transition: fill 180ms ease, r 180ms ease;
+}
+
+.journey-loop__nodes circle.is-active { fill: var(--journey-accent); }
+.journey-loop__node { transition: border-color 180ms ease, background 180ms ease, box-shadow 180ms ease; }
+.journey-loop__node.is-active { border-color: color-mix(in srgb, var(--journey-accent) 55%, transparent); background: color-mix(in srgb, var(--journey-accent) 11%, var(--panel)); box-shadow: 0 0 0 4px color-mix(in srgb, var(--journey-accent) 7%, transparent), 0 10px 26px rgba(0,0,0,.28); }
+.journey-loop__node.is-active .journey-loop__node-year { color: var(--journey-accent); }
+
+.journey-carousel__controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.journey-carousel__counter {
+  color: var(--journey-ink);
+  font: 650 .68rem var(--font-mono);
+  white-space: nowrap;
+}
+
+.journey-carousel__counter small { color: var(--journey-muted); font: inherit; }
+
+.journey-carousel__progress {
+  height: 2px;
+  flex: 1;
+  overflow: hidden;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--journey-ink) 12%, transparent);
+}
+
+.journey-carousel__progress i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--journey-accent), var(--accent-2));
+  transition: width 280ms ease;
+}
+
+.journey-carousel__arrows { display: flex; gap: 7px; }
+
+.journey-carousel__arrows button {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--journey-ink) 15%, transparent);
+  border-radius: 50%;
+  color: var(--journey-ink);
+  background: var(--panel);
+  cursor: pointer;
+  transition: color 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.journey-carousel__arrows button:hover {
+  border-color: var(--journey-accent);
+  color: var(--panel-strong);
+  background: var(--journey-accent);
+}
+
+.journey-loop__node-number { color: var(--journey-accent); }
+
+@media (max-width: 720px) {
+  .journey-section .timeline-item { min-height: 340px; }
+}
+
+@media (max-width: 420px) {
+  .journey-carousel__stepper { gap: 3px; }
+  .journey-carousel__stepper button { padding-inline: 4px; border-radius: 8px; }
+  .journey-carousel__stepper button small { font-size: .46rem; }
+  .journey-section .timeline-item { min-height: 360px; padding: 20px; }
+  .journey-carousel__controls { gap: 9px; }
+  .journey-carousel__arrows button { width: 36px; height: 36px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journey-section .timeline { scroll-behavior: auto; }
+  .journey-loop__nodes circle,
+  .journey-loop__node,
+  .journey-carousel__stepper button,
+  .journey-carousel__progress i { transition: none; }
+}

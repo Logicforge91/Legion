@@ -61,7 +61,34 @@ for (const [index, item] of proof.entries()) {
 await Promise.all([
   access(new URL('../public/assets/resume.pdf', import.meta.url)),
   access(new URL('../public/og-image.png', import.meta.url)),
+  access(new URL('../public/favicon-sk.svg', import.meta.url)),
+  access(new URL('../public/icons/apple-touch-icon.png', import.meta.url)),
 ]);
+
+const webManifest = JSON.parse(await readFile(new URL('../public/site.webmanifest', import.meta.url), 'utf8'));
+if (webManifest.id !== '/' || webManifest.scope !== '/' || webManifest.start_url !== '/') {
+  throw new Error('Web app manifest identity, scope, and start URL must stay rooted at the site origin.');
+}
+if (!Array.isArray(webManifest.icons) || !webManifest.icons.length) {
+  throw new Error('Web app manifest must declare at least one icon.');
+}
+
+const publicDirectory = new URL('../public/', import.meta.url);
+for (const icon of webManifest.icons) {
+  if (!icon.src?.startsWith('/') || icon.src.includes('..') || !icon.type || !icon.sizes) {
+    throw new Error(`Invalid web app icon declaration: ${JSON.stringify(icon)}`);
+  }
+  const iconFile = new URL(icon.src.slice(1), publicDirectory);
+  await access(iconFile);
+
+  if (icon.type === 'image/png') {
+    const png = await readFile(iconFile);
+    const dimensions = `${png.readUInt32BE(16)}x${png.readUInt32BE(20)}`;
+    if (icon.sizes !== dimensions) {
+      throw new Error(`Web app icon ${icon.src} declares ${icon.sizes}, but its PNG is ${dimensions}.`);
+    }
+  }
+}
 
 const socialImage = await readFile(new URL('../public/og-image.png', import.meta.url));
 const width = socialImage.readUInt32BE(16);
@@ -81,4 +108,4 @@ const unusedIcons = [...configuredIcons].filter((icon) => !usedIcons.has(icon)).
 if (missingIcons.length) throw new Error(`Missing icon selectors: ${missingIcons.join(', ')}`);
 if (unusedIcons.length) console.warn(`Unused icon selectors: ${unusedIcons.join(', ')}`);
 
-console.log(`Content check passed: ${projects.length} projects, ${skills.length} skills, ${proof.length} proof metrics, ${usedIcons.size} icons, and required public assets.`);
+console.log(`Content check passed: ${projects.length} projects, ${skills.length} skills, ${proof.length} proof metrics, ${usedIcons.size} icons, and ${webManifest.icons.length} valid app icons.`);
