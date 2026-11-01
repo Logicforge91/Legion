@@ -1,17 +1,20 @@
-import { Reveal, Spotlight } from '../components/ui';
-import ContactForm from '../components/ContactForm';
-
-const contactLinks = [
-  ['mailto:sumanks1307@gmail.com', 'bi-envelope-fill', 'sumanks1307@gmail.com'],
-  ['tel:+917996049769', 'bi-telephone-fill', '+91 79960 49769'],
-  ['https://wa.me/917996049769', 'bi-whatsapp', 'WhatsApp'],
-  ['https://www.linkedin.com/in/suman-k-s-a55868184/', 'bi-linkedin', 'LinkedIn'],
-  ['https://github.com/Logicforge91', 'bi-github', 'GitHub'],
-];
-
-export default function ContactSection() {
-  return <section id="contact" className="contact-section" aria-labelledby="contactTitle"><div className="site-container contact-grid">
-    <Reveal className="contact-copy"><p className="eyebrow"><span />Next conversation</p><h2 id="contactTitle">Looking for a backend engineer who can scale the product without slowing it down?</h2><p>I help product teams build store-ready backend foundations that are reliable, maintainable, and ready for real growth. If you’re hiring for a senior backend role or need technical support for a product-driven engineering team, I’d love to connect.</p></Reveal>
-    <Reveal><Spotlight as="div" className="contact-panel"><p className="panel-kicker">Direct message · replies typically within 1–2 business days</p><h3>Build the backend that supports your product roadmap.</h3><p>From APIs and data flows to integrations and production reliability, I help teams turn product intent into durable systems that scale with confidence.</p><div className="contact-links">{contactLinks.map(([href, icon, label]) => <a key={label} href={href} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noreferrer' : undefined}><i className={`bi ${icon}`} aria-hidden="true" />{label}</a>)}</div><div className="cta-row"><a href="mailto:sumanks1307@gmail.com" className="btn btn-primary">Book a quick intro <i className="bi bi-arrow-up-right" aria-hidden="true" /></a><a href="#projects" className="btn btn-ghost">See the work</a></div></Spotlight></Reveal>
-  </div></section>;
+export default function Footer() {
+  return <footer>
+    <div className="site-container footer-main">
+      <div className="footer-intro">
+        <a href="#hero" className="footer-logo" aria-label="Back to the top">Suman K S<span>.</span></a>
+        <p className="footer-tagline">Senior backend engineering for product teams that need dependable APIs, thoughtful data design, and resilient operational systems.</p>
+        <a className="footer-availability" href="#contact"><i aria-hidden="true" />Open to backend opportunities</a>
+      </div>
+      <nav className="footer-nav" aria-label="Footer navigation">
+        <p>Explore</p>
+        <a href="#about">Profile</a><a href="#journey">Journey</a><a href="#skills">Stack</a><a href="#projects">Systems</a>
+      </nav>
+      <div className="footer-nav">
+        <p>Connect</p>
+        <a href="mailto:sumanks1307@gmail.com">Email</a><a href="https://github.com/Logicforge91" target="_blank" rel="noreferrer">GitHub <i className="bi bi-arrow-up-right" aria-hidden="true" /></a><a href="https://www.linkedin.com/in/suman-k-s-a55868184/" target="_blank" rel="noreferrer">LinkedIn <i className="bi bi-arrow-up-right" aria-hidden="true" /></a>
+      </div>
+    </div>
+    <div className="site-container footer-bottom"><p>&copy; {new Date().getFullYear()} Suman K S</p><p>Built in Bengaluru, India</p><a href="#hero">Back to top <i className="bi bi-arrow-up" aria-hidden="true" /></a></div>
+  </footer>;
 }
