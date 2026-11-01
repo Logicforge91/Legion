@@ -1,0 +1,27 @@
+/* TestimonialsSection styles */
+.testimonials-section {
+  position: relative;
+}
+
+.testimonial-rail {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.work-style-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.work-style-top span {
+  color: rgba(166,177,194,0.7);
+  font-family: "Cascadia Code", monospace;
+  font-size: 0.72rem;
+}
+
+.work-style-top i {
+  color: #d6f76a;
+}

@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Counter, Reveal, Spotlight } from '../components/ui';
 import { useReducedMotion } from '../hooks/useReducedMotion';
 import ShareProfileButton from '../components/ShareProfileButton';
+import './HeroSection.css';
 
 const metrics = [[50, '+', 'backend surfaces', 0], [5, '+', 'production years', 0], [15, '+', 'product contexts', 0], [4, '', 'system concerns', 0]];
 const roleText = 'Laravel · Java · APIs · systems that last';
@@ -33,8 +34,8 @@ export default function HeroSection() {
         <p className="eyebrow"><span />Suman K S / Backend Engineer</p>
         <h1 id="heroTitle">Systems that feel <span className="hero-title-accent">effortless.</span></h1>
         <p className="hero-lede">I turn complex business rules into calm, dependable backend experiences—clear APIs, intentional data, resilient integrations, and workflows that stay understandable as products grow.</p>
-        <div className="hero-actions"><a href="#projects" className="btn btn-primary">View selected work <i className="bi bi-arrow-down-right" aria-hidden="true" /></a><a href="#contact" className="btn btn-ghost">Start a conversation</a><ShareProfileButton /></div>
-        <div className="hero-footer-row"><div className="hero-meta" aria-label="Current availability"><span className="hero-meta-item"><span className="hero-meta-dot" />Open to backend roles</span><span className="hero-meta-item"><i className="bi bi-geo-alt" aria-hidden="true" />Bengaluru / remote</span></div><div className="hero-social" aria-label="Social links"><a href="https://github.com/Logicforge91" target="_blank" rel="noreferrer" aria-label="GitHub profile"><i className="bi bi-github" aria-hidden="true" /></a><a href="https://www.linkedin.com/in/suman-k-s-a55868184/" target="_blank" rel="noreferrer" aria-label="LinkedIn profile"><i className="bi bi-linkedin" aria-hidden="true" /></a><a href="mailto:sumanks1307@gmail.com" aria-label="Send email"><i className="bi bi-envelope" aria-hidden="true" /></a></div></div>
+        <div className="hero-actions"><a href="#projects" className="btn btn-primary">View selected work <i className="bi bi-arrow-down-right" aria-hidden="true" /></a><a href="#contact" className="btn btn-ghost">Get in touch</a></div>
+        <div className="hero-footer-row"><div className="hero-meta" aria-label="Current availability"><span className="hero-meta-item"><span className="hero-meta-dot" />Open to backend roles</span><span className="hero-meta-item">Remote / hybrid · India</span></div><ShareProfileButton /></div>
       </Reveal>
       <Reveal className="hero-studio-visual"><Spotlight as="aside" className="studio-card" aria-label="Developer profile overview">
         <div className="studio-orb studio-orb-one" aria-hidden="true" /><div className="studio-orb studio-orb-two" aria-hidden="true" />

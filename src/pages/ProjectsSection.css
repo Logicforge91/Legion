@@ -1,0 +1,89 @@
+/* ProjectsSection styles */
+.projects-section {
+  position: relative;
+}
+
+.system-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 18px 0 20px;
+}
+
+.system-directory {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(166,177,194,0.08);
+  background: rgba(255,255,255,0.02);
+}
+
+.system-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filter-button {
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(166,177,194,0.08);
+  background: rgba(255,255,255,0.02);
+  color: rgba(205,220,238,0.8);
+  cursor: pointer;
+}
+
+.filter-button.is-active {
+  background: rgba(214,247,106,0.08);
+  border-color: rgba(214,247,106,0.18);
+  color: #f3f6fb;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.project-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 260px;
+}
+
+.project-index {
+  display: inline-block;
+  color: rgba(166,177,194,0.7);
+  font-family: "Cascadia Code", monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+}
+
+.project-category {
+  display: inline-flex;
+  width: fit-content;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(214,247,106,0.12);
+  background: rgba(214,247,106,0.04);
+  color: #d6f76a;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.read-more {
+  margin-top: auto;
+  border: none;
+  background: transparent;
+  color: #8ae8ff;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: left;
+}

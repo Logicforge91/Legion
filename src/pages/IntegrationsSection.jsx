@@ -1,5 +1,6 @@
 import { integrations } from '../data';
 import { Reveal, SectionHeading, Spotlight } from '../components/ui';
+import './IntegrationsSection.css';
 
 export default function IntegrationsSection() {
   return <section id="integrations" className="integrations-section" aria-labelledby="integrationsTitle">
@@ -20,11 +21,11 @@ export default function IntegrationsSection() {
               <i className="bi bi-arrow-right flow-arrow" aria-hidden="true" />
               <div className="flow-node"><i className="bi bi-cloud-check" aria-hidden="true" /><span>Provider</span><small>tracked outcome</small></div>
             </div>
-            <div className="flow-signals"><span><i className="bi bi-shield-check" aria-hidden="true" />Signed webhooks</span><span><i className="bi bi-arrow-repeat" aria-hidden="true" />Idempotent retries</span><span><i className="bi bi-activity" aria-hidden="true" />Structured logs</span></div>
+            <div className="flow-signals"><span><i className="bi bi-shield-check" aria-hidden="true" />Signed webhooks</span><span><i className="bi bi-arrow-repeat" aria-hidden="true" />Idempotent retry</span><span><i className="bi bi-eye" aria-hidden="true" />Operational visibility</span></div>
           </Spotlight>
         </Reveal>
         <div className="integration-grid">
-          {integrations.map((integration) => <Reveal key={integration.title}><Spotlight className="integration-card"><i className={`bi ${integration.icon} integration-icon`} aria-hidden="true" /><div><h3>{integration.title}</h3><p>{integration.description}</p><div className="tag-row">{integration.tools.map((tool) => <span key={tool}>{tool}</span>)}</div></div></Spotlight></Reveal>)}
+          {integrations.map((integration) => <Reveal key={integration.title}><Spotlight className="integration-card"><i className={`bi ${integration.icon} integration-icon`} aria-hidden="true" /><h3>{integration.title}</h3><p>{integration.description}</p></Spotlight></Reveal>)}
         </div>
       </div>
     </div>
