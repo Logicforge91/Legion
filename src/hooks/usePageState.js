@@ -10,8 +10,10 @@ export function usePageState() {
     let animationFrame = 0;
     const updateScrollState = () => {
       const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
-      setShowScrollTop(window.scrollY > 420);
-      setHeaderScrolled(window.scrollY > 12);
+      const nextShowScrollTop = window.scrollY > 420;
+      const nextHeaderScrolled = window.scrollY > 12;
+      setShowScrollTop((current) => current === nextShowScrollTop ? current : nextShowScrollTop);
+      setHeaderScrolled((current) => current === nextHeaderScrolled ? current : nextHeaderScrolled);
       const progress = scrollableHeight > 0 ? window.scrollY / scrollableHeight : 0;
       document.documentElement.style.setProperty('--scroll-progress', String(progress));
     };
@@ -37,7 +39,9 @@ export function usePageState() {
     if (!('IntersectionObserver' in window)) return undefined;
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) setActiveSection(entry.target.id);
+        if (entry.isIntersecting) {
+          setActiveSection((current) => current === entry.target.id ? current : entry.target.id);
+        }
       });
     }, { rootMargin: '-38% 0px -54%' });
 

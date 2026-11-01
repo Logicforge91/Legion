@@ -1,5 +1,7 @@
+@import "tailwindcss" source(none);
 @import "./icons.css";
 @import "../css/home.css";
+@source "./**/*.{js,jsx}";
 
 :root { --bg:#0a0b0f; --text:#f6f5f2; --muted:#afb0ba; --accent:#c8d4ff; --accent-2:#ffbf9e; --line:rgba(255,255,255,.11); --line-strong:rgba(200,212,255,.42); --card:rgba(27,29,39,.82); --shadow:0 28px 90px rgba(0,0,0,.38); --font-display:Inter,ui-sans-serif,system-ui,sans-serif; --font-mono:"Cascadia Code",Consolas,monospace; }
 html { background:#0a0b0f; color-scheme:dark; }
@@ -11,3 +13,67 @@ body::after { background:transparent; } a { color:inherit; } .site-container { w
 .section-heading{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:76px;align-items:end;margin-bottom:52px}.section-heading .eyebrow{grid-column:1/-1;color:var(--accent-2)}.section-heading h2{color:#fbfaf8;font-size:clamp(2.9rem,5.2vw,5.2rem);line-height:.88;letter-spacing:-.09em}.section-heading p:not(.eyebrow){margin:0;padding-left:18px;border-left:1px solid var(--accent-2);color:#b8b9c3}.profile-card,.stack-card,.integration-card,.system-card,.proof-card,.testimonial-card,.contact-panel{border-radius:16px}.section-loading{min-height:420px}
 .integration-layout{display:grid;gap:16px}.integration-flow{padding:24px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(135deg,rgba(31,34,45,.82),rgba(17,19,27,.9))}.flow-heading{display:flex;align-items:end;justify-content:space-between;gap:16px}.flow-heading .panel-kicker{margin:0;color:var(--accent-2);font:.6rem var(--font-mono);text-transform:uppercase}.flow-heading strong{font-size:1.2rem}.flow-track{display:grid;grid-template-columns:1fr 28px 1fr 28px 1fr 28px 1fr;align-items:center;gap:8px;margin-top:24px}.flow-node{display:grid;min-height:130px;align-content:center;justify-items:start;gap:7px;padding:16px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.035)}.flow-node>i,.flow-arrow{color:var(--accent)}.flow-node>span{font-weight:750}.flow-node>small{color:var(--muted);font:.58rem var(--font-mono)}.flow-node.active{border-color:var(--line-strong);background:rgba(200,212,255,.1)}.flow-signals{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.flow-signals span{padding:8px 10px;border:1px solid var(--line);border-radius:999px;color:#c9cad3;font:.59rem var(--font-mono)}.integration-grid{grid-template-columns:repeat(4,1fr);gap:12px}.integration-card{min-height:250px;padding:22px;background:rgba(255,255,255,.025)}.integration-icon{display:grid;width:42px;height:42px;place-items:center;border:1px solid var(--line-strong);border-radius:12px;color:var(--accent);background:rgba(200,212,255,.08)}
 @media(max-width:960px){.hero-studio-grid{grid-template-columns:1fr}.hero-studio-visual{max-width:760px}.flow-track{grid-template-columns:repeat(4,1fr)}.flow-arrow{display:none}.integration-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:720px){.site-container{width:min(calc(100% - 28px),1320px)}.hero-studio-section{min-height:auto}.hero-statusbar span:nth-child(2){display:none}.hero-statusbar{margin-bottom:32px}.hero-studio-copy h1{font-size:clamp(3rem,14.5vw,4.45rem)}.studio-card{min-height:480px}.studio-metrics{grid-template-columns:repeat(2,1fr)}.section-heading{display:block;margin-bottom:36px}.section-heading p:not(.eyebrow){margin-top:28px}.flow-track{grid-template-columns:1fr}.flow-node{min-height:92px}.integration-grid{grid-template-columns:1fr}}
+
+/* 2026 Digital Atelier — high-specificity layer for asynchronous section CSS. */
+html { background: #f6f4ee; color-scheme: light; }
+body { color: #142033; background: #f6f4ee; }
+body::before { opacity: .13; background-image: radial-gradient(#142033 0.8px, transparent 0.8px); background-size: 18px 18px; }
+body::after { display: none; }
+.site-shell { background: radial-gradient(circle at 90% 5%, rgba(73,91,255,.14), transparent 25rem), radial-gradient(circle at 5% 45%, rgba(215,255,100,.25), transparent 23rem), #f6f4ee !important; color: #142033 !important; }
+.site-shell .site-header { top: 18px; }
+.site-shell .nav-shell { border-color: rgba(20,32,51,.12); background: rgba(246,244,238,.8); box-shadow: 0 14px 38px rgba(20,32,51,.1); }
+.site-shell .site-header.is-scrolled .nav-shell { background: rgba(246,244,238,.95); border-color: rgba(20,32,51,.18); }
+.site-shell .logo-mark { background: #4057ff; color: white; }
+.site-shell #navLinks a, .site-shell .nav-command { color: #526073; }
+.site-shell #navLinks a:hover, .site-shell #navLinks a.active { color: #142033; border-color: rgba(20,32,51,.12); background: white; }
+.site-shell #navLinks .nav-cta { color: white; background: #142033; }
+.site-shell .hero-studio-section { min-height: 740px; }
+.site-shell .hero-statusbar { border-color: rgba(20,32,51,.15); color: #667286; }
+.site-shell .hero-statusbar span:first-child { color: #142033; }
+.site-shell .hero-statusbar i, .site-shell .hero-meta i { background: #4057ff; box-shadow: 0 0 0 4px rgba(64,87,255,.12); }
+.site-shell .hero-studio-copy h1 { color: #142033; font-size: clamp(3.8rem,7.2vw,7.2rem); letter-spacing: -.1em; }
+.site-shell .hero-title-accent { color: #4057ff; }
+.site-shell .hero-studio-copy .eyebrow { color: #4057ff; }
+.site-shell .hero-studio-copy .eyebrow span { background: #4057ff; }
+.site-shell .hero-lede { color: #536174; max-width: 600px; }
+.site-shell .btn-primary, .site-shell .contact-submit { background: #4057ff; color: white; }
+.site-shell .btn-primary:hover, .site-shell .btn-primary:focus-visible { box-shadow: 6px 6px 0 #d7ff64; }
+.site-shell .btn-ghost { border-color: rgba(20,32,51,.16); color: #142033; background: rgba(255,255,255,.5); }
+.site-shell .hero-footer-row { border-color: rgba(20,32,51,.14); }
+.site-shell .hero-meta, .site-shell .hero-footer-row { color: #536174; }
+.site-shell .hero-social a { border-color: rgba(20,32,51,.12); color: #142033; background: rgba(255,255,255,.58); }
+.site-shell .studio-card { background: linear-gradient(145deg, #4057ff, #263cae 60%, #142033); border-color: transparent; border-radius: 32px 32px 100px 32px; box-shadow: 18px 18px 0 #d7ff64; }
+.site-shell .studio-card::before { border-color: rgba(255,255,255,.22); }
+.site-shell .studio-orb-one { background: radial-gradient(circle at 35% 35%, rgba(215,255,100,.78), transparent 65%); }
+.site-shell .studio-orb-two { background: radial-gradient(circle, rgba(255,255,255,.3), transparent 68%); }
+.site-shell .studio-live, .site-shell .studio-role i, .site-shell .studio-resume i { color: #d7ff64; }
+.site-shell .studio-metrics, .site-shell .studio-resume { border-color: rgba(255,255,255,.2); }
+.site-shell section { border-color: rgba(20,32,51,.09); }
+.site-shell .section-heading .eyebrow { color: #4057ff; }
+.site-shell .section-heading .eyebrow span { background: #4057ff; }
+.site-shell .section-heading h2 { color: #142033; font-size: clamp(3rem,5.7vw,5.8rem); }
+.site-shell .section-heading p:not(.eyebrow) { border-color: #4057ff; color: #536174; }
+.site-shell .profile-card, .site-shell .stack-card, .site-shell .integration-card, .site-shell .system-card, .site-shell .proof-card, .site-shell .testimonial-card, .site-shell .work-style-card, .site-shell .contact-panel { border-color: rgba(20,32,51,.11); background: rgba(255,255,255,.72); box-shadow: 0 14px 34px rgba(20,32,51,.06); }
+.site-shell .profile-card:hover, .site-shell .stack-card:hover, .site-shell .system-card:hover { border-color: #4057ff; box-shadow: 8px 8px 0 rgba(64,87,255,.12); }
+.site-shell .profile-ring, .site-shell .stack-card > i { background: #d7ff64; color: #142033; }
+.site-shell .value-list > div, .site-shell .timeline-item { border-color: rgba(20,32,51,.1); background: rgba(255,255,255,.56); box-shadow: none; }
+.site-shell .timeline-item::before { background: #4057ff; }
+.site-shell .timeline-year { color: #4057ff; border-color: rgba(64,87,255,.2); background: rgba(64,87,255,.06); }
+.site-shell .timeline-item h3, .site-shell .stack-card h3, .site-shell .integration-card h3, .site-shell .system-card h3, .site-shell .proof-card h3, .site-shell .testimonial-card h3, .site-shell .contact-panel h3 { color: #142033; }
+.site-shell .timeline-item p, .site-shell .stack-card p, .site-shell .integration-card p, .site-shell .system-card p, .site-shell .proof-card p, .site-shell .testimonial-card p, .site-shell .contact-panel p { color: #536174; }
+.site-shell .card-icon, .site-shell .integration-icon, .site-shell .system-icon { color: #4057ff; border-color: rgba(64,87,255,.2); background: rgba(64,87,255,.08); }
+.site-shell .system-toolbar, .site-shell .integration-flow { border-color: rgba(20,32,51,.12); background: #142033; }
+.site-shell .system-directory, .site-shell .flow-node { border-color: rgba(255,255,255,.12); background: rgba(255,255,255,.06); }
+.site-shell .system-directory, .site-shell .flow-node > span, .site-shell .flow-heading strong { color: white; }
+.site-shell .flow-node > small, .site-shell .flow-signals span { color: #d6dae4; }
+.site-shell .flow-node.active { border-color: #d7ff64; background: rgba(215,255,100,.12); }
+.site-shell .flow-node > i, .site-shell .flow-arrow, .site-shell .flow-signals i { color: #d7ff64; }
+.site-shell .flow-signals span { border-color: rgba(255,255,255,.12); background: rgba(255,255,255,.06); }
+.site-shell .system-card { background: #142033; color: white; }
+.site-shell .system-card h3, .site-shell .system-card p { color: white; }
+.site-shell .system-card p { color: #c5ccda; }
+.site-shell .system-card-meta > span, .site-shell .proof-number { color: #4057ff; }
+.site-shell .project-details-button { border-color: rgba(20,32,51,.14); color: #142033; background: white; }
+.site-shell footer { background: #142033; color: white; border-color: transparent; }
+.site-shell footer a, .site-shell .footer-tagline, .site-shell .footer-bottom { color: #dce2ee; }
+@media (max-width:720px) { .site-shell .hero-studio-copy h1 { font-size: clamp(3.2rem,15vw,4.6rem); } .site-shell .studio-card { border-radius: 24px 24px 72px 24px; box-shadow: 10px 10px 0 #d7ff64; } }
