@@ -779,14 +779,7 @@ p {
     gap: 18px;
 }
 
-.projects-grid > [data-reveal] {
-    grid-column: span 3;
-}
-
-.projects-grid > [data-reveal].featured,
-.projects-grid > [data-reveal].project-card-wide {
-    grid-column: span 6;
-}
+.projects-grid > .projects-track { grid-column: 1 / -1; min-width: 0; }
 
 .stack-board > [data-reveal] > .stack-card,
 .proof-grid > [data-reveal] > .proof-card,
@@ -1157,7 +1150,7 @@ footer {
     .project-card,
     .project-card.featured,
     .project-card-wide,
-    .projects-grid > [data-reveal] {
+    .projects-track > [data-reveal] {
         grid-column: span 1;
         min-height: auto;
     }
