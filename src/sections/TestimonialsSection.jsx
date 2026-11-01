@@ -1,4 +1,4 @@
-import { Reveal, SectionHeading, Spotlight } from '../components/ui';
+import { Reveal, SectionHeading, Spotlight } from '../components/shared/ui';
 import './TestimonialsSection.css';
 
 const principles = [

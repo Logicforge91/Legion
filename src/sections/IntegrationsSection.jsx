@@ -1,5 +1,5 @@
-import { integrations } from '../data';
-import { Reveal, SectionHeading, Spotlight } from '../components/ui';
+import { integrations } from '../data/portfolio';
+import { Reveal, SectionHeading, Spotlight } from '../components/shared/ui';
 import './IntegrationsSection.css';
 
 export default function IntegrationsSection() {

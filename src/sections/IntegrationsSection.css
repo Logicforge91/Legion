@@ -13,8 +13,8 @@
 .integration-flow {
   border-radius: 24px;
   padding: 20px 18px;
-  background: linear-gradient(180deg, rgba(19,25,34,0.8), rgba(9,12,18,0.92));
-  border: 1px solid rgba(166,177,194,0.08);
+  background: linear-gradient(180deg, var(--panel), var(--panel-strong));
+  border: 1px solid var(--line);
 }
 
 .flow-heading {
@@ -23,7 +23,7 @@
   justify-content: space-between;
   gap: 12px;
   margin-bottom: 18px;
-  color: rgba(212,227,242,0.82);
+  color: var(--on-panel-muted);
 }
 
 .flow-track {
@@ -40,8 +40,8 @@
   gap: 8px;
   padding: 14px 10px;
   border-radius: 16px;
-  border: 1px solid rgba(166,177,194,0.08);
-  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.04);
   text-align: center;
   min-height: 110px;
 }
@@ -69,9 +69,9 @@
   gap: 8px;
   padding: 8px 10px;
   border-radius: 999px;
-  border: 1px solid rgba(166,177,194,0.08);
-  background: rgba(255,255,255,0.02);
-  color: rgba(205,220,238,0.8);
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.04);
+  color: var(--on-panel-muted);
   font-size: 0.68rem;
 }
 

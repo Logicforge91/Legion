@@ -1,5 +1,5 @@
-import { Reveal, Spotlight } from '../components/ui';
-import ContactForm from '../components/ContactForm';
+import { Reveal, Spotlight } from '../components/shared/ui';
+import ContactForm from '../components/forms/ContactForm';
 import './ContactSection.css';
 
 const contactLinks = [

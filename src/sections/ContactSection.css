@@ -15,9 +15,9 @@
   gap: 10px;
   padding: 12px 14px;
   border-radius: 14px;
-  border: 1px solid rgba(166,177,194,0.08);
-  background: rgba(255,255,255,0.01);
-  color: rgba(225,236,249,0.9);
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--soft);
   text-decoration: none;
 }
 

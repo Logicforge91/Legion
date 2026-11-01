@@ -1,5 +1,5 @@
-import { journey } from '../data';
-import { Reveal, SectionHeading, Spotlight } from '../components/ui';
+import { journey } from '../data/portfolio';
+import { Reveal, SectionHeading, Spotlight } from '../components/shared/ui';
 import './JourneySection.css';
 
 export default function JourneySection() {

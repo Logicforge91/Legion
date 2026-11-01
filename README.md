@@ -45,23 +45,27 @@ A responsive, single-page developer portfolio for Suman K S. The project is impl
 
 ```text
 Legion/
-├── public/
-│   └── assets/resume.pdf
+├── public/                       # Static assets and service worker
+├── scripts/                      # Content validation and icon generation
 ├── src/
 │   ├── components/
-│   │   ├── layout/   # Header, footer, and scroll controls
-│   │   ├── ui.jsx    # Reveal, spotlight, counter, and heading primitives
-│   │   └── ...       # Ambient canvas and technology rail
-│   ├── config/       # Navigation and observed section definitions
-│   ├── hooks/        # Intersection observer and page-state hooks
-│   ├── pages/        # One component per portfolio section
-│   ├── App.jsx       # Lightweight page composition only
-│   ├── data.js       # Shared portfolio content rendered by sections
-│   ├── main.jsx      # React application entry point
-│   └── styles.css    # Tailwind theme, layers, components, and custom utilities
-├── css/home.css      # Existing semantic styles imported into Tailwind's component layer
-├── index.html        # Minimal Vite host document
-├── vite.config.js    # React plugin and production build settings
+│   │   ├── feedback/              # Error recovery UI
+│   │   ├── forms/                 # Contact form
+│   │   ├── layout/                # Header, footer, and scroll controls
+│   │   ├── overlays/              # Command palette and case-study dialog
+│   │   └── shared/                # UI primitives, sharing, and technology rail
+│   ├── config/                    # Navigation configuration
+│   ├── data/portfolio.js          # Portfolio content used by sections
+│   ├── hooks/                     # Reusable state and browser hooks
+│   ├── sections/                  # Components and styles for each site section
+│   ├── styles/
+│   │   ├── base.css               # Shared responsive layout styles
+│   │   └── index.css              # Global theme and design tokens
+│   ├── App.jsx                    # Page composition and lazy-loaded sections
+│   ├── main.jsx                   # React application entry point
+│   └── icons.css                  # Generated, tree-shaken icon masks
+├── index.html                     # Vite host document and metadata
+├── vite.config.js                 # React plugin and production build settings
 └── package.json
 ```
 
@@ -110,14 +114,14 @@ The optimized site is generated in `dist/`. Production source maps are disabled 
 
 ## Editing portfolio content
 
-Most repeated content lives in `src/data.js`:
+Most repeated content lives in `src/data/portfolio.js`:
 
 - `journey` controls experience timeline entries.
 - `skills` controls technology cards.
 - `projects` controls project details, tags, filters, icons, and card sizing.
 - `proof` controls animated achievement metrics.
 
-Page-specific copy and contact links live in their corresponding section components under `src/pages/`.
+Section copy and styles live together in `src/sections/`. Reusable interface elements live under `src/components/`, grouped by purpose.
 
 Every project has a `filters` array. Its values must match the category filters rendered by `ProjectsSection` (`java`, `health`, `fintech`, `education`, `websites`, `ecommerce`, `integrations`, or `gaming`).
 
@@ -133,21 +137,13 @@ Every project has a `filters` array. Its values must match the category filters 
 - `useReducedMotion` reacts to operating-system preference changes and is shared by motion-heavy components.
 - `AppErrorBoundary` provides a resilient recovery screen if an unexpected render error reaches the application root.
 
-Performance-sensitive pointer and scroll handlers are synchronized with `requestAnimationFrame`, derived project results are memoized, and observers disconnect as soon as their work is complete.
+Reveal and counter components share pooled Intersection Observers. Reduced-motion consumers share one media-query listener, while scroll progress is written through a CSS custom property so scrolling does not re-render the application tree.
 
-The hero typing effect updates one isolated text node instead of re-rendering the complete hero component on every character.
+The command palette is lazy-loaded with `React.lazy` and `Suspense`. Section components and their styles are grouped under `src/sections/`; shared UI primitives are in `src/components/shared/`.
 
-Reveal and counter components share pooled Intersection Observers, reduced-motion consumers share one media-query listener, counters update their isolated text nodes without React frame-by-frame rendering, and scroll progress is written through a CSS custom property so the application tree does not re-render on every scroll frame.
+## Styling
 
-The command palette uses `React.lazy` and `Suspense`, so visitors do not download it until requested. The compact project dialog stays in the main bundle to avoid a deployment-time chunk mismatch on the primary case-study interaction.
-- `AmbientCanvas` uses Tailwind arbitrary properties and theme animations for the grid and ambient lighting.
-- `TechMarquee` renders the core stack as reusable Tailwind component utilities.
-
-## Tailwind design system
-
-The project uses Tailwind CSS 4 through `@tailwindcss/vite`. Custom colors, fonts, animations, and keyframes are declared with `@theme` in `src/styles.css`. Repeated compositions such as technology chips, ambient orbs, and the scroll-progress bar live in `@layer components`.
-
-The prior semantic stylesheet is imported into Tailwind's component layer. This preserves the detailed responsive portfolio layout while allowing Tailwind utilities to override or extend it predictably. New interface work should prefer utility classes in JSX; extract a class into `@layer components` when the same composition is repeated.
+Global theme tokens live in `src/styles/index.css`; shared responsive layout rules live in `src/styles/base.css`. Each section keeps its specific styles beside its component. Tailwind CSS 4 is available for small JSX utilities; use the shared CSS variables for colors, typography, borders, and surfaces so the design remains consistent.
 
 Users who request reduced motion receive immediate text and metrics without animated transitions.
 

@@ -1,5 +1,5 @@
 import { access, readFile, readdir } from 'node:fs/promises';
-import { projects } from '../src/data.js';
+import { projects } from '../src/data/portfolio.js';
 
 async function collectSourceFiles(directory) {
   const entries = await readdir(directory, { withFileTypes: true });

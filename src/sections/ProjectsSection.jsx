@@ -1,7 +1,7 @@
 import { startTransition, useCallback, useEffect, useMemo, useState } from 'react';
-import { projects } from '../data';
-import { Reveal, SectionHeading, Spotlight } from '../components/ui';
-import ProjectDialog from '../components/ProjectDialog';
+import { projects } from '../data/portfolio';
+import { Reveal, SectionHeading, Spotlight } from '../components/shared/ui';
+import ProjectDialog from '../components/overlays/ProjectDialog';
 import './ProjectsSection.css';
 
 const systemNumbers = new Map(projects.map((project, index) => [project.slug, index + 1]));
@@ -72,7 +72,7 @@ export default function ProjectsSection() {
 
   return <section id="projects" className="projects-section systems-showcase" aria-labelledby="projectsTitle"><div className="site-container">
     <SectionHeading eyebrow="Featured Systems" id="projectsTitle" title="Product domains and Java systems. One production mindset.">Explore how permissions, money, operations, content, orders, and user flows get built for production realities.</SectionHeading>
-    <Reveal className="system-toolbar"><div className="system-directory"><span className="system-directory-label">System directory</span><strong>{String(visibleProjects.length).padStart(2, '0')}</strong></div><div className="system-filters">{filters.map(([value, label]) => <button key={value} type="button" className={`filter-button${activeFilter === value ? ' is-active' : ''}`} onClick={() => selectFilter(value)}>{label}</button>)}</div></Reveal>
+    <Reveal className="system-toolbar"><div className="system-directory"><span className="system-directory-label">System directory</span><strong>{String(visibleProjects.length).padStart(2, '0')}</strong></div><div className="system-filters" role="group" aria-label="Filter systems by category">{filters.map(([value, label]) => <button key={value} type="button" className={`filter-button${activeFilter === value ? ' is-active' : ''}`} aria-pressed={activeFilter === value} onClick={() => selectFilter(value)}>{label}</button>)}</div></Reveal>
     <p id="projectFilterStatus" className="visually-hidden" aria-live="polite">Showing {visibleProjects.length} {activeFilter === 'all' ? 'featured' : statusFilterLabel} {visibleProjects.length === 1 ? 'system' : 'systems'}.</p>
     <div className={`projects-grid systems-grid${visibleProjects.length === 1 ? ' single-result' : visibleProjects.length === 2 ? ' paired-results' : ''}`}>{visibleProjects.map((project) => { const indexLabel = systemNumbers.get(project.slug)?.toString().padStart(2, '0'); return <Reveal key={project.slug}><Spotlight className="project-card"><span className="project-index">{indexLabel}</span><div className="card-icon"><i className={`bi ${project.icon}`} aria-hidden="true" /></div><span className="project-category">{project.category}</span><h3>{project.title}</h3><p>{project.text}</p><button type="button" className="read-more" onClick={() => openProject(project)}>Open case study</button></Spotlight></Reveal>; })}</div>
     {selectedProject && <ProjectDialog project={selectedProject} onClose={closeProject} />}

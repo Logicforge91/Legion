@@ -1,8 +1,8 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import './styles.css';
+import './styles/index.css';
 import App from './App';
-import AppErrorBoundary from './components/AppErrorBoundary';
+import AppErrorBoundary from './components/feedback/AppErrorBoundary';
 import { registerServiceWorker } from './registerServiceWorker';
 
 window.addEventListener('vite:preloadError', (event) => {

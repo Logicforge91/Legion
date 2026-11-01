@@ -1,21 +1,21 @@
 import { lazy, memo, Suspense } from 'react';
-import TechMarquee from './components/TechMarquee';
+import TechMarquee from './components/shared/TechMarquee';
 import Footer from './components/layout/Footer';
 import Header from './components/layout/Header';
 import ScrollTopButton from './components/layout/ScrollTopButton';
 import { useCommandPalette } from './hooks/useCommandPalette';
 import { usePageState } from './hooks/usePageState';
-import HeroSection from './pages/HeroSection';
+import HeroSection from './sections/HeroSection';
 
-const AboutSection = lazy(() => import('./pages/AboutSection'));
-const AchievementsSection = lazy(() => import('./pages/AchievementsSection'));
-const ContactSection = lazy(() => import('./pages/ContactSection'));
-const IntegrationsSection = lazy(() => import('./pages/IntegrationsSection'));
-const JourneySection = lazy(() => import('./pages/JourneySection'));
-const ProjectsSection = lazy(() => import('./pages/ProjectsSection'));
-const SkillsSection = lazy(() => import('./pages/SkillsSection'));
-const TestimonialsSection = lazy(() => import('./pages/TestimonialsSection'));
-const CommandPalette = lazy(() => import('./components/CommandPalette'));
+const AboutSection = lazy(() => import('./sections/AboutSection'));
+const AchievementsSection = lazy(() => import('./sections/AchievementsSection'));
+const ContactSection = lazy(() => import('./sections/ContactSection'));
+const IntegrationsSection = lazy(() => import('./sections/IntegrationsSection'));
+const JourneySection = lazy(() => import('./sections/JourneySection'));
+const ProjectsSection = lazy(() => import('./sections/ProjectsSection'));
+const SkillsSection = lazy(() => import('./sections/SkillsSection'));
+const TestimonialsSection = lazy(() => import('./sections/TestimonialsSection'));
+const CommandPalette = lazy(() => import('./components/overlays/CommandPalette'));
 
 function SectionFallback() {
   return <div aria-hidden="true" className="section-loading" />;
@@ -59,7 +59,7 @@ export default function App() {
   const { commandPaletteOpen, openCommandPalette, closeCommandPalette } = useCommandPalette();
 
   return (
-    <div className="site-shell min-h-screen bg-slate-950 text-slate-50 antialiased">
+    <div className="site-shell min-h-screen antialiased">
       <a className="skip-link" href="#content">Skip to content</a>
       <div className="scroll-progress" aria-hidden="true" />
       <div className="relative z-10">

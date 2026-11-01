@@ -52,7 +52,7 @@ export default function CommandPalette({ open, onClose }) {
     if (event.key === 'Enter') { event.preventDefault(); runCommand(filteredCommands[selectedIndex]); }
   };
 
-  return <dialog ref={dialogRef} className="command-dialog" onClose={onClose} onClick={(event) => { if (event.target === dialogRef.current) onClose(); }}>
+  return <dialog ref={dialogRef} className="command-dialog" aria-label="Portfolio commands" onClose={onClose} onClick={(event) => { if (event.target === dialogRef.current) onClose(); }}>
     <div className="command-shell" onKeyDown={handleKeyDown}>
       <div className="command-search"><i className="bi bi-search" aria-hidden="true" /><input ref={inputRef} value={query} onChange={(event) => { setQuery(event.target.value); setActiveIndex(0); }} placeholder="Search portfolio or run an action…" aria-label="Search commands" /><kbd>ESC</kbd></div>
       <div className="command-results" aria-label="Available commands">

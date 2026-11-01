@@ -1,5 +1,5 @@
-import { proof } from '../data';
-import { Counter, Reveal, SectionHeading, Spotlight } from '../components/ui';
+import { proof } from '../data/portfolio';
+import { Counter, Reveal, SectionHeading, Spotlight } from '../components/shared/ui';
 import './AchievementsSection.css';
 
 export default function AchievementsSection() {

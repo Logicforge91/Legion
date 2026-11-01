@@ -18,8 +18,9 @@
   gap: 10px;
   padding: 10px 12px;
   border-radius: 14px;
-  border: 1px solid rgba(166,177,194,0.08);
-  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--muted);
 }
 
 .system-filters {
@@ -31,15 +32,15 @@
 .filter-button {
   padding: 8px 12px;
   border-radius: 999px;
-  border: 1px solid rgba(166,177,194,0.08);
-  background: rgba(255,255,255,0.02);
-  color: rgba(205,220,238,0.8);
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--muted);
   cursor: pointer;
 }
 
 .filter-button.is-active {
-  background: color-mix(in srgb, var(--accent) 12%, transparent);
-  border-color: color-mix(in srgb, var(--accent) 36%, transparent);
+  background: var(--accent);
+  border-color: var(--accent);
   color: white;
 }
 
@@ -59,8 +60,8 @@
 
 .project-index {
   display: inline-block;
-  color: rgba(166,177,194,0.7);
-  font-family: "Cascadia Code", monospace;
+  color: var(--muted);
+  font-family: var(--font-mono);
   font-size: 0.66rem;
   letter-spacing: 0.12em;
 }
@@ -70,9 +71,9 @@
   width: fit-content;
   padding: 6px 10px;
   border-radius: 999px;
-  border: 1px solid color-mix(in srgb, var(--accent-2) 30%, transparent);
-  background: color-mix(in srgb, var(--accent-2) 8%, transparent);
-  color: var(--accent-2);
+  border: 1px solid rgba(200,236,104,.72);
+  background: rgba(200,236,104,.24);
+  color: var(--accent-2-ink);
   font-size: 0.62rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;

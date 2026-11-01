@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react';
-import { useInView } from '../hooks/useInView';
-import { useReducedMotion } from '../hooks/useReducedMotion';
+import { useInView } from '../../hooks/useInView';
+import { useReducedMotion } from '../../hooks/useReducedMotion';
 
 export function Reveal({ as: Tag = 'div', className = '', children, ...props }) {
   const [ref, visible] = useInView({ threshold: 0.12 });
