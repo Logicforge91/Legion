@@ -23,5 +23,5 @@
 }
 
 .work-style-top i {
-  color: #d6f76a;
+  color: var(--accent-2);
 }

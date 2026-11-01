@@ -38,9 +38,9 @@
 }
 
 .filter-button.is-active {
-  background: rgba(214,247,106,0.08);
-  border-color: rgba(214,247,106,0.18);
-  color: #f3f6fb;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 36%, transparent);
+  color: white;
 }
 
 .projects-grid {
@@ -70,9 +70,9 @@
   width: fit-content;
   padding: 6px 10px;
   border-radius: 999px;
-  border: 1px solid rgba(214,247,106,0.12);
-  background: rgba(214,247,106,0.04);
-  color: #d6f76a;
+  border: 1px solid color-mix(in srgb, var(--accent-2) 30%, transparent);
+  background: color-mix(in srgb, var(--accent-2) 8%, transparent);
+  color: var(--accent-2);
   font-size: 0.62rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -82,7 +82,7 @@
   margin-top: auto;
   border: none;
   background: transparent;
-  color: #8ae8ff;
+  color: var(--accent);
   font-weight: 700;
   cursor: pointer;
   text-align: left;

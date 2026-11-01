@@ -47,13 +47,13 @@
 }
 
 .flow-node.active {
-  border-color: rgba(214,247,106,0.18);
-  background: rgba(214,247,106,0.06);
+  border-color: color-mix(in srgb, var(--accent-2) 40%, transparent);
+  background: color-mix(in srgb, var(--accent-2) 10%, transparent);
 }
 
 .flow-node i,
 .integration-icon {
-  color: #d6f76a;
+  color: var(--accent-2);
 }
 
 .flow-signals {

@@ -56,8 +56,8 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #d6f76a;
-  box-shadow: 0 0 15px rgba(214,247,106,0.35);
+  background: var(--accent-2);
+  box-shadow: 0 0 15px color-mix(in srgb, var(--accent-2) 35%, transparent);
 }
 
 .hero-scroll-cue {
