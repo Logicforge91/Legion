@@ -3,7 +3,7 @@ import { Counter, Reveal, Spotlight } from '../components/ui';
 import { useReducedMotion } from '../hooks/useReducedMotion';
 import ShareProfileButton from '../components/ShareProfileButton';
 
-const metrics = [[50, '+', 'backend surfaces', 0], [5, '+', 'years in production', 0], [15, '+', 'product contexts', 0], [4, '', 'core concerns', 0]];
+const metrics = [[50, '+', 'backend systems', 0], [5, '+', 'years in production', 0], [15, '+', 'product contexts', 0], [4, '', 'core concerns', 0]];
 const roleText = 'Laravel · Java · APIs · resilient systems';
 
 export default function HeroSection() {
@@ -31,16 +31,16 @@ export default function HeroSection() {
     <div className="site-container hero-studio-grid">
       <Reveal className="hero-copy hero-studio-copy">
         <p className="eyebrow"><span />Suman K S / Backend Engineer</p>
-        <h1 id="heroTitle">Building backend systems that feel <span className="hero-title-accent">effortless.</span></h1>
-        <p className="hero-lede">I turn business complexity into calm, dependable software: clean APIs, intentional data paths, resilient integrations, and workflows that stay understandable from first deploy to last incident.</p>
-        <div className="hero-actions"><a href="#projects" className="btn btn-primary">View selected work <i className="bi bi-arrow-down-right" aria-hidden="true" /></a><a href="#contact" className="btn btn-ghost">Let&apos;s talk <i className="bi bi-arrow-up-right" aria-hidden="true" /></a></div>
+        <h1 id="heroTitle">I build backend systems that make products feel <span className="hero-title-accent">effortless.</span></h1>
+        <p className="hero-lede">I’m Suman — a backend engineer focused on reliable APIs, clean data flows, and integrations that keep production systems calm under real pressure. I help teams turn messy business rules into maintainable software that ships with confidence.</p>
+        <div className="hero-actions"><a href="#projects" className="btn btn-primary">View selected work <i className="bi bi-arrow-down-right" aria-hidden="true" /></a><a href="#contact" className="btn btn-ghost">Hire me <i className="bi bi-arrow-up-right" aria-hidden="true" /></a></div>
         <div className="hero-footer-row"><div className="hero-meta" aria-label="Current availability"><span className="hero-meta-item"><span className="hero-meta-dot" />Open to backend roles</span><span className="hero-meta-item"><span className="hero-meta-dot hero-meta-dot-alt" />Remote-friendly</span></div><ShareProfileButton /></div>
       </Reveal>
       <Reveal className="hero-studio-visual"><Spotlight as="aside" className="studio-card" aria-label="Developer profile overview">
         <div className="studio-orb studio-orb-one" aria-hidden="true" /><div className="studio-orb studio-orb-two" aria-hidden="true" />
-        <div className="studio-card-head"><span>Selected practice</span><span className="studio-live"><i />Currently available</span></div>
+        <div className="studio-card-head"><span>Selected practice</span><span className="studio-live"><i />Available now</span></div>
         <div className="studio-monogram" aria-hidden="true">SK</div>
-        <div className="studio-copy"><p>Backend systems built for workflow-heavy products.</p><div className="studio-role"><i className="bi bi-stars" aria-hidden="true" /><span ref={typedTextRef} aria-live="polite" /></div></div>
+        <div className="studio-copy"><p>Backend systems built for product teams that care about reliability.</p><div className="studio-role"><i className="bi bi-stars" aria-hidden="true" /><span ref={typedTextRef} aria-live="polite" /></div></div>
         <div className="studio-metrics">{metrics.map(([value, suffix, label, decimals]) => <div key={label}><strong><Counter value={value} suffix={suffix} decimals={decimals} /></strong><span>{label}</span></div>)}</div>
         <a className="studio-resume" href="/assets/resume.pdf" download>Download résumé <i className="bi bi-arrow-up-right" aria-hidden="true" /></a>
       </Spotlight></Reveal>
