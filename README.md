@@ -19,17 +19,15 @@ A responsive, single-page developer portfolio for Suman K S. The project is impl
 - Verified employer website links in the experience timeline
 - Production integrations showcase covering payments, messaging, external APIs, queues, webhooks, retries, and observability
 - Evidence-based working principles in place of unverifiable testimonial copy
-- On-demand JavaScript for the command palette; case-study dialogs remain in the main bundle for deployment-safe opening
+- On-demand JavaScript for the command palette and page sections
 - System-font rendering with no blocking Google Fonts request
 - Tree-shaken inline SVG icon masks and automatic stale-chunk recovery after deployments
 - Native profile sharing with clipboard fallback
 - Offline repeat-visit support through a lightweight service worker
-- Nine decision-focused case studies spanning health, fintech, education ERP, custom websites, ecommerce, integrations, game applications, and two Java/Spring Boot systems
-- Clearly labeled representative runtime flows for every system, showing a realistic request, domain event, and operational result
+- Nine project cards spanning health, fintech, education ERP, custom websites, ecommerce, integrations, game applications, and two Java/Spring Boot systems
 - Branded large-format social preview for LinkedIn, WhatsApp, and other link unfurls
-- Automated validation for case-study completeness, unique slugs, required assets, icon coverage, and Playwright test compilation
-- Deployment-safe case-study dialogs with Back-button support, dynamic metadata, and non-blocking project filtering
-- Playwright desktop and mobile smoke tests for layout, filters, dialogs, keyboard navigation, and contact validation
+- Automated validation for project data, unique slugs, required assets, icon coverage, and Playwright test compilation
+- Playwright desktop and mobile smoke tests for layout, filters, keyboard navigation, and contact validation
 
 ## Technology
 
@@ -45,23 +43,34 @@ A responsive, single-page developer portfolio for Suman K S. The project is impl
 
 ```text
 Legion/
-├── public/
-│   └── assets/resume.pdf
+├── public/                       # Static assets and service worker
+├── scripts/                      # Content validation and icon generation
 ├── src/
 │   ├── components/
-│   │   ├── layout/   # Header, footer, and scroll controls
-│   │   ├── ui.jsx    # Reveal, spotlight, counter, and heading primitives
-│   │   └── ...       # Ambient canvas and technology rail
-│   ├── config/       # Navigation and observed section definitions
-│   ├── hooks/        # Intersection observer and page-state hooks
-│   ├── pages/        # One component per portfolio section
-│   ├── App.jsx       # Lightweight page composition only
-│   ├── data.js       # Shared portfolio content rendered by sections
-│   ├── main.jsx      # React application entry point
-│   └── styles.css    # Tailwind theme, layers, components, and custom utilities
-├── css/home.css      # Existing semantic styles imported into Tailwind's component layer
-├── index.html        # Minimal Vite host document
-├── vite.config.js    # React plugin and production build settings
+│   │   ├── feedback/              # Error recovery UI
+│   │   ├── forms/                 # Contact form
+│   │   ├── layout/                # Header, footer, and scroll controls
+│   │   ├── overlays/              # Command palette
+│   │   ├── projects/               # Project cards, filters, and grid
+│   │   └── shared/                # UI primitives, sharing, and technology rail
+│   ├── config/
+│   │   ├── navigation.js          # Section navigation and observed IDs
+│   │   └── projectFilters.js      # Project category filter options
+│   ├── data/
+│   │   ├── portfolio/             # Journey, integrations, skills, projects, and proof data
+│   │   └── portfolio.js           # Stable exports for portfolio datasets
+│   ├── hooks/                     # Reusable state and browser hooks
+│   ├── sections/                  # Page section components
+│   ├── styles/
+│   │   ├── sections/              # Styles scoped to page sections
+│   │   ├── base.css               # Shared responsive layout styles
+│   │   ├── icons.css              # Generated, tree-shaken icon masks
+│   │   ├── index.css              # Global layout and component styles
+│   │   └── tokens.css             # Design tokens
+│   ├── App.jsx                    # Page composition and lazy-loaded sections
+│   ├── main.jsx                   # React application entry point
+├── index.html                     # Vite host document and metadata
+├── vite.config.js                 # React plugin and production build settings
 └── package.json
 ```
 
@@ -110,14 +119,15 @@ The optimized site is generated in `dist/`. Production source maps are disabled 
 
 ## Editing portfolio content
 
-Most repeated content lives in `src/data.js`:
+Portfolio content is grouped by domain in `src/data/portfolio/` and re-exported from `src/data/portfolio.js`:
 
 - `journey` controls experience timeline entries.
+- `integrations` controls integration cards.
 - `skills` controls technology cards.
-- `projects` controls project details, tags, filters, icons, and card sizing.
+- `projects` controls project cards, filters, and icons.
 - `proof` controls animated achievement metrics.
 
-Page-specific copy and contact links live in their corresponding section components under `src/pages/`.
+Section copy and markup live in `src/sections/`; their styles live in `src/styles/sections/`. Reusable interface elements live under `src/components/`, grouped by purpose. Project category labels and filter keys are defined in `src/config/projectFilters.js`.
 
 Every project has a `filters` array. Its values must match the category filters rendered by `ProjectsSection` (`java`, `health`, `fintech`, `education`, `websites`, `ecommerce`, `integrations`, or `gaming`).
 
@@ -128,26 +138,18 @@ Every project has a `filters` array. Its values must match the category filters 
 - `Spotlight` calculates pointer position and updates CSS variables for interactive lighting.
 - `Counter` animates metrics using `requestAnimationFrame` and an ease-out curve.
 - `Header` owns mobile-menu state and keyboard behavior.
-- `ProjectsSection` owns filter state and derives visible cards without direct DOM mutation.
-- `usePageState` centralizes scroll progress, sticky-header state, scroll-to-top visibility, and section observation.
+- `ProjectsSection` composes dedicated filter, grid, and card components.
+- `usePageState` composes `useScrollState` and `useActiveSection` so scroll effects and section observation stay independent.
 - `useReducedMotion` reacts to operating-system preference changes and is shared by motion-heavy components.
 - `AppErrorBoundary` provides a resilient recovery screen if an unexpected render error reaches the application root.
 
-Performance-sensitive pointer and scroll handlers are synchronized with `requestAnimationFrame`, derived project results are memoized, and observers disconnect as soon as their work is complete.
+Reveal and counter components share pooled Intersection Observers. Reduced-motion consumers share one media-query listener, while scroll progress is written through a CSS custom property so scrolling does not re-render the application tree.
 
-The hero typing effect updates one isolated text node instead of re-rendering the complete hero component on every character.
+The command palette and page sections are lazy-loaded with `React.lazy` and `Suspense`. Shared UI primitives are in `src/components/shared/`; project-specific UI is in `src/components/projects/`.
 
-Reveal and counter components share pooled Intersection Observers, reduced-motion consumers share one media-query listener, counters update their isolated text nodes without React frame-by-frame rendering, and scroll progress is written through a CSS custom property so the application tree does not re-render on every scroll frame.
+## Styling
 
-The command palette uses `React.lazy` and `Suspense`, so visitors do not download it until requested. The compact project dialog stays in the main bundle to avoid a deployment-time chunk mismatch on the primary case-study interaction.
-- `AmbientCanvas` uses Tailwind arbitrary properties and theme animations for the grid and ambient lighting.
-- `TechMarquee` renders the core stack as reusable Tailwind component utilities.
-
-## Tailwind design system
-
-The project uses Tailwind CSS 4 through `@tailwindcss/vite`. Custom colors, fonts, animations, and keyframes are declared with `@theme` in `src/styles.css`. Repeated compositions such as technology chips, ambient orbs, and the scroll-progress bar live in `@layer components`.
-
-The prior semantic stylesheet is imported into Tailwind's component layer. This preserves the detailed responsive portfolio layout while allowing Tailwind utilities to override or extend it predictably. New interface work should prefer utility classes in JSX; extract a class into `@layer components` when the same composition is repeated.
+Design tokens live in `src/styles/tokens.css`, global presentation rules in `src/styles/index.css`, and foundational responsive rules in `src/styles/base.css`. Section-specific styles live in `src/styles/sections/`, separate from the JSX. Tailwind CSS 4 is available for small JSX utilities; use the shared CSS variables for colors, typography, borders, and surfaces so the design remains consistent.
 
 Users who request reduced motion receive immediate text and metrics without animated transitions.
 

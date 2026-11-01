@@ -1,0 +1,41 @@
+:root {
+  color-scheme: light;
+
+  /* Layout */
+  --content-width: 1280px;
+  --page-gutter: clamp(15px, 3vw, 24px);
+  --section-space: clamp(68px, 8vw, 116px);
+
+  /* Shape and interaction */
+  --radius-card: 20px;
+  --radius-lg: 26px;
+  --radius-xl: 34px;
+  --focus-ring: color-mix(in srgb, var(--accent) 48%, transparent);
+
+  /* Color */
+  --bg: #f4f6fa;
+  --text: #101828;
+  --muted: #526078;
+  --soft: #344054;
+  --line: rgba(16, 24, 40, .11);
+  --line-strong: rgba(61, 88, 245, .38);
+  --accent: #3d58f5;
+  --accent-hover: #2943d1;
+  --accent-2: #c8ec68;
+  --accent-2-ink: #34450b;
+  --amber: var(--accent-2);
+  --danger: #ff6b6b;
+  --panel: #172033;
+  --panel-strong: #101625;
+  --surface-hover: #edf0ff;
+  --on-panel: #fff;
+  --on-panel-muted: #c3cad7;
+  --card: #fff;
+
+  /* Elevation and type */
+  --shadow: 0 24px 70px rgba(16, 24, 40, .09);
+  --shadow-soft: 0 12px 36px rgba(16, 24, 40, .06);
+  --font-display: Inter, "Aptos", "Segoe UI", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: "Iowan Old Style", "Baskerville", "Palatino Linotype", Georgia, serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}

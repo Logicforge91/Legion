@@ -1,0 +1,29 @@
+/* ContactSection styles */
+.contact-section {
+  position: relative;
+}
+
+.contact-section .contact-links {
+  display: grid;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.contact-section .contact-links a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--soft);
+  text-decoration: none;
+}
+
+.contact-section .cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
