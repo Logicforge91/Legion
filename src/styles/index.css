@@ -485,6 +485,39 @@ footer { border-color: rgba(229, 239, 225, .14); color: #e8efe5; background: var
 .error-boundary .btn-ghost { color: var(--text); }
 .error-boundary .error-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
 
+/* Technology rail */
+.tech-marquee-section { padding: 0 0 clamp(34px, 5vw, 62px); }
+.tech-marquee-section .site-container { overflow: hidden; }
+.tech-marquee-shell {
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+}
+.tech-marquee-track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  padding: 16px 0;
+  animation: technology-drift 38s linear infinite;
+  will-change: transform;
+}
+.tech-marquee-shell:hover .tech-marquee-track { animation-play-state: paused; }
+.tech-chip {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 9px;
+  padding: 0 22px;
+  color: var(--muted);
+  font: .62rem var(--font-mono);
+  letter-spacing: .055em;
+  white-space: nowrap;
+}
+.tech-chip-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px color-mix(in srgb, var(--accent) 45%, transparent); }
+@keyframes technology-drift { to { transform: translateX(-50%); } }
+
 /* Responsive layouts */
 @media (min-width: 1100px) {
   .site-header {
@@ -508,6 +541,7 @@ footer { border-color: rgba(229, 239, 225, .14); color: #e8efe5; background: var
   #navLinks li { width: 100%; }
   #navLinks li:nth-child(-n+7) { counter-increment: studio-nav; }
   #navLinks a { position: relative; justify-content: flex-start; min-height: 43px; padding: 0 12px; border: 0; border-radius: 7px; color: rgba(229, 239, 225, .62); font-size: .79rem; font-weight: 550; transition: color .18s ease, background .18s ease, padding .18s ease; }
+  #navLinks a { width: 100%; }
   #navLinks li:nth-child(-n+7) a::after { margin-left: auto; color: rgba(101,217,195,.55); content: "0" counter(studio-nav); font: .58rem var(--font-mono); }
   #navLinks a:hover,
   #navLinks a.active,
@@ -611,4 +645,5 @@ footer { border-color: rgba(229, 239, 225, .14); color: #e8efe5; background: var
   *::before,
   *::after { scroll-behavior: auto !important; animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
   [data-reveal] { opacity: 1; transform: none; }
+  .tech-marquee-track { animation: none; }
 }
