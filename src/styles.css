@@ -39,15 +39,15 @@
 
 html {
   scroll-behavior: smooth;
-  color-scheme: dark;
-  background-color: var(--bg);
+  background: var(--bg);
 }
 
 body {
+  margin: 0;
   min-height: 100vh;
-  overflow-x: hidden;
-  font-family: var(--font-display);
+  background: var(--bg);
   color: var(--text);
+  font-family: Inter, "Segoe UI", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background:
@@ -68,10 +68,6 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
-  background-size: 30px 30px;
   pointer-events: none;
   z-index: 0;
 }
@@ -142,69 +138,81 @@ img { display: block; max-width: 100%; }
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 0 clamp(20px, 5vw, 52px);
-  height: 64px;
-  background: rgba(8, 12, 18, 0.82);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border-bottom: 1px solid var(--line);
+  z-index: 50;
+  background: rgba(5, 7, 10, 0.8);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid transparent;
 }
 
-.site-header::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(214,247,106,0.22), transparent);
+.site-header.is-scrolled {
+  border-color: var(--line);
 }
 
-.brand-mark {
+.nav-shell {
   display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 18px;
+  padding: 14px 0 10px;
+}
+
+.logo {
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  color: var(--text);
   text-decoration: none;
+  font-size: 0.92rem;
+  letter-spacing: 0.02em;
+  margin-top: 4px;
 }
 
-.brand-mark .logotype {
-  font-size: 1.05rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  color: #f3f6fb;
-}
-
-.brand-mark .logotype span {
-  color: var(--accent);
+.logo-mark {
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: rgba(255,255,255,0.02);
 }
 
 #navLinks {
   display: flex;
-  align-items: center;
-  gap: 4px;
+  flex-direction: column;
+  gap: 8px;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-#navLinks a {
-  display: inline-flex;
-  align-items: center;
-  padding: 6px 12px;
-  border-radius: 999px;
-  color: rgba(185, 200, 220, 0.82);
-  text-decoration: none;
-  font-size: 0.82rem;
-  font-weight: 500;
-  transition: color var(--dur-base) var(--ease), background var(--dur-base) var(--ease);
+#navLinks li {
+  margin: 0;
 }
 
-#navLinks a:hover {
+#navLinks a,
+#navLinks button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  text-decoration: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+#navLinks a.active,
+#navLinks a:hover,
+#navLinks button:hover {
   color: var(--text);
-  background: rgba(255,255,255,0.06);
 }
 
 .nav-actions {
@@ -324,59 +332,60 @@ section {
 
 .hero-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
-  gap: clamp(32px, 6vw, 72px);
-  align-items: center;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.66fr);
+  gap: 40px;
+  align-items: start;
+  min-height: 72vh;
 }
 
-.hero-kicker {
+.hero-copy {
+  padding-top: 18px;
+}
+
+.eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 28px;
+  margin: 0 0 18px;
+  color: rgba(255,255,255,0.74);
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.82rem;
 }
 
-.hero-kicker .status-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--accent);
-  animation: pulse-glow 2.4s ease-in-out infinite;
+.eyebrow span {
+  width: 20px;
+  height: 1px;
+  background: rgba(255,255,255,0.32);
 }
 
-.hero-name {
-  margin: 0 0 12px;
-  font-size: clamp(3.2rem, 6vw, 5.8rem);
+.hero-copy h1 {
+  max-width: 720px;
+  margin: 0;
+  font-size: clamp(3rem, 4.8vw, 5.4rem);
+  line-height: 0.93;
   letter-spacing: -0.065em;
-  line-height: 0.95;
-  font-weight: 900;
-  color: #f8fbff;
+  font-weight: 700;
+  color: var(--text);
 }
 
-.hero-name .accent-word {
-  background: linear-gradient(135deg, #d6f76a 20%, #8ae8ff 80%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.hero-title-accent {
+  display: inline-block;
+  background: linear-gradient(135deg, rgba(216, 245, 122, 0.9), rgba(215, 235, 255, 0.92));
+  color: #0a0d11;
+  padding: 0.04em 0.14em 0.08em;
+  border-radius: 0.08em;
 }
 
-.hero-role {
-  margin: 0 0 22px;
-  font-size: clamp(1rem, 2vw, 1.35rem);
-  color: rgba(185, 200, 220, 0.76);
-  letter-spacing: -0.01em;
-  font-weight: 500;
+.hero-lede {
+  max-width: 760px;
+  margin-top: 24px;
+  font-size: clamp(1.08rem, 1.6vw, 1.55rem);
+  line-height: 1.72;
+  color: rgba(255,255,255,0.7);
 }
 
-.hero-desc {
-  margin: 0 0 36px;
-  max-width: 540px;
-  color: rgba(185, 200, 220, 0.72);
-  font-size: 1.05rem;
-  line-height: 1.82;
-}
-
-.hero-cta {
+.hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
@@ -415,22 +424,14 @@ section {
 .btn {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   gap: 8px;
-  min-height: 44px;
-  padding: 0 22px;
-  border-radius: 999px;
-  border: none;
-  font-family: var(--font-display);
-  font-size: 0.9rem;
-  font-weight: 700;
-  cursor: pointer;
+  padding: 12px 16px;
+  border-radius: 12px;
   text-decoration: none;
-  white-space: nowrap;
-  transition: transform var(--dur-base) var(--ease), box-shadow var(--dur-base) var(--ease), background var(--dur-base) var(--ease);
+  font-weight: 500;
+  transition: 180ms ease;
+  border: 1px solid var(--line);
 }
-
-.btn:hover { transform: translateY(-2px); }
 
 .btn-primary {
   background: linear-gradient(135deg, #eefab1, #b7f0ff);
@@ -443,9 +444,8 @@ section {
 }
 
 .btn-ghost {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(166,177,194,0.16);
-  color: rgba(225, 235, 250, 0.9);
+  background: transparent;
+  color: rgba(255,255,255,0.7);
 }
 
 .btn-ghost:hover {
@@ -467,34 +467,17 @@ section {
   background: rgba(255,255,255,0.012);
 }
 
-.tech-marquee-track {
+.hero-meta {
   display: flex;
-  width: max-content;
-  animation: marquee-drift 30s linear infinite;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
 }
 
-.tech-marquee-track:hover {
-  animation-play-state: paused;
-}
-
-.tech-chip {
+.hero-meta-item {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  margin-right: 16px;
-  padding: 8px 16px;
-  border-radius: 999px;
-  border: 1px solid rgba(166,177,194,0.10);
-  background: rgba(255,255,255,0.03);
-  color: rgba(185, 200, 220, 0.8);
-  font-size: 0.78rem;
-  font-weight: 500;
-  white-space: nowrap;
-  transition: border-color var(--dur-base) var(--ease), color var(--dur-base) var(--ease);
-}
-
-.tech-chip i {
-  color: var(--accent);
+  color: rgba(255,255,255,0.72);
   font-size: 0.9rem;
 }
 

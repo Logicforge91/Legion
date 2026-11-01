@@ -2,12 +2,10 @@ import { Reveal, Spotlight } from '../components/ui';
 import ContactForm from '../components/ContactForm';
 import './ContactSection.css';
 
-const contactLinks = [
-  ['mailto:sumanks1307@gmail.com', 'bi-envelope-fill', 'sumanks1307@gmail.com'],
-  ['tel:+917996049769', 'bi-telephone-fill', '+91 79960 49769'],
-  ['https://wa.me/917996049769', 'bi-whatsapp', 'WhatsApp'],
-  ['https://www.linkedin.com/in/suman-k-s-a55868184/', 'bi-linkedin', 'LinkedIn'],
-  ['https://github.com/Logicforge91', 'bi-github', 'GitHub'],
+const values = [
+  ['bi-shield-check', 'Clear boundaries for auth, validation, and permissions so business rules stay predictable.'],
+  ['bi-speedometer2', 'Strong API, query, and service design tuned for real product usage and performance.'],
+  ['bi-diagram-3', 'Resilient integrations that fail safely, recover predictably, and stay easy to reason about.'],
 ];
 
 export default function ContactSection() {

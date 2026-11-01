@@ -4,8 +4,14 @@ import { useReducedMotion } from '../hooks/useReducedMotion';
 import ShareProfileButton from '../components/ShareProfileButton';
 import './HeroSection.css';
 
-const metrics = [[50, '+', 'backend surfaces', 0], [5, '+', 'production years', 0], [15, '+', 'product contexts', 0], [4, '', 'system concerns', 0]];
-const roleText = 'Laravel · Java · APIs · systems that last';
+const metrics = [
+  [50, '+', 'backend systems', 0],
+  [5, '+', 'years in production', 0],
+  [15, '+', 'product contexts', 0],
+  [4, '', 'core concerns', 0],
+];
+
+const roleText = 'Laravel · Java · APIs · product-ready systems';
 
 export default function HeroSection() {
   const typedTextRef = useRef(null);
@@ -14,14 +20,21 @@ export default function HeroSection() {
   useEffect(() => {
     const node = typedTextRef.current;
     if (!node) return undefined;
-    if (reducedMotion) { node.textContent = roleText; return undefined; }
+
+    if (reducedMotion) {
+      node.textContent = roleText;
+      return undefined;
+    }
+
     let index = 0;
     node.textContent = '';
+
     const timer = window.setInterval(() => {
       index += 1;
       node.textContent = roleText.slice(0, index);
       if (index === roleText.length) window.clearInterval(timer);
     }, 34);
+
     return () => window.clearInterval(timer);
   }, [reducedMotion]);
 
