@@ -8,7 +8,6 @@
 @import "../css/home.css";
 
 :root {
-  /* Palette overrides (supersedes home.css :root) */
   --bg: #080c12;
   --bg-elevated: #0f1720;
   --panel: rgba(13, 19, 28, 0.72);
@@ -36,9 +35,7 @@
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 html {
   scroll-behavior: smooth;
@@ -60,9 +57,7 @@ body {
     linear-gradient(180deg, #070b10 0%, #0c131c 44%, #080c13 100%);
 }
 
-#root {
-  min-height: 100vh;
-}
+#root { min-height: 100vh; }
 
 ::selection {
   background: #d6f76a;
@@ -81,29 +76,20 @@ body::before {
   z-index: 0;
 }
 
-button, a {
-  touch-action: manipulation;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-}
+button, a { touch-action: manipulation; }
+img { display: block; max-width: 100%; }
 
 ::-webkit-scrollbar {
   width: 10px;
 }
-
 ::-webkit-scrollbar-track {
   background: rgba(15, 23, 32, 0.8);
 }
-
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, rgba(214,247,106,0.7), rgba(138,232,255,0.6));
   border-radius: 999px;
 }
 
-/* Tailwind-first utility enhancements */
 .site-shell {
   position: relative;
   isolation: isolate;
@@ -581,5 +567,3 @@ body::before {
     transition-duration: 0.01ms !important;
   }
 }
-
-/* keep custom component styling intact below */
