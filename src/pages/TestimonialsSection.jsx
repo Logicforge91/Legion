@@ -1,4 +1,5 @@
 import { Reveal, SectionHeading, Spotlight } from '../components/ui';
+import './TestimonialsSection.css';
 
 const principles = [
   {
@@ -27,17 +28,9 @@ const principles = [
 export default function TestimonialsSection() {
   return <section id="testimonials" className="testimonials-section work-style-section" aria-labelledby="workStyleTitle">
     <div className="site-container">
-      <SectionHeading eyebrow="Working Style" id="workStyleTitle" title="The engineering habits behind reliable delivery.">
-        Practical principles I use when building and supporting production systems.
-      </SectionHeading>
+      <SectionHeading eyebrow="Working Style" id="workStyleTitle" title="The engineering habits behind reliable delivery.">Practical principles I use when building and supporting production systems.</SectionHeading>
       <div className="testimonial-rail work-style-grid">
-        {principles.map((principle) => <Reveal key={principle.number}>
-          <Spotlight className="testimonial-card work-style-card">
-            <div className="work-style-top"><span>{principle.number}</span><i className={`bi ${principle.icon}`} aria-hidden="true" /></div>
-            <div><h3>{principle.title}</h3><p>{principle.text}</p></div>
-            <strong className="work-style-signal"><span />{principle.signal}</strong>
-          </Spotlight>
-        </Reveal>)}
+        {principles.map((principle) => <Reveal key={principle.number}><Spotlight className="testimonial-card work-style-card"><div className="work-style-top"><span>{principle.number}</span><i className={`bi ${principle.icon}`} aria-hidden="true" /></div><div><h3>{principle.title}</h3><p>{principle.text}</p></div><strong className="work-style-signal"><span />{principle.signal}</strong></Spotlight></Reveal>)}
       </div>
     </div>
   </section>;

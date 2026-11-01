@@ -1,6 +1,7 @@
 import { proof } from '../data';
 import { Counter, Reveal, SectionHeading, Spotlight } from '../components/ui';
+import './AchievementsSection.css';
 
 export default function AchievementsSection() {
-  return <section id="achievements" className="achievements-section" aria-labelledby="proofTitle"><div className="site-container"><SectionHeading eyebrow="Proof" id="proofTitle" title="Signals of sustained delivery, not vanity metrics.">A compact view of the scope, repetition, and production exposure behind the work.</SectionHeading><div className="proof-grid">{proof.map(([value, suffix, title, text]) => <Reveal key={title}><Spotlight className="proof-card"><strong className="proof-number"><Counter value={value} suffix={suffix} /></strong><h3>{title}</h3><p>{text}</p></Spotlight></Reveal>)}</div></div></section>;
+  return <section id="achievements" className="achievements-section" aria-labelledby="proofTitle"><div className="site-container"><SectionHeading eyebrow="Proof" id="proofTitle" title="Signals of sustained backend delivery.">Real product patterns, reliability work, and system ownership that show up over time.</SectionHeading><div className="proof-grid">{proof.map(([value, suffix, label, text]) => <Reveal key={label}><Spotlight className="proof-card"><strong className="stat-number"><Counter value={value} suffix={suffix} /></strong><h3>{label}</h3><p>{text}</p></Spotlight></Reveal>)}</div></div></section>;
 }

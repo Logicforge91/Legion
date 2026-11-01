@@ -1,0 +1,16 @@
+/* AboutSection styles */
+.about-section {
+  position: relative;
+}
+
+.about-section .section-copy {
+  max-width: 680px;
+}
+
+.about-section .value-list {
+  margin-top: 24px;
+}
+
+.about-section .profile-card {
+  height: 100%;
+}

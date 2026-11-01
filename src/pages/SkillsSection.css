@@ -1,0 +1,14 @@
+/* SkillsSection styles */
+.skills-section {
+  position: relative;
+}
+
+.skills-section .stack-board {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.skills-section .stack-card {
+  height: 100%;
+}

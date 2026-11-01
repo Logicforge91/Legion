@@ -1,0 +1,14 @@
+/* AchievementsSection styles */
+.achievements-section {
+  position: relative;
+}
+
+.achievements-section .proof-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.achievements-section .proof-card {
+  height: 100%;
+}
