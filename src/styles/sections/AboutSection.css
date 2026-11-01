@@ -7,10 +7,79 @@
   max-width: 680px;
 }
 
+.profile-index {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  padding: 7px 15px 7px 8px;
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--accent-2);
+  border-radius: 4px 12px 12px 4px;
+  background: linear-gradient(100deg, color-mix(in srgb, var(--accent-2) 7%, var(--card)), color-mix(in srgb, var(--card) 82%, transparent));
+}
+
+.profile-index__number {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  color: var(--accent-2);
+  font: 600 1.28rem/.8 var(--font-heading);
+  letter-spacing: -.08em;
+}
+
+.profile-index__copy { display: grid; gap: 3px; }
+.profile-index__copy strong { color: var(--text); font: 700 .63rem var(--font-mono); letter-spacing: .15em; text-transform: uppercase; }
+.profile-index__copy small { color: var(--muted); font: .52rem var(--font-mono); letter-spacing: .035em; }
+
 .about-section .value-list {
   margin-top: 24px;
 }
 
 .about-section .profile-card {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  grid-template-areas: "header header" "mark intro" "facts facts";
+  align-content: start;
+  align-items: center;
+  gap: 20px 22px;
   height: 100%;
+  padding: clamp(20px, 3vw, 30px);
+  border-radius: 5px 22px 22px 22px;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--accent-2) 7%, transparent), transparent 42%),
+    var(--card);
+}
+
+.profile-card__header {
+  display: flex;
+  grid-area: header;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font: .55rem var(--font-mono);
+  letter-spacing: .09em;
+}
+
+.profile-card__header > span:last-child { display: inline-flex; align-items: center; gap: 7px; color: var(--accent-2); }
+.profile-card__header i { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-2); }
+.about-section .profile-card .profile-ring { grid-area: mark; width: 104px; height: 104px; margin: 0; border: 1px solid color-mix(in srgb, var(--accent-2) 42%, var(--line)); border-radius: 14px 14px 14px 3px; background: linear-gradient(145deg, color-mix(in srgb, var(--accent-2) 12%, var(--panel-strong)), var(--panel-strong)); }
+.about-section .profile-card .profile-ring span { width: 100%; height: 100%; border-radius: inherit; color: var(--accent); background: transparent; font-size: 2.2rem; }
+.profile-card__intro { grid-area: intro; }
+.about-section .profile-card h3 { margin-bottom: 7px; font-family: var(--font-heading); }
+.about-section .profile-card__intro p { font-size: .82rem; line-height: 1.6; }
+.about-section dl.profile-facts { display: grid; grid-area: facts; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; margin-top: 0; }
+.about-section .profile-facts div { min-width: 0; padding: 12px; border-radius: 8px; background: color-mix(in srgb, var(--panel-strong) 62%, transparent); }
+.about-section .profile-facts dt { font-size: .58rem; }
+.about-section .profile-facts dd { font-size: .72rem; line-height: 1.5; }
+
+@media (max-width: 640px) {
+  .about-section .profile-card { grid-template-columns: 82px minmax(0, 1fr); gap: 16px; }
+  .about-section .profile-card .profile-ring { width: 78px; height: 78px; }
+  .about-section dl.profile-facts { grid-template-columns: 1fr; }
 }

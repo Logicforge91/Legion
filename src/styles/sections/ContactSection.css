@@ -5,6 +5,10 @@
 
 .contact-section .contact-grid { align-items: stretch; }
 .contact-copy { display: flex; flex-direction: column; align-items: flex-start; }
+.contact-copy > .contact-eyebrow { display: inline-flex; width: fit-content; align-items: center; gap: 9px; padding: 5px 10px 5px 5px; border: 1px solid color-mix(in srgb, var(--accent-2) 28%, var(--line)); border-radius: 8px; color: var(--text); background: linear-gradient(110deg, color-mix(in srgb, var(--accent-2) 7%, var(--panel)), var(--panel)); font-size: .6rem; letter-spacing: .07em; text-transform: uppercase; }
+.contact-eyebrow__icon { display: grid; width: 27px; height: 27px; flex: 0 0 auto; place-items: center; border-radius: 5px; color: var(--panel-strong); background: var(--accent-2); }
+.contact-copy > .contact-eyebrow .contact-eyebrow__label { width: auto; height: auto; margin: 0; border-radius: 0; background: none; box-shadow: none; }
+.contact-copy > .contact-eyebrow small { padding-left: 8px; border-left: 1px solid var(--line); color: var(--accent-2); font: .49rem var(--font-mono); letter-spacing: .07em; }
 .contact-copy > h2 { max-width: 14ch; font-size: clamp(2.8rem, 4.4vw, 4.35rem); }
 .contact-copy > p:not(.eyebrow) { max-width: 55ch; font-size: .92rem; line-height: 1.8; }
 

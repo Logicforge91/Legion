@@ -1,8 +1,8 @@
 export const navigationItems = [
   ['hero', 'Home'],
-  ['about', 'Profile'],
-  ['journey', 'Journey'],
-  ['skills', 'Stack'],
+  ['about', 'The Engineer'],
+  ['journey', 'Career archive'],
+  ['skills', 'Toolkit'],
   ['integrations', 'Integrations'],
   ['projects', 'Systems'],
   ['achievements', 'Proof'],

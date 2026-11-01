@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { integrations } from '../data/portfolio';
 import { Reveal, SectionHeading, Spotlight } from '../components/shared/ui';
 import '../styles/sections/IntegrationsSection.css';
@@ -47,74 +46,30 @@ function ReferenceFlow() {
 }
 
 function IntegrationExplorer() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const activeIntegration = integrations[activeIndex];
-
-  const handleTabKeyDown = (event) => {
-    let nextIndex = activeIndex;
-    if (event.key === 'ArrowDown' || event.key === 'ArrowRight') nextIndex = (activeIndex + 1) % integrations.length;
-    else if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') nextIndex = (activeIndex - 1 + integrations.length) % integrations.length;
-    else if (event.key === 'Home') nextIndex = 0;
-    else if (event.key === 'End') nextIndex = integrations.length - 1;
-    else return;
-
-    event.preventDefault();
-    setActiveIndex(nextIndex);
-    document.getElementById(`integration-tab-${nextIndex}`)?.focus();
-  };
-
   return (
-    <div className="integration-explorer" role="region" aria-label="Integration architecture map">
+    <div className="integration-explorer" role="region" aria-label="Integration topology map">
       <div className="integration-explorer__heading">
         <div>
-          <span className="panel-kicker">Integration map</span>
-          <h3>External boundaries</h3>
+          <span className="panel-kicker">Boundary map</span>
+          <h3>External service boundaries</h3>
         </div>
         <span className="integration-explorer__count">{String(integrations.length).padStart(2, '0')} <small>domains</small></span>
       </div>
 
-      <div className="integration-explorer__body integration-grid">
-        <div className="integration-domain-list" role="tablist" aria-label="Integration domains" aria-orientation="vertical" onKeyDown={handleTabKeyDown}>
-          {integrations.map((integration, index) => (
-            <button
-              id={`integration-tab-${index}`}
-              key={integration.title}
-              className={`integration-domain${index === activeIndex ? ' is-active' : ''}`}
-              type="button"
-              role="tab"
-              aria-selected={index === activeIndex}
-              aria-controls="integration-panel"
-              tabIndex={index === activeIndex ? 0 : -1}
-              onClick={() => setActiveIndex(index)}
-            >
-              <span>{String(index + 1).padStart(2, '0')}</span>
+      <div className="integration-topology-grid" role="list" aria-label="Integration domains">
+        {integrations.map((integration, index) => (
+          <article className="integration-topology-card" role="listitem" key={integration.title}>
+            <header>
+              <span>{String(index + 1).padStart(2, '0')} / DOMAIN</span>
               <i className={`bi ${integration.icon}`} aria-hidden="true" />
-              <small>{integration.title}</small>
-            </button>
-          ))}
-        </div>
-
-        <article
-          id="integration-panel"
-          className="integration-detail"
-          role="tabpanel"
-          aria-labelledby={`integration-tab-${activeIndex}`}
-          tabIndex={0}
-          key={activeIntegration.title}
-        >
-          <header className="integration-detail__header">
-            <span className="integration-detail__icon"><i className={`bi ${activeIntegration.icon}`} aria-hidden="true" /></span>
-            <span className="integration-detail__index">DOMAIN / {String(activeIndex + 1).padStart(2, '0')}</span>
-          </header>
-          <h4>{activeIntegration.title}</h4>
-          <p>{activeIntegration.description}</p>
-          <div className="integration-detail__footer">
-            <span>Protocols &amp; patterns</span>
-            <ul className="integration-card__tools" aria-label="Technologies and patterns">
-              {activeIntegration.tools.map((tool) => <li key={tool}>{tool}</li>)}
+            </header>
+            <h4>{integration.title}</h4>
+            <p>{integration.description}</p>
+            <ul className="integration-card__tools" aria-label="Protocols and patterns">
+              {integration.tools.map((tool) => <li key={tool}>{tool}</li>)}
             </ul>
-          </div>
-        </article>
+          </article>
+        ))}
       </div>
     </div>
   );
@@ -123,7 +78,7 @@ function IntegrationExplorer() {
 export default function IntegrationsSection() {
   return <section id="integrations" className="integrations-section" aria-labelledby="integrationsTitle">
     <div className="site-container">
-      <SectionHeading eyebrow="Connected Systems" id="integrationsTitle" title="Integrations designed to survive real production conditions.">
+      <SectionHeading eyebrow="External boundaries" id="integrationsTitle" title="Integrations designed to survive real production conditions.">
         External services are wrapped in predictable contracts with secure callbacks, observability, retries, and failure paths that teams can operate confidently.
       </SectionHeading>
       <div className="integration-layout">
