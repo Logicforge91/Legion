@@ -13,6 +13,11 @@
   to = "/.netlify/functions/contact"
   status = 200
 
+  [redirects.rate_limit]
+    window_limit = 5
+    window_size = 60
+    aggregate_by = ["ip"]
+
 [[redirects]]
   from = "/*"
   to = "/index.html"

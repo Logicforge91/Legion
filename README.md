@@ -168,6 +168,7 @@ The contact form sends mail through the `netlify/functions/contact.mjs` serverle
 - `CONTACT_TO_EMAIL`: the inbox that receives enquiries (defaults to `sumanks1307@gmail.com`)
 
 The visitor's address is assigned as the reply-to address, so replying from the receiving inbox responds directly to them. API credentials remain server-side.
+The `/api/contact` route is rate-limited by Netlify to five requests per IP per minute; deploy logs should confirm the rule was accepted.
 
 If the Netlify dashboard contains older manual build settings, use:
 
