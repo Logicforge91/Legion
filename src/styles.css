@@ -3,8 +3,8 @@ export default function Footer() {
     <div className="site-container footer-main">
       <div className="footer-intro">
         <a href="#hero" className="footer-logo" aria-label="Back to the top">Suman K S<span>.</span></a>
-        <p className="footer-tagline">Backend engineer for products that need dependable APIs, thoughtful data design, and integrations that hold up in production.</p>
-        <a className="footer-availability" href="#contact"><i aria-hidden="true" />Open to backend opportunities</a>
+        <p className="footer-tagline">Senior backend engineering for products that need dependable APIs, thoughtful data design, and resilient operational systems.</p>
+        <a className="footer-availability" href="#contact"><i aria-hidden="true" />Open to senior backend roles</a>
       </div>
       <nav className="footer-nav" aria-label="Footer navigation">
         <p>Explore</p>

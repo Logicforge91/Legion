@@ -1,27 +1,36 @@
 /* ============================================================
-   LEGION PORTFOLIO — Personal brand + job conversion polish
+   LEGION PORTFOLIO — Premium senior-engineer polish
    ============================================================ */
 
 .hero-copy h1 {
-  max-width: 620px;
+  max-width: 660px;
   text-wrap: balance;
 }
 
 .hero-lede {
-  max-width: 600px;
+  max-width: 610px;
+  font-size: 1.06rem;
+  line-height: 1.8;
 }
 
 .hero-title-accent {
-  background: linear-gradient(135deg, #f3f7b4 0%, #baf5ff 38%, #d7d9ff 100%);
+  background: linear-gradient(135deg, #f4f7c0 0%, #d8f5ff 42%, #d8dbff 100%);
 }
 
-.hero-actions .btn,
-.cta-row .btn {
-  font-weight: 800;
+.studio-card {
+  box-shadow: 0 32px 80px rgba(5, 10, 20, 0.42);
 }
 
-.studio-card .studio-copy p {
-  color: rgba(190, 206, 230, 0.82);
+.hero-meta-item,
+.hero-statusbar span,
+.footer-availability,
+.contact-panel .panel-kicker,
+.eyebrow {
+  letter-spacing: 0.04em;
+}
+
+.contact-panel {
+  border-color: rgba(170, 184, 210, 0.12);
 }
 
 .contact-panel h3 {
@@ -47,17 +56,12 @@
   box-shadow: 0 0 16px rgba(214, 247, 106, 0.5);
 }
 
-.footer-bottom a {
-  color: var(--text);
-  text-decoration: none;
-}
-
 @media (max-width: 640px) {
   .hero-copy h1 {
     max-width: 100%;
   }
 }
 
-/* End personal-brand conversion polish */
+/* End premium senior-engineer polish */
 
 message

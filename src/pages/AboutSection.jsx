@@ -30,17 +30,17 @@ export default function HeroSection() {
     </div>
     <div className="site-container hero-studio-grid">
       <Reveal className="hero-copy hero-studio-copy">
-        <p className="eyebrow"><span />Suman K S / Backend Engineer</p>
-        <h1 id="heroTitle">I build backend systems that make products feel <span className="hero-title-accent">effortless.</span></h1>
-        <p className="hero-lede">I’m Suman — a backend engineer focused on reliable APIs, clean data flows, and integrations that keep production systems calm under real pressure. I help teams turn messy business rules into maintainable software that ships with confidence.</p>
-        <div className="hero-actions"><a href="#projects" className="btn btn-primary">View selected work <i className="bi bi-arrow-down-right" aria-hidden="true" /></a><a href="#contact" className="btn btn-ghost">Hire me <i className="bi bi-arrow-up-right" aria-hidden="true" /></a></div>
-        <div className="hero-footer-row"><div className="hero-meta" aria-label="Current availability"><span className="hero-meta-item"><span className="hero-meta-dot" />Open to backend roles</span><span className="hero-meta-item"><span className="hero-meta-dot hero-meta-dot-alt" />Remote-friendly</span></div><ShareProfileButton /></div>
+        <p className="eyebrow"><span />Suman K S / Senior Backend Engineer</p>
+        <h1 id="heroTitle">I design backend systems that feel <span className="hero-title-accent">invisible when they work.</span></h1>
+        <p className="hero-lede">I build backend platforms that balance speed, reliability, and clarity—API boundaries that are easy to trust, data paths that are easy to reason about, and integrations that hold up under real production pressure.</p>
+        <div className="hero-actions"><a href="#projects" className="btn btn-primary">View selected work <i className="bi bi-arrow-down-right" aria-hidden="true" /></a><a href="#contact" className="btn btn-ghost">Discuss a role <i className="bi bi-arrow-up-right" aria-hidden="true" /></a></div>
+        <div className="hero-footer-row"><div className="hero-meta" aria-label="Current availability"><span className="hero-meta-item"><span className="hero-meta-dot" />Open to senior backend roles</span><span className="hero-meta-item"><span className="hero-meta-dot hero-meta-dot-alt" />Remote-friendly</span></div><ShareProfileButton /></div>
       </Reveal>
       <Reveal className="hero-studio-visual"><Spotlight as="aside" className="studio-card" aria-label="Developer profile overview">
         <div className="studio-orb studio-orb-one" aria-hidden="true" /><div className="studio-orb studio-orb-two" aria-hidden="true" />
         <div className="studio-card-head"><span>Selected practice</span><span className="studio-live"><i />Available now</span></div>
         <div className="studio-monogram" aria-hidden="true">SK</div>
-        <div className="studio-copy"><p>Backend systems built for product teams that care about reliability.</p><div className="studio-role"><i className="bi bi-stars" aria-hidden="true" /><span ref={typedTextRef} aria-live="polite" /></div></div>
+        <div className="studio-copy"><p>Backend systems engineered for product teams that value reliability.</p><div className="studio-role"><i className="bi bi-stars" aria-hidden="true" /><span ref={typedTextRef} aria-live="polite" /></div></div>
         <div className="studio-metrics">{metrics.map(([value, suffix, label, decimals]) => <div key={label}><strong><Counter value={value} suffix={suffix} decimals={decimals} /></strong><span>{label}</span></div>)}</div>
         <a className="studio-resume" href="/assets/resume.pdf" download>Download résumé <i className="bi bi-arrow-up-right" aria-hidden="true" /></a>
       </Spotlight></Reveal>
