@@ -7,6 +7,7 @@ export default function ContactForm() {
   const [status, setStatus] = useState('idle');
   const submittingRef = useRef(false);
   const requestRef = useRef(null);
+  const isSubmitting = status === 'submitting';
 
   useEffect(() => () => {
     const request = requestRef.current;
@@ -14,32 +15,35 @@ export default function ContactForm() {
     request?.abort();
   }, []);
 
-  const updateField = (event) => {
-    setFields((current) => ({ ...current, [event.target.name]: event.target.value }));
-    setStatus((current) => current === 'success' || current === 'error' ? 'idle' : current);
+  const updateField = ({ target: { name, value } }) => {
+    setFields((current) => ({ ...current, [name]: value }));
+    setStatus((current) => (current === 'success' || current === 'error' ? 'idle' : current));
   };
 
   const submitForm = async (event) => {
     event.preventDefault();
     if (submittingRef.current) return;
+
     submittingRef.current = true;
     setStatus('submitting');
 
     const body = Object.fromEntries(new FormData(event.currentTarget));
     const controller = new AbortController();
     requestRef.current = controller;
+    let timeoutId;
 
     try {
-      const timeout = window.setTimeout(() => controller.abort(), 12_000);
+      timeoutId = window.setTimeout(() => controller.abort(), 12_000);
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
         signal: controller.signal,
-      }).finally(() => window.clearTimeout(timeout));
+      });
 
       if (requestRef.current !== controller) return;
       if (!response.ok) throw new Error(`Form submission failed with ${response.status}`);
+
       setFields(initialState);
       setStatus('success');
     } catch (error) {
@@ -48,31 +52,95 @@ export default function ContactForm() {
         setStatus('error');
         return;
       }
+
       console.error('Contact form submission failed', error);
       setStatus('error');
     } finally {
+      if (timeoutId !== undefined) window.clearTimeout(timeoutId);
       submittingRef.current = false;
       if (requestRef.current === controller) requestRef.current = null;
     }
   };
 
-  return <form className="contact-form" aria-busy={status === 'submitting'} onSubmit={submitForm}>
-    <p className="visually-hidden"><label>Do not fill this field<input name="bot-field" tabIndex="-1" autoComplete="off" /></label></p>
-    <div className="contact-form-row">
-      <label><span>Your name</span><input name="name" value={fields.name} onChange={updateField} autoComplete="name" placeholder="Jane Smith" maxLength="100" disabled={status === 'submitting'} required /></label>
-      <label><span>Work email</span><input type="email" name="email" value={fields.email} onChange={updateField} autoComplete="email" placeholder="jane@company.com" maxLength="254" disabled={status === 'submitting'} required /></label>
-    </div>
-    <label><span>Company <small>optional</small></span><input name="company" value={fields.company} onChange={updateField} autoComplete="organization" placeholder="Company or team" maxLength="150" disabled={status === 'submitting'} /></label>
-    <label><span>How can I help?</span><textarea name="message" value={fields.message} onChange={updateField} rows="4" placeholder="Share the role, project, stack, or timeline…" minLength="20" maxLength="3000" disabled={status === 'submitting'} required /></label>
-    <div className="contact-form-footer">
-      <button className="contact-submit" type="submit" disabled={status === 'submitting'}>
-        {status === 'submitting' ? 'Sending…' : 'Send message'}
-        <i className={`bi ${status === 'submitting' ? 'bi-arrow-repeat' : 'bi-arrow-up-right'}`} aria-hidden="true" />
-      </button>
-      <p className={`form-status ${status}`} aria-live="polite">
-        {status === 'success' && 'Message received. I will reply soon.'}
-        {status === 'error' && <>Could not send. Please <a href="mailto:sumanks1307@gmail.com">email me directly</a>.</>}
+  return (
+    <form className="contact-form" aria-busy={isSubmitting} onSubmit={submitForm}>
+      <p className="visually-hidden">
+        <label>
+          Do not fill this field
+          <input name="bot-field" tabIndex="-1" autoComplete="off" />
+        </label>
       </p>
-    </div>
-  </form>;
+
+      <div className="contact-form-row">
+        <label>
+          <span>Your name</span>
+          <input
+            name="name"
+            value={fields.name}
+            onChange={updateField}
+            autoComplete="name"
+            placeholder="Jane Smith"
+            maxLength="100"
+            disabled={isSubmitting}
+            required
+          />
+        </label>
+        <label>
+          <span>Work email</span>
+          <input
+            type="email"
+            name="email"
+            value={fields.email}
+            onChange={updateField}
+            autoComplete="email"
+            placeholder="jane@company.com"
+            maxLength="254"
+            disabled={isSubmitting}
+            required
+          />
+        </label>
+      </div>
+
+      <label>
+        <span>Company <small>optional</small></span>
+        <input
+          name="company"
+          value={fields.company}
+          onChange={updateField}
+          autoComplete="organization"
+          placeholder="Company or team"
+          maxLength="150"
+          disabled={isSubmitting}
+        />
+      </label>
+
+      <label>
+        <span>How can I help?</span>
+        <textarea
+          name="message"
+          value={fields.message}
+          onChange={updateField}
+          rows="4"
+          placeholder="Share the role, project, stack, or timeline…"
+          minLength="20"
+          maxLength="3000"
+          disabled={isSubmitting}
+          required
+        />
+      </label>
+
+      <div className="contact-form-footer">
+        <button className="contact-submit" type="submit" disabled={isSubmitting}>
+          {isSubmitting ? 'Sending…' : 'Send message'}
+          <i className={`bi ${isSubmitting ? 'bi-arrow-repeat' : 'bi-arrow-up-right'}`} aria-hidden="true" />
+        </button>
+        <p className={`form-status ${status}`} aria-live="polite">
+          {status === 'success' && 'Message received. I will reply soon.'}
+          {status === 'error' && (
+            <>Could not send. Please <a href="mailto:sumanks1307@gmail.com">email me directly</a>.</>
+          )}
+        </p>
+      </div>
+    </form>
+  );
 }
