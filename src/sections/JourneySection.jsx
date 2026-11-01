@@ -4,8 +4,25 @@ import { Reveal, SectionHeading } from '../components/shared/ui';
 import { useReducedMotion } from '../hooks/useReducedMotion';
 import '../styles/sections/JourneySection.css';
 
-const nodePositions = ['top', 'right', 'lower-right', 'lower-left', 'left'];
 const formatMilestoneNumber = (index) => String(index + 1).padStart(2, '0');
+const LOOP_CENTER = 160;
+const LOOP_RADIUS = 118;
+
+function getLoopPoint(index, count) {
+  const angle = (index / count) * Math.PI * 2 - Math.PI / 2;
+  const x = LOOP_CENTER + LOOP_RADIUS * Math.cos(angle);
+  const y = LOOP_CENTER + LOOP_RADIUS * Math.sin(angle);
+
+  return {
+    x,
+    y,
+    style: {
+      '--journey-count': count,
+      '--node-x': `calc(7% + ${(x / 320) * 86}%)`,
+      '--node-y': `calc(7% + ${(y / 320) * 86}%)`,
+    },
+  };
+}
 
 function JourneyLoop({ activeIndex }) {
   return (
@@ -23,9 +40,10 @@ function JourneyLoop({ activeIndex }) {
         <circle className="journey-loop__track" cx="160" cy="160" r="118" />
         <path className="journey-loop__direction" d="M160 42a118 118 0 1 1-83.44 34.56" markerEnd="url(#journey-loop-arrow)" />
         <g className="journey-loop__nodes" fill="var(--surface, #fff)">
-          {[0, 1, 2, 3, 4].map((index) => (
-            <circle key={index} className={index === activeIndex ? 'is-active' : undefined} cx={[160, 271.9, 229.3, 90.7, 48.1][index]} cy={[42, 123.3, 254.3, 254.3, 123.3][index]} r={index === activeIndex ? 9 : 7} />
-          ))}
+          {journey.map((item, index) => {
+            const point = getLoopPoint(index, journey.length);
+            return <circle key={`${item.period}-${item.title}`} className={index === activeIndex ? 'is-active' : undefined} cx={point.x} cy={point.y} r={index === activeIndex ? 9 : 7} />;
+          })}
         </g>
       </svg>
 
@@ -35,7 +53,7 @@ function JourneyLoop({ activeIndex }) {
       </div>
 
       {journey.map((item, index) => (
-        <div className={`journey-loop__node journey-loop__node--${nodePositions[index % nodePositions.length]}${index === activeIndex ? ' is-active' : ''}`} key={`${item.period}-${item.title}`}>
+        <div className={`journey-loop__node${index === activeIndex ? ' is-active' : ''}`} key={`${item.period}-${item.title}`} style={getLoopPoint(index, journey.length).style}>
           <span className="journey-loop__node-number">{formatMilestoneNumber(index)}</span>
           <span className="journey-loop__node-year">{item.period}</span>
           <span className="journey-loop__node-title">{item.title}</span>
@@ -45,7 +63,7 @@ function JourneyLoop({ activeIndex }) {
   );
 }
 
-function JourneyCarousel({ activeIndex, onSelect, onPrevious, onNext }) {
+function JourneyCarousel({ activeIndex, onSelect }) {
   const trackRef = useRef(null);
   const frameRef = useRef(0);
   const reducedMotion = useReducedMotion();
@@ -68,7 +86,11 @@ function JourneyCarousel({ activeIndex, onSelect, onPrevious, onNext }) {
       frameRef.current = 0;
       const track = trackRef.current;
       if (!track) return;
-      const nextIndex = Math.max(0, Math.min(journey.length - 1, Math.round(track.scrollLeft / track.clientWidth)));
+      const nextIndex = Array.from(track.children).reduce((nearest, slide, index, slides) => {
+        const distance = Math.abs(slide.offsetLeft - track.scrollLeft);
+        const nearestDistance = Math.abs(slides[nearest].offsetLeft - track.scrollLeft);
+        return distance < nearestDistance ? index : nearest;
+      }, 0);
       onSelect(nextIndex);
     });
   };
@@ -164,8 +186,6 @@ function JourneyCarousel({ activeIndex, onSelect, onPrevious, onNext }) {
 export default function JourneySection() {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const selectMilestone = useCallback((index) => setActiveIndex(index), []);
-
   return (
     <section id="journey" className="journey-section" aria-labelledby="journeyTitle">
       <div className="site-container">
@@ -179,7 +199,7 @@ export default function JourneySection() {
           </div>
           <JourneyCarousel
             activeIndex={activeIndex}
-            onSelect={selectMilestone}
+            onSelect={setActiveIndex}
           />
         </div>
       </div>

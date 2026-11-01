@@ -1,13 +1,15 @@
 import { Reveal, Spotlight } from '../shared/ui';
 import { projectFilterLabels } from '../../config/projectFilters';
 
-export default function ProjectCard({ project, number, featured = false, slidePosition, slideCount }) {
+export default function ProjectCard({ project, number, featured = false, slidePosition, slideCount, clone = false }) {
   return (
     <Reveal
-      className={`project-reveal${featured ? ' is-featured' : ''}`}
+      className={`project-reveal${featured ? ' is-featured' : ''}${clone ? ' is-loop-clone' : ''}`}
       role="group"
       aria-roledescription="slide"
       aria-label={`${slidePosition} of ${slideCount}: ${project.title}`}
+      aria-hidden={clone || undefined}
+      inert={clone || undefined}
     >
       <Spotlight className={`project-card${featured ? ' project-card--featured' : ''}`}>
         <header className="project-card__header">

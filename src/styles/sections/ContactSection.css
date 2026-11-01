@@ -3,6 +3,44 @@
   position: relative;
 }
 
+.contact-section .contact-grid { align-items: stretch; }
+.contact-copy { display: flex; flex-direction: column; align-items: flex-start; }
+.contact-copy > h2 { max-width: 14ch; font-size: clamp(2.8rem, 4.4vw, 4.35rem); }
+.contact-copy > p:not(.eyebrow) { max-width: 55ch; font-size: .92rem; line-height: 1.8; }
+
+.contact-brief {
+  width: min(100%, 580px);
+  margin-top: 28px;
+  padding: 17px 0 15px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.contact-brief__heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; color: var(--accent-2); font: .59rem var(--font-mono); letter-spacing: .1em; text-transform: uppercase; }
+.contact-brief__heading i { font-size: .9rem; }
+.contact-brief ol { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+.contact-brief li { display: grid; grid-template-columns: 25px minmax(0, 1fr); align-items: start; gap: 7px; min-width: 0; }
+.contact-brief li > span { color: var(--accent); font: .56rem var(--font-mono); }
+.contact-brief li div { display: grid; gap: 4px; min-width: 0; }
+.contact-brief li strong { color: var(--text); font-size: .75rem; }
+.contact-brief li small { color: var(--muted); font-size: .64rem; line-height: 1.4; }
+
+.contact-section .availability-card { width: min(100%, 580px); max-width: none; margin-top: auto; padding: 17px 0 0; border: 0; border-radius: 0; background: transparent; }
+.availability-card__top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.availability-card__code { color: var(--muted); font: .52rem var(--font-mono); letter-spacing: .09em; }
+.contact-section .availability-card p { max-width: 57ch; margin-top: 12px; font-size: .78rem; line-height: 1.65; }
+.availability-card__focus { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; margin-top: 13px; padding-top: 11px; border-top: 1px solid var(--line); }
+.availability-card__focus span { color: var(--muted); font: .53rem var(--font-mono); letter-spacing: .08em; text-transform: uppercase; }
+.availability-card__focus strong { color: var(--soft); font-size: .68rem; font-weight: 600; }
+
+.contact-panel__heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; margin-bottom: 20px; }
+.contact-panel__heading > div { min-width: 0; }
+.contact-panel__index { flex: 0 0 auto; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; color: var(--accent-2); font: .52rem var(--font-mono); }
+.contact-panel .contact-panel__heading h3 { margin: 10px 0 0; }
+
+.contact-section .contact-panel { height: 100%; border-color: color-mix(in srgb, var(--accent-2) 18%, var(--line)); background: radial-gradient(ellipse at 100% 0, rgba(101, 217, 195, .06), transparent 46%), var(--card); }
+.contact-panel .contact-divider { margin-top: 22px; }
+
 .contact-section .contact-links {
   display: grid;
   gap: 12px;
@@ -26,4 +64,16 @@
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 18px;
+}
+
+@media (max-width: 720px) {
+  .contact-copy > h2 { max-width: 16ch; }
+  .contact-section .availability-card { margin-top: 25px; }
+}
+
+@media (max-width: 420px) {
+  .contact-brief ol { gap: 7px; }
+  .contact-brief li { grid-template-columns: 20px minmax(0, 1fr); gap: 5px; }
+  .contact-brief li small { font-size: .58rem; }
+  .availability-card__code { font-size: .47rem; }
 }
