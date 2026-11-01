@@ -40,13 +40,13 @@
 
 .journey-loop::before {
   inset: 10%;
-  background: radial-gradient(circle, rgba(69, 184, 167, 0.12), transparent 68%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--journey-accent) 12%, transparent), transparent 68%);
   filter: blur(10px);
 }
 
 .journey-loop::after {
   inset: 4%;
-  border: 1px solid rgba(16, 24, 40, 0.07);
+  border: 1px solid color-mix(in srgb, var(--journey-ink) 7%, transparent);
 }
 
 .journey-loop__graphic {
@@ -82,10 +82,10 @@
   align-content: center;
   justify-items: center;
   gap: 8px;
-  border: 1px solid rgba(20, 32, 36, 0.1);
+  border: 1px solid color-mix(in srgb, var(--journey-ink) 10%, transparent);
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.88);
-  box-shadow: 0 18px 55px rgba(16, 24, 40, 0.1), inset 0 1px white;
+  box-shadow: 0 18px 55px color-mix(in srgb, var(--journey-ink) 10%, transparent), inset 0 1px white;
   text-align: center;
 }
 
@@ -112,10 +112,10 @@
   gap: 4px;
   width: 34%;
   padding: 10px 8px;
-  border: 1px solid rgba(20, 32, 36, 0.1);
+  border: 1px solid color-mix(in srgb, var(--journey-ink) 10%, transparent);
   border-radius: 14px;
   background: rgba(255, 255, 255, 0.92);
-  box-shadow: 0 8px 24px rgba(20, 32, 36, 0.08);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--journey-ink) 8%, transparent);
   text-align: center;
 }
 
@@ -159,7 +159,7 @@
   left: 8px;
   width: 2px;
   border-radius: 99px;
-  background: linear-gradient(var(--journey-accent), rgba(18, 135, 120, 0.12));
+  background: linear-gradient(var(--journey-accent), color-mix(in srgb, var(--journey-accent) 12%, transparent));
   content: "";
 }
 
@@ -178,7 +178,7 @@
   border: 3px solid #f7faf9;
   border-radius: 50%;
   background: var(--journey-accent);
-  box-shadow: 0 0 0 4px rgba(18, 135, 120, 0.12);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--journey-accent) 12%, transparent);
   content: "";
 }
 
@@ -186,17 +186,17 @@
   display: block;
   min-height: 0;
   padding: clamp(20px, 2.5vw, 28px);
-  border: 1px solid rgba(20, 32, 36, 0.09);
+  border: 1px solid color-mix(in srgb, var(--journey-ink) 9%, transparent);
   border-radius: 22px;
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(248, 251, 250, 0.82));
-  box-shadow: 0 12px 34px rgba(20, 32, 36, 0.045), inset 0 1px rgba(255, 255, 255, 0.9);
+  box-shadow: 0 12px 34px color-mix(in srgb, var(--journey-ink) 5%, transparent), inset 0 1px rgba(255, 255, 255, 0.9);
   transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
 }
 
 .journey-section .timeline-item:hover {
   transform: translateY(-2px);
-  border-color: rgba(18, 135, 120, 0.3);
-  box-shadow: 0 18px 42px rgba(20, 32, 36, 0.085), inset 0 1px white;
+  border-color: color-mix(in srgb, var(--journey-accent) 30%, transparent);
+  box-shadow: 0 18px 42px color-mix(in srgb, var(--journey-ink) 9%, transparent), inset 0 1px white;
 }
 
 .journey-milestone__header {
@@ -213,10 +213,10 @@
   min-height: 30px;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(18, 135, 120, 0.17);
+  border: 1px solid color-mix(in srgb, var(--journey-accent) 17%, transparent);
   border-radius: 10px;
   color: var(--journey-accent);
-  background: rgba(18, 135, 120, 0.055);
+  background: color-mix(in srgb, var(--journey-accent) 6%, transparent);
   font: 650 0.65rem var(--font-mono);
 }
 
@@ -224,10 +224,10 @@
   display: inline-flex;
   margin: 0;
   padding: 7px 11px;
-  border: 1px solid rgba(20, 32, 36, 0.09);
+  border: 1px solid color-mix(in srgb, var(--journey-ink) 9%, transparent);
   border-radius: 999px;
   color: var(--journey-muted);
-  background: rgba(20, 32, 36, 0.025);
+  background: color-mix(in srgb, var(--journey-ink) 3%, transparent);
   font: 550 0.66rem var(--font-mono);
   white-space: nowrap;
 }
