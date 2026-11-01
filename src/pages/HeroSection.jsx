@@ -1,44 +1,41 @@
 /* ============================================================
-   LEGION PORTFOLIO — Premium senior-engineer polish
+   LEGION PORTFOLIO — Senior-level clarity and premium polish
    ============================================================ */
 
 .hero-copy h1 {
-  max-width: 660px;
+  max-width: 680px;
   text-wrap: balance;
 }
 
 .hero-lede {
   max-width: 610px;
-  font-size: 1.06rem;
+  font-size: 1.04rem;
   line-height: 1.8;
 }
 
 .hero-title-accent {
-  background: linear-gradient(135deg, #f4f7c0 0%, #d8f5ff 42%, #d8dbff 100%);
+  background: linear-gradient(135deg, #f4f7d2 0%, #d9f8ff 42%, #d5d9ff 100%);
 }
 
 .studio-card {
-  box-shadow: 0 32px 80px rgba(5, 10, 20, 0.42);
+  box-shadow: 0 30px 80px rgba(5, 10, 20, 0.36);
 }
 
-.hero-meta-item,
-.hero-statusbar span,
-.footer-availability,
-.contact-panel .panel-kicker,
-.eyebrow {
-  letter-spacing: 0.04em;
-}
-
-.contact-panel {
-  border-color: rgba(170, 184, 210, 0.12);
+.contact-panel,
+.profile-card,
+.timeline-item,
+.stack-card,
+.integration-card,
+.project-card,
+.system-card,
+.work-style-card,
+.testimonial-card,
+.proof-card {
+  border-color: rgba(170, 184, 210, 0.10);
 }
 
 .contact-panel h3 {
-  line-height: 1.25;
-}
-
-.contact-panel .contact-links a {
-  font-weight: 600;
+  line-height: 1.24;
 }
 
 .footer-availability {
@@ -62,6 +59,6 @@
   }
 }
 
-/* End premium senior-engineer polish */
+/* End senior-level clarity and premium polish */
 
 message
