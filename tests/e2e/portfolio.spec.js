@@ -43,10 +43,20 @@ test('keeps section grids aligned to the active viewport', async ({ page }) => {
 
 test('filters systems and announces the result count', async ({ page }) => {
   await page.goto('/#projects');
-  await page.getByRole('button', { name: 'Java Tech', exact: true }).click();
+  const javaFilter = page.getByRole('button', { name: 'Java Tech', exact: true });
+  await javaFilter.click();
+  await expect(javaFilter).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('.project-card')).toHaveCount(2);
   await expect(page.getByRole('button', { name: 'Open case study' })).toHaveCount(2);
   await expect(page.locator('#projectFilterStatus')).toContainText('Showing 2 Java systems');
+});
+
+test('tracks sections that load after the initial render', async ({ page }) => {
+  await page.goto('/');
+  const contactSection = page.locator('#contact');
+  await contactSection.waitFor();
+  await contactSection.scrollIntoViewIfNeeded();
+  await expect(page.locator('#navLinks a[href="#contact"]')).toHaveClass(/active/);
 });
 
 test('opens a deep-linked case study and closes it with browser-compatible history', async ({ page }) => {

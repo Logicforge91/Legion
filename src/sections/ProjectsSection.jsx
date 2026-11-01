@@ -2,6 +2,7 @@ import { startTransition, useCallback, useEffect, useMemo, useState } from 'reac
 import { projects } from '../data/portfolio';
 import { Reveal, SectionHeading, Spotlight } from '../components/shared/ui';
 import ProjectDialog from '../components/overlays/ProjectDialog';
+import { useReducedMotion } from '../hooks/useReducedMotion';
 import './ProjectsSection.css';
 
 const systemNumbers = new Map(projects.map((project, index) => [project.slug, index + 1]));
@@ -20,6 +21,7 @@ const filters = [['all', 'All systems'], ['java', 'Java Tech'], ['health', 'Heal
 const filterLabels = new Map(filters);
 
 export default function ProjectsSection() {
+  const reducedMotion = useReducedMotion();
   const [activeFilter, setActiveFilter] = useState('all');
   const [selectedProject, setSelectedProject] = useState(null);
   const visibleProjects = useMemo(() => projects.filter((project) => activeFilter === 'all' || project.filters.includes(activeFilter)), [activeFilter]);
@@ -50,7 +52,7 @@ export default function ProjectsSection() {
     const navigateAfterClose = () => {
       if (destination !== 'contact') return;
       window.history.replaceState({}, '', '#contact');
-      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.getElementById('contact')?.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
     };
 
     if (window.history.state?.portfolioCaseStudy) {
@@ -64,7 +66,7 @@ export default function ProjectsSection() {
     updatePageMetadata(null);
     setSelectedProject(null);
     navigateAfterClose();
-  }, []);
+  }, [reducedMotion]);
 
   const selectFilter = (filter) => {
     startTransition(() => setActiveFilter(filter));

@@ -63,7 +63,14 @@ export default function Header({ activeSection, scrolled, onOpenCommandPalette }
                 );
               })}
               <li>
-                <a href="#contact" className="nav-cta" onClick={closeMenu}>Build with me</a>
+                <a
+                  href="#contact"
+                  className={`nav-cta${activeSection === 'contact' ? ' active' : ''}`}
+                  aria-current={activeSection === 'contact' ? 'location' : undefined}
+                  onClick={closeMenu}
+                >
+                  Build with me
+                </a>
               </li>
               <li>
                 <button

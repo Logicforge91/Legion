@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { useReducedMotion } from '../../hooks/useReducedMotion';
 
 const commands = [
   { label: 'Go to profile', hint: 'About', icon: 'bi-person', href: '#about', keywords: 'profile about experience' },
@@ -12,6 +13,7 @@ const commands = [
 ];
 
 export default function CommandPalette({ open, onClose }) {
+  const reducedMotion = useReducedMotion();
   const dialogRef = useRef(null);
   const inputRef = useRef(null);
   const [query, setQuery] = useState('');
@@ -36,7 +38,7 @@ export default function CommandPalette({ open, onClose }) {
     onClose();
     setQuery('');
     if (command.href.startsWith('#')) {
-      document.querySelector(command.href)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.querySelector(command.href)?.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
       window.history.replaceState(null, '', command.href);
     } else if (command.href.startsWith('mailto:')) {
       window.location.href = command.href;

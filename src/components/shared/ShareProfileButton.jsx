@@ -15,11 +15,22 @@ export default function ShareProfileButton() {
   }, [status]);
 
   const shareProfile = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+        setStatus('shared');
+        return;
+      } catch (error) {
+        if (error.name === 'AbortError') return;
+      }
+    }
+
     try {
-      if (navigator.share) { await navigator.share(shareData); setStatus('shared'); }
-      else { await navigator.clipboard.writeText(shareData.url); setStatus('copied'); }
-    } catch (error) {
-      if (error.name !== 'AbortError') setStatus('error');
+      if (!navigator.clipboard?.writeText) throw new Error('Clipboard API unavailable');
+      await navigator.clipboard.writeText(shareData.url);
+      setStatus('copied');
+    } catch {
+      setStatus('error');
     }
   };
 
