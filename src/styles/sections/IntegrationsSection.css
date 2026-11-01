@@ -3,6 +3,74 @@
   position: relative;
 }
 
+.integrations-section .section-heading .eyebrow {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 11px;
+  border: 1px solid color-mix(in srgb, var(--accent-2) 30%, var(--line));
+  border-radius: 4px 12px 4px 12px;
+  color: var(--text);
+  background: linear-gradient(110deg, color-mix(in srgb, var(--accent-2) 8%, var(--panel)), var(--panel));
+  font-size: .59rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.integrations-section .section-heading .eyebrow::before {
+  color: var(--accent-2);
+  content: "BOUNDARY /";
+  font-size: .53rem;
+}
+
+.integrations-section .section-heading .eyebrow span {
+  position: relative;
+  width: 19px;
+  height: 1px;
+  background: var(--accent-2);
+}
+
+.integrations-section .section-heading .eyebrow span::before,
+.integrations-section .section-heading .eyebrow span::after {
+  position: absolute;
+  top: -2px;
+  width: 5px;
+  height: 5px;
+  border: 1px solid var(--accent-2);
+  border-radius: 50%;
+  background: var(--panel);
+  content: "";
+}
+
+.integrations-section .section-heading .eyebrow span::before { left: 0; }
+.integrations-section .section-heading .eyebrow span::after { right: 0; }
+
+.integrations-section .integration-layout { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+.integration-topology-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.integration-topology-card {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 12px;
+  overflow: hidden;
+  padding: clamp(16px, 2vw, 22px);
+  border: 1px solid var(--line);
+  border-radius: 5px 14px 14px;
+  background: linear-gradient(145deg, color-mix(in srgb, var(--accent-2) 6%, var(--card)), var(--card) 58%);
+}
+.integration-topology-card::after { position: absolute; top: 0; right: 0; width: 42px; height: 42px; border-top: 1px solid color-mix(in srgb, var(--accent-2) 38%, transparent); border-right: 1px solid color-mix(in srgb, var(--accent-2) 38%, transparent); border-radius: 0 13px 0 0; content: ""; pointer-events: none; }
+.integration-topology-card > header { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: var(--accent-2); font: .54rem var(--font-mono); letter-spacing: .1em; }
+.integration-topology-card > header i { display: grid; width: 34px; height: 34px; place-items: center; border: 1px solid color-mix(in srgb, var(--accent-2) 25%, var(--line)); border-radius: 8px; background: color-mix(in srgb, var(--accent-2) 8%, transparent); font-size: .95rem; }
+.integration-topology-card h4 { color: var(--text); font: 600 clamp(1.08rem, 1.6vw, 1.4rem)/1.2 var(--font-heading); letter-spacing: -.025em; }
+.integration-topology-card p { color: var(--muted); font-size: .76rem; line-height: 1.65; }
+.integration-topology-card .integration-card__tools { align-self: end; padding-top: 3px; }
+
+@media (max-width: 600px) {
+  .integration-topology-grid { grid-template-columns: 1fr; }
+}
+
 .integration-layout {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);

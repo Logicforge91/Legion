@@ -1,149 +1,87 @@
-.skills-section {
-  position: relative;
+.skills-section { position: relative; }
+
+.skills-section .section-heading .eyebrow {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 11px;
+  border: 1px solid color-mix(in srgb, var(--accent) 26%, var(--line));
+  border-radius: 4px;
+  color: var(--text);
+  background: color-mix(in srgb, var(--accent) 6%, var(--panel));
+  font-size: .59rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
 }
 
-.skills-section .stack-board {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
+.skills-section .section-heading .eyebrow::before {
+  color: var(--accent);
+  content: "FIELD KIT /";
+  font-size: .53rem;
 }
 
-.skills-loop {
-  --loop-gap: 18px;
-  --loop-card-width: clamp(280px, 31vw, 360px);
-  grid-column: 1 / -1;
-  min-width: 0;
-}
+.skills-section .section-heading .eyebrow span { width: 5px; height: 5px; border-radius: 1px; background: var(--accent); }
 
-.skills-loop-toolbar {
+.toolkit-board-heading {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  margin-bottom: 16px;
-}
-
-.skills-loop-toolbar > span {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
+  margin: 30px 0 12px;
+  padding-bottom: 11px;
+  border-bottom: 1px solid var(--line);
   color: var(--muted);
-  font: .63rem var(--font-mono);
-  letter-spacing: .08em;
+  font: .58rem var(--font-mono);
+  letter-spacing: .1em;
   text-transform: uppercase;
 }
 
-.skills-loop-toolbar > span i {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--accent-2);
-  box-shadow: 0 0 14px color-mix(in srgb, var(--accent-2) 48%, transparent);
-}
+.toolkit-board { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 
-.skills-loop-toggle {
-  display: inline-flex;
-  min-height: 38px;
-  align-items: center;
-  gap: 8px;
-  padding: 0 12px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  color: var(--soft);
-  background: var(--card);
-  font: 600 .72rem var(--font-display);
-  cursor: pointer;
-  transition: color .2s ease, border-color .2s ease, background .2s ease;
-}
-
-.skills-loop-toggle:hover {
-  border-color: var(--line-strong);
-  color: var(--accent);
-  background: var(--surface-hover);
-}
-
-.skills-loop-toggle i { font-size: .9rem; }
-
-.skills-loop-viewport {
+.toolkit-card {
+  position: relative;
   display: grid;
-  gap: 14px;
   min-width: 0;
+  min-height: 252px;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 20px;
   overflow: hidden;
-  padding: 5px 1px 10px;
+  padding: clamp(18px, 2.2vw, 26px);
+  border: 1px solid var(--line);
+  border-radius: 5px 15px 15px;
+  background: linear-gradient(145deg, color-mix(in srgb, var(--accent-2) 5%, var(--card)), var(--card) 56%);
+  transition: transform .2s ease, border-color .2s ease, background .2s ease;
 }
 
-.skills-loop-lane { min-width: 0; overflow: hidden; }
-
-.skills-loop-track {
-  display: flex;
-  width: max-content;
-  animation: skills-loop-left 48s linear infinite;
+.toolkit-card::after {
+  position: absolute;
+  right: 12px;
+  bottom: -20px;
+  color: color-mix(in srgb, var(--text) 4%, transparent);
+  content: attr(data-index);
+  font: 600 7rem/.9 var(--font-heading);
+  letter-spacing: -.1em;
+  pointer-events: none;
 }
 
-.skills-loop-track.is-reversed {
-  animation-name: skills-loop-right;
-  animation-duration: 42s;
+.toolkit-card:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--accent-2) 35%, var(--line)); background: linear-gradient(145deg, color-mix(in srgb, var(--accent-2) 9%, var(--card)), var(--card) 62%); }
+.toolkit-card__header { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: var(--accent-2); font: .57rem var(--font-mono); letter-spacing: .08em; }
+.toolkit-card__header i { display: grid; width: 38px; height: 38px; place-items: center; border: 1px solid color-mix(in srgb, var(--accent-2) 24%, var(--line)); border-radius: 9px; color: var(--accent-2); background: color-mix(in srgb, var(--accent-2) 8%, transparent); font-size: 1rem; }
+.toolkit-card h3 { max-width: 20ch; align-self: end; color: var(--text); font: 600 clamp(1.15rem, 1.6vw, 1.45rem)/1.2 var(--font-heading); letter-spacing: -.025em; }
+.toolkit-card p { max-width: 48ch; color: var(--muted); font-size: .78rem; line-height: 1.7; }
+.toolkit-card__footer { position: relative; z-index: 1; color: var(--muted); font: .5rem var(--font-mono); letter-spacing: .12em; }
+
+@media (max-width: 920px) {
+  .toolkit-board { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
-.skills-loop-group {
-  display: flex;
-  flex: 0 0 auto;
-  align-items: stretch;
-  gap: var(--loop-gap);
-  width: max-content;
-  padding-inline-end: var(--loop-gap);
-}
-
-.skills-loop-item {
-  display: flex;
-  flex: 0 0 var(--loop-card-width);
-  min-width: 0;
-}
-
-.skills-section .stack-card {
-  width: 100%;
-  height: 100%;
-  min-height: 284px;
-}
-
-.skills-loop[data-paused="true"] .skills-loop-track { animation-play-state: paused; }
-
-.skills-loop[data-paused="true"] .skills-loop-viewport {
-  overflow-x: auto;
-  overscroll-behavior-inline: contain;
-  scrollbar-color: var(--line-strong) transparent;
-  scrollbar-width: thin;
-}
-
-.skills-loop[data-paused="true"] .skills-loop-lane { overflow: visible; }
-.skills-loop[data-paused="true"] .skills-loop-track { animation: none; }
-.skills-loop[data-paused="true"] .skills-loop-group[aria-hidden="true"] { display: none; }
-
-@keyframes skills-loop-left {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-@keyframes skills-loop-right {
-  from { transform: translateX(-50%); }
-  to { transform: translateX(0); }
-}
-
-@media (max-width: 720px) {
-  .skills-loop { --loop-card-width: clamp(260px, 82vw, 360px); --loop-gap: 14px; }
-  .skills-loop-viewport { gap: 10px; }
-}
-
-@media (max-width: 420px) {
-  .skills-loop-toolbar { align-items: flex-start; }
-  .skills-loop-toolbar > span { max-width: 175px; line-height: 1.5; }
-  .skills-loop-toggle { min-height: 36px; padding-inline: 10px; white-space: nowrap; }
+@media (max-width: 600px) {
+  .toolkit-board-heading { align-items: flex-start; flex-direction: column; gap: 6px; }
+  .toolkit-board { grid-template-columns: 1fr; }
+  .toolkit-card { min-height: 215px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .skills-loop-track,
-  .skills-loop-track.is-reversed { animation: none; }
-  .skills-loop-viewport { overflow-x: auto; overscroll-behavior-inline: contain; scrollbar-width: thin; }
-  .skills-loop-lane { overflow: visible; }
-  .skills-loop-group[aria-hidden="true"] { display: none; }
+  .toolkit-card { transition: none; }
 }

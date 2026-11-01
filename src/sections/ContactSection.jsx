@@ -15,7 +15,7 @@ export default function ContactSection() {
     <section id="contact" className="contact-section" aria-labelledby="contactTitle">
       <div className="site-container contact-grid">
         <Reveal className="contact-copy">
-          <p className="eyebrow"><span />Next conversation</p>
+          <p className="eyebrow contact-eyebrow"><span className="contact-eyebrow__icon"><i className="bi bi-chat-square-text" aria-hidden="true" /></span><span className="contact-eyebrow__label">Open for conversation</span><small>INBOX / 01</small></p>
           <h2 id="contactTitle">If the role involves APIs, data, integrations, and ownership—we should talk.</h2>
           <p>Send the product context, the backend challenge, and what success should look like. I am most useful where business workflows need clear engineering decisions.</p>
 

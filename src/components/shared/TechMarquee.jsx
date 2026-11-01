@@ -75,7 +75,13 @@ export default function TechMarquee() {
       <div className="site-container">
         <div className="tech-index-heading">
           <div>
-            <span className="tech-index-eyebrow">Technology index / 2026</span>
+            <div className="tech-index-edition" aria-label="Technology index, 2026 edition">
+              <span className="tech-index-edition__prompt" aria-hidden="true">$</span>
+              <span className="tech-index-edition__command" aria-hidden="true">tech-index</span>
+              <span className="tech-index-edition__flag" aria-hidden="true">--edition</span>
+              <strong className="tech-index-edition__year" aria-hidden="true">2026</strong>
+              <span className="tech-index-edition__cursor" aria-hidden="true" />
+            </div>
             <h2 id="techIndexTitle">Tools chosen for the work.</h2>
           </div>
           <p>Grouped by where they create value, from application logic to delivery.</p>

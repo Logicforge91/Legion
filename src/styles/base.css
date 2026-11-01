@@ -268,13 +268,30 @@ section {
 
 [data-reveal] {
     opacity: 0;
-    transform: translateY(26px);
-    transition: opacity 0.72s ease, transform 0.72s ease;
+    transform: translate3d(0, 24px, 0);
+    transition: opacity 0.68s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.68s cubic-bezier(0.2, 0.7, 0.2, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
 }
 
 [data-reveal].is-visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
+    will-change: auto;
+}
+
+/* Give repeated content a short, row-based entrance stagger. */
+.stack-board > [data-reveal]:nth-child(3n + 2),
+.proof-grid > [data-reveal]:nth-child(3n + 2),
+.testimonial-rail > [data-reveal]:nth-child(3n + 2) { --reveal-delay: 90ms; }
+.stack-board > [data-reveal]:nth-child(3n),
+.proof-grid > [data-reveal]:nth-child(3n),
+.testimonial-rail > [data-reveal]:nth-child(3n) { --reveal-delay: 180ms; }
+
+@media (max-width: 720px) {
+    .stack-board > [data-reveal],
+    .proof-grid > [data-reveal],
+    .testimonial-rail > [data-reveal] { --reveal-delay: 0ms; }
 }
 
 .eyebrow {
