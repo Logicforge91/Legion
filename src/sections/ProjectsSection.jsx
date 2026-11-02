@@ -33,6 +33,18 @@ export default function ProjectsSection() {
           Explore how permissions, money, operations, content, orders, and user flows get built for production realities.
         </SectionHeading>
 
+        <a
+          className="systems-github-link"
+          href="https://github.com/Logicforge91"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Explore Suman's GitHub profile (opens in a new tab)"
+        >
+          <i className="bi bi-github" aria-hidden="true" />
+          Explore GitHub profile
+          <i className="bi bi-arrow-up-right" aria-hidden="true" />
+        </a>
+
         <ProjectFilterBar
           count={visibleProjects.length}
           filters={projectFilters}

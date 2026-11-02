@@ -6,6 +6,7 @@ export const navigationItems = [
   ['integrations', 'Integrations'],
   ['projects', 'Systems'],
   ['achievements', 'Proof'],
+  ['impact', 'Selected Impact'],
 ];
 
-export const observedSectionIds = [...navigationItems.map(([id]) => id), 'contact'];
+export const observedSectionIds = ['hero', ...navigationItems.map(([id]) => id).filter((id) => id !== 'hero'), 'contact'];
