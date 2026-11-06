@@ -1,7 +1,8 @@
+import { memo } from 'react';
 import { Reveal, Spotlight } from '../shared/ui';
 import { projectFilterLabels } from '../../config/projectFilters';
 
-export default function ProjectCard({ project, number, featured = false, slidePosition, slideCount, clone = false }) {
+function ProjectCard({ project, number, featured = false, slidePosition, slideCount, clone = false }) {
   return (
     <Reveal
       className={`project-reveal${featured ? ' is-featured' : ''}${clone ? ' is-loop-clone' : ''}`}
@@ -31,3 +32,7 @@ export default function ProjectCard({ project, number, featured = false, slidePo
     </Reveal>
   );
 }
+
+// Carousel progress changes often while the project data and card props remain stable.
+// Memoizing avoids re-rendering every card for each scroll-frame update.
+export default memo(ProjectCard);
