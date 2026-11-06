@@ -18,11 +18,11 @@ function articleMatchesQuery(article, query) {
   return searchableText.includes(query);
 }
 
-function ArticleCard({ article, index }) {
+function ArticleCard({ article }) {
   return (
     <article className="article-card" aria-labelledby={`article-${article.slug}`}>
       <div className="article-card__meta">
-        <span>{String(index + 1).padStart(2, '0')} / NOTE</span>
+        <span>Technical article</span>
         <span>{article.readTime} read</span>
       </div>
       <span className="article-card__topic">{article.topic}</span>
@@ -82,9 +82,7 @@ export default function ArticlesSection() {
         </p>
 
         <div className="articles-grid">
-          {visibleArticles.map((article) => (
-            <ArticleCard key={article.slug} article={article} index={articles.indexOf(article)} />
-          ))}
+          {visibleArticles.map((article) => <ArticleCard key={article.slug} article={article} />)}
           {!visibleArticles.length && (
             <p className="articles-empty">No tutorials match that search. Try another topic or phrase.</p>
           )}

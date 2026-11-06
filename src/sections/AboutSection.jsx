@@ -5,7 +5,7 @@ import '../styles/sections/AboutSection.css';
 function BrandIdentity() {
   return (
     <div className="profile-index" aria-label="QYVERON company identity">
-      <span className="profile-index__number" aria-hidden="true">01</span>
+      <span className="profile-index__number" aria-hidden="true">Q</span>
       <span className="profile-index__copy">
         <strong>{profile.name}</strong>
         <small>{profile.tagline}</small>
@@ -19,8 +19,8 @@ function CompanyCard() {
     <Reveal>
       <Spotlight as="aside" className="profile-card" aria-label="QYVERON company profile">
         <div className="profile-card__header">
-          <span>COMPANY / 01</span>
-          <span><i aria-hidden="true" />FREELANCE STUDIO</span>
+          <span>COMPANY PROFILE</span>
+          <span><i aria-hidden="true" />TECHNOLOGY COMPANY</span>
         </div>
         <div className="profile-ring"><span>Q</span></div>
         <div className="profile-card__intro">
@@ -44,7 +44,7 @@ export default function AboutSection() {
       <div className="site-container split-layout">
         <Reveal className="section-copy">
           <BrandIdentity />
-          <h2 id="aboutTitle">{profile.tagline}</h2>
+          <h2 id="aboutTitle">A technology company focused on dependable digital products.</h2>
           <p>{profile.introduction}</p>
           <p>{profile.approach}</p>
           <a className="btn btn-primary" href="#services">

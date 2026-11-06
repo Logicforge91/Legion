@@ -11,7 +11,7 @@
     </pattern>
   </defs>
   <path fill="#101512" d="M0 0h1200v630H0z"/><path fill="url(#glow)" d="M0 0h1200v630H0z"/><path fill="url(#grid)" d="M0 0h1200v630H0z"/>
-  <rect x="64" y="64" width="1072" height="502" rx="28" fill="none" stroke="#dce9df" stroke-opacity=".16"/>
+  <rect x="64" y="64" width="1072" height="502" rx="28" fill="#171e1a" fill-opacity=".76" stroke="#dce9df" stroke-opacity=".16"/>
   <path d="M742 150h127v95h112v137h-93v106H742" fill="none" stroke="#65d9c3" stroke-opacity=".65" stroke-width="2"/>
   <path d="M742 197h69m197 95h72m-192 190h-78" fill="none" stroke="#c8f169" stroke-opacity=".8" stroke-width="2"/>
   <circle cx="742" cy="150" r="6" fill="#c8f169"/><circle cx="981" cy="245" r="6" fill="#65d9c3"/><circle cx="888" cy="488" r="6" fill="#c8f169"/>
@@ -21,5 +21,5 @@
   <text x="112" y="328" fill="#edf2e9" font-family="Arial,sans-serif" font-size="74" font-weight="700" letter-spacing="-2">Engineering</text>
   <text x="112" y="412" fill="#edf2e9" font-family="Arial,sans-serif" font-size="74" font-weight="700" letter-spacing="-2">Tomorrow, Today</text>
   <path d="M116 458h560" stroke="url(#brand)" stroke-width="4"/>
-  <text x="118" y="506" fill="#9eaaa1" font-family="Arial,sans-serif" font-size="19" letter-spacing="3">BACKEND SYSTEMS · APIS · INTEGRATIONS</text>
+  <text x="118" y="506" fill="#9eaaa1" font-family="Arial,sans-serif" font-size="19" letter-spacing="3">SOFTWARE · APIS · DATA SYSTEMS</text>
 </svg>

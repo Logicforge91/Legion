@@ -6,8 +6,6 @@ import ProjectFilterBar from '../components/projects/ProjectFilterBar';
 import ProjectGrid from '../components/projects/ProjectGrid';
 import '../styles/sections/ProjectsSection.css';
 
-const projectNumbers = new Map(projects.map((project, index) => [project.slug, index + 1]));
-
 export default function ProjectsSection() {
   const [activeFilter, setActiveFilter] = useState('all');
 
@@ -26,11 +24,11 @@ export default function ProjectsSection() {
     <section id="projects" className="projects-section systems-showcase" aria-labelledby="projectsTitle">
       <div className="site-container">
         <SectionHeading
-          eyebrow="Portfolio / representative systems"
+          eyebrow="Solutions / capabilities"
           id="projectsTitle"
-          title="Representative software systems."
+          title="Solutions shaped around your business."
         >
-          These solution concepts show how permissions, money, operations, content, orders, and user flows can be designed for production realities; they are not attributed client case studies.
+          Explore the kinds of software systems QYVERON can design and build across business domains. The examples describe solution patterns, not named client engagements.
         </SectionHeading>
 
         <ProjectFilterBar
@@ -42,12 +40,11 @@ export default function ProjectsSection() {
 
         <p id="projectFilterStatus" className="visually-hidden" aria-live="polite">
           Showing {visibleProjects.length} {activeFilter === 'all' ? 'featured' : statusFilterLabel}{' '}
-          {visibleProjects.length === 1 ? 'system' : 'systems'}.
+          {visibleProjects.length === 1 ? 'solution example' : 'solution examples'}.
         </p>
 
         <ProjectGrid
           projects={visibleProjects}
-          projectNumbers={projectNumbers}
         />
       </div>
     </section>

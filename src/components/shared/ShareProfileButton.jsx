@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 const shareData = {
   title: 'QYVERON TECHNOLOGIES',
-  text: 'Engineering Tomorrow, Today. Freelance backend, API, and database development by QYVERON TECHNOLOGIES.',
+  text: 'QYVERON TECHNOLOGIES — IT and software development. Engineering Tomorrow, Today.',
   url: 'https://legion91.netlify.app/',
 };
 

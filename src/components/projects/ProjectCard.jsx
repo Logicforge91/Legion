@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { Reveal, Spotlight } from '../shared/ui';
 import { projectFilterLabels } from '../../config/projectFilters';
 
-function ProjectCard({ project, number, featured = false, slidePosition, slideCount, clone = false }) {
+function ProjectCard({ project, featured = false, slidePosition, slideCount, clone = false }) {
   return (
     <Reveal
       className={`project-reveal${featured ? ' is-featured' : ''}${clone ? ' is-loop-clone' : ''}`}
@@ -14,7 +14,6 @@ function ProjectCard({ project, number, featured = false, slidePosition, slideCo
     >
       <Spotlight className={`project-card${featured ? ' project-card--featured' : ''}`}>
         <header className="project-card__header">
-          <span className="project-index">{number}</span>
           <div className="card-icon project-card__icon">
             <i className={`bi ${project.icon}`} aria-hidden="true" />
           </div>

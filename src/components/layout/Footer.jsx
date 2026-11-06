@@ -37,12 +37,11 @@ export default function Footer() {
   return (
     <footer>
       <div className="site-container footer-outro">
-        <span className="footer-outro__index" aria-hidden="true">END / 01</span>
         <div className="footer-outro__copy">
           <span className="footer-outro__eyebrow">
-            <i aria-hidden="true" />~/contact <b>$</b> new-backend-brief
+            <i aria-hidden="true" />SOFTWARE FOR WHAT COMES NEXT
           </span>
-          <h2>Bring the idea. Let’s build something reliable.</h2>
+          <h2>Build for where your business is going.</h2>
         </div>
         <div className="footer-outro__actions">
           <a className="footer-outro__action" href="#contact">
@@ -65,12 +64,9 @@ export default function Footer() {
             QYVERON<span>.</span>
           </a>
           <p className="footer-tagline">
-            Engineering Tomorrow, Today. We build dependable APIs, thoughtful data
-            systems, and resilient integrations for real products.
+            Engineering Tomorrow, Today. QYVERON delivers software, API, and data
+            solutions for organizations building for what’s next.
           </p>
-          <a className="footer-availability" href="#contact">
-            <i aria-hidden="true" />Available for backend projects
-          </a>
         </div>
 
         <nav className="footer-nav footer-nav--quick" aria-label="Quick navigation">
@@ -84,7 +80,7 @@ export default function Footer() {
       <div className="site-container footer-bottom">
         <div className="footer-bottom__meta">
           <p>&copy; {new Date().getFullYear()} QYVERON TECHNOLOGIES. All rights reserved.</p>
-          <p>Independent software development studio</p>
+          <p>IT &amp; Software Development</p>
           <AnalyticsPreference />
         </div>
         <p className="footer-brand-tagline">Engineering Tomorrow, Today.</p>

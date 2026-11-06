@@ -9,7 +9,7 @@ export default function PrintPortfolio() {
         <div>
           <p className="print-portfolio__eyebrow">{profile.industry}</p>
           <h1>{profile.name}</h1>
-          <p>{profile.tagline} · Freelance software development</p>
+          <p>{profile.tagline} · IT and software development</p>
         </div>
         <p>{profile.vision}</p>
       </header>

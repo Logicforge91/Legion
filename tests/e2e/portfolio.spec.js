@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test('renders the primary portfolio content without horizontal overflow', async ({ page }) => {
   await page.goto('/');
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Systems that feel');
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('Technology that');
   await expect(page.getByRole('main')).toBeVisible();
   const iconMask = await page.locator('.studio-flow-node .bi').first().evaluate((icon) => {
     const style = getComputedStyle(icon, '::before');
@@ -87,7 +87,7 @@ test('mobile navigation announces its expanded state and closes after navigation
   const toggle = page.getByRole('button', { name: 'Open navigation' });
   await toggle.click();
   await expect(page.getByRole('button', { name: 'Close navigation' })).toHaveAttribute('aria-expanded', 'true');
-  await page.getByRole('link', { name: 'Portfolio', exact: true }).click();
+  await page.getByRole('link', { name: 'Solutions', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Open navigation' })).toHaveAttribute('aria-expanded', 'false');
   await expect(page).toHaveURL(/#projects$/);
 });
@@ -95,7 +95,7 @@ test('mobile navigation announces its expanded state and closes after navigation
 test('command palette closes on Escape and returns to the page', async ({ page }) => {
   await page.goto('/');
   await page.keyboard.press('Control+k');
-  const dialog = page.getByRole('dialog', { name: 'Portfolio commands' });
+  const dialog = page.getByRole('dialog', { name: 'QYVERON navigation and actions' });
   await expect(dialog).toBeVisible();
   await expect(page.getByRole('textbox', { name: 'Search commands' })).toBeFocused();
   await page.keyboard.press('Escape');

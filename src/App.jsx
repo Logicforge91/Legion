@@ -17,7 +17,6 @@ const ProjectsSection = lazy(() => import('./sections/ProjectsSection'));
 const IntegrationsSection = lazy(() => import('./sections/IntegrationsSection'));
 const SkillsSection = lazy(() => import('./sections/SkillsSection'));
 const ServicesSection = lazy(() => import('./sections/ServicesSection'));
-const CaseStudiesSection = lazy(() => import('./sections/TestimonialsSection'));
 const IndustriesSection = lazy(() => import('./sections/CompanySections').then((module) => ({ default: module.IndustriesSection })));
 const ProcessSection = lazy(() => import('./sections/CompanySections').then((module) => ({ default: module.ProcessSection })));
 const WhyUsSection = lazy(() => import('./sections/CompanySections').then((module) => ({ default: module.WhyUsSection })));
@@ -141,7 +140,6 @@ const PortfolioContent = memo(function PortfolioContent() {
       <DeferredSection id="integrations" section="integrations" Component={IntegrationsSection} />
       <DeferredSection id="industries" section="industries" Component={IndustriesSection} />
       <DeferredSection id="projects" section="projects" Component={ProjectsSection} />
-      <DeferredSection id="impact" section="impact" Component={CaseStudiesSection} />
       <DeferredSection id="process" section="process" Component={ProcessSection} />
       <DeferredSection id="why-us" section="why-us" Component={WhyUsSection} />
       <DeferredSection id="team" section="team" Component={TeamSection} />

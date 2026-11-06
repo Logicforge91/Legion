@@ -86,7 +86,7 @@ function findMatches(question) {
 function buildAnswer(matches) {
   if (!matches.length) {
     return {
-      text: 'Ask about QYVERON, freelance services, project examples, integrations, or software development articles.',
+      text: 'Ask about QYVERON services, industry solutions, integrations, or software development articles.',
       matches,
     };
   }

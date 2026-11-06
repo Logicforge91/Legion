@@ -13,7 +13,7 @@
   min-height: 220px;
   padding: clamp(20px, 2.5vw, 30px);
   border: 1px solid var(--line);
-  border-radius: 18px;
+  border-radius: var(--radius-lg);
   background: linear-gradient(145deg, color-mix(in srgb, var(--surface-hover) 74%, transparent), color-mix(in srgb, var(--panel) 86%, transparent));
 }
 
@@ -26,7 +26,7 @@
   font: .72rem var(--font-mono);
   letter-spacing: .08em;
 }
-.company-reason-card h3 { margin-top: 28px; }
+.company-reason-card h3 { margin-top: 0; }
 
 .company-process-list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
 .company-process-step {
@@ -36,10 +36,10 @@
   align-items: flex-start;
   padding: 23px;
   border: 1px solid var(--line);
-  border-radius: 16px;
+  border-radius: var(--radius-card);
   background: var(--panel);
 }
-.company-process-step h3 { margin: 30px 0 9px; font-size: 1.18rem; }
+.company-process-step h3 { margin: 0 0 9px; font-size: 1.18rem; }
 .company-process-step > i { margin-top: auto; padding-top: 20px; color: var(--accent); }
 
 .company-team-note, .company-feedback-note, .company-careers-note {
@@ -48,7 +48,7 @@
   gap: 22px;
   padding: clamp(22px, 4vw, 40px);
   border: 1px solid var(--line);
-  border-radius: 18px;
+  border-radius: var(--radius-lg);
   background: linear-gradient(115deg, color-mix(in srgb, var(--accent) 7%, var(--panel)), var(--panel));
 }
 .company-team-note__mark {
@@ -84,7 +84,7 @@
 .company-faq-list details { border-bottom: 1px solid var(--line); }
 .company-faq-list summary {
   display: grid;
-  grid-template-columns: 42px 1fr 24px;
+  grid-template-columns: minmax(0, 1fr) 24px;
   align-items: center;
   gap: 12px;
   min-height: 76px;
@@ -94,7 +94,6 @@
   list-style: none;
 }
 .company-faq-list summary::-webkit-details-marker { display: none; }
-.company-faq-list summary > span { color: var(--accent-2); font: .68rem var(--font-mono); }
 .company-faq-list summary > i { color: var(--accent); transition: transform .2s ease; }
 .company-faq-list details[open] summary > i { transform: rotate(45deg); }
 .company-faq-list details > p { max-width: 760px; margin: 0 40px 24px 54px; line-height: 1.8; }
@@ -110,8 +109,8 @@
   .company-team-note > a, .company-feedback-note > a { margin-left: 0; }
   .company-careers-note { align-items: flex-start; flex-direction: column; gap: 14px; }
   .company-careers-note > strong { margin: 0; }
-  .company-faq-list summary { grid-template-columns: 32px 1fr 20px; gap: 8px; font-size: .94rem; }
-  .company-faq-list details > p { margin: 0 0 22px 40px; }
+  .company-faq-list summary { grid-template-columns: minmax(0, 1fr) 20px; gap: 8px; font-size: .94rem; }
+  .company-faq-list details > p { margin: 0 0 22px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
