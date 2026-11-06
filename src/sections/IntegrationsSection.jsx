@@ -1,3 +1,4 @@
+import { useMemo, useState } from 'react';
 import { integrations } from '../data/portfolio';
 import { Reveal, SectionHeading, Spotlight } from '../components/shared/ui';
 import '../styles/sections/IntegrationsSection.css';
@@ -8,6 +9,15 @@ const requestStages = [
   { name: 'Queue', detail: 'Retry · scheduled work', status: 'buffered', icon: 'bi-stack' },
   { name: 'Provider', detail: 'Tracked outcome', status: 'confirmed', icon: 'bi-cloud-check' },
 ];
+
+function normalizeSearchText(value) {
+  return value
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLocaleLowerCase()
+    .replace(/[^a-z0-9+#.]+/g, ' ')
+    .trim();
+}
 
 function ReferenceFlow() {
   return (
@@ -46,6 +56,16 @@ function ReferenceFlow() {
 }
 
 function IntegrationTopology() {
+  const [query, setQuery] = useState('');
+  const visibleIntegrations = useMemo(() => {
+    const terms = normalizeSearchText(query).split(/\s+/).filter(Boolean);
+    if (!terms.length) return integrations;
+    return integrations.filter(({ title, description, tools }) => {
+      const searchableText = normalizeSearchText([title, description, ...tools].join(' '));
+      return terms.every((term) => searchableText.includes(term));
+    });
+  }, [query]);
+
   return (
     <div className="integration-topology" role="region" aria-label="Integration topology map">
       <div className="integration-topology__heading">
@@ -53,14 +73,31 @@ function IntegrationTopology() {
           <span className="panel-kicker">Boundary map</span>
           <h3>External service boundaries</h3>
         </div>
-        <span className="integration-topology__count">{String(integrations.length).padStart(2, '0')} <small>domains</small></span>
+        <span className="integration-topology__count" aria-live="polite" aria-atomic="true">
+          {String(visibleIntegrations.length).padStart(2, '0')} <small>of {String(integrations.length).padStart(2, '0')} domains</small>
+        </span>
       </div>
 
-      <div className="integration-topology-grid" role="list" aria-label="Integration domains">
-        {integrations.map((integration, index) => (
+      <div className="integration-search">
+        <i className="bi bi-search" aria-hidden="true" />
+        <label className="visually-hidden" htmlFor="integrationSearch">Search integration domains</label>
+        <input
+          id="integrationSearch"
+          type="search"
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
+          placeholder="Search domains, tools, or patterns"
+          aria-controls="integrationDomains"
+          onKeyDown={(event) => { if (event.key === 'Escape') setQuery(''); }}
+        />
+        {query && <button type="button" aria-label="Clear integration search" onClick={() => setQuery('')}><i className="bi bi-x-lg" aria-hidden="true" /></button>}
+      </div>
+
+      <div id="integrationDomains" className="integration-topology-grid" role="list" aria-label="Integration domains">
+        {visibleIntegrations.map((integration) => (
           <article className="integration-topology-card" role="listitem" key={integration.title}>
             <header>
-              <span>{String(index + 1).padStart(2, '0')} / DOMAIN</span>
+              <span>{String(integrations.indexOf(integration) + 1).padStart(2, '0')} / DOMAIN</span>
               <i className={`bi ${integration.icon}`} aria-hidden="true" />
             </header>
             <h4>{integration.title}</h4>
@@ -70,6 +107,9 @@ function IntegrationTopology() {
             </ul>
           </article>
         ))}
+        {!visibleIntegrations.length && (
+          <p className="integration-search-empty" role="status">No integration domains match “{query.trim()}”.</p>
+        )}
       </div>
     </div>
   );

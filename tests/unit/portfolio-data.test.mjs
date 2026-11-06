@@ -51,8 +51,22 @@ describe('portfolio configuration and content', () => {
     }
   });
 
-  it('exports non-empty journey and integration content', () => {
-    assert.ok(Array.isArray(journey) && journey.length > 0);
+  it('provides complete integration domains, including identity and access', () => {
     assert.ok(Array.isArray(integrations) && integrations.length > 0);
+    const titles = integrations.map(({ title }) => title);
+    assert.equal(new Set(titles).size, titles.length);
+    for (const integration of integrations) {
+      for (const field of ['icon', 'title', 'description']) {
+        assert.equal(typeof integration[field], 'string', `${field} must be a string`);
+        assert.ok(integration[field].trim(), `${field} must not be empty`);
+      }
+      assert.ok(Array.isArray(integration.tools) && integration.tools.length > 0);
+      assert.ok(integration.tools.every((tool) => typeof tool === 'string' && tool.trim()));
+    }
+    assert.ok(titles.includes('Identity & access'));
+  });
+
+  it('exports non-empty journey content', () => {
+    assert.ok(Array.isArray(journey) && journey.length > 0);
   });
 });
