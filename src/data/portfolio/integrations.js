@@ -30,6 +30,17 @@ export const integrations = [
     ]
   },
   {
+    "icon": "bi-person-lock",
+    "title": "Identity & access",
+    "description": "Treat sign-in and authorization as explicit boundaries: validate identity claims, enforce permissions server-side, and make session and access failures safe to recover from.",
+    "tools": [
+      "OAuth 2.0 / OIDC",
+      "SSO",
+      "RBAC",
+      "MFA"
+    ]
+  },
+  {
     "icon": "bi-diagram-3",
     "title": "Work that can wait",
     "description": "Use queues and schedules when immediacy is less important than resilience, throughput, controlled retries, and a fast response to the user.",

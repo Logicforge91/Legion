@@ -3,25 +3,25 @@ import { Reveal, SectionHeading, Spotlight } from '../components/shared/ui';
 import '../styles/sections/IntegrationsSection.css';
 
 const requestStages = [
-  { name: 'Client', detail: 'Validated request', status: 'received', icon: 'bi-window' },
-  { name: 'API layer', detail: 'Authentication · contract', status: 'guarded', icon: 'bi-hdd-network', active: true },
-  { name: 'Queue', detail: 'Retry · scheduled work', status: 'buffered', icon: 'bi-stack' },
-  { name: 'Provider', detail: 'Tracked outcome', status: 'confirmed', icon: 'bi-cloud-check' },
+  { name: 'User', detail: 'Sign-in request', status: 'received', icon: 'bi-person' },
+  { name: 'Identity provider', detail: 'OAuth 2.0 · OIDC', status: 'redirected', icon: 'bi-shield-lock' },
+  { name: 'API boundary', detail: 'Validate identity claims', status: 'guarded', icon: 'bi-hdd-network', active: true },
+  { name: 'Permission check', detail: 'Enforce role and access', status: 'authorized', icon: 'bi-person-check' },
 ];
 
 function ReferenceFlow() {
   return (
     <Reveal className="integration-flow-wrap">
-      <Spotlight as="div" className="integration-flow" role="group" aria-label="Reliable integration request path">
+      <Spotlight as="div" className="integration-flow" role="group" aria-label="Identity and access request path">
         <div className="flow-heading">
           <div>
             <span className="panel-kicker">Reference flow</span>
-            <strong>Request lifecycle</strong>
+            <strong>Identity lifecycle</strong>
           </div>
           <span className="flow-health"><i aria-hidden="true" />Reference</span>
         </div>
 
-        <ol className="flow-pipeline" aria-label="Request processing stages">
+        <ol className="flow-pipeline" aria-label="Identity request processing stages">
           {requestStages.map(({ name, detail, status, icon, active }, index) => (
             <li className={`flow-stage${active ? ' is-active' : ''}`} key={name} aria-current={active ? 'step' : undefined}>
               <span className="flow-stage__icon"><i className={`bi ${icon}`} aria-hidden="true" /></span>
@@ -35,10 +35,10 @@ function ReferenceFlow() {
           ))}
         </ol>
 
-        <div className="flow-signals" aria-label="Reliability safeguards">
-          <span><i className="bi bi-shield-check" aria-hidden="true" />Signed webhooks</span>
-          <span><i className="bi bi-arrow-repeat" aria-hidden="true" />Idempotent retry</span>
-          <span><i className="bi bi-eye" aria-hidden="true" />Operational visibility</span>
+        <div className="flow-signals" aria-label="Identity and access safeguards">
+          <span><i className="bi bi-key" aria-hidden="true" />OAuth / OIDC</span>
+          <span><i className="bi bi-shield-check" aria-hidden="true" />MFA-ready</span>
+          <span><i className="bi bi-person-lock" aria-hidden="true" />Least privilege</span>
         </div>
       </Spotlight>
     </Reveal>
