@@ -1,4 +1,5 @@
 import { education, integrations, journey, proof, projects, services, skills } from '../../data/portfolio';
+import { profileLinks } from '../../config/profileLinks';
 import './PrintPortfolio.css';
 
 export default function PrintPortfolio() {
@@ -11,9 +12,9 @@ export default function PrintPortfolio() {
           <p>Backend Engineer · Laravel · Java · APIs · Integrations</p>
         </div>
         <address>
-          <a href="mailto:sumanks1307@gmail.com">sumanks1307@gmail.com</a>
-          <a href="https://github.com/Logicforge91">github.com/Logicforge91</a>
-          <a href="https://www.linkedin.com/in/suman-k-s-a55868184/">LinkedIn profile</a>
+          <a href={`mailto:${profileLinks.email}`}>{profileLinks.email}</a>
+          <a href={profileLinks.github}>github.com/Logicforge91</a>
+          <a href={profileLinks.linkedin}>LinkedIn profile</a>
         </address>
       </header>
 

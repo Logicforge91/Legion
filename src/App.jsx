@@ -177,12 +177,13 @@ export default function App() {
         ref={assistantLauncherRef}
         className="assistant-launcher"
         type="button"
+        aria-label={assistantOpen ? 'Close assistant' : 'Ask about my work'}
         aria-haspopup="dialog"
         aria-expanded={assistantOpen}
+        title={assistantOpen ? 'Close assistant' : 'Ask about my work'}
         onClick={() => setAssistantOpen((current) => !current)}
       >
-        <i className="bi bi-stars" aria-hidden="true" />
-        {assistantOpen ? 'Close assistant' : 'Ask about my work'}
+        <i className={`bi ${assistantOpen ? 'bi-x-lg' : 'bi-stars'}`} aria-hidden="true" />
       </button>
       {assistantOpen && (
         <Suspense fallback={null}>

@@ -1,4 +1,40 @@
+import { useEffect, useState } from 'react';
+import { usePwaInstall } from '../../hooks/usePwaInstall';
+import { navigationItems } from '../../config/navigation';
+import { socialLinks } from '../../config/profileLinks';
+import { analyticsConfigured, getAnalyticsConsent, setAnalyticsConsent, trackPageView } from '../../utils/analytics';
+
+function AnalyticsPreference() {
+  const [enabled, setEnabled] = useState(getAnalyticsConsent);
+
+  useEffect(() => {
+    if (!enabled) return undefined;
+    trackPageView();
+    window.addEventListener('hashchange', trackPageView);
+    return () => {
+      window.removeEventListener('hashchange', trackPageView);
+    };
+  }, [enabled]);
+
+  if (!analyticsConfigured) return null;
+
+  const toggleConsent = () => {
+    const next = !enabled;
+    setAnalyticsConsent(next);
+    setEnabled(next);
+  };
+
+  return (
+    <button className="footer-analytics" type="button" aria-pressed={enabled} onClick={toggleConsent}>
+      <i className={`bi ${enabled ? 'bi-toggle-on' : 'bi-toggle-off'}`} aria-hidden="true" />
+      Analytics {enabled ? 'on' : 'off'}
+    </button>
+  );
+}
+
 export default function Footer() {
+  const { canInstall, install } = usePwaInstall();
+
   return (
     <footer>
       <div className="site-container footer-outro">
@@ -16,6 +52,11 @@ export default function Footer() {
           <button className="footer-outro__print" type="button" onClick={() => window.print()}>
             <i className="bi bi-printer" aria-hidden="true" /> Print portfolio
           </button>
+          {canInstall && (
+            <button className="footer-outro__install" type="button" onClick={() => { void install(); }}>
+              <i className="bi bi-download" aria-hidden="true" /> Install portfolio
+            </button>
+          )}
         </div>
       </div>
 
@@ -33,32 +74,29 @@ export default function Footer() {
           </a>
         </div>
 
-        <nav className="footer-nav" aria-label="Footer navigation">
-          <p>Explore</p>
-          <a href="#about">The Engineer</a>
-          <a href="#education">Education</a>
-          <a href="#journey">Career archive</a>
-          <a href="#skills">Toolkit</a>
-          <a href="#services">Services</a>
-          <a href="#projects">Systems</a>
-          <a href="#articles">Articles</a>
+        <nav className="footer-nav footer-nav--quick" aria-label="Quick navigation">
+          <p>Quick navigation</p>
+          <div className="footer-quick-links">
+            {navigationItems.map(([id, label]) => <a href={`#${id}`} key={id}>{label}</a>)}
+          </div>
         </nav>
-
-        <div className="footer-nav">
-          <p>Connect</p>
-          <a href="mailto:sumanks1307@gmail.com">Email</a>
-          <a href="https://github.com/Logicforge91" target="_blank" rel="noreferrer">
-            GitHub <i className="bi bi-arrow-up-right" aria-hidden="true" />
-          </a>
-          <a href="https://www.linkedin.com/in/suman-k-s-a55868184/" target="_blank" rel="noreferrer">
-            LinkedIn <i className="bi bi-arrow-up-right" aria-hidden="true" />
-          </a>
-        </div>
       </div>
 
       <div className="site-container footer-bottom">
-        <p>&copy; {new Date().getFullYear()} Suman K S</p>
-        <p>Built in Bengaluru, India</p>
+        <div className="footer-bottom__meta">
+          <p>&copy; {new Date().getFullYear()} Suman K S. All rights reserved.</p>
+          <p>Built in Bengaluru, India</p>
+          <AnalyticsPreference />
+        </div>
+        <nav className="footer-social" aria-label="Social links">
+          {socialLinks.map(({ label, href, icon, external }) => (
+            <a href={href} key={label} aria-label={label} {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}>
+              <i className={`bi ${icon}`} aria-hidden="true" />
+              <span>{label}</span>
+              {external && <i className="bi bi-arrow-up-right" aria-hidden="true" />}
+            </a>
+          ))}
+        </nav>
       </div>
     </footer>
   );

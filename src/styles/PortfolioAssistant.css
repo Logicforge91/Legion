@@ -49,10 +49,10 @@
 .portfolio-assistant__form button:disabled { opacity: .45; cursor: not-allowed; }
 .portfolio-assistant__disclosure { margin: 9px 16px 12px; color: var(--muted); font: .52rem var(--font-mono); }
 
-.assistant-launcher { position: fixed; right: max(102px, env(safe-area-inset-right) + 80px); bottom: max(22px, env(safe-area-inset-bottom)); z-index: 1100; display: inline-flex; min-height: 46px; align-items: center; gap: 9px; padding: 0 15px; border: 1px solid color-mix(in srgb, var(--accent-2) 35%, var(--line)); border-radius: 999px; color: var(--panel-strong); background: var(--accent-2); box-shadow: 0 8px 24px rgba(0, 0, 0, .3); font: 600 .72rem var(--font-display); cursor: pointer; transition: transform .18s ease, box-shadow .18s ease; }
+.assistant-launcher { position: fixed; right: max(102px, env(safe-area-inset-right) + 80px); bottom: max(22px, env(safe-area-inset-bottom)); z-index: 1100; display: inline-grid; width: 48px; height: 48px; place-items: center; padding: 0; border: 1px solid color-mix(in srgb, var(--accent-2) 35%, var(--line)); border-radius: 50%; color: var(--panel-strong); background: var(--accent-2); box-shadow: 0 8px 24px rgba(0, 0, 0, .3); cursor: pointer; transition: transform .18s ease, box-shadow .18s ease; }
 .assistant-launcher:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0, 0, 0, .4); }
 .assistant-launcher[aria-expanded="true"] { color: var(--text); background: var(--card); }
-.assistant-launcher i { font-size: .9rem; }
+.assistant-launcher i { font-size: 1.1rem; }
 
 @keyframes portfolio-assistant-enter {
   from { opacity: 0; transform: translateY(8px) scale(.985); }
@@ -61,6 +61,6 @@
 
 @media (max-width: 520px) {
   .portfolio-assistant { right: 12px; bottom: max(74px, env(safe-area-inset-bottom) + 64px); width: calc(100vw - 24px); max-height: min(620px, calc(100dvh - 100px)); }
-  .assistant-launcher { right: max(86px, env(safe-area-inset-right) + 72px); bottom: max(14px, env(safe-area-inset-bottom)); min-height: 43px; }
+  .assistant-launcher { right: max(86px, env(safe-area-inset-right) + 72px); bottom: max(14px, env(safe-area-inset-bottom)); }
 }
 @media (prefers-reduced-motion: reduce) { .portfolio-assistant { animation: none; } .assistant-launcher { transition: none; } }

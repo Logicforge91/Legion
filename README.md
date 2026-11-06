@@ -24,6 +24,9 @@ A responsive, single-page developer portfolio for Suman K S. The project is impl
 - Tree-shaken inline SVG icon masks and automatic stale-chunk recovery after deployments
 - Native profile sharing with clipboard fallback
 - Offline repeat-visit support through a lightweight service worker
+- Installable PWA experience with an in-app install prompt when the browser supports it
+- Optional Google Analytics 4 visit tracking, disabled until configured and explicitly enabled by the visitor
+- Subtle page entrance animation with reduced-motion support
 - Nine project cards spanning health, fintech, education ERP, custom websites, ecommerce, integrations, game applications, and two Java/Spring Boot systems
 - Branded large-format social preview for LinkedIn, WhatsApp, and other link unfurls
 - Automated validation for project data, unique slugs, required assets, icon coverage, and Playwright test compilation
@@ -169,6 +172,8 @@ The contact form sends mail through the `netlify/functions/contact.mjs` serverle
 
 The visitor's address is assigned as the reply-to address, so replying from the receiving inbox responds directly to them. API credentials remain server-side.
 The `/api/contact` route is rate-limited by Netlify to five requests per IP per minute; deploy logs should confirm the rule was accepted.
+
+To enable visitor analytics, set `VITE_GA_MEASUREMENT_ID` to the site's GA4 measurement ID (for example, `G-XXXXXXXXXX`) in the build environment. The footer then provides an opt-in control; analytics does not load before a visitor enables it. Omitting the variable keeps analytics unavailable and sends no analytics requests. The Netlify Content Security Policy allows only the Google Analytics endpoints used by this integration.
 
 If the Netlify dashboard contains older manual build settings, use:
 
