@@ -75,7 +75,12 @@ function SectionFallback({ id, section, onRef }) {
 
 function DeferredSection({ id, section, Component }) {
   const placeholderRef = useRef(null);
-  const [shouldLoad, setShouldLoad] = useState(false);
+  const [shouldLoad, setShouldLoad] = useState(() => {
+    const hash = window.location.hash.slice(1);
+    if (hash === id) return true;
+    const sectionOrder = ['about', 'journey', 'skills', 'integrations', 'projects', 'achievements', 'impact', 'contact'];
+    return hash && sectionOrder.indexOf(id) <= sectionOrder.indexOf(hash);
+  });
 
   useEffect(() => {
     if (shouldLoad) return undefined;
@@ -108,7 +113,7 @@ const PortfolioContent = memo(function PortfolioContent() {
       <DeferredSection id="integrations" section="integrations" Component={IntegrationsSection} />
       <DeferredSection id="projects" section="projects" Component={ProjectsSection} />
       <DeferredSection id="achievements" section="achievements" Component={AchievementsSection} />
-      <DeferredSection id="testimonials" section="testimonials" Component={TestimonialsSection} />
+      <DeferredSection id="impact" section="impact" Component={TestimonialsSection} />
       <DeferredSection id="contact" section="contact" Component={ContactSection} />
     </main>
   );

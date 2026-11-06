@@ -7,6 +7,7 @@ const commands = [
   { label: 'Explore the engineering toolkit', hint: 'Skills', group: 'Explore', detail: 'Browse languages, frameworks, data, and delivery tools.', icon: 'bi-layers', href: '#skills', keywords: 'skills stack toolkit laravel java php' },
   { label: 'Review integrations', hint: 'Architecture', group: 'Explore', detail: 'See how APIs and external services fit together.', icon: 'bi-diagram-3', href: '#integrations', keywords: 'api payments queue webhook external' },
   { label: 'Browse featured systems', hint: 'Projects', group: 'Explore', detail: 'Open project case studies and backend systems.', icon: 'bi-grid-1x2', href: '#projects', keywords: 'projects work systems portfolio' },
+  { label: 'Explore selected impact', hint: 'Case studies', group: 'Explore', detail: 'See selected healthcare, fintech, and Java workflow case studies.', icon: 'bi-activity', href: '#impact', keywords: 'impact case studies outcomes healthcare fintech workflow' },
   { label: 'Start a conversation', hint: 'Contact', group: 'Connect', detail: 'Jump to the contact form and professional links.', icon: 'bi-chat-dots', href: '#contact', keywords: 'contact hire message role' },
   { label: 'Open résumé', hint: 'PDF', group: 'Actions', detail: 'Open the résumé PDF in a new tab.', icon: 'bi-file-earmark-person', href: '/assets/resume.pdf', keywords: 'resume cv download' },
   { label: 'Send an email', hint: 'Email', group: 'Actions', detail: 'Compose an email to Suman.', icon: 'bi-envelope', href: 'mailto:sumanks1307@gmail.com', keywords: 'email contact message' },

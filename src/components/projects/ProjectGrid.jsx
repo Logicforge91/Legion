@@ -69,11 +69,23 @@ export default function ProjectGrid({ projects, projectNumbers }) {
     const track = trackRef.current;
     if (!track?.children.length) return 0;
 
-    return Array.from(track.children).reduce((nearest, slide, index, allSlides) => {
-      const distance = Math.abs(getSlideOffset(track, slide) - track.scrollLeft);
-      const nearestDistance = Math.abs(getSlideOffset(track, allSlides[nearest]) - track.scrollLeft);
-      return distance < nearestDistance ? index : nearest;
-    }, 0);
+    // Read the track geometry once and each slide position once; the prior reduce
+    // recalculated both the candidate and current-nearest position on every pass.
+    const trackLeft = track.getBoundingClientRect().left;
+    const scrollLeft = track.scrollLeft;
+    let nearestIndex = 0;
+    let nearestDistance = Infinity;
+
+    Array.from(track.children).forEach((slide, index) => {
+      const offset = scrollLeft + slide.getBoundingClientRect().left - trackLeft;
+      const distance = Math.abs(offset - scrollLeft);
+      if (distance < nearestDistance) {
+        nearestIndex = index;
+        nearestDistance = distance;
+      }
+    });
+
+    return nearestIndex;
   }, []);
 
   const normalizeLoopPosition = useCallback(() => {

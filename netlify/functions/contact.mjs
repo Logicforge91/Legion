@@ -18,7 +18,6 @@ export async function handler(event) {
     return json(400, { error: 'Invalid request' });
   }
 
-  // Silently accept honeypot submissions so bots cannot adapt to the field.
   if (clean(payload['bot-field'], 200)) return json(200, { ok: true });
 
   const name = clean(payload.name, 100);
@@ -38,7 +37,10 @@ export async function handler(event) {
     return json(503, { error: 'Mail service is unavailable' });
   }
 
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 10_000);
   let response;
+
   try {
     response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
@@ -53,11 +55,13 @@ export async function handler(event) {
         subject: `Portfolio enquiry from ${name}`,
         text: [`Name: ${name}`, `Email: ${email}`, `Company: ${company || 'Not provided'}`, '', message].join('\n'),
       }),
-      signal: AbortSignal.timeout(10_000),
+      signal: controller.signal,
     });
   } catch (error) {
     console.error('Contact email request failed', error.name);
     return json(504, { error: 'Mail service timed out' });
+  } finally {
+    clearTimeout(timeoutId);
   }
 
   if (!response.ok) {

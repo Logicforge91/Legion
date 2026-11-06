@@ -45,15 +45,15 @@ function ReferenceFlow() {
   );
 }
 
-function IntegrationExplorer() {
+function IntegrationTopology() {
   return (
-    <div className="integration-explorer" role="region" aria-label="Integration topology map">
-      <div className="integration-explorer__heading">
+    <div className="integration-topology" role="region" aria-label="Integration topology map">
+      <div className="integration-topology__heading">
         <div>
           <span className="panel-kicker">Boundary map</span>
           <h3>External service boundaries</h3>
         </div>
-        <span className="integration-explorer__count">{String(integrations.length).padStart(2, '0')} <small>domains</small></span>
+        <span className="integration-topology__count">{String(integrations.length).padStart(2, '0')} <small>domains</small></span>
       </div>
 
       <div className="integration-topology-grid" role="list" aria-label="Integration domains">
@@ -83,7 +83,7 @@ export default function IntegrationsSection() {
       </SectionHeading>
       <div className="integration-layout">
         <ReferenceFlow />
-        <IntegrationExplorer />
+        <IntegrationTopology />
       </div>
     </div>
   </section>;

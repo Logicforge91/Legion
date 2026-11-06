@@ -7,6 +7,9 @@ export const projectFilters = [
   ['websites', 'Custom websites'],
   ['ecommerce', 'Ecommerce'],
   ['integrations', 'Integrations'],
+  ['school', 'School modules'],
+  ['payments', 'Payment integrations'],
+  ['api-audit', 'REST API audits'],
   ['gaming', 'Game applications'],
 ];
 

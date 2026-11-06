@@ -35,5 +35,23 @@ export default function ShareProfileButton() {
   };
 
   const label = status === 'copied' ? 'Link copied' : status === 'shared' ? 'Shared' : status === 'error' ? 'Copy failed' : 'Share profile';
-  return <button className="btn btn-share" type="button" onClick={shareProfile} aria-live="polite"><i className={`bi ${status === 'copied' || status === 'shared' ? 'bi-check2' : status === 'error' ? 'bi-exclamation-circle' : 'bi-share'}`} aria-hidden="true" />{label}</button>;
+  const icon = status === 'copied' || status === 'shared'
+    ? 'bi-check2'
+    : status === 'error'
+      ? 'bi-exclamation-circle'
+      : 'bi-share';
+
+  return (
+    <>
+      <button className="btn btn-share" type="button" onClick={shareProfile}>
+        <i className={`bi ${icon}`} aria-hidden="true" />
+        {label}
+      </button>
+      <span className="visually-hidden" role="status" aria-live="polite" aria-atomic="true">
+        {status === 'copied' ? 'Portfolio link copied to clipboard.' : ''}
+        {status === 'shared' ? 'Portfolio link shared.' : ''}
+        {status === 'error' ? 'Could not share or copy the portfolio link.' : ''}
+      </span>
+    </>
+  );
 }

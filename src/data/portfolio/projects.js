@@ -90,5 +90,45 @@ export const projects = [
       "java",
       "integrations"
     ]
+  },
+  {
+    "slug": "school-admissions-workflow",
+    "category": "School Admissions",
+    "icon": "bi-person-vcard",
+    "title": "Admissions from application through enrollment",
+    "text": "A school admissions workflow for application review, document checks, decisions, and enrollment handoff, with clear status tracking for staff and families.",
+    "filters": ["education", "school"]
+  },
+  {
+    "slug": "school-fee-management",
+    "category": "School Fees",
+    "icon": "bi-cash-coin",
+    "title": "Fee management with clear balances and payment history",
+    "text": "Fee schedules, installments, receipts, outstanding balances, and payment reconciliation organized into an auditable school finance workflow.",
+    "filters": ["education", "school", "fintech"]
+  },
+  {
+    "slug": "school-hostel-management",
+    "category": "Hostel Management",
+    "icon": "bi-buildings",
+    "title": "Hostel operations connected to student records",
+    "text": "Room allocation, occupancy, check-in records, and hostel requests organized around student identity and staff responsibilities.",
+    "filters": ["education", "school"]
+  },
+  {
+    "slug": "payment-provider-integrations",
+    "category": "Payment Integrations",
+    "icon": "bi-arrow-left-right",
+    "title": "Payment integrations built for retries and reconciliation",
+    "text": "Provider callbacks, signature checks, idempotent processing, transaction status, and reconciliation handled through explicit integration boundaries.",
+    "filters": ["integrations", "payments", "fintech"]
+  },
+  {
+    "slug": "rest-api-audit",
+    "category": "REST API Audit",
+    "icon": "bi-clipboard2-check",
+    "title": "REST APIs reviewed for consistency and operational risks",
+    "text": "An API audit covering endpoint conventions, validation, authorization, error responses, pagination, documentation, and observability.",
+    "filters": ["integrations", "api-audit"]
   }
 ];
