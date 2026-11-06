@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
 
 function getScrollState() {
+  if (typeof window === 'undefined') {
+    return { headerScrolled: false, showScrollTop: false };
+  }
+
   return {
     headerScrolled: window.scrollY > 12,
     showScrollTop: window.scrollY > 420,
@@ -8,12 +12,15 @@ function getScrollState() {
 }
 
 function updateScrollProgress() {
+  if (typeof document === 'undefined') return;
+
+  const root = document.documentElement || document.body;
   const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
   const progress = scrollableHeight > 0
     ? Math.min(1, Math.max(0, window.scrollY / scrollableHeight))
     : 0;
 
-  document.documentElement.style.setProperty('--scroll-progress', String(progress));
+  root.style.setProperty('--scroll-progress', String(progress));
 }
 
 export function useScrollState() {
