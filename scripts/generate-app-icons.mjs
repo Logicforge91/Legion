@@ -3,12 +3,12 @@ import { fileURLToPath } from 'node:url';
 import { chromium } from '@playwright/test';
 
 const iconDirectory = new URL('../public/icons/', import.meta.url);
-const sourceIcon = await readFile(new URL('../public/favicon-sk.svg', import.meta.url), 'utf8');
+const sourceIcon = await readFile(new URL('../public/favicon-qy.svg', import.meta.url), 'utf8');
 const iconData = `data:image/svg+xml;base64,${Buffer.from(sourceIcon).toString('base64')}`;
 const iconSizes = [
-  { size: 180, name: 'apple-touch-icon.png' },
-  { size: 192, name: 'icon-192.png' },
-  { size: 512, name: 'icon-512.png' },
+  { size: 180, name: 'apple-touch-qy.png' },
+  { size: 192, name: 'icon-qy-192.png' },
+  { size: 512, name: 'icon-qy-512.png' },
 ];
 
 await mkdir(iconDirectory, { recursive: true });

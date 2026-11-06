@@ -73,7 +73,7 @@
 .profile-card__intro { grid-area: intro; }
 .about-section .profile-card h3 { margin-bottom: 7px; font-family: var(--font-heading); }
 .about-section .profile-card__intro p { font-size: .82rem; line-height: 1.6; }
-.about-section dl.profile-facts { display: grid; grid-area: facts; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; margin-top: 0; }
+.about-section dl.profile-facts { display: grid; grid-area: facts; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; margin-top: 0; }
 .about-section .profile-facts div { min-width: 0; padding: 12px; border-radius: 8px; background: color-mix(in srgb, var(--panel-strong) 62%, transparent); }
 .about-section .profile-facts dt { font-size: .58rem; }
 .about-section .profile-facts dd { font-size: .72rem; line-height: 1.5; }

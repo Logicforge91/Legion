@@ -11,16 +11,20 @@ import HeroSection from './sections/HeroSection';
 import './styles/PortfolioAssistant.css';
 
 const AboutSection = lazy(() => import('./sections/AboutSection'));
-const AchievementsSection = lazy(() => import('./sections/AchievementsSection'));
 const ArticlesSection = lazy(() => import('./sections/ArticlesSection'));
 const ContactSection = lazy(() => import('./sections/ContactSection'));
-const EducationSection = lazy(() => import('./sections/EducationSection'));
-const IntegrationsSection = lazy(() => import('./sections/IntegrationsSection'));
-const JourneySection = lazy(() => import('./sections/JourneySection'));
 const ProjectsSection = lazy(() => import('./sections/ProjectsSection'));
+const IntegrationsSection = lazy(() => import('./sections/IntegrationsSection'));
 const SkillsSection = lazy(() => import('./sections/SkillsSection'));
 const ServicesSection = lazy(() => import('./sections/ServicesSection'));
-const TestimonialsSection = lazy(() => import('./sections/TestimonialsSection'));
+const CaseStudiesSection = lazy(() => import('./sections/TestimonialsSection'));
+const IndustriesSection = lazy(() => import('./sections/CompanySections').then((module) => ({ default: module.IndustriesSection })));
+const ProcessSection = lazy(() => import('./sections/CompanySections').then((module) => ({ default: module.ProcessSection })));
+const WhyUsSection = lazy(() => import('./sections/CompanySections').then((module) => ({ default: module.WhyUsSection })));
+const TeamSection = lazy(() => import('./sections/CompanySections').then((module) => ({ default: module.TeamSection })));
+const TestimonialsSection = lazy(() => import('./sections/CompanySections').then((module) => ({ default: module.TestimonialsSection })));
+const CareersSection = lazy(() => import('./sections/CompanySections').then((module) => ({ default: module.CareersSection })));
+const FAQSection = lazy(() => import('./sections/CompanySections').then((module) => ({ default: module.FAQSection })));
 const CommandPalette = lazy(() => import('./components/overlays/CommandPalette'));
 const PortfolioAssistant = lazy(() => import('./components/overlays/PortfolioAssistant'));
 
@@ -65,7 +69,7 @@ function observeDeferredSection(element, callback) {
 }
 
 function SectionFallback({ id, section, onRef }) {
-  const compactSections = ['education', 'services', 'skills', 'integrations', 'contact'].includes(id);
+  const compactSections = ['services', 'skills', 'integrations', 'contact'].includes(id);
   return (
     <section ref={onRef} id={id} className={`section-loading section-loading--${section}${compactSections ? ' section-loading--compact' : ''}`} aria-busy="true" aria-label={`Loading ${section} section`}>
       <div className="site-container">
@@ -130,17 +134,21 @@ const PortfolioContent = memo(function PortfolioContent() {
   return (
     <main id="content" className="relative z-10">
       <HeroSection />
-      <TechMarquee />
       <DeferredSection id="about" section="profile" Component={AboutSection} />
-      <DeferredSection id="education" section="education" Component={EducationSection} />
-      <DeferredSection id="journey" section="journey" Component={JourneySection} />
-      <DeferredSection id="skills" section="skills" Component={SkillsSection} />
       <DeferredSection id="services" section="services" Component={ServicesSection} />
+      <TechMarquee />
+      <DeferredSection id="skills" section="skills" Component={SkillsSection} />
       <DeferredSection id="integrations" section="integrations" Component={IntegrationsSection} />
+      <DeferredSection id="industries" section="industries" Component={IndustriesSection} />
       <DeferredSection id="projects" section="projects" Component={ProjectsSection} />
+      <DeferredSection id="impact" section="impact" Component={CaseStudiesSection} />
+      <DeferredSection id="process" section="process" Component={ProcessSection} />
+      <DeferredSection id="why-us" section="why-us" Component={WhyUsSection} />
+      <DeferredSection id="team" section="team" Component={TeamSection} />
+      <DeferredSection id="testimonials" section="testimonials" Component={TestimonialsSection} />
       <DeferredSection id="articles" section="articles" Component={ArticlesSection} />
-      <DeferredSection id="achievements" section="achievements" Component={AchievementsSection} />
-      <DeferredSection id="impact" section="impact" Component={TestimonialsSection} />
+      <DeferredSection id="careers" section="careers" Component={CareersSection} />
+      <DeferredSection id="faq" section="faq" Component={FAQSection} />
       <DeferredSection id="contact" section="contact" Component={ContactSection} />
     </main>
   );
@@ -177,10 +185,10 @@ export default function App() {
         ref={assistantLauncherRef}
         className="assistant-launcher"
         type="button"
-        aria-label={assistantOpen ? 'Close assistant' : 'Ask about my work'}
+        aria-label={assistantOpen ? 'Close QYVERON assistant' : 'Ask QYVERON'}
         aria-haspopup="dialog"
         aria-expanded={assistantOpen}
-        title={assistantOpen ? 'Close assistant' : 'Ask about my work'}
+        title={assistantOpen ? 'Close QYVERON assistant' : 'Ask QYVERON'}
         onClick={() => setAssistantOpen((current) => !current)}
       >
         <i className={`bi ${assistantOpen ? 'bi-x-lg' : 'bi-stars'}`} aria-hidden="true" />

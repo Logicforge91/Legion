@@ -31,8 +31,8 @@ export default function Header({ activeSection, scrolled, onOpenCommandPalette }
     <header className={`site-header${scrolled ? ' is-scrolled' : ''}`}>
       <div className="site-container nav-shell">
         <a href="#hero" className="logo" aria-label="Go to home">
-          <span className="logo-mark" aria-hidden="true">SK</span>
-          <span className="logo-text">Suman K S</span>
+          <span className="logo-mark" aria-hidden="true">Q</span>
+          <span className="logo-text">QYVERON TECHNOLOGIES</span>
         </a>
 
         <div ref={menuRef}>
@@ -45,9 +45,8 @@ export default function Header({ activeSection, scrolled, onOpenCommandPalette }
             aria-label={open ? 'Close navigation' : 'Open navigation'}
             onClick={() => setOpen((current) => !current)}
           >
-            <span />
-            <span />
-            <span />
+            <i className={`bi ${open ? 'bi-x-lg' : 'bi-list'}`} aria-hidden="true" />
+            <span className="nav-toggle-label">Menu</span>
           </button>
 
           <nav id="siteNav" aria-label="Main navigation">
@@ -55,10 +54,10 @@ export default function Header({ activeSection, scrolled, onOpenCommandPalette }
               {navigationItems.map(([id, label]) => {
                 const active = activeSection === id;
                 return (
-                  <li key={id}>
+                  <li className="nav-section-link" key={id}>
                     <a
                       href={`#${id}`}
-                      className={active ? 'active' : ''}
+                      className={`${active ? 'active' : ''}${id === 'contact' ? ' nav-cta' : ''}`.trim()}
                       aria-current={active ? 'location' : undefined}
                       onClick={closeMenu}
                     >
@@ -67,16 +66,6 @@ export default function Header({ activeSection, scrolled, onOpenCommandPalette }
                   </li>
                 );
               })}
-              <li>
-                <a
-                  href="#contact"
-                  className={`nav-cta${activeSection === 'contact' ? ' active' : ''}`}
-                  aria-current={activeSection === 'contact' ? 'location' : undefined}
-                  onClick={closeMenu}
-                >
-                  Build with me
-                </a>
-              </li>
               <li>
                 <button
                   className="nav-command"

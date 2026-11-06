@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { usePwaInstall } from '../../hooks/usePwaInstall';
 import { navigationItems } from '../../config/navigation';
-import { socialLinks } from '../../config/profileLinks';
 import { analyticsConfigured, getAnalyticsConsent, setAnalyticsConsent, trackPageView } from '../../utils/analytics';
 
 function AnalyticsPreference() {
@@ -43,18 +42,18 @@ export default function Footer() {
           <span className="footer-outro__eyebrow">
             <i aria-hidden="true" />~/contact <b>$</b> new-backend-brief
           </span>
-          <h2>Bring the workflow. Let’s map the backend.</h2>
+          <h2>Bring the idea. Let’s build something reliable.</h2>
         </div>
         <div className="footer-outro__actions">
           <a className="footer-outro__action" href="#contact">
             Open contact channel <i className="bi bi-arrow-up-right" aria-hidden="true" />
           </a>
           <button className="footer-outro__print" type="button" onClick={() => window.print()}>
-            <i className="bi bi-printer" aria-hidden="true" /> Print portfolio
+            <i className="bi bi-printer" aria-hidden="true" /> Print company profile
           </button>
           {canInstall && (
             <button className="footer-outro__install" type="button" onClick={() => { void install(); }}>
-              <i className="bi bi-download" aria-hidden="true" /> Install portfolio
+              <i className="bi bi-download" aria-hidden="true" /> Install QYVERON
             </button>
           )}
         </div>
@@ -63,14 +62,14 @@ export default function Footer() {
       <div className="site-container footer-main">
         <div className="footer-intro">
           <a href="#hero" className="footer-logo" aria-label="Back to the top">
-            Suman K S<span>.</span>
+            QYVERON<span>.</span>
           </a>
           <p className="footer-tagline">
-            Senior backend engineering for product teams that need dependable APIs,
-            thoughtful data design, and resilient operational systems.
+            Engineering Tomorrow, Today. We build dependable APIs, thoughtful data
+            systems, and resilient integrations for real products.
           </p>
           <a className="footer-availability" href="#contact">
-            <i aria-hidden="true" />Open to backend opportunities
+            <i aria-hidden="true" />Available for backend projects
           </a>
         </div>
 
@@ -84,19 +83,11 @@ export default function Footer() {
 
       <div className="site-container footer-bottom">
         <div className="footer-bottom__meta">
-          <p>&copy; {new Date().getFullYear()} Suman K S. All rights reserved.</p>
-          <p>Built in Bengaluru, India</p>
+          <p>&copy; {new Date().getFullYear()} QYVERON TECHNOLOGIES. All rights reserved.</p>
+          <p>Independent software development studio</p>
           <AnalyticsPreference />
         </div>
-        <nav className="footer-social" aria-label="Social links">
-          {socialLinks.map(({ label, href, icon, external }) => (
-            <a href={href} key={label} aria-label={label} {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}>
-              <i className={`bi ${icon}`} aria-hidden="true" />
-              <span>{label}</span>
-              {external && <i className="bi bi-arrow-up-right" aria-hidden="true" />}
-            </a>
-          ))}
-        </nav>
+        <p className="footer-brand-tagline">Engineering Tomorrow, Today.</p>
       </div>
     </footer>
   );

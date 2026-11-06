@@ -71,7 +71,7 @@ export default function TechMarquee() {
   const { reducedMotion, paused, togglePaused, isPaused } = useLoopMotion(flowRef);
 
   return (
-    <section className="tech-index-section" aria-labelledby="techIndexTitle">
+    <section id="technologies" className="tech-index-section" aria-labelledby="techIndexTitle">
       <div className="site-container">
         <div className="tech-index-heading">
           <div>
@@ -82,7 +82,7 @@ export default function TechMarquee() {
               <strong className="tech-index-edition__year" aria-hidden="true">2026</strong>
               <span className="tech-index-edition__cursor" aria-hidden="true" />
             </div>
-            <h2 id="techIndexTitle">Tools chosen for the work.</h2>
+            <h2 id="techIndexTitle">Technologies chosen for the work.</h2>
           </div>
           <p>Grouped by where they create value, from application logic to delivery.</p>
         </div>

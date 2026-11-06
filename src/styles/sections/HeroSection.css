@@ -53,7 +53,6 @@
 }
 .studio-card-head,
 .studio-visual-label,
-.studio-resume { grid-column: 1 / -1; }
 .studio-visual-label { margin-top: 20px; }
 .studio-flow { grid-column: 1; }
 .studio-system-readout {
@@ -70,7 +69,6 @@
   text-align: left;
 }
 .studio-signal { grid-column: 1; }
-.studio-resume { justify-self: end; }
 
 .hero-facts {
   display: grid;
@@ -126,7 +124,6 @@
   .hero-studio-copy h1 { font-size: clamp(2.9rem, 13vw, 4.25rem); }
   .studio-visual-label { flex-direction: column; }
   .studio-visual-label span:last-child { text-align: left; }
-  .studio-resume { justify-self: start; }
   .hero-fact { min-height: 92px; padding-inline: 7px; }
   .hero-fact strong { font-size: .92rem; }
   .hero-fact > span:not(.hero-fact-index) { font-size: .64rem; }

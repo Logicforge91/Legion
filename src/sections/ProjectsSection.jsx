@@ -26,24 +26,12 @@ export default function ProjectsSection() {
     <section id="projects" className="projects-section systems-showcase" aria-labelledby="projectsTitle">
       <div className="site-container">
         <SectionHeading
-          eyebrow="Featured Systems"
+          eyebrow="Portfolio / representative systems"
           id="projectsTitle"
-          title="Product domains and Java systems. One production mindset."
+          title="Representative software systems."
         >
-          Explore how permissions, money, operations, content, orders, and user flows get built for production realities.
+          These solution concepts show how permissions, money, operations, content, orders, and user flows can be designed for production realities; they are not attributed client case studies.
         </SectionHeading>
-
-        <a
-          className="systems-github-link"
-          href="https://github.com/Logicforge91"
-          target="_blank"
-          rel="noreferrer"
-          aria-label="Explore Suman's GitHub profile (opens in a new tab)"
-        >
-          <i className="bi bi-github" aria-hidden="true" />
-          Explore GitHub profile
-          <i className="bi bi-arrow-up-right" aria-hidden="true" />
-        </a>
 
         <ProjectFilterBar
           count={visibleProjects.length}

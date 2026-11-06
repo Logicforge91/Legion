@@ -1,20 +1,20 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+﻿import { useEffect, useMemo, useRef, useState } from 'react';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 
 const commands = [
-  { label: 'Meet the engineer', hint: 'About', group: 'Explore', detail: 'Read the engineering profile and working principles.', icon: 'bi-person', href: '#about', keywords: 'profile about experience identity' },
-  { label: 'View education', hint: 'Education', group: 'Explore', detail: 'See the degree, institution, university, and graduation year.', icon: 'bi-mortarboard', href: '#education', keywords: 'degree college university graduation education' },
-  { label: 'Browse career archive', hint: 'Experience', group: 'Explore', detail: 'Read the career milestones in chronological order.', icon: 'bi-signpost-split', href: '#journey', keywords: 'work companies career timeline journey' },
-  { label: 'Explore the engineering toolkit', hint: 'Skills', group: 'Explore', detail: 'Browse languages, frameworks, data, and delivery tools.', icon: 'bi-layers', href: '#skills', keywords: 'skills stack toolkit laravel java php' },
+  { label: 'About Us', hint: 'Company', group: 'Explore', detail: 'Learn about QYVERON, its brand values, and vision.', icon: 'bi-buildings', href: '#about', keywords: 'company identity industry values vision' },
+  { label: 'Explore technologies', hint: 'Technology stack', group: 'Explore', detail: 'Browse the technology index and engineering capabilities.', icon: 'bi-layers', href: '#technologies', keywords: 'skills stack toolkit languages frameworks database laravel java php' },
   { label: 'Explore backend services', hint: 'Services', group: 'Explore', detail: 'See the backend engineering services available to product teams.', icon: 'bi-hdd-network', href: '#services', keywords: 'services API database integrations Java backend' },
+  { label: 'Explore industries', hint: 'Industries', group: 'Explore', detail: 'See representative domains and workflows QYVERON can build for.', icon: 'bi-buildings', href: '#industries', keywords: 'healthcare fintech education commerce industry domains' },
+  { label: 'Our process', hint: 'Engagement', group: 'Explore', detail: 'Review the usual path from discovery and scope through delivery and handover.', icon: 'bi-signpost-2', href: '#process', keywords: 'process discovery scope build validate handover' },
+  { label: 'Why choose QYVERON', hint: 'Principles', group: 'Explore', detail: 'See the studio principles behind its engineering approach.', icon: 'bi-patch-check', href: '#why-us', keywords: 'quality trust innovation differentiators strengths' },
+  { label: 'Frequently asked questions', hint: 'FAQ', group: 'Explore', detail: 'Find answers about services, project starts, and handover.', icon: 'bi-question-circle', href: '#faq', keywords: 'faq questions answers project' },
   { label: 'Review integrations', hint: 'Architecture', group: 'Explore', detail: 'See how APIs and external services fit together.', icon: 'bi-diagram-3', href: '#integrations', keywords: 'api payments queue webhook external' },
   { label: 'Browse featured systems', hint: 'Projects', group: 'Explore', detail: 'Open project case studies and backend systems.', icon: 'bi-grid-1x2', href: '#projects', keywords: 'projects work systems portfolio' },
   { label: 'Read technical articles', hint: 'Field notes', group: 'Explore', detail: 'Browse backend tutorials on APIs, data, security, and reliability.', icon: 'bi-journal-code', href: '#articles', keywords: 'articles tutorials coding knowledge engineering notes backend' },
-  { label: 'Ask the portfolio assistant', hint: 'Assistant', group: 'Explore', detail: 'Find relevant answers from the projects, skills, and articles on this site.', icon: 'bi-chat-square-text', href: '#assistant', keywords: 'ai assistant ask question chat about work portfolio' },
-  { label: 'Explore selected impact', hint: 'Case studies', group: 'Explore', detail: 'See selected healthcare, fintech, and Java workflow case studies.', icon: 'bi-activity', href: '#impact', keywords: 'impact case studies outcomes healthcare fintech workflow' },
-  { label: 'Start a conversation', hint: 'Contact', group: 'Connect', detail: 'Jump to the contact form and professional links.', icon: 'bi-chat-dots', href: '#contact', keywords: 'contact hire message role' },
-  { label: 'Open résumé', hint: 'PDF', group: 'Actions', detail: 'Open the résumé PDF in a new tab.', icon: 'bi-file-earmark-person', href: '/assets/resume.pdf', keywords: 'resume cv download' },
-  { label: 'Send an email', hint: 'Email', group: 'Actions', detail: 'Compose an email to Suman.', icon: 'bi-envelope', href: 'mailto:sumanks1307@gmail.com', keywords: 'email contact message' },
+  { label: 'Ask QYVERON', hint: 'Assistant', group: 'Explore', detail: 'Find answers about company services, project examples, and technical topics.', icon: 'bi-chat-square-text', href: '#assistant', keywords: 'assistant ask question company services projects' },
+  { label: 'Explore case studies', hint: 'Projects', group: 'Explore', detail: 'Browse representative healthcare, fintech, and Java workflow examples.', icon: 'bi-activity', href: '#impact', keywords: 'case studies examples healthcare fintech workflow' },
+  { label: 'Start a project', hint: 'Contact', group: 'Connect', detail: 'Send a project brief to QYVERON TECHNOLOGIES.', icon: 'bi-chat-dots', href: '#contact', keywords: 'contact project enquiry message' },
 ];
 
 const filters = ['All', 'Explore', 'Connect', 'Actions'];
@@ -142,8 +142,8 @@ export default function CommandPalette({ open, onClose }) {
 
   return <dialog ref={dialogRef} className="command-dialog" aria-label="Portfolio commands" onClose={onClose} onClick={(event) => { if (event.target === dialogRef.current) onClose(); }}>
     <div className="command-shell" onKeyDown={handleKeyDown}>
-      <div className="command-identity"><span className="command-identity__mark">SK</span><span><strong>Portfolio index</strong><small>Navigate systems, work, and contact</small></span><span className="command-identity__live"><i /> LIVE</span></div>
-      <div className="command-search"><i className={`bi ${query.trim().startsWith('>') ? 'bi-terminal' : 'bi-search'}`} aria-hidden="true" /><input ref={inputRef} value={query} onChange={(event) => { setQuery(event.target.value); setActiveIndex(0); }} placeholder="Search destinations, or type > for actions…" aria-label="Search commands" aria-controls="commandResults" aria-activedescendant={filteredCommands[selectedIndex] ? getCommandId(filteredCommands[selectedIndex]) : undefined} /><kbd>ESC</kbd></div>
+      <div className="command-identity"><span className="command-identity__mark">Q</span><span><strong>QYVERON index</strong><small>Navigate company services and work</small></span><span className="command-identity__live"><i /> LIVE</span></div>
+      <div className="command-search"><i className={`bi ${query.trim().startsWith('>') ? 'bi-terminal' : 'bi-search'}`} aria-hidden="true" /><input ref={inputRef} value={query} onChange={(event) => { setQuery(event.target.value); setActiveIndex(0); }} placeholder="Search destinations, or type > for actionsâ€¦" aria-label="Search commands" aria-controls="commandResults" aria-activedescendant={filteredCommands[selectedIndex] ? getCommandId(filteredCommands[selectedIndex]) : undefined} /><kbd>ESC</kbd></div>
       <div className="command-filters" role="group" aria-label="Filter command categories">
         {filters.map((filter) => <button key={filter} type="button" className={activeFilter === filter ? 'is-active' : ''} aria-pressed={activeFilter === filter} onClick={() => { setActiveFilter(filter); setActiveIndex(0); }}>{filter}</button>)}
       </div>
@@ -153,7 +153,7 @@ export default function CommandPalette({ open, onClose }) {
         {!filteredCommands.length && <div className="command-empty"><i className="bi bi-search" aria-hidden="true" /><p>No matching action found.</p></div>}
       </div>
       {filteredCommands[selectedIndex] && <aside className="command-preview" aria-live="polite"><span className="command-preview__label">SELECTED / {filteredCommands[selectedIndex].group.toUpperCase()}</span><p>{filteredCommands[selectedIndex].detail}</p><span className="command-preview__target">{filteredCommands[selectedIndex].href}</span></aside>}
-      <div className="command-footer"><span><kbd>↑</kbd><kbd>↓</kbd> Navigate</span><span><kbd>↵</kbd> Select</span><span><kbd>Alt</kbd>+<kbd>1–4</kbd> Filter</span><span><kbd>Esc</kbd> Close</span></div>
+      <div className="command-footer"><span><kbd>â†‘</kbd><kbd>â†“</kbd> Navigate</span><span><kbd>â†µ</kbd> Select</span><span><kbd>Alt</kbd>+<kbd>1â€“4</kbd> Filter</span><span><kbd>Esc</kbd> Close</span></div>
     </div>
   </dialog>;
 }

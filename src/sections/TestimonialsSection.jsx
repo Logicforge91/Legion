@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Counter, Reveal, SectionHeading, Spotlight } from '../components/shared/ui';
+import { Reveal, SectionHeading, Spotlight } from '../components/shared/ui';
 import { projectFilterLabels } from '../config/projectFilters';
-import { proof, projects } from '../data/portfolio';
+import { projects } from '../data/portfolio';
 import { getExternalUrl } from '../utils/externalUrl';
 import '../styles/sections/TestimonialsSection.css';
 
@@ -48,7 +48,7 @@ const caseStudies = featuredSlugs.flatMap((slug) => {
 });
 const caseCategories = [...new Set(caseStudies.map(({ project }) => project.category))];
 
-export default function TestimonialsSection() {
+export default function CaseStudiesSection() {
   const [activeCategory, setActiveCategory] = useState('all');
   const visibleCaseStudies = activeCategory === 'all'
     ? caseStudies
@@ -58,20 +58,12 @@ export default function TestimonialsSection() {
     <section id="impact" className="testimonials-section work-style-section" aria-labelledby="workStyleTitle">
       <div className="site-container">
         <SectionHeading
-          eyebrow="Selected Impact"
+          eyebrow="Portfolio / solution patterns"
           id="workStyleTitle"
           title="Engineering decisions shaped around real workflows."
         >
-          A closer look at the workflow concerns behind selected projects. The metrics below summarize portfolio-wide experience; they are not attributed to individual case studies.
+          These representative examples describe workflow challenges and engineering approaches, not published client engagements.
         </SectionHeading>
-        <div className="impact-metrics" role="list" aria-label="Portfolio impact metrics">
-          {proof.map((metric) => (
-            <Reveal as="div" role="listitem" className="impact-metric" key={metric.label}>
-              <strong><Counter value={metric.value} suffix={metric.suffix} /></strong>
-              <span>{metric.label}</span>
-            </Reveal>
-          ))}
-        </div>
         <div className="impact-filter-toolbar">
           <div className="impact-filters" role="group" aria-label="Filter impact case studies by category">
             <button type="button" aria-pressed={activeCategory === 'all'} onClick={() => setActiveCategory('all')}>All cases</button>

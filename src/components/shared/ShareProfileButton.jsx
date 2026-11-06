@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
 const shareData = {
-  title: 'Suman K S — Backend Engineer',
-  text: 'Backend developer portfolio focused on Laravel, Java, APIs, integrations, and reliable systems.',
+  title: 'QYVERON TECHNOLOGIES',
+  text: 'Engineering Tomorrow, Today. Freelance backend, API, and database development by QYVERON TECHNOLOGIES.',
   url: 'https://legion91.netlify.app/',
 };
 
@@ -34,7 +34,7 @@ export default function ShareProfileButton() {
     }
   };
 
-  const label = status === 'copied' ? 'Link copied' : status === 'shared' ? 'Shared' : status === 'error' ? 'Copy failed' : 'Share profile';
+  const label = status === 'copied' ? 'Link copied' : status === 'shared' ? 'Shared' : status === 'error' ? 'Copy failed' : 'Share QYVERON';
   const icon = status === 'copied' || status === 'shared'
     ? 'bi-check2'
     : status === 'error'
@@ -48,9 +48,9 @@ export default function ShareProfileButton() {
         {label}
       </button>
       <span className="visually-hidden" role="status" aria-live="polite" aria-atomic="true">
-        {status === 'copied' ? 'Portfolio link copied to clipboard.' : ''}
-        {status === 'shared' ? 'Portfolio link shared.' : ''}
-        {status === 'error' ? 'Could not share or copy the portfolio link.' : ''}
+        {status === 'copied' ? 'QYVERON website link copied to clipboard.' : ''}
+        {status === 'shared' ? 'QYVERON website link shared.' : ''}
+        {status === 'error' ? 'Could not share or copy the QYVERON website link.' : ''}
       </span>
     </>
   );

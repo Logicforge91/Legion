@@ -1,34 +1,34 @@
 import { Reveal, Spotlight } from '../components/shared/ui';
 import ShareProfileButton from '../components/shared/ShareProfileButton';
-import { journey, projects } from '../data/portfolio';
+import { projects, services } from '../data/portfolio';
 import '../styles/sections/HeroSection.css';
 
 const portfolioFacts = [
-  { value: String(projects.length).padStart(2, '0'), label: 'Systems explored', detail: 'Across real product domains' },
-  { value: String(journey.length).padStart(2, '0'), label: 'Career chapters', detail: 'From shipping to ownership' },
-  { value: 'PHP → Java', label: 'Backend focus', detail: 'Laravel-first · Spring-forward' },
+  { value: String(projects.length).padStart(2, '0'), label: 'Reference systems', detail: 'Across product domains' },
+  { value: String(services.length).padStart(2, '0'), label: 'Core services', detail: 'Designed around your needs' },
+  { value: 'API · DATA · BACKEND', label: 'Engineering focus', detail: 'Reliable by design' },
 ];
 
 export default function HeroSection() {
   return (
     <section id="hero" className="hero-section hero-studio-section" aria-labelledby="heroTitle">
       <div className="site-container hero-statusbar">
-        <span><i />Available for selected backend roles</span>
-        <span>Independent portfolio / {new Date().getFullYear()}</span>
-        <span>Bengaluru, India</span>
+        <span><i />Available for freelance projects</span>
+        <span>QYVERON TECHNOLOGIES / {new Date().getFullYear()}</span>
+        <span>IT &amp; Software Development</span>
       </div>
 
       <div className="site-container hero-studio-grid">
         <Reveal className="hero-copy hero-studio-copy">
-          <p className="eyebrow"><span />Suman K S / Backend Engineer</p>
+          <p className="eyebrow"><span />QYVERON TECHNOLOGIES</p>
           <h1 id="heroTitle">Systems that feel <span className="hero-title-accent">effortless.</span></h1>
-          <p className="hero-lede">I turn complex business rules into calm, dependable backend experiences: clear APIs, intentional data, resilient integrations, and workflows that stay understandable as products grow.</p>
+          <p className="hero-lede">QYVERON is an independent software development studio building thoughtful digital products, dependable backend systems, and clear API integrations for growing teams.</p>
           <div className="hero-actions">
             <a href="#projects" className="btn btn-primary">Explore the systems <i className="bi bi-arrow-down-right" aria-hidden="true" /></a>
-            <a href="#contact" className="btn btn-ghost">Start a conversation</a>
+            <a href="#contact" className="btn btn-ghost">Start a project</a>
           </div>
           <div className="hero-footer-row">
-            <div className="hero-meta"><span><i />Open to backend roles</span><span>Remote / Hybrid / Onsite · India</span></div>
+            <div className="hero-meta"><span><i />Available for freelance work</span><span>Quality · Trust · Innovation</span></div>
             <ShareProfileButton />
           </div>
         </Reveal>
@@ -43,12 +43,12 @@ export default function HeroSection() {
               <div className="studio-flow-node"><i className="bi bi-database-check" aria-hidden="true" /><span>Data</span><small>persist · respond</small></div>
             </div>
             <div className="studio-system-readout"><div><span>01 / Protect</span><strong>Validate every boundary</strong></div><div><span>02 / Preserve</span><strong>Keep state transitions explicit</strong></div><div className="studio-signal"><i />03 / Operate — make failures diagnosable</div></div>
-            <a className="studio-resume" href="/assets/resume.pdf" download>Download résumé <i className="bi bi-arrow-up-right" aria-hidden="true" /></a>
+            <div className="studio-tagline">Engineering Tomorrow, Today</div>
           </Spotlight>
         </Reveal>
       </div>
 
-      <div className="site-container hero-facts" aria-label="Portfolio at a glance">
+      <div className="site-container hero-facts" aria-label="QYVERON at a glance">
         {portfolioFacts.map(({ value, label, detail }, index) => (
           <div className="hero-fact" key={label}>
             <span className="hero-fact-index">0{index + 1}</span>

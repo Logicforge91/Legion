@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { articles, education, integrations, journey, profile, proof, projects, services, skills } from '../../data/portfolio.js';
+import { articles, integrations, profile, projects, services, skills } from '../../data/portfolio.js';
 
 const stopWords = new Set(['a', 'an', 'and', 'are', 'can', 'do', 'does', 'for', 'from', 'how', 'i', 'in', 'is', 'me', 'of', 'on', 'or', 'the', 'to', 'what', 'which', 'who', 'with', 'you', 'your', 'tell']);
 
@@ -7,22 +7,13 @@ function makeKnowledgeBase() {
   return [
     {
       title: profile.name,
-      category: `${profile.role} · ${profile.location}`,
-      text: `${profile.summary} ${profile.introduction} ${profile.approach} ${profile.focus.join(' ')} ${profile.availability}`,
+      category: profile.industry,
+      text: `${profile.summary} ${profile.introduction} ${profile.approach} ${profile.focus.join(' ')} ${profile.personality.join(' ')} ${profile.coreValues.join(' ')} ${profile.vision} ${profile.availability}`,
       summary: profile.summary,
       href: '#about',
-      source: 'Profile',
-      keywords: 'person engineer about experience career',
+      source: 'Company profile',
+      keywords: `${profile.industry} ${profile.personality.join(' ')} ${profile.coreValues.join(' ')} ${profile.vision}`,
     },
-    ...education.map((item) => ({
-      title: item.degree,
-      category: `${item.institution} · ${item.city}`,
-      text: `${item.degree} ${item.institution} ${item.city} ${item.university} ${item.graduationYear}`,
-      summary: `${item.degree}, ${item.institution}, ${item.city}. Graduated ${item.graduationYear}; affiliated with ${item.university}.`,
-      href: '#education',
-      source: 'Education',
-      keywords: 'degree college university graduation education',
-    })),
     ...services.map((item) => ({
       title: item.title,
       category: 'Backend service',
@@ -57,14 +48,6 @@ function makeKnowledgeBase() {
       source: 'Integration',
       keywords: item.tools.join(' '),
     })),
-    ...journey.map((item) => ({
-      title: item.title,
-      category: item.company ? `${item.company} · ${item.period}` : `Career · ${item.period}`,
-      text: item.text,
-      summary: item.text,
-      href: '#journey',
-      source: 'Career archive',
-    })),
     ...articles.map((item) => ({
       title: item.title,
       category: item.topic,
@@ -72,14 +55,6 @@ function makeKnowledgeBase() {
       summary: item.summary,
       href: '#articles',
       source: 'Technical article',
-    })),
-    ...proof.map((item) => ({
-      title: item.label,
-      category: 'Selected impact',
-      text: item.description,
-      summary: item.description,
-      href: '#achievements',
-      source: 'Proof point',
     })),
   ];
 }
@@ -111,13 +86,13 @@ function findMatches(question) {
 function buildAnswer(matches) {
   if (!matches.length) {
     return {
-      text: 'I can answer from the information on this portfolio. Try asking about projects, skills, career experience, integrations, or technical tutorials.',
+      text: 'Ask about QYVERON, freelance services, project examples, integrations, or software development articles.',
       matches,
     };
   }
 
   return {
-    text: `Based on the portfolio: ${matches[0].summary}`,
+    text: `Based on the QYVERON site: ${matches[0].summary}`,
     matches,
   };
 }
@@ -130,7 +105,7 @@ const suggestions = [
 
 export default function PortfolioAssistant({ open, onClose }) {
   const [messages, setMessages] = useState([
-    { id: 0, role: 'assistant', text: 'Hi! Ask about the projects, backend experience, tools, or engineering notes on this portfolio.' },
+    { id: 0, role: 'assistant', text: 'Welcome to QYVERON TECHNOLOGIES. Ask about our services, project examples, technical approach, or engineering articles.' },
   ]);
   const [question, setQuestion] = useState('');
   const [announcement, setAnnouncement] = useState('');
@@ -178,11 +153,11 @@ export default function PortfolioAssistant({ open, onClose }) {
     <section className="portfolio-assistant" role="dialog" aria-modal="false" aria-labelledby="portfolioAssistantTitle">
       <header className="portfolio-assistant__header">
         <div>
-          <span className="portfolio-assistant__eyebrow"><i aria-hidden="true" />AI / PORTFOLIO GUIDE</span>
-          <h2 id="portfolioAssistantTitle">AI portfolio assistant</h2>
+          <span className="portfolio-assistant__eyebrow"><i aria-hidden="true" />QYVERON / DIGITAL GUIDE</span>
+          <h2 id="portfolioAssistantTitle">Ask QYVERON</h2>
           <p>Answers are matched from the information on this site.</p>
         </div>
-        <button type="button" className="portfolio-assistant__close" onClick={onClose} aria-label="Close portfolio assistant">
+        <button type="button" className="portfolio-assistant__close" onClick={onClose} aria-label="Close QYVERON guide">
           <i className="bi bi-x-lg" aria-hidden="true" />
         </button>
       </header>
@@ -209,21 +184,21 @@ export default function PortfolioAssistant({ open, onClose }) {
       </div>
 
       <form className="portfolio-assistant__form" onSubmit={submitQuestion}>
-        <label className="visually-hidden" htmlFor="portfolioAssistantQuestion">Ask a question about the portfolio</label>
+        <label className="visually-hidden" htmlFor="portfolioAssistantQuestion">Ask a question about QYVERON</label>
         <input
           ref={inputRef}
           id="portfolioAssistantQuestion"
           value={question}
           onChange={(event) => setQuestion(event.target.value)}
           maxLength={240}
-          placeholder="Ask about projects, skills, experience..."
+          placeholder="Ask about services, projects, or technology..."
           autoComplete="off"
         />
         <button type="submit" aria-label="Send question" disabled={!question.trim()}>
           <i className="bi bi-arrow-up" aria-hidden="true" />
         </button>
       </form>
-      <p className="portfolio-assistant__disclosure">Local portfolio search · No external AI service</p>
+      <p className="portfolio-assistant__disclosure">Local company-site search · No external AI service</p>
       <p className="visually-hidden" role="status" aria-live="polite">{announcement}</p>
     </section>
   );

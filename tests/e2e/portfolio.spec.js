@@ -18,7 +18,7 @@ test('keeps section grids aligned to the active viewport', async ({ page }) => {
   const selectors = [
     '.systems-grid',
     '.skills-section .toolkit-board',
-    '.achievements-section .proof-grid',
+    '.about-section .profile-card',
     '.testimonial-rail',
     '.integration-topology-grid',
   ];
@@ -30,7 +30,7 @@ test('keeps section grids aligned to the active viewport', async ({ page }) => {
   const columns = await page.evaluate(() => Object.fromEntries([
     ['projects', '.systems-grid'],
     ['skills', '.skills-section .toolkit-board'],
-    ['proof', '.achievements-section .proof-grid'],
+    ['brand', '.about-section .profile-card'],
     ['principles', '.testimonial-rail'],
     ['integrations', '.integration-topology-grid'],
   ].map(([name, selector]) => {
@@ -41,7 +41,7 @@ test('keeps section grids aligned to the active viewport', async ({ page }) => {
   const viewportWidth = page.viewportSize().width;
   expect(columns.projects).toBe(mobile ? 1 : viewportWidth <= 1080 ? 2 : 3);
   expect(columns.skills).toBe(mobile ? 1 : viewportWidth <= 1080 ? 2 : 3);
-  expect(columns.proof).toBe(mobile ? 1 : 2);
+  expect(columns.brand).toBe(2);
   expect(columns.principles).toBe(mobile ? 1 : viewportWidth <= 1080 ? 2 : 3);
   expect(columns.integrations).toBe(mobile ? 1 : 2);
 });
@@ -87,7 +87,7 @@ test('mobile navigation announces its expanded state and closes after navigation
   const toggle = page.getByRole('button', { name: 'Open navigation' });
   await toggle.click();
   await expect(page.getByRole('button', { name: 'Close navigation' })).toHaveAttribute('aria-expanded', 'true');
-  await page.getByRole('link', { name: 'Systems', exact: true }).click();
+  await page.getByRole('link', { name: 'Portfolio', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Open navigation' })).toHaveAttribute('aria-expanded', 'false');
   await expect(page).toHaveURL(/#projects$/);
 });
@@ -111,8 +111,8 @@ test('announces share feedback through a status region when clipboard is used', 
     });
   });
   await page.goto('/');
-  await page.getByRole('button', { name: 'Share profile' }).click();
-  await expect(page.getByRole('status')).toContainText('Portfolio link copied to clipboard.');
+  await page.getByRole('button', { name: 'Share QYVERON' }).click();
+  await expect(page.getByRole('status')).toContainText('QYVERON website link copied to clipboard.');
   expect(await page.evaluate(() => window.__copiedText)).toBe('https://legion91.netlify.app/');
 });
 

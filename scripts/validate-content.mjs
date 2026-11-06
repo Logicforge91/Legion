@@ -1,5 +1,5 @@
 import { access, readFile, readdir } from 'node:fs/promises';
-import { articles, education, profile, projects, proof, services, skills } from '../src/data/portfolio.js';
+import { articles, profile, projects, services, skills } from '../src/data/portfolio.js';
 import { projectFilters } from '../src/config/projectFilters.js';
 
 async function collectSourceFiles(directory) {
@@ -13,23 +13,14 @@ async function collectSourceFiles(directory) {
 }
 
 const requiredText = ['slug', 'category', 'title', 'text'];
-for (const field of ['name', 'role', 'location', 'availability', 'summary', 'introduction', 'approach']) {
+for (const field of ['name', 'shortName', 'tagline', 'industry', 'vision', 'role', 'availability', 'summary', 'introduction', 'approach']) {
   if (typeof profile[field] !== 'string' || !profile[field].trim()) {
     throw new Error(`Portfolio profile is missing ${field}.`);
   }
 }
-if (!Array.isArray(profile.focus) || !profile.focus.length || profile.focus.some((item) => typeof item !== 'string' || !item.trim())) {
-  throw new Error('Portfolio profile needs a list of focus areas.');
-}
-if (!education.length) throw new Error('Portfolio must include at least one education record.');
-for (const [index, item] of education.entries()) {
-  for (const field of ['degree', 'institution', 'city', 'university']) {
-    if (typeof item[field] !== 'string' || !item[field].trim()) {
-      throw new Error(`Education record ${index + 1} is missing ${field}.`);
-    }
-  }
-  if (!Number.isInteger(item.graduationYear) || item.graduationYear < 1900 || item.graduationYear > 2100) {
-    throw new Error(`Education record ${index + 1} has an invalid graduation year.`);
+for (const field of ['personality', 'coreValues', 'focus']) {
+  if (!Array.isArray(profile[field]) || !profile[field].length || profile[field].some((item) => typeof item !== 'string' || !item.trim())) {
+    throw new Error(`Company profile needs a valid ${field} list.`);
   }
 }
 if (!services.length || services.some((service) => (
@@ -71,17 +62,6 @@ for (const [index, skill] of skills.entries()) {
   }
 }
 
-for (const [index, item] of proof.entries()) {
-  if (!Number.isFinite(item.value) || item.value < 0) {
-    throw new Error(`Proof metric ${index + 1} needs a non-negative numeric value.`);
-  }
-  for (const field of ['suffix', 'label', 'description']) {
-    if (typeof item[field] !== 'string' || (field !== 'suffix' && !item[field].trim())) {
-      throw new Error(`Proof metric ${index + 1} is missing ${field}.`);
-    }
-  }
-}
-
 const articleSlugs = new Set();
 for (const [index, article] of articles.entries()) {
   for (const field of ['slug', 'topic', 'title', 'summary', 'readTime']) {
@@ -109,10 +89,9 @@ for (const [index, article] of articles.entries()) {
 }
 
 await Promise.all([
-  access(new URL('../public/assets/resume.pdf', import.meta.url)),
-  access(new URL('../public/og-image.png', import.meta.url)),
-  access(new URL('../public/favicon-sk.svg', import.meta.url)),
-  access(new URL('../public/icons/apple-touch-icon.png', import.meta.url)),
+  access(new URL('../public/og-image-qy.png', import.meta.url)),
+  access(new URL('../public/favicon-qy.svg', import.meta.url)),
+  access(new URL('../public/icons/apple-touch-qy.png', import.meta.url)),
 ]);
 
 const webManifest = JSON.parse(await readFile(new URL('../public/site.webmanifest', import.meta.url), 'utf8'));
@@ -121,6 +100,35 @@ if (webManifest.id !== '/' || webManifest.scope !== '/' || webManifest.start_url
 }
 if (!Array.isArray(webManifest.icons) || !webManifest.icons.length) {
   throw new Error('Web app manifest must declare at least one icon.');
+}
+
+const siteOrigin = 'https://legion91.netlify.app';
+const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+const canonicalUrl = html.match(/<link rel="canonical" href="([^"]+)"\s*\/?\s*>/)?.[1];
+if (canonicalUrl !== `${siteOrigin}/`) {
+  throw new Error(`Canonical URL must point to ${siteOrigin}/.`);
+}
+const structuredDataText = html.match(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/)?.[1];
+if (!structuredDataText) throw new Error('Page must include JSON-LD structured data.');
+const structuredData = JSON.parse(structuredDataText);
+if (
+  structuredData['@context'] !== 'https://schema.org'
+  || structuredData['@type'] !== 'Organization'
+  || structuredData.name !== profile.name
+  || structuredData.alternateName !== profile.shortName
+  || structuredData.url !== canonicalUrl
+  || structuredData.slogan !== profile.tagline
+) {
+  throw new Error('Organization JSON-LD must match the portfolio brand and canonical URL.');
+}
+
+const sitemap = await readFile(new URL('../public/sitemap.xml', import.meta.url), 'utf8');
+if (!sitemap.includes(`<loc>${canonicalUrl}</loc>`)) {
+  throw new Error('Sitemap must include the canonical portfolio URL.');
+}
+const robots = await readFile(new URL('../public/robots.txt', import.meta.url), 'utf8');
+if (!robots.includes(`Sitemap: ${siteOrigin}/sitemap.xml`)) {
+  throw new Error('robots.txt must reference the portfolio sitemap.');
 }
 
 const publicDirectory = new URL('../public/', import.meta.url);
@@ -140,7 +148,7 @@ for (const icon of webManifest.icons) {
   }
 }
 
-const socialImage = await readFile(new URL('../public/og-image.png', import.meta.url));
+const socialImage = await readFile(new URL('../public/og-image-qy.png', import.meta.url));
 const width = socialImage.readUInt32BE(16);
 const height = socialImage.readUInt32BE(20);
 if (width !== 1200 || height !== 630) {
@@ -158,4 +166,4 @@ const unusedIcons = [...configuredIcons].filter((icon) => !usedIcons.has(icon)).
 if (missingIcons.length) throw new Error(`Missing icon selectors: ${missingIcons.join(', ')}`);
 if (unusedIcons.length) console.warn(`Unused icon selectors: ${unusedIcons.join(', ')}`);
 
-console.log(`Content check passed: ${projects.length} projects, ${articles.length} articles, ${skills.length} skills, ${proof.length} proof metrics, ${usedIcons.size} icons, and ${webManifest.icons.length} valid app icons.`);
+console.log(`Content check passed: ${projects.length} project examples, ${services.length} services, ${articles.length} articles, ${skills.length} capabilities, ${usedIcons.size} icons, and ${webManifest.icons.length} valid app icons.`);
