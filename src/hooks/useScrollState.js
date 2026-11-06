@@ -52,6 +52,8 @@ export function useScrollState() {
       });
     };
 
+    const handlePageShow = () => scheduleUpdate();
+
     const pageContent = document.querySelector('.site-shell');
     const resizeObserver = typeof window.ResizeObserver === 'function' && pageContent
       ? new window.ResizeObserver(scheduleUpdate)
@@ -61,12 +63,14 @@ export function useScrollState() {
     resizeObserver?.observe(pageContent);
     window.addEventListener('scroll', scheduleUpdate, { passive: true });
     window.addEventListener('resize', scheduleUpdate);
+    window.addEventListener('pageshow', handlePageShow);
 
     return () => {
       window.cancelAnimationFrame(animationFrame);
       resizeObserver?.disconnect();
       window.removeEventListener('scroll', scheduleUpdate);
       window.removeEventListener('resize', scheduleUpdate);
+      window.removeEventListener('pageshow', handlePageShow);
     };
   }, []);
 

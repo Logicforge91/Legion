@@ -30,9 +30,9 @@ export async function handler(event) {
   }
 
   const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_TO_EMAIL || 'sumanks1307@gmail.com';
+  const to = process.env.CONTACT_TO_EMAIL;
   const from = process.env.CONTACT_FROM_EMAIL;
-  if (!apiKey || !from) {
+  if (!apiKey || !from || !to) {
     console.error('Contact mail environment variables are not configured');
     return json(503, { error: 'Mail service is unavailable' });
   }
@@ -52,7 +52,7 @@ export async function handler(event) {
         from,
         to: [to],
         reply_to: email,
-        subject: `Portfolio enquiry from ${name}`,
+        subject: `QYVERON project enquiry from ${name}`,
         text: [`Name: ${name}`, `Email: ${email}`, `Company: ${company || 'Not provided'}`, '', message].join('\n'),
       }),
       signal: controller.signal,

@@ -17,9 +17,8 @@ function getSlideOffset(track, slide) {
   return track.scrollLeft + slide.getBoundingClientRect().left - track.getBoundingClientRect().left;
 }
 
-export default function ProjectGrid({ projects, projectNumbers }) {
+export default function ProjectGrid({ projects }) {
   const trackRef = useRef(null);
-  const detailsDialogRef = useRef(null);
   const frameRef = useRef(0);
   const settleTimerRef = useRef(0);
   const activeIndexRef = useRef(0);
@@ -27,10 +26,6 @@ export default function ProjectGrid({ projects, projectNumbers }) {
   const reducedMotion = useReducedMotion();
   const [activeIndex, setActiveIndex] = useState(0);
   const [slidesPerView, setSlidesPerView] = useState(1);
-  const [selectedProject, setSelectedProject] = useState(null);
-  useEffect(() => {
-    if (selectedProject && !detailsDialogRef.current?.open) detailsDialogRef.current?.showModal();
-  }, [selectedProject]);
   activeIndexRef.current = activeIndex;
 
   const resultLayout = projects.length === 1
@@ -173,9 +168,14 @@ export default function ProjectGrid({ projects, projectNumbers }) {
     });
 
     updateLayout();
-    const observer = new ResizeObserver(updateLayout);
-    observer.observe(track);
-    return () => observer.disconnect();
+    if (typeof window.ResizeObserver === 'function') {
+      const observer = new window.ResizeObserver(updateLayout);
+      observer.observe(track);
+      return () => observer.disconnect();
+    }
+
+    window.addEventListener('resize', updateLayout);
+    return () => window.removeEventListener('resize', updateLayout);
   }, []);
 
   useLayoutEffect(() => {
@@ -201,25 +201,25 @@ export default function ProjectGrid({ projects, projectNumbers }) {
 
   const firstVisible = projects.length ? activeIndex + 1 : 0;
   const visibleLabel = canLoop && lastVisible < firstVisible
-    ? `${String(firstVisible).padStart(2, '0')}-${String(projects.length).padStart(2, '0')}, 01-${String(lastVisible).padStart(2, '0')}`
-    : `${String(firstVisible).padStart(2, '0')}-${String(lastVisible).padStart(2, '0')}`;
+    ? `${firstVisible}–${projects.length}, 1–${lastVisible}`
+    : `${firstVisible}–${lastVisible}`;
 
   return (
-    <div className="projects-carousel" role="region" aria-label="Featured systems" aria-roledescription="carousel">
+    <div className="projects-carousel" role="region" aria-label="Software solution examples" aria-roledescription="carousel">
       <div className="projects-carousel__toolbar">
         <div className="projects-carousel__progress" aria-hidden="true">
-          <span>{String(firstVisible).padStart(2, '0')}</span>
+          <span>{firstVisible}</span>
           <div><i style={{ width: `${progress}%` }} /></div>
-          <span>{String(projects.length).padStart(2, '0')}</span>
+          <span>{projects.length}</span>
         </div>
         <div className="projects-carousel__controls">
-          <span>{visibleLabel} <small>/ {String(projects.length).padStart(2, '0')} systems</small></span>
+          <span>{visibleLabel} <small>/ {projects.length} examples</small></span>
           {projects.length > slidesPerView && (
             <>
-              <button type="button" aria-label="Previous system" onClick={() => moveBy(-1)}>
+              <button type="button" aria-label="Previous solution" onClick={() => moveBy(-1)}>
                 <i className="bi bi-arrow-left" aria-hidden="true" />
               </button>
-              <button type="button" aria-label="Next system" onClick={() => moveBy(1)}>
+              <button type="button" aria-label="Next solution" onClick={() => moveBy(1)}>
                 <i className="bi bi-arrow-right" aria-hidden="true" />
               </button>
             </>
@@ -229,8 +229,8 @@ export default function ProjectGrid({ projects, projectNumbers }) {
 
       <p className="visually-hidden" aria-live="polite" aria-atomic="true">
         {canLoop && lastVisible < firstVisible
-          ? `Showing systems ${firstVisible} through ${projects.length}, then 1 through ${lastVisible} of ${projects.length}.`
-          : `Showing systems ${firstVisible} through ${lastVisible} of ${projects.length}.`}
+          ? `Showing solutions ${firstVisible} through ${projects.length}, then 1 through ${lastVisible} of ${projects.length}.`
+          : `Showing solutions ${firstVisible} through ${lastVisible} of ${projects.length}.`}
       </p>
 
       <div
@@ -241,7 +241,7 @@ export default function ProjectGrid({ projects, projectNumbers }) {
           ref={trackRef}
           className="projects-track"
           role="group"
-          aria-label="System slides"
+          aria-label="Solution slides"
           tabIndex={0}
           onScroll={handleScroll}
           onKeyDown={handleKeyDown}
@@ -250,38 +250,14 @@ export default function ProjectGrid({ projects, projectNumbers }) {
             <ProjectCard
               key={key}
               project={project}
-              number={String(projectNumbers.get(project.slug) ?? 0).padStart(2, '0')}
               featured={index === 0}
               slidePosition={index + 1}
               slideCount={projects.length}
               clone={clone}
-              onOpen={setSelectedProject}
             />
           ))}
         </div>
       </div>
-      {selectedProject && (
-        <dialog
-          ref={detailsDialogRef}
-          className="project-details-dialog"
-          aria-labelledby="projectDetailsTitle"
-          onClick={(event) => { if (event.target === event.currentTarget) setSelectedProject(null); }}
-          onClose={() => setSelectedProject(null)}
-        >
-          <article className="project-details">
-            <button className="project-details__close" type="button" aria-label="Close project overview" onClick={() => setSelectedProject(null)}>
-              <i className="bi bi-x-lg" aria-hidden="true" />
-            </button>
-            <span className="project-details__eyebrow">{selectedProject.category} / Project overview</span>
-            <h2 id="projectDetailsTitle">{selectedProject.title}</h2>
-            <p>{selectedProject.text}</p>
-            <h3>System domains</h3>
-            <ul aria-label="System domains">
-              {selectedProject.filters.map((filter) => <li key={filter}>{projectFilterLabels.get(filter) ?? filter}</li>)}
-            </ul>
-          </article>
-        </dialog>
-      )}
     </div>
   );
 }

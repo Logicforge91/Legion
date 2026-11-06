@@ -1,6 +1,6 @@
 const CACHE_PREFIX = 'legion-shell-';
-const CACHE_NAME = `${CACHE_PREFIX}v6`;
-const SHELL_FILES = ['/', '/favicon-sk.svg', '/site.webmanifest', '/icons/apple-touch-icon.png', '/icons/icon-192.png', '/icons/icon-512.png'];
+const CACHE_NAME = `${CACHE_PREFIX}v7`;
+const SHELL_FILES = ['/', '/favicon-qy.svg', '/og-image-qy.png', '/site.webmanifest', '/icons/apple-touch-qy.png', '/icons/icon-qy-192.png', '/icons/icon-qy-512.png'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(SHELL_FILES)).then(() => self.skipWaiting()));
@@ -25,15 +25,6 @@ self.addEventListener('fetch', (event) => {
       }
       return response;
     }).catch(() => caches.match('/')));
-    return;
-  }
-
-  // Documents that can be replaced at a stable URL should always be refreshed.
-  if (url.pathname === '/assets/resume.pdf') {
-    event.respondWith(fetch(request).then((response) => {
-      if (response.ok) caches.open(CACHE_NAME).then((cache) => cache.put(request, response.clone()));
-      return response;
-    }).catch(() => caches.match(request)));
     return;
   }
 

@@ -2,7 +2,7 @@ export const integrations = [
   {
     "icon": "bi-credit-card-2-front",
     "title": "Money movement",
-    "description": "Treat payment callbacks as distributed events: verify the source, protect state transitions, tolerate retries, and keep reconciliation explainable.",
+    "description": "Connect payment providers with secure callbacks, clear transaction states, and reliable reconciliation.",
     "tools": [
       "Stripe",
       "Razorpay",
@@ -12,7 +12,7 @@ export const integrations = [
   {
     "icon": "bi-chat-dots",
     "title": "Message delivery",
-    "description": "Hide provider differences behind one internal contract, move slow work off-request, and retain enough delivery context to support users later.",
+    "description": "Send SMS, email, and in-app notifications through consistent services that teams can track and support.",
     "tools": [
       "SMS APIs",
       "Email",
@@ -21,8 +21,8 @@ export const integrations = [
   },
   {
     "icon": "bi-arrow-left-right",
-    "title": "Partner boundaries",
-    "description": "Keep external APIs outside the core domain through adapters that own authentication, validation, timeouts, response mapping, and failure context.",
+    "title": "Partner APIs",
+    "description": "Connect third-party APIs with secure authentication, clear validation, and predictable failure handling.",
     "tools": [
       "REST",
       "OAuth",
@@ -32,7 +32,7 @@ export const integrations = [
   {
     "icon": "bi-person-lock",
     "title": "Identity & access",
-    "description": "Treat sign-in and authorization as explicit boundaries: validate identity claims, enforce permissions server-side, and make session and access failures safe to recover from.",
+    "description": "Connect sign-in providers and apply consistent roles and permissions across your applications.",
     "tools": [
       "OAuth 2.0 / OIDC",
       "SSO",
@@ -42,8 +42,8 @@ export const integrations = [
   },
   {
     "icon": "bi-diagram-3",
-    "title": "Work that can wait",
-    "description": "Use queues and schedules when immediacy is less important than resilience, throughput, controlled retries, and a fast response to the user.",
+    "title": "Background jobs",
+    "description": "Run scheduled and queued work with safe retries, clear status, and a fast response for the user.",
     "tools": [
       "Redis",
       "Queues",
@@ -53,7 +53,7 @@ export const integrations = [
   {
     "icon": "bi-activity",
     "title": "Operational visibility",
-    "description": "Make failures diagnosable across service boundaries with structured events, useful context, and health signals that support investigation.",
+    "description": "Use logs, metrics, and traces to help teams spot issues and understand what happened.",
     "tools": [
       "Structured logs",
       "Metrics",
@@ -62,8 +62,8 @@ export const integrations = [
   },
   {
     "icon": "bi-lightning-charge",
-    "title": "Fast, repeatable reads",
-    "description": "Use caching for data that can be safely reused, with clear expiration and invalidation rules so speed does not outlive correctness.",
+    "title": "Caching",
+    "description": "Reuse frequently requested data with clear expiration and refresh rules that preserve accuracy.",
     "tools": [
       "Redis",
       "TTL",
@@ -73,7 +73,7 @@ export const integrations = [
   {
     "icon": "bi-file-earmark-arrow-up",
     "title": "File and media storage",
-    "description": "Keep file handling outside core request logic with validation, controlled access, and explicit metadata and lifecycle boundaries.",
+    "description": "Store and deliver files with validation, controlled access, and clear retention rules.",
     "tools": [
       "Object storage",
       "Signed URLs",
@@ -83,7 +83,7 @@ export const integrations = [
   {
     "icon": "bi-search",
     "title": "Search and discovery",
-    "description": "Shape searchable records around user intent, with consistent indexing, filtering, and update behavior as source data changes.",
+    "description": "Help users find relevant information with consistent indexing, filters, and up-to-date results.",
     "tools": [
       "Indexing",
       "Filtering",
@@ -93,7 +93,7 @@ export const integrations = [
   {
     "icon": "bi-geo-alt",
     "title": "Location services",
-    "description": "Handle coordinates and address lookups through explicit provider boundaries, with validation and sensible behavior when location data is unavailable.",
+    "description": "Add maps, address lookups, and distance features with sensible handling when location data is missing.",
     "tools": [
       "Geocoding",
       "Coordinates",
@@ -103,7 +103,7 @@ export const integrations = [
   {
     "icon": "bi-bar-chart-line",
     "title": "Product analytics",
-    "description": "Send purposeful product events through a controlled boundary, keeping event names, useful context, and privacy expectations consistent.",
+    "description": "Collect useful product events while keeping event definitions and privacy expectations consistent.",
     "tools": [
       "Event tracking",
       "Funnels",

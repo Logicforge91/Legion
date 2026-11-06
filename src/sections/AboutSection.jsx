@@ -1,50 +1,37 @@
 import { Reveal, Spotlight } from '../components/shared/ui';
+import { profile } from '../data/portfolio.js';
 import '../styles/sections/AboutSection.css';
 
-const values = [
-  [
-    'bi-shield-check',
-    'Make authorization and validation part of the workflow—not decoration around it.',
-  ],
-  [
-    'bi-speedometer2',
-    'Shape schemas, queries, indexes, and caches around homegrown business rules.',
-  ],
-  [
-    'bi-arrows-angle-contract',
-    'Design for failure, permissions, and observability before the happy path becomes a release story.',
-  ],
-];
-
-function EngineerIdentity() {
+function BrandIdentity() {
   return (
-    <div className="profile-index" aria-label="The Engineer section">
-      <span className="profile-index__number" aria-hidden="true">01</span>
+    <div className="profile-index" aria-label="QYVERON company identity">
+      <span className="profile-index__number" aria-hidden="true">Q</span>
       <span className="profile-index__copy">
-        <strong>The Engineer</strong>
-        <small>Identity / Backend engineering</small>
+        <strong>{profile.name}</strong>
+        <small>{profile.tagline}</small>
       </span>
     </div>
   );
 }
 
-function ProfileCard() {
+function CompanyCard() {
   return (
     <Reveal>
-      <Spotlight as="aside" className="profile-card" aria-label="Developer profile summary">
+      <Spotlight as="aside" className="profile-card" aria-label="QYVERON company profile">
         <div className="profile-card__header">
-          <span>IDENTITY / 01</span>
-          <span><i aria-hidden="true" />OPEN TO ROLES</span>
+          <span>COMPANY PROFILE</span>
+          <span><i aria-hidden="true" />TECHNOLOGY COMPANY</span>
         </div>
-        <div className="profile-ring"><span>SK</span></div>
+        <div className="profile-ring"><span>Q</span></div>
         <div className="profile-card__intro">
-          <h3>Suman K S</h3>
-          <p>Backend engineer for workflow-heavy products, integrations, and data systems that need to hold up under real use.</p>
+          <h3>{profile.name}</h3>
+          <p>{profile.summary}</p>
         </div>
         <dl className="profile-facts">
-          <div><dt>Focus</dt><dd>Laravel · Java · APIs · system design</dd></div>
-          <div><dt>Location</dt><dd>Bengaluru, India</dd></div>
-          <div><dt>Mode</dt><dd>Available for backend roles</dd></div>
+          <div><dt>Industry</dt><dd>{profile.industry}</dd></div>
+          <div><dt>Personality</dt><dd>{profile.personality.join(' · ')}</dd></div>
+          <div><dt>Core values</dt><dd>{profile.coreValues.join(' · ')}</dd></div>
+          <div><dt>Vision</dt><dd>{profile.vision}</dd></div>
         </dl>
       </Spotlight>
     </Reveal>
@@ -56,28 +43,15 @@ export default function AboutSection() {
     <section id="about" className="about-section" aria-labelledby="aboutTitle">
       <div className="site-container split-layout">
         <Reveal className="section-copy">
-          <EngineerIdentity />
-          <h2 id="aboutTitle">Laravel-first. Java-forward. Grounded in production reality.</h2>
-          <p>
-            I am Suman K S, a Bengaluru-based backend engineer building reliable APIs,
-            intentional data flows, and operationally sane systems for real products.
-          </p>
-          <p>
-            My work sits at the point where business rules, payments, permissions, and
-            integrations meet production reality. I care about what breaks in the edge
-            cases, how the next engineer understands it, and how the system behaves when
-            traffic, failures, and support questions begin to pile up.
-          </p>
-          <div className="value-list">
-            {values.map(([icon, text]) => (
-              <div key={text}>
-                <i className={`bi ${icon}`} aria-hidden="true" />
-                <span>{text}</span>
-              </div>
-            ))}
-          </div>
+          <BrandIdentity />
+          <h2 id="aboutTitle">A technology company focused on dependable digital products.</h2>
+          <p>{profile.introduction}</p>
+          <p>{profile.approach}</p>
+          <a className="btn btn-primary" href="#services">
+            Explore our services <i className="bi bi-arrow-down-right" aria-hidden="true" />
+          </a>
         </Reveal>
-        <ProfileCard />
+        <CompanyCard />
       </div>
     </section>
   );

@@ -10,7 +10,7 @@ const originalEnvironment = {
 const originalFetch = globalThis.fetch;
 const originalConsoleError = console.error;
 
-function setMailEnvironment({ apiKey = 'test-api-key', from = 'portfolio@example.com', to } = {}) {
+function setMailEnvironment({ apiKey = 'test-api-key', from = 'QYVERON <contact@example.com>', to } = {}) {
   process.env.RESEND_API_KEY = apiKey;
   process.env.CONTACT_FROM_EMAIL = from;
   if (to === undefined) delete process.env.CONTACT_TO_EMAIL;
@@ -98,7 +98,7 @@ describe('contact function request handling', () => {
 
     const response = await request({
       name: ` ${'N'.repeat(110)} `,
-      email: ` ${'e'.repeat(245)}@example.com `,
+      email: ` ${'e'.repeat(240)}@example.com `,
       company: ` ${'C'.repeat(160)} `,
       message: ` ${'M'.repeat(3010)} `,
     });
@@ -109,28 +109,25 @@ describe('contact function request handling', () => {
     assert.equal(capturedRequest[1].method, 'POST');
     assert.equal(capturedRequest[1].headers.Authorization, 'Bearer test-api-key');
     const mail = JSON.parse(capturedRequest[1].body);
-    assert.equal(mail.from, 'portfolio@example.com');
+    assert.equal(mail.from, 'QYVERON <contact@example.com>');
     assert.deepEqual(mail.to, ['inbox@example.com']);
-    assert.equal(mail.reply_to, `${'e'.repeat(245)}@example.com`.slice(0, 254));
-    assert.equal(mail.subject, `Portfolio enquiry from ${'N'.repeat(100)}`);
+    assert.equal(mail.reply_to, `${'e'.repeat(240)}@example.com`);
+    assert.equal(mail.subject, `QYVERON project enquiry from ${'N'.repeat(100)}`);
     assert.ok(mail.text.includes(`Company: ${'C'.repeat(150)}`));
     assert.ok(mail.text.endsWith('M'.repeat(3000)));
   });
 
-  it('uses the fallback recipient and labels a missing company', async () => {
+  it('requires a configured company inbox and does not use a personal default', async () => {
     setMailEnvironment();
-    let mail;
-    globalThis.fetch = async (_url, options) => {
-      mail = JSON.parse(options.body);
-      return { ok: true };
-    };
-    const response = await request({ ...validPayload, company: '' });
-    assert.equal(response.statusCode, 200);
-    assert.deepEqual(mail.to, ['sumanks1307@gmail.com']);
-    assert.ok(mail.text.includes('Company: Not provided'));
+    globalThis.fetch = async () => assert.fail('mail must not send without a company inbox');
+    console.error = () => {};
+    const response = await request(validPayload);
+    assert.equal(response.statusCode, 503);
+    assert.deepEqual(responseBody(response), { error: 'Mail service is unavailable' });
   });
 
   it('returns a gateway error when the mail provider rejects the message', async () => {
+    setMailEnvironment({ to: 'inbox@example.com' });
     globalThis.fetch = async () => ({ ok: false, status: 422, text: async () => 'rejected' });
     console.error = () => {};
     const response = await request(validPayload);
@@ -139,6 +136,7 @@ describe('contact function request handling', () => {
   });
 
   it('returns a timeout response when the mail request fails', async () => {
+    setMailEnvironment({ to: 'inbox@example.com' });
     globalThis.fetch = async () => {
       const error = new Error('request aborted');
       error.name = 'AbortError';

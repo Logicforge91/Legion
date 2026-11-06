@@ -1,0 +1,15 @@
+export const profile = {
+  name: 'QYVERON TECHNOLOGIES',
+  shortName: 'QYVERON',
+  tagline: 'Engineering Tomorrow, Today.',
+  industry: 'IT & Software Development',
+  personality: ['Innovative', 'Reliable', 'Futuristic'],
+  coreValues: ['Quality', 'Trust', 'Innovation'],
+  vision: 'Building technology for a smarter future',
+  role: 'IT and software development company',
+  focus: ['Backend development', 'API development', 'Database design'],
+  availability: 'Software and IT solutions for business needs',
+  summary: 'Software engineering focused on dependable backend systems, clear APIs, and maintainable data platforms.',
+  introduction: 'QYVERON TECHNOLOGIES is an IT and software development company building dependable digital products and business systems.',
+  approach: 'We bring together backend engineering, API development, integrations, and data design to deliver practical software shaped around business needs.',
+};

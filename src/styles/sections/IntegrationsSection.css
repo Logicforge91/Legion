@@ -2,49 +2,6 @@
   position: relative;
 }
 
-.integrations-section .section-heading .eyebrow {
-  display: inline-flex;
-  width: fit-content;
-  align-items: center;
-  gap: 9px;
-  padding: 7px 11px;
-  border: 1px solid color-mix(in srgb, var(--accent-2) 30%, var(--line));
-  border-radius: 4px 12px;
-  color: var(--text);
-  background: linear-gradient(110deg, color-mix(in srgb, var(--accent-2) 8%, var(--panel)), var(--panel));
-  font-size: .59rem;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-}
-
-.integrations-section .section-heading .eyebrow::before {
-  color: var(--accent-2);
-  content: "BOUNDARY /";
-  font-size: .53rem;
-}
-
-.integrations-section .section-heading .eyebrow span {
-  position: relative;
-  width: 19px;
-  height: 1px;
-  background: var(--accent-2);
-}
-
-.integrations-section .section-heading .eyebrow span::before,
-.integrations-section .section-heading .eyebrow span::after {
-  position: absolute;
-  top: -2px;
-  width: 5px;
-  height: 5px;
-  border: 1px solid var(--accent-2);
-  border-radius: 50%;
-  background: var(--panel);
-  content: "";
-}
-
-.integrations-section .section-heading .eyebrow span::before { left: 0; }
-.integrations-section .section-heading .eyebrow span::after { right: 0; }
-
 .integration-layout {
   display: grid;
   grid-template-columns: 1fr;
@@ -90,9 +47,7 @@
   border-radius: 999px;
   color: var(--accent-2);
   background: color-mix(in srgb, var(--accent-2) 6%, transparent);
-  font: 600 .56rem var(--font-mono);
-  letter-spacing: .08em;
-  text-transform: uppercase;
+  font: 600 .7rem var(--font-display);
 }
 
 .flow-health i {
@@ -121,21 +76,15 @@
 }
 
 .flow-pipeline::before {
-  top: 24px;
-  bottom: 24px;
+  top: 22px;
+  bottom: 22px;
+  left: 18px;
   width: 1px;
-  background: linear-gradient(var(--accent-2), color-mix(in srgb, var(--accent-2) 15%, transparent));
+  background: color-mix(in srgb, var(--accent-2) 28%, var(--line));
 }
 
 .flow-pipeline::after {
-  top: 20px;
-  z-index: 2;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--accent-2);
-  box-shadow: 0 0 12px var(--accent-2);
-  animation: flow-packet 5.2s cubic-bezier(.45, 0, .55, 1) infinite;
+  display: none;
 }
 
 .flow-stage {
@@ -147,7 +96,7 @@
   gap: 11px;
   padding: 9px 11px;
   border: 1px solid rgba(229, 239, 225, .1);
-  border-radius: 12px;
+  border-radius: 16px;
   background: rgba(229, 239, 225, .035);
   transition: border-color .2s ease, background .2s ease, transform .2s ease;
 }
@@ -198,31 +147,18 @@
   align-items: center;
   gap: 5px;
   color: var(--muted);
-  font: .48rem var(--font-mono);
-  letter-spacing: .04em;
-  text-transform: uppercase;
+  font: 600 .68rem var(--font-display);
 }
 
 .flow-stage__status::before {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: currentColor;
   content: "";
 }
 
-.flow-stage__status.is-guarded,
-.flow-stage__status.is-confirmed { color: var(--accent-2); }
-.flow-stage__status.is-buffered { color: var(--accent); }
-
-@keyframes flow-packet {
-  0%,
-  8% { top: 20px; opacity: 0; }
-  14% { opacity: 1; }
-  88% { opacity: 1; }
-  96%,
-  100% { top: calc(100% - 26px); opacity: 0; }
-}
+.flow-stage__status { color: var(--accent-2); }
 
 .flow-signals {
   display: flex;
@@ -319,21 +255,12 @@
   overflow: hidden;
   padding: clamp(16px, 2vw, 22px);
   border: 1px solid var(--line);
-  border-radius: 5px 14px 14px;
+  border-radius: 18px;
   background: linear-gradient(145deg, color-mix(in srgb, var(--accent-2) 6%, var(--card)), var(--card) 58%);
 }
 
 .integration-topology-card::after {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 42px;
-  height: 42px;
-  border-top: 1px solid color-mix(in srgb, var(--accent-2) 38%, transparent);
-  border-right: 1px solid color-mix(in srgb, var(--accent-2) 38%, transparent);
-  border-radius: 0 13px 0 0;
-  content: "";
-  pointer-events: none;
+  content: none;
 }
 
 .integration-topology-card > header {
@@ -342,8 +269,8 @@
   justify-content: space-between;
   gap: 12px;
   color: var(--accent-2);
-  font: .54rem var(--font-mono);
-  letter-spacing: .1em;
+  font: 600 .72rem var(--font-display);
+  letter-spacing: 0;
 }
 
 .integration-topology-card > header i {
@@ -352,7 +279,7 @@
   height: 34px;
   place-items: center;
   border: 1px solid color-mix(in srgb, var(--accent-2) 25%, var(--line));
-  border-radius: 8px;
+  border-radius: 12px;
   background: color-mix(in srgb, var(--accent-2) 8%, transparent);
   font-size: .95rem;
 }
@@ -386,11 +313,14 @@
 .integration-card__tools li {
   padding: 5px 8px;
   border: 1px solid var(--line);
-  border-radius: 5px;
+  border-radius: 999px;
   color: var(--soft);
   background: rgba(229, 239, 225, .025);
-  font: .56rem var(--font-mono);
+  font: 500 .64rem var(--font-display);
 }
+
+.integration-topology-card { transition: transform .2s ease, border-color .2s ease, background .2s ease; }
+.integration-topology-card:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--accent-2) 40%, var(--line)); background: color-mix(in srgb, var(--surface-hover) 84%, var(--card)); }
 
 @media (max-width: 600px) {
   .integration-topology-grid { grid-template-columns: 1fr; }
@@ -405,6 +335,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .flow-pipeline::after { top: 20px; animation: none; opacity: 1; }
-  .flow-stage { transition: none; }
+  .flow-stage,
+  .integration-topology-card { transition: none; }
 }

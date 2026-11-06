@@ -137,7 +137,7 @@ export default function ContactForm() {
         <p className={`form-status ${status}`} aria-live="polite">
           {status === 'success' && 'Message received. I will reply soon.'}
           {status === 'error' && (
-            <>Could not send. Please <a href="mailto:sumanks1307@gmail.com">email me directly</a>.</>
+            <>Could not send your message. Please try again in a moment.</>
           )}
         </p>
       </div>

@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { Reveal, Spotlight } from '../shared/ui';
 import { projectFilterLabels } from '../../config/projectFilters';
 
-function ProjectCard({ project, number, featured = false, slidePosition, slideCount, clone = false, onOpen }) {
+function ProjectCard({ project, featured = false, slidePosition, slideCount, clone = false }) {
   return (
     <Reveal
       className={`project-reveal${featured ? ' is-featured' : ''}${clone ? ' is-loop-clone' : ''}`}
@@ -14,7 +14,6 @@ function ProjectCard({ project, number, featured = false, slidePosition, slideCo
     >
       <Spotlight className={`project-card${featured ? ' project-card--featured' : ''}`}>
         <header className="project-card__header">
-          <span className="project-index">{number}</span>
           <div className="card-icon project-card__icon">
             <i className={`bi ${project.icon}`} aria-hidden="true" />
           </div>
@@ -26,15 +25,6 @@ function ProjectCard({ project, number, featured = false, slidePosition, slideCo
           <ul aria-label="System domains">
             {project.filters.map((filter) => <li key={filter}>{projectFilterLabels.get(filter) ?? filter}</li>)}
           </ul>
-          <button
-            className="project-card__action"
-            type="button"
-            aria-label={`View overview: ${project.title}`}
-            onClick={() => onOpen(project)}
-            tabIndex={clone ? -1 : undefined}
-          >
-            View overview <i className="bi bi-arrow-up-right" aria-hidden="true" />
-          </button>
         </footer>
       </Spotlight>
     </Reveal>

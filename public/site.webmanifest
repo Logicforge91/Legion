@@ -1,7 +1,7 @@
 {
-  "name": "Suman K S — Backend Developer",
-  "short_name": "Suman K S",
-  "description": "Backend developer portfolio focused on Laravel, Java, APIs, integrations, and reliable systems.",
+  "name": "QYVERON TECHNOLOGIES — Engineering Tomorrow, Today",
+  "short_name": "QYVERON",
+  "description": "Software and IT solutions from QYVERON TECHNOLOGIES. Engineering Tomorrow, Today.",
   "id": "/",
   "start_url": "/",
   "scope": "/",
@@ -12,19 +12,19 @@
   "theme_color": "#101512",
   "icons": [
     {
-      "src": "/favicon-sk.svg",
+      "src": "/favicon-qy.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
     },
     {
-      "src": "/icons/icon-192.png",
+      "src": "/icons/icon-qy-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/icons/icon-512.png",
+      "src": "/icons/icon-qy-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"

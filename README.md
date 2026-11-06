@@ -1,30 +1,32 @@
-# Legion — React Portfolio
+# QYVERON TECHNOLOGIES — Engineering Tomorrow, Today
 
-A responsive, single-page developer portfolio for Suman K S. The project is implemented entirely with React components and Vite; no HTML fragments, runtime HTML injection, or legacy DOM script is used.
+A responsive, single-page technology company portfolio. The project is implemented with React and Vite; no HTML fragments, runtime HTML injection, or legacy DOM script is used.
 
 ## Features
 
-- Semantic, accessible React sections for profile, journey, skills, projects, achievements, testimonials, and contact
-- Data-driven timeline, skills, projects, and proof metrics
+- Fourteen company-site sections: home, about, services, technologies, industries, portfolio, process, differentiators, team, testimonials, insights, careers, FAQ, and contact
+- Accessible technology marquee with a motion pause control, plus a grouped technology and capability index
+- Company-facing industry, delivery-process, FAQ, team, testimonials, and careers sections
+- Brand-led company profile with values, vision, and tagline
 - Responsive navigation with outside-click and Escape-key handling
 - Active-section scroll spy
 - Declarative project filtering with an accessible live result count
 - Reusable reveal, spotlight-card, and animated-counter components
 - Reduced-motion support
 - Responsive desktop, tablet, and mobile layouts
-- Downloadable résumé served as a public asset
 - Netlify-powered recruiter contact form with loading, success, error, and spam-protection states
 - Contact payload limits and a submission-preserved honeypot for stronger abuse resistance
 - Search-engine, Open Graph, Twitter, and canonical metadata
-- Verified employer website links in the experience timeline
 - Production integrations showcase covering payments, messaging, external APIs, queues, webhooks, retries, and observability
-- Evidence-based working principles in place of unverifiable testimonial copy
 - On-demand JavaScript for the command palette and page sections
 - System-font rendering with no blocking Google Fonts request
 - Tree-shaken inline SVG icon masks and automatic stale-chunk recovery after deployments
-- Native profile sharing with clipboard fallback
+- Native company-site sharing with clipboard fallback
 - Offline repeat-visit support through a lightweight service worker
-- Nine project cards spanning health, fintech, education ERP, custom websites, ecommerce, integrations, game applications, and two Java/Spring Boot systems
+- Installable PWA experience with an in-app install prompt when the browser supports it
+- Optional Google Analytics 4 visit tracking, disabled until configured and explicitly enabled by the visitor
+- Subtle page entrance animation with reduced-motion support
+- Representative system examples spanning health, fintech, education ERP, websites, ecommerce, integrations, games, and Java/Spring Boot
 - Branded large-format social preview for LinkedIn, WhatsApp, and other link unfurls
 - Automated validation for project data, unique slugs, required assets, icon coverage, and Playwright test compilation
 - Playwright desktop and mobile smoke tests for layout, filters, keyboard navigation, and contact validation
@@ -57,7 +59,7 @@ Legion/
 │   │   ├── navigation.js          # Section navigation and observed IDs
 │   │   └── projectFilters.js      # Project category filter options
 │   ├── data/
-│   │   ├── portfolio/             # Journey, integrations, skills, projects, and proof data
+│   │   ├── portfolio/             # Company profile, services, integrations, skills, projects, and articles
 │   │   └── portfolio.js           # Stable exports for portfolio datasets
 │   ├── hooks/                     # Reusable state and browser hooks
 │   ├── sections/                  # Page section components
@@ -121,11 +123,10 @@ The optimized site is generated in `dist/`. Production source maps are disabled 
 
 Portfolio content is grouped by domain in `src/data/portfolio/` and re-exported from `src/data/portfolio.js`:
 
-- `journey` controls experience timeline entries.
+- `profile` controls company identity, industry, brand personality, values, vision, and tagline.
 - `integrations` controls integration cards.
 - `skills` controls technology cards.
 - `projects` controls project cards, filters, and icons.
-- `proof` controls animated achievement metrics.
 
 Section copy and markup live in `src/sections/`; their styles live in `src/styles/sections/`. Reusable interface elements live under `src/components/`, grouped by purpose. Project category labels and filter keys are defined in `src/config/projectFilters.js`.
 
@@ -164,11 +165,13 @@ The included `netlify.toml` configures Netlify to run `npm run build` and publis
 The contact form sends mail through the `netlify/functions/contact.mjs` serverless function and Resend. Configure these environment variables in Netlify before deploying:
 
 - `RESEND_API_KEY`: a Resend API key with permission to send email
-- `CONTACT_FROM_EMAIL`: a sender on a domain verified in Resend (for example, `Portfolio <contact@example.com>`)
-- `CONTACT_TO_EMAIL`: the inbox that receives enquiries (defaults to `sumanks1307@gmail.com`)
+- `CONTACT_FROM_EMAIL`: a sender on a domain verified in Resend (for example, `QYVERON <contact@example.com>`)
+- `CONTACT_TO_EMAIL`: the company inbox that receives project enquiries (required; no personal inbox is bundled)
 
 The visitor's address is assigned as the reply-to address, so replying from the receiving inbox responds directly to them. API credentials remain server-side.
 The `/api/contact` route is rate-limited by Netlify to five requests per IP per minute; deploy logs should confirm the rule was accepted.
+
+To enable visitor analytics, set `VITE_GA_MEASUREMENT_ID` to the site's GA4 measurement ID (for example, `G-XXXXXXXXXX`) in the build environment. The footer then provides an opt-in control; analytics does not load before a visitor enables it. Omitting the variable keeps analytics unavailable and sends no analytics requests. The Netlify Content Security Policy allows only the Google Analytics endpoints used by this integration.
 
 If the Netlify dashboard contains older manual build settings, use:
 

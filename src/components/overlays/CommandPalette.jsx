@@ -1,16 +1,19 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+﻿import { useEffect, useMemo, useRef, useState } from 'react';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 
 const commands = [
-  { label: 'Meet the engineer', hint: 'About', group: 'Explore', detail: 'Read the engineering profile and working principles.', icon: 'bi-person', href: '#about', keywords: 'profile about experience identity' },
-  { label: 'Browse career archive', hint: 'Experience', group: 'Explore', detail: 'Read the career milestones in chronological order.', icon: 'bi-signpost-split', href: '#journey', keywords: 'work companies career timeline journey' },
-  { label: 'Explore the engineering toolkit', hint: 'Skills', group: 'Explore', detail: 'Browse languages, frameworks, data, and delivery tools.', icon: 'bi-layers', href: '#skills', keywords: 'skills stack toolkit laravel java php' },
+  { label: 'About Us', hint: 'Company', group: 'Explore', detail: 'Learn about QYVERON, its brand values, and vision.', icon: 'bi-buildings', href: '#about', keywords: 'company identity industry values vision' },
+  { label: 'Explore technologies', hint: 'Technology stack', group: 'Explore', detail: 'Browse the technology index and engineering capabilities.', icon: 'bi-layers', href: '#technologies', keywords: 'skills stack toolkit languages frameworks database laravel java php' },
+  { label: 'Explore backend services', hint: 'Services', group: 'Explore', detail: 'See the backend engineering services available to product teams.', icon: 'bi-hdd-network', href: '#services', keywords: 'services API database integrations Java backend' },
+  { label: 'Explore industries', hint: 'Industries', group: 'Explore', detail: 'See representative domains and workflows QYVERON can build for.', icon: 'bi-buildings', href: '#industries', keywords: 'healthcare fintech education commerce industry domains' },
+  { label: 'Our process', hint: 'Engagement', group: 'Explore', detail: 'Review the usual path from discovery and scope through delivery and handover.', icon: 'bi-signpost-2', href: '#process', keywords: 'process discovery scope build validate handover' },
+  { label: 'Why choose QYVERON', hint: 'Principles', group: 'Explore', detail: 'See the principles behind the company’s engineering approach.', icon: 'bi-patch-check', href: '#why-us', keywords: 'quality trust innovation differentiators strengths' },
+  { label: 'Frequently asked questions', hint: 'FAQ', group: 'Explore', detail: 'Find answers about services, project starts, and handover.', icon: 'bi-question-circle', href: '#faq', keywords: 'faq questions answers project' },
   { label: 'Review integrations', hint: 'Architecture', group: 'Explore', detail: 'See how APIs and external services fit together.', icon: 'bi-diagram-3', href: '#integrations', keywords: 'api payments queue webhook external' },
-  { label: 'Browse featured systems', hint: 'Projects', group: 'Explore', detail: 'Open project case studies and backend systems.', icon: 'bi-grid-1x2', href: '#projects', keywords: 'projects work systems portfolio' },
-  { label: 'Explore selected impact', hint: 'Case studies', group: 'Explore', detail: 'See selected healthcare, fintech, and Java workflow case studies.', icon: 'bi-activity', href: '#impact', keywords: 'impact case studies outcomes healthcare fintech workflow' },
-  { label: 'Start a conversation', hint: 'Contact', group: 'Connect', detail: 'Jump to the contact form and professional links.', icon: 'bi-chat-dots', href: '#contact', keywords: 'contact hire message role' },
-  { label: 'Open résumé', hint: 'PDF', group: 'Actions', detail: 'Open the résumé PDF in a new tab.', icon: 'bi-file-earmark-person', href: '/assets/resume.pdf', keywords: 'resume cv download' },
-  { label: 'Send an email', hint: 'Email', group: 'Actions', detail: 'Compose an email to Suman.', icon: 'bi-envelope', href: 'mailto:sumanks1307@gmail.com', keywords: 'email contact message' },
+  { label: 'Explore solution areas', hint: 'Solutions', group: 'Explore', detail: 'Browse software solution patterns across business domains.', icon: 'bi-grid-1x2', href: '#projects', keywords: 'projects work systems portfolio solutions' },
+  { label: 'Read technical articles', hint: 'Field notes', group: 'Explore', detail: 'Browse backend tutorials on APIs, data, security, and reliability.', icon: 'bi-journal-code', href: '#articles', keywords: 'articles tutorials coding knowledge engineering notes backend' },
+  { label: 'Ask QYVERON', hint: 'Assistant', group: 'Explore', detail: 'Find answers about company services, project examples, and technical topics.', icon: 'bi-chat-square-text', href: '#assistant', keywords: 'assistant ask question company services projects' },
+  { label: 'Start a project', hint: 'Contact', group: 'Connect', detail: 'Send a project brief to QYVERON TECHNOLOGIES.', icon: 'bi-chat-dots', href: '#contact', keywords: 'contact project enquiry message' },
 ];
 
 const filters = ['All', 'Explore', 'Connect', 'Actions'];
@@ -94,7 +97,9 @@ export default function CommandPalette({ open, onClose }) {
     if (!command) return;
     onClose();
     setQuery('');
-    if (command.href.startsWith('#')) {
+    if (command.href === '#assistant') {
+      window.setTimeout(() => window.dispatchEvent(new Event('portfolio:assistant-open')), 0);
+    } else if (command.href.startsWith('#')) {
       document.querySelector(command.href)?.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
       window.history.replaceState(null, '', command.href);
     } else if (command.href.startsWith('mailto:')) {
@@ -114,31 +119,36 @@ export default function CommandPalette({ open, onClose }) {
       return;
     }
     if (!filteredCommands.length) return;
+    if (event.key === 'Home' || event.key === 'End') {
+      event.preventDefault();
+      const nextIndex = event.key === 'Home' ? 0 : filteredCommands.length - 1;
+      setActiveIndex(nextIndex);
+      document.getElementById(getCommandId(filteredCommands[nextIndex]))?.scrollIntoView({ block: 'nearest' });
+      return;
+    }
     if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
       event.preventDefault();
       const delta = event.key === 'ArrowDown' ? 1 : -1;
       const nextIndex = (selectedIndex + delta + filteredCommands.length) % filteredCommands.length;
 
       setActiveIndex(nextIndex);
-      requestAnimationFrame(() => {
-        const option = document.getElementById(getCommandId(filteredCommands[nextIndex]));
-        option?.focus();
-        option?.scrollIntoView({ block: 'nearest' });
-      });
+      document.getElementById(getCommandId(filteredCommands[nextIndex]))?.scrollIntoView({ block: 'nearest' });
+      inputRef.current?.focus({ preventScroll: true });
+      return;
     }
     if (event.key === 'Enter') { event.preventDefault(); runCommand(filteredCommands[selectedIndex]); }
   };
 
-  return <dialog ref={dialogRef} className="command-dialog" aria-label="Portfolio commands" onClose={onClose} onClick={(event) => { if (event.target === dialogRef.current) onClose(); }}>
+  return <dialog ref={dialogRef} className="command-dialog" aria-label="QYVERON navigation and actions" onClose={onClose} onClick={(event) => { if (event.target === dialogRef.current) onClose(); }}>
     <div className="command-shell" onKeyDown={handleKeyDown}>
-      <div className="command-identity"><span className="command-identity__mark">SK</span><span><strong>Portfolio index</strong><small>Navigate systems, work, and contact</small></span><span className="command-identity__live"><i /> LIVE</span></div>
-      <div className="command-search"><i className={`bi ${query.trim().startsWith('>') ? 'bi-terminal' : 'bi-search'}`} aria-hidden="true" /><input ref={inputRef} value={query} onChange={(event) => { setQuery(event.target.value); setActiveIndex(0); }} placeholder="Search destinations, or type > for actions…" aria-label="Search commands" aria-controls="commandResults" aria-activedescendant={filteredCommands[selectedIndex] ? getCommandId(filteredCommands[selectedIndex]) : undefined} /><kbd>ESC</kbd></div>
+      <div className="command-identity"><span className="command-identity__mark">Q</span><span><strong>QYVERON index</strong><small>Navigate company services and work</small></span><span className="command-identity__live"><i /> LIVE</span></div>
+      <div className="command-search"><i className={`bi ${query.trim().startsWith('>') ? 'bi-terminal' : 'bi-search'}`} aria-hidden="true" /><input ref={inputRef} value={query} onChange={(event) => { setQuery(event.target.value); setActiveIndex(0); }} placeholder="Search destinations or type > for actions…" aria-label="Search commands" aria-controls="commandResults" aria-activedescendant={filteredCommands[selectedIndex] ? getCommandId(filteredCommands[selectedIndex]) : undefined} /><kbd>ESC</kbd></div>
       <div className="command-filters" role="group" aria-label="Filter command categories">
         {filters.map((filter) => <button key={filter} type="button" className={activeFilter === filter ? 'is-active' : ''} aria-pressed={activeFilter === filter} onClick={() => { setActiveFilter(filter); setActiveIndex(0); }}>{filter}</button>)}
       </div>
       <div className="command-section-label"><span>{query.trim() ? 'MATCHING DESTINATIONS' : 'QUICK DESTINATIONS'}</span><span>{String(filteredCommands.length).padStart(2, '0')} / {String(commands.length).padStart(2, '0')}</span></div>
       <div id="commandResults" className="command-results" role="listbox" aria-label="Available commands" aria-live="polite">
-        {filteredCommands.map((command, index) => <button id={getCommandId(command)} key={command.label} className={index === selectedIndex ? 'active' : ''} type="button" role="option" aria-selected={index === selectedIndex} onMouseEnter={() => setActiveIndex(index)} onFocus={() => setActiveIndex(index)} onClick={() => runCommand(command)}><span className="command-result__index">{String(index + 1).padStart(2, '0')}</span><i className={`bi ${command.icon} command-result__icon`} aria-hidden="true" /><span className="command-result__copy"><strong>{command.label}</strong><small>{command.hint}</small></span><i className="bi bi-arrow-up-right command-enter" aria-hidden="true" /></button>)}
+        {filteredCommands.map((command, index) => <button id={getCommandId(command)} key={command.label} className={index === selectedIndex ? 'active' : ''} type="button" tabIndex={-1} role="option" aria-selected={index === selectedIndex} onMouseDown={(event) => event.preventDefault()} onMouseEnter={() => setActiveIndex(index)} onClick={() => runCommand(command)}><span className="command-result__index">{String(index + 1).padStart(2, '0')}</span><i className={`bi ${command.icon} command-result__icon`} aria-hidden="true" /><span className="command-result__copy"><strong>{command.label}</strong><small>{command.hint}</small></span><i className="bi bi-arrow-up-right command-enter" aria-hidden="true" /></button>)}
         {!filteredCommands.length && <div className="command-empty"><i className="bi bi-search" aria-hidden="true" /><p>No matching action found.</p></div>}
       </div>
       {filteredCommands[selectedIndex] && <aside className="command-preview" aria-live="polite"><span className="command-preview__label">SELECTED / {filteredCommands[selectedIndex].group.toUpperCase()}</span><p>{filteredCommands[selectedIndex].detail}</p><span className="command-preview__target">{filteredCommands[selectedIndex].href}</span></aside>}

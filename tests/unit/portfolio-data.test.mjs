@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import { projectFilterLabels, projectFilters } from '../../src/config/projectFilters.js';
-import { integrations, journey, proof, projects, skills } from '../../src/data/portfolio.js';
+import { integrations, profile, projects, services, skills } from '../../src/data/portfolio.js';
 
 const allowedFilters = new Set(projectFilters.map(([value]) => value).filter((value) => value !== 'all'));
 
@@ -33,7 +33,13 @@ describe('portfolio configuration and content', () => {
     }
   });
 
-  it('provides complete skills and non-negative proof metrics', () => {
+  it('provides company branding and complete skills and services', () => {
+    assert.equal(profile.name, 'QYVERON TECHNOLOGIES');
+    assert.equal(profile.industry, 'IT & Software Development');
+    assert.equal(profile.tagline, 'Engineering Tomorrow, Today.');
+    assert.deepEqual(profile.personality, ['Innovative', 'Reliable', 'Futuristic']);
+    assert.deepEqual(profile.coreValues, ['Quality', 'Trust', 'Innovation']);
+    assert.equal(profile.vision, 'Building technology for a smarter future');
     assert.ok(skills.length > 0);
     for (const skill of skills) {
       for (const field of ['icon', 'title', 'description']) {
@@ -41,12 +47,11 @@ describe('portfolio configuration and content', () => {
         assert.ok(skill[field].trim());
       }
     }
-    assert.ok(proof.length > 0);
-    for (const metric of proof) {
-      assert.ok(Number.isFinite(metric.value) && metric.value >= 0);
-      for (const field of ['suffix', 'label', 'description']) {
-        assert.equal(typeof metric[field], 'string');
-        if (field !== 'suffix') assert.ok(metric[field].trim());
+    assert.ok(services.length > 0);
+    for (const service of services) {
+      for (const field of ['title', 'description', 'capability']) {
+        assert.equal(typeof service[field], 'string');
+        assert.ok(service[field].trim());
       }
     }
   });
@@ -66,7 +71,4 @@ describe('portfolio configuration and content', () => {
     assert.ok(titles.includes('Identity & access'));
   });
 
-  it('exports non-empty journey content', () => {
-    assert.ok(Array.isArray(journey) && journey.length > 0);
-  });
 });

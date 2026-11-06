@@ -4,10 +4,10 @@ export default function ProjectFilterBar({ count, filters, activeFilter, onSelec
   return (
     <Reveal className="system-toolbar">
       <div className="system-directory">
-        <span className="system-directory-label">System directory</span>
-        <strong>{String(count).padStart(2, '0')}</strong>
+        <span className="system-directory-label">Solution areas</span>
+        <strong>{count}</strong>
       </div>
-      <div className="system-filters" role="group" aria-label="Filter systems by category">
+      <div className="system-filters" role="group" aria-label="Filter solutions by category">
         {filters.map(([value, label]) => (
           <button
             key={value}

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="brand" x1="80" y1="90" x2="690" y2="530" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#c8f169"/><stop offset="1" stop-color="#65d9c3"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="matrix(500 0 0 420 910 314)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#65d9c3" stop-opacity=".2"/><stop offset="1" stop-color="#101512" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0v48" fill="none" stroke="#dce9df" stroke-opacity=".055"/>
+    </pattern>
+  </defs>
+  <path fill="#101512" d="M0 0h1200v630H0z"/><path fill="url(#glow)" d="M0 0h1200v630H0z"/><path fill="url(#grid)" d="M0 0h1200v630H0z"/>
+  <rect x="64" y="64" width="1072" height="502" rx="28" fill="#171e1a" fill-opacity=".76" stroke="#dce9df" stroke-opacity=".16"/>
+  <path d="M742 150h127v95h112v137h-93v106H742" fill="none" stroke="#65d9c3" stroke-opacity=".65" stroke-width="2"/>
+  <path d="M742 197h69m197 95h72m-192 190h-78" fill="none" stroke="#c8f169" stroke-opacity=".8" stroke-width="2"/>
+  <circle cx="742" cy="150" r="6" fill="#c8f169"/><circle cx="981" cy="245" r="6" fill="#65d9c3"/><circle cx="888" cy="488" r="6" fill="#c8f169"/>
+  <rect x="854" y="286" width="164" height="112" rx="16" fill="#17221c" stroke="#65d9c3" stroke-opacity=".55"/>
+  <path d="m908 342 25-24v48l-25-24Zm55-24 25 24-25 24" fill="none" stroke="url(#brand)" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"/>
+  <text x="118" y="206" fill="#c8f169" font-family="Arial,sans-serif" font-size="20" font-weight="700" letter-spacing="7">QYVERON TECHNOLOGIES</text>
+  <text x="112" y="328" fill="#edf2e9" font-family="Arial,sans-serif" font-size="74" font-weight="700" letter-spacing="-2">Engineering</text>
+  <text x="112" y="412" fill="#edf2e9" font-family="Arial,sans-serif" font-size="74" font-weight="700" letter-spacing="-2">Tomorrow, Today</text>
+  <path d="M116 458h560" stroke="url(#brand)" stroke-width="4"/>
+  <text x="118" y="506" fill="#9eaaa1" font-family="Arial,sans-serif" font-size="19" letter-spacing="3">SOFTWARE · APIS · DATA SYSTEMS</text>
+</svg>
