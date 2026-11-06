@@ -19,8 +19,19 @@ export function useCommandPalette() {
       setOpen((current) => !current);
     };
 
+    const handleEscape = (event) => {
+      if (event.key === 'Escape' && open) {
+        event.preventDefault();
+        setOpen(false);
+      }
+    };
+
     window.addEventListener('keydown', handleShortcut);
-    return () => window.removeEventListener('keydown', handleShortcut);
+    window.addEventListener('keydown', handleEscape);
+    return () => {
+      window.removeEventListener('keydown', handleShortcut);
+      window.removeEventListener('keydown', handleEscape);
+    };
   }, [open]);
 
   return { commandPaletteOpen: open, openCommandPalette, closeCommandPalette };
