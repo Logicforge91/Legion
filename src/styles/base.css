@@ -1034,7 +1034,7 @@ p {
     background: var(--accent);
 }
 
-footer {
+.site-shell > .relative > footer {
     border-top: 1px solid var(--line);
     background: rgba(5, 11, 10, 0.74);
     backdrop-filter: blur(18px);
@@ -1122,7 +1122,7 @@ footer {
     }
 }
 
-@media (max-width: 860px) {
+@media (max-width: 1099px) {
     #navToggle {
         display: grid;
     }

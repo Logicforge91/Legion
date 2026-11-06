@@ -1,0 +1,26 @@
+.print-portfolio { display: none; }
+
+@page { size: A4; margin: 16mm; }
+
+@media print {
+  html, body, #root { width: auto; min-height: 0; margin: 0; background: #fff !important; }
+  body { color: #171717 !important; font: 10pt/1.45 Arial, sans-serif; }
+  .site-shell { display: none !important; }
+  .print-portfolio { display: block !important; max-width: 100%; color: #171717; background: #fff; }
+  .print-portfolio h1 { margin: 0 0 4pt; font-size: 26pt; }
+  .print-portfolio h2 { margin: 17pt 0 7pt; padding-bottom: 4pt; border-bottom: 1px solid #999; font-size: 14pt; break-after: avoid; }
+  .print-portfolio p { margin: 4pt 0; }
+  .print-portfolio a { color: #171717; text-decoration: none; }
+  .print-portfolio__header { display: flex; justify-content: space-between; gap: 20pt; padding-bottom: 10pt; border-bottom: 2px solid #222; }
+  .print-portfolio__header address { display: grid; align-content: center; gap: 4pt; font-size: 9pt; font-style: normal; text-align: right; }
+  .print-portfolio__eyebrow { margin: 0 0 4pt !important; color: #444; font-size: 8pt; letter-spacing: .08em; text-transform: uppercase; }
+  .print-portfolio__metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8pt; margin: 0; padding: 0; list-style: none; }
+  .print-portfolio__metrics li { display: grid; gap: 3pt; padding: 8pt; border: 1px solid #bbb; }
+  .print-portfolio__metrics strong { font-size: 16pt; }
+  .print-portfolio__metrics span { font-size: 8pt; }
+  .print-portfolio__career, .print-portfolio__projects, .print-portfolio__skills, .print-portfolio__integrations { display: grid; gap: 7pt; margin: 0; padding-left: 18pt; }
+  .print-portfolio__career li, .print-portfolio__projects li, .print-portfolio__skills li { break-inside: avoid; }
+  .print-portfolio__career li > span, .print-portfolio__projects li > span { margin-left: 6pt; color: #555; font-size: 9pt; }
+  .print-portfolio__integrations { grid-template-columns: repeat(2, 1fr); }
+  .print-portfolio__integrations li { break-inside: avoid; }
+}

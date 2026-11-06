@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { useMotionVisibility } from '../../hooks/useMotionVisibility';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 import '../../styles/sections/TechIndex.css';
 
@@ -67,8 +68,10 @@ const technologyLanes = [
 
 export default function TechMarquee() {
   const reducedMotion = useReducedMotion();
+  const flowRef = useRef(null);
   const [paused, setPaused] = useState(false);
-  const isPaused = paused || reducedMotion;
+  const motionVisible = useMotionVisibility(flowRef);
+  const isPaused = paused || reducedMotion || !motionVisible;
 
   return (
     <section className="tech-index-section" aria-labelledby="techIndexTitle">
@@ -93,7 +96,7 @@ export default function TechMarquee() {
           <span className="tech-index-status"><i aria-hidden="true" /> Production-minded stack</span>
         </div>
 
-        <div className="tech-flow" data-paused={isPaused} role="region" aria-label="Continuous technology index">
+        <div ref={flowRef} className="tech-flow" data-paused={isPaused} role="region" aria-label="Continuous technology index">
           <div className="tech-flow__toolbar">
             <span><i aria-hidden="true" /> Continuous index</span>
             {reducedMotion ? (

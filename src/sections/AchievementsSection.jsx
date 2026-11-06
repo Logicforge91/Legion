@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { proof } from '../data/portfolio';
 import { Counter, Reveal, SectionHeading, Spotlight } from '../components/shared/ui';
+import { useMotionVisibility } from '../hooks/useMotionVisibility';
 import { useReducedMotion } from '../hooks/useReducedMotion';
 import '../styles/sections/AchievementsSection.css';
 
@@ -22,8 +23,10 @@ function ProofCard({ item, animate = true }) {
 
 export default function AchievementsSection() {
   const reducedMotion = useReducedMotion();
+  const proofLoopRef = useRef(null);
   const [paused, setPaused] = useState(false);
-  const isPaused = paused || reducedMotion;
+  const motionVisible = useMotionVisibility(proofLoopRef);
+  const isPaused = paused || reducedMotion || !motionVisible;
 
   return (
     <section id="achievements" className="achievements-section" aria-labelledby="proofTitle">
@@ -36,10 +39,10 @@ export default function AchievementsSection() {
           Real product patterns, reliability work, and system ownership that show up over time.
         </SectionHeading>
 
-        <div className="proof-loop" data-paused={isPaused} role="region" aria-label="Proof points">
+        <div ref={proofLoopRef} className="proof-loop" data-paused={isPaused} role="region" aria-label="Proof points">
           <div className="proof-loop__toolbar">
             <span><i aria-hidden="true" />Delivery signals · {proof.length} proof points</span>
-            {!reducedMotion && (
+            {!reducedMotion && motionVisible && (
               <button type="button" aria-pressed={paused} onClick={() => setPaused((current) => !current)}>
                 <i className={`bi ${paused ? 'bi-play-fill' : 'bi-pause-fill'}`} aria-hidden="true" />
                 {paused ? 'Resume loop' : 'Pause loop'}
@@ -66,6 +69,8 @@ export default function AchievementsSection() {
           <p className="visually-hidden" aria-live="polite">
             {reducedMotion
               ? 'Proof points are still for reduced motion. Scroll horizontally to explore.'
+              : !motionVisible
+                ? 'Proof loop paused while off-screen or while this page is hidden.'
               : paused
                 ? 'Proof loop paused. Scroll horizontally to explore.'
                 : 'Proof points are moving. Use the pause button to explore at your own pace.'}

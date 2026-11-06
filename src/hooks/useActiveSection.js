@@ -21,10 +21,16 @@ export function useActiveSection() {
 
     const sectionIds = new Set(observedSectionIds);
     const observer = new IntersectionObserver((entries) => {
-      const activeEntries = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((first, second) => first.boundingClientRect.top - second.boundingClientRect.top);
-      const nextSection = activeEntries[activeEntries.length - 1]?.target.id;
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+
+      const readingLine = window.innerHeight * 0.42;
+      const sections = [...document.querySelectorAll('section[id]')]
+        .filter((section) => sectionIds.has(section.id));
+      const currentSection = sections.find((section) => {
+        const bounds = section.getBoundingClientRect();
+        return bounds.top <= readingLine && bounds.bottom > readingLine;
+      });
+      const nextSection = currentSection?.id;
 
       if (nextSection) {
         setActiveSection((current) => current === nextSection ? current : nextSection);

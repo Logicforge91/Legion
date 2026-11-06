@@ -1,6 +1,6 @@
 export const journey = [
   {
-    "period": "Apr 2021",
+    "period": "2021",
     "title": "Learned production by shipping into it",
     "company": "Socialbytes Technologies",
     "companyUrl": "https://thesocialbytes.com/",
@@ -12,7 +12,7 @@ export const journey = [
     "text": "Took on REST endpoints, validation boundaries, reusable modules, and multi-step data flows where one backend decision affected operators, customers, reports, and downstream systems."
   },
   {
-    "period": "Aug 2023",
+    "period": "2023",
     "title": "Expanded ownership as a Laravel Developer",
     "company": "Swipewire Technologies",
     "companyUrl": "https://theswipewire.com/",
@@ -24,8 +24,13 @@ export const journey = [
     "text": "Focused on query behavior, permissions, integration failures, operational visibility, and production issue resolution—the invisible work that makes a product feel dependable."
   },
   {
-    "period": "2025-26",
+    "period": "2025",
     "title": "Carrying production discipline into Java",
-    "text": "Extending the same backend principles into Java, Spring Boot, Redis, Docker, and service-oriented design while keeping Laravel delivery sharp and practical."
+    "text": "Carrying established backend principles into Java and Spring Boot, with a focus on dependable service design and practical delivery."
+  },
+  {
+    "period": "2026",
+    "title": "Building across service boundaries",
+    "text": "Continuing to develop Java and Spring Boot capability alongside Redis, Docker, and service-oriented design, while keeping Laravel delivery sharp and practical."
   }
 ];

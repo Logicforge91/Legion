@@ -1,5 +1,8 @@
-import { Reveal, SectionHeading, Spotlight } from '../components/shared/ui';
-import { projects } from '../data/portfolio';
+import { useState } from 'react';
+import { Counter, Reveal, SectionHeading, Spotlight } from '../components/shared/ui';
+import { projectFilterLabels } from '../config/projectFilters';
+import { proof, projects } from '../data/portfolio';
+import { getExternalUrl } from '../utils/externalUrl';
 import '../styles/sections/TestimonialsSection.css';
 
 const featuredSlugs = [
@@ -10,10 +13,6 @@ const featuredSlugs = [
   'payment-provider-integrations',
   'rest-api-audit',
 ];
-
-const caseStudies = featuredSlugs
-  .map((slug) => projects.find((project) => project.slug === slug))
-  .filter(Boolean);
 
 const outcomes = {
   'care-access-platform': {
@@ -42,7 +41,19 @@ const outcomes = {
   },
 };
 
+const caseStudies = featuredSlugs.flatMap((slug) => {
+  const project = projects.find((item) => item.slug === slug);
+  const outcome = outcomes[slug];
+  return project && outcome ? [{ project, outcome }] : [];
+});
+const caseCategories = [...new Set(caseStudies.map(({ project }) => project.category))];
+
 export default function TestimonialsSection() {
+  const [activeCategory, setActiveCategory] = useState('all');
+  const visibleCaseStudies = activeCategory === 'all'
+    ? caseStudies
+    : caseStudies.filter(({ project }) => project.category === activeCategory);
+
   return (
     <section id="impact" className="testimonials-section work-style-section" aria-labelledby="workStyleTitle">
       <div className="site-container">
@@ -51,38 +62,62 @@ export default function TestimonialsSection() {
           id="workStyleTitle"
           title="Engineering decisions shaped around real workflows."
         >
-          Draft case study examples based on the project areas listed in this portfolio. Replace the marked role, stack, and result fields with verified details.
+          A closer look at the workflow concerns behind selected projects. The metrics below summarize portfolio-wide experience; they are not attributed to individual case studies.
         </SectionHeading>
+        <div className="impact-metrics" role="list" aria-label="Portfolio impact metrics">
+          {proof.map((metric) => (
+            <Reveal as="div" role="listitem" className="impact-metric" key={metric.label}>
+              <strong><Counter value={metric.value} suffix={metric.suffix} /></strong>
+              <span>{metric.label}</span>
+            </Reveal>
+          ))}
+        </div>
+        <div className="impact-filter-toolbar">
+          <div className="impact-filters" role="group" aria-label="Filter impact case studies by category">
+            <button type="button" aria-pressed={activeCategory === 'all'} onClick={() => setActiveCategory('all')}>All cases</button>
+            {caseCategories.map((category) => (
+              <button key={category} type="button" aria-pressed={activeCategory === category} onClick={() => setActiveCategory(category)}>
+                {category}
+              </button>
+            ))}
+          </div>
+          <span className="impact-case-count" aria-live="polite">{visibleCaseStudies.length} of {caseStudies.length} cases</span>
+        </div>
         <div className="testimonial-rail work-style-grid">
-          {caseStudies.map((project, index) => {
-            const outcome = outcomes[project.slug];
-
-            return (
-              <Reveal key={project.slug}>
-                <Spotlight className="testimonial-card work-style-card impact-card">
-                  <div className="work-style-top">
-                    <span>CASE 0{index + 1} / {project.category}</span>
-                    <i className={`bi ${project.icon}`} aria-hidden="true" />
+          {visibleCaseStudies.map(({ project, outcome }, index) => (
+            <Reveal key={project.slug}>
+              <Spotlight className="testimonial-card work-style-card impact-card">
+                <div className="work-style-top">
+                  <span className="impact-card__case"><b>{String(index + 1).padStart(2, '0')}</b><span>CASE / {project.category}</span></span>
+                  <i className={`bi ${project.icon}`} aria-hidden="true" />
+                </div>
+                <div className="impact-card__body">
+                  <h3>{project.title}</h3>
+                  <strong>{outcome.focus}</strong>
+                </div>
+                <details className="impact-card__details">
+                  <summary>View case details</summary>
+                  <div className="impact-card__details-content">
+                    <div><h4>Project scope</h4><p>{project.text}</p></div>
+                    <div><h4>Engineering focus</h4><p>{outcome.focus}</p></div>
+                    <div><h4>Workflow outcome</h4><p>{outcome.outcome}</p></div>
+                    {project.role && <div><h4>Role</h4><p>{project.role}</p></div>}
+                    {Array.isArray(project.stack) && project.stack.length > 0 && <div><h4>Technology stack</h4><p>{project.stack.join(' · ')}</p></div>}
+                    {project.result && <div><h4>Measured result</h4><p>{project.result}</p></div>}
+                    <ul aria-label="Project domains">
+                      {project.filters.map((filter) => <li key={filter}>{projectFilterLabels.get(filter) ?? filter}</li>)}
+                    </ul>
+                    {(getExternalUrl(project.demoUrl) || getExternalUrl(project.repositoryUrl)) && (
+                      <div className="impact-card__links">
+                        {getExternalUrl(project.demoUrl) && <a href={getExternalUrl(project.demoUrl)} target="_blank" rel="noreferrer">Live demo <i className="bi bi-arrow-up-right" aria-hidden="true" /></a>}
+                        {getExternalUrl(project.repositoryUrl) && <a href={getExternalUrl(project.repositoryUrl)} target="_blank" rel="noreferrer">Repository <i className="bi bi-arrow-up-right" aria-hidden="true" /></a>}
+                      </div>
+                    )}
                   </div>
-                  <div className="impact-card__body">
-                    <h3>{project.title}</h3>
-                    <p>{project.text}</p>
-                  </div>
-                  <div className="impact-card__outcome">
-                    <span>Engineering focus</span>
-                    <strong>{outcome.focus}</strong>
-                    <p>{outcome.outcome}</p>
-                  </div>
-                  <div className="impact-card__draft" aria-label="Draft details to complete">
-                    <span>Draft details · replace before publishing</span>
-                    <p><b>Role</b> Add your contribution</p>
-                    <p><b>Stack</b> Add technologies used</p>
-                    <p><b>Result</b> Add a verified outcome</p>
-                  </div>
-                </Spotlight>
-              </Reveal>
-            );
-          })}
+                </details>
+              </Spotlight>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>

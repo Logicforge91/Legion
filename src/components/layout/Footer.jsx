@@ -9,9 +9,14 @@ export default function Footer() {
           </span>
           <h2>Bring the workflow. Let’s map the backend.</h2>
         </div>
-        <a className="footer-outro__action" href="#contact">
-          Open contact channel <i className="bi bi-arrow-up-right" aria-hidden="true" />
-        </a>
+        <div className="footer-outro__actions">
+          <a className="footer-outro__action" href="#contact">
+            Open contact channel <i className="bi bi-arrow-up-right" aria-hidden="true" />
+          </a>
+          <button className="footer-outro__print" type="button" onClick={() => window.print()}>
+            <i className="bi bi-printer" aria-hidden="true" /> Print portfolio
+          </button>
+        </div>
       </div>
 
       <div className="site-container footer-main">

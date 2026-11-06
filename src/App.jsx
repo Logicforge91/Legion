@@ -2,6 +2,7 @@ import { lazy, memo, Suspense, useEffect, useRef, useState } from 'react';
 import TechMarquee from './components/shared/TechMarquee';
 import Footer from './components/layout/Footer';
 import Header from './components/layout/Header';
+import PrintPortfolio from './components/layout/PrintPortfolio';
 import ScrollTopButton from './components/layout/ScrollTopButton';
 import { useCommandPalette } from './hooks/useCommandPalette';
 import { usePageState } from './hooks/usePageState';
@@ -124,6 +125,7 @@ export default function App() {
   const { commandPaletteOpen, openCommandPalette, closeCommandPalette } = useCommandPalette();
 
   return (
+    <>
     <div className="site-shell min-h-screen antialiased">
       <a className="skip-link" href="#content">Skip to content</a>
       <div className="scroll-progress" aria-hidden="true" />
@@ -139,5 +141,7 @@ export default function App() {
         </Suspense>
       )}
     </div>
+    <PrintPortfolio />
+    </>
   );
 }
