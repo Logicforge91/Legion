@@ -14,20 +14,25 @@ test('renders the primary portfolio content without horizontal overflow', async 
 });
 
 test('keeps section grids aligned to the active viewport', async ({ page }) => {
-  await page.goto('/#projects');
-  await Promise.all([
+  await page.goto('/');
+  const selectors = [
     '.systems-grid',
-    '.skills-section .stack-board',
+    '.skills-section .toolkit-board',
     '.achievements-section .proof-grid',
     '.testimonial-rail',
-    '.integration-grid',
-  ].map((selector) => page.locator(selector).waitFor()));
+    '.integration-topology-grid',
+  ];
+  for (const selector of selectors) {
+    const element = page.locator(selector);
+    await element.scrollIntoViewIfNeeded();
+    await element.waitFor();
+  }
   const columns = await page.evaluate(() => Object.fromEntries([
     ['projects', '.systems-grid'],
-    ['skills', '.skills-section .stack-board'],
+    ['skills', '.skills-section .toolkit-board'],
     ['proof', '.achievements-section .proof-grid'],
     ['principles', '.testimonial-rail'],
-    ['integrations', '.integration-grid'],
+    ['integrations', '.integration-topology-grid'],
   ].map(([name, selector]) => {
     const element = document.querySelector(selector);
     return [name, getComputedStyle(element).gridTemplateColumns.split(' ').length];

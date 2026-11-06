@@ -338,14 +338,14 @@ section:not(.hero-section) { border-top: 1px solid rgba(229, 239, 225, .08); }
 .stack-card i { border: 0; }
 
 /* Skills, systems and connected workflows */
-.skills-section .stack-board { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
-.skills-section .stack-card { height: 100%; }
+.skills-section .toolkit-board { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.skills-section .toolkit-card { height: 100%; }
 .integration-layout { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 22px; align-items: start; }
 .integrations-section .integration-flow { padding: 22px; border: 1px solid rgba(229, 239, 225, .13); border-radius: var(--radius-lg); background: var(--panel); }
 .flow-heading .panel-kicker { color: var(--accent-2); }
 .flow-signals span { color: rgba(229, 239, 225, .72); }
 .flow-signals span { border-color: rgba(229, 239, 225, .14); background: rgba(229, 239, 225, .05); }
-.site-shell .integration-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.site-shell .integration-topology-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
 .integration-card { min-height: 235px; padding: 22px; }
 .integration-icon { border-radius: 10px; }
 .work-style-card { min-height: 290px; display: flex; flex-direction: column; justify-content: space-between; gap: 22px; padding: 25px; }
@@ -533,7 +533,7 @@ footer { border-color: rgba(229, 239, 225, .14); color: #e8efe5; background: var
 .error-boundary .error-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
 
 /* Lazy-loaded section placeholders */
-.section-loading { padding: clamp(52px, 6vw, 88px) 0; }
+.section-loading { min-height: 360px; padding: clamp(52px, 6vw, 88px) 0; }
 .section-loading .site-container { display: grid; }
 .skeleton-block {
   position: relative;
@@ -623,7 +623,7 @@ footer { border-color: rgba(229, 239, 225, .14); color: #e8efe5; background: var
 }
 
 @media (max-width: 1080px) {
-  .site-shell .skills-section .stack-board,
+  .site-shell .skills-section .toolkit-board,
   .site-shell .testimonials-section .testimonial-rail,
   .site-shell .achievements-section .proof-grid,
   .site-shell .systems-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -636,7 +636,7 @@ footer { border-color: rgba(229, 239, 225, .14); color: #e8efe5; background: var
   .section-heading { grid-template-columns: 1fr; gap: 18px; }
   .section-heading p:not(.eyebrow) { max-width: 560px; }
   .site-shell .integration-layout { grid-template-columns: 1fr; }
-  .site-shell .integration-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .site-shell .integration-topology-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 860px) {
@@ -683,7 +683,7 @@ footer { border-color: rgba(229, 239, 225, .14); color: #e8efe5; background: var
   .section-heading h2 { font-size: clamp(2.6rem, 11vw, 3.8rem); }
   .site-shell .achievements-section .proof-grid,
   .site-shell .testimonials-section .testimonial-rail,
-  .site-shell .skills-section .stack-board { grid-template-columns: 1fr; }
+  .site-shell .skills-section .toolkit-board { grid-template-columns: 1fr; }
   .contact-section .contact-links { grid-template-columns: 1fr; }
   .footer-main { grid-template-columns: 1fr 1fr; }
 }

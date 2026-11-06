@@ -75,7 +75,12 @@ function SectionFallback({ id, section, onRef }) {
 
 function DeferredSection({ id, section, Component }) {
   const placeholderRef = useRef(null);
-  const [shouldLoad, setShouldLoad] = useState(false);
+  const [shouldLoad, setShouldLoad] = useState(() => {
+    const hash = window.location.hash.slice(1);
+    if (hash === id) return true;
+    const sectionOrder = ['about', 'journey', 'skills', 'integrations', 'projects', 'achievements', 'impact', 'contact'];
+    return hash && sectionOrder.indexOf(id) <= sectionOrder.indexOf(hash);
+  });
 
   useEffect(() => {
     if (shouldLoad) return undefined;
