@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { Reveal, Spotlight } from '../shared/ui';
 import { projectFilterLabels } from '../../config/projectFilters';
 
-function ProjectCard({ project, number, featured = false, slidePosition, slideCount, clone = false }) {
+function ProjectCard({ project, number, featured = false, slidePosition, slideCount, clone = false, onOpen }) {
   return (
     <Reveal
       className={`project-reveal${featured ? ' is-featured' : ''}${clone ? ' is-loop-clone' : ''}`}
@@ -26,7 +26,15 @@ function ProjectCard({ project, number, featured = false, slidePosition, slideCo
           <ul aria-label="System domains">
             {project.filters.map((filter) => <li key={filter}>{projectFilterLabels.get(filter) ?? filter}</li>)}
           </ul>
-          <span className="project-card__mark" aria-hidden="true"><i className="bi bi-arrow-up-right" /></span>
+          <button
+            className="project-card__action"
+            type="button"
+            aria-label={`View overview: ${project.title}`}
+            onClick={() => onOpen(project)}
+            tabIndex={clone ? -1 : undefined}
+          >
+            View overview <i className="bi bi-arrow-up-right" aria-hidden="true" />
+          </button>
         </footer>
       </Spotlight>
     </Reveal>
