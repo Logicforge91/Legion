@@ -168,9 +168,14 @@ export default function ProjectGrid({ projects, projectNumbers }) {
     });
 
     updateLayout();
-    const observer = new ResizeObserver(updateLayout);
-    observer.observe(track);
-    return () => observer.disconnect();
+    if (typeof window.ResizeObserver === 'function') {
+      const observer = new window.ResizeObserver(updateLayout);
+      observer.observe(track);
+      return () => observer.disconnect();
+    }
+
+    window.addEventListener('resize', updateLayout);
+    return () => window.removeEventListener('resize', updateLayout);
   }, []);
 
   useLayoutEffect(() => {

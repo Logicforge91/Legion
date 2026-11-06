@@ -13,7 +13,7 @@
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px;
-  margin: 24px 0;
+  margin: 18px 0;
 }
 
 .impact-metric {
@@ -43,7 +43,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  margin: 28px 0 16px;
+  margin: 20px 0 12px;
 }
 
 .impact-filters {
@@ -103,7 +103,7 @@
 }
 
 .impact-card {
-  min-height: 370px;
+  min-height: 340px;
 }
 
 .impact-card__body h3 { margin-bottom: 10px; }
@@ -117,7 +117,7 @@
 
 .impact-card__details {
   align-self: end;
-  margin-top: 20px;
+  margin-top: 14px;
   border-top: 1px solid var(--line);
 }
 
@@ -160,7 +160,7 @@
 .impact-card__links a { color: var(--accent); font-size: .7rem; text-decoration: underline; text-underline-offset: 3px; }
 
 @media (max-width: 720px) {
-  .impact-card { min-height: 330px; }
+  .impact-card { min-height: 300px; }
   .impact-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 

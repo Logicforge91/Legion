@@ -1,8 +1,7 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { proof } from '../data/portfolio';
-import { Counter, Reveal, SectionHeading, Spotlight } from '../components/shared/ui';
-import { useMotionVisibility } from '../hooks/useMotionVisibility';
-import { useReducedMotion } from '../hooks/useReducedMotion';
+import { Counter, MotionToggle, Reveal, SectionHeading, Spotlight } from '../components/shared/ui';
+import { useLoopMotion } from '../hooks/useLoopMotion';
 import '../styles/sections/AchievementsSection.css';
 
 function ProofCard({ item, animate = true }) {
@@ -22,11 +21,8 @@ function ProofCard({ item, animate = true }) {
 }
 
 export default function AchievementsSection() {
-  const reducedMotion = useReducedMotion();
   const proofLoopRef = useRef(null);
-  const [paused, setPaused] = useState(false);
-  const motionVisible = useMotionVisibility(proofLoopRef);
-  const isPaused = paused || reducedMotion || !motionVisible;
+  const { reducedMotion, motionVisible, paused, togglePaused, isPaused } = useLoopMotion(proofLoopRef);
 
   return (
     <section id="achievements" className="achievements-section" aria-labelledby="proofTitle">
@@ -43,10 +39,12 @@ export default function AchievementsSection() {
           <div className="proof-loop__toolbar">
             <span><i aria-hidden="true" />Delivery signals · {proof.length} proof points</span>
             {!reducedMotion && motionVisible && (
-              <button type="button" aria-pressed={paused} onClick={() => setPaused((current) => !current)}>
-                <i className={`bi ${paused ? 'bi-play-fill' : 'bi-pause-fill'}`} aria-hidden="true" />
-                {paused ? 'Resume loop' : 'Pause loop'}
-              </button>
+              <MotionToggle
+                paused={paused}
+                onToggle={togglePaused}
+                pauseLabel="Pause loop"
+                resumeLabel="Resume loop"
+              />
             )}
           </div>
 

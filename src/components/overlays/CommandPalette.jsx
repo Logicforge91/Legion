@@ -3,10 +3,14 @@ import { useReducedMotion } from '../../hooks/useReducedMotion';
 
 const commands = [
   { label: 'Meet the engineer', hint: 'About', group: 'Explore', detail: 'Read the engineering profile and working principles.', icon: 'bi-person', href: '#about', keywords: 'profile about experience identity' },
+  { label: 'View education', hint: 'Education', group: 'Explore', detail: 'See the degree, institution, university, and graduation year.', icon: 'bi-mortarboard', href: '#education', keywords: 'degree college university graduation education' },
   { label: 'Browse career archive', hint: 'Experience', group: 'Explore', detail: 'Read the career milestones in chronological order.', icon: 'bi-signpost-split', href: '#journey', keywords: 'work companies career timeline journey' },
   { label: 'Explore the engineering toolkit', hint: 'Skills', group: 'Explore', detail: 'Browse languages, frameworks, data, and delivery tools.', icon: 'bi-layers', href: '#skills', keywords: 'skills stack toolkit laravel java php' },
+  { label: 'Explore backend services', hint: 'Services', group: 'Explore', detail: 'See the backend engineering services available to product teams.', icon: 'bi-hdd-network', href: '#services', keywords: 'services API database integrations Java backend' },
   { label: 'Review integrations', hint: 'Architecture', group: 'Explore', detail: 'See how APIs and external services fit together.', icon: 'bi-diagram-3', href: '#integrations', keywords: 'api payments queue webhook external' },
   { label: 'Browse featured systems', hint: 'Projects', group: 'Explore', detail: 'Open project case studies and backend systems.', icon: 'bi-grid-1x2', href: '#projects', keywords: 'projects work systems portfolio' },
+  { label: 'Read technical articles', hint: 'Field notes', group: 'Explore', detail: 'Browse backend tutorials on APIs, data, security, and reliability.', icon: 'bi-journal-code', href: '#articles', keywords: 'articles tutorials coding knowledge engineering notes backend' },
+  { label: 'Ask the portfolio assistant', hint: 'Assistant', group: 'Explore', detail: 'Find relevant answers from the projects, skills, and articles on this site.', icon: 'bi-chat-square-text', href: '#assistant', keywords: 'ai assistant ask question chat about work portfolio' },
   { label: 'Explore selected impact', hint: 'Case studies', group: 'Explore', detail: 'See selected healthcare, fintech, and Java workflow case studies.', icon: 'bi-activity', href: '#impact', keywords: 'impact case studies outcomes healthcare fintech workflow' },
   { label: 'Start a conversation', hint: 'Contact', group: 'Connect', detail: 'Jump to the contact form and professional links.', icon: 'bi-chat-dots', href: '#contact', keywords: 'contact hire message role' },
   { label: 'Open résumé', hint: 'PDF', group: 'Actions', detail: 'Open the résumé PDF in a new tab.', icon: 'bi-file-earmark-person', href: '/assets/resume.pdf', keywords: 'resume cv download' },
@@ -94,7 +98,9 @@ export default function CommandPalette({ open, onClose }) {
     if (!command) return;
     onClose();
     setQuery('');
-    if (command.href.startsWith('#')) {
+    if (command.href === '#assistant') {
+      window.setTimeout(() => window.dispatchEvent(new Event('portfolio:assistant-open')), 0);
+    } else if (command.href.startsWith('#')) {
       document.querySelector(command.href)?.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
       window.history.replaceState(null, '', command.href);
     } else if (command.href.startsWith('mailto:')) {
@@ -114,17 +120,22 @@ export default function CommandPalette({ open, onClose }) {
       return;
     }
     if (!filteredCommands.length) return;
+    if (event.key === 'Home' || event.key === 'End') {
+      event.preventDefault();
+      const nextIndex = event.key === 'Home' ? 0 : filteredCommands.length - 1;
+      setActiveIndex(nextIndex);
+      document.getElementById(getCommandId(filteredCommands[nextIndex]))?.scrollIntoView({ block: 'nearest' });
+      return;
+    }
     if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
       event.preventDefault();
       const delta = event.key === 'ArrowDown' ? 1 : -1;
       const nextIndex = (selectedIndex + delta + filteredCommands.length) % filteredCommands.length;
 
       setActiveIndex(nextIndex);
-      requestAnimationFrame(() => {
-        const option = document.getElementById(getCommandId(filteredCommands[nextIndex]));
-        option?.focus();
-        option?.scrollIntoView({ block: 'nearest' });
-      });
+      document.getElementById(getCommandId(filteredCommands[nextIndex]))?.scrollIntoView({ block: 'nearest' });
+      inputRef.current?.focus({ preventScroll: true });
+      return;
     }
     if (event.key === 'Enter') { event.preventDefault(); runCommand(filteredCommands[selectedIndex]); }
   };
@@ -138,7 +149,7 @@ export default function CommandPalette({ open, onClose }) {
       </div>
       <div className="command-section-label"><span>{query.trim() ? 'MATCHING DESTINATIONS' : 'QUICK DESTINATIONS'}</span><span>{String(filteredCommands.length).padStart(2, '0')} / {String(commands.length).padStart(2, '0')}</span></div>
       <div id="commandResults" className="command-results" role="listbox" aria-label="Available commands" aria-live="polite">
-        {filteredCommands.map((command, index) => <button id={getCommandId(command)} key={command.label} className={index === selectedIndex ? 'active' : ''} type="button" role="option" aria-selected={index === selectedIndex} onMouseEnter={() => setActiveIndex(index)} onFocus={() => setActiveIndex(index)} onClick={() => runCommand(command)}><span className="command-result__index">{String(index + 1).padStart(2, '0')}</span><i className={`bi ${command.icon} command-result__icon`} aria-hidden="true" /><span className="command-result__copy"><strong>{command.label}</strong><small>{command.hint}</small></span><i className="bi bi-arrow-up-right command-enter" aria-hidden="true" /></button>)}
+        {filteredCommands.map((command, index) => <button id={getCommandId(command)} key={command.label} className={index === selectedIndex ? 'active' : ''} type="button" tabIndex={-1} role="option" aria-selected={index === selectedIndex} onMouseDown={(event) => event.preventDefault()} onMouseEnter={() => setActiveIndex(index)} onClick={() => runCommand(command)}><span className="command-result__index">{String(index + 1).padStart(2, '0')}</span><i className={`bi ${command.icon} command-result__icon`} aria-hidden="true" /><span className="command-result__copy"><strong>{command.label}</strong><small>{command.hint}</small></span><i className="bi bi-arrow-up-right command-enter" aria-hidden="true" /></button>)}
         {!filteredCommands.length && <div className="command-empty"><i className="bi bi-search" aria-hidden="true" /><p>No matching action found.</p></div>}
       </div>
       {filteredCommands[selectedIndex] && <aside className="command-preview" aria-live="polite"><span className="command-preview__label">SELECTED / {filteredCommands[selectedIndex].group.toUpperCase()}</span><p>{filteredCommands[selectedIndex].detail}</p><span className="command-preview__target">{filteredCommands[selectedIndex].href}</span></aside>}

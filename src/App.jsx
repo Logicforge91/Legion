@@ -1,4 +1,5 @@
-import { lazy, memo, Suspense, useEffect, useRef, useState } from 'react';
+import { lazy, memo, Suspense, useCallback, useEffect, useRef, useState } from 'react';
+import { observedSectionIds } from './config/navigation';
 import TechMarquee from './components/shared/TechMarquee';
 import Footer from './components/layout/Footer';
 import Header from './components/layout/Header';
@@ -7,22 +8,28 @@ import ScrollTopButton from './components/layout/ScrollTopButton';
 import { useCommandPalette } from './hooks/useCommandPalette';
 import { usePageState } from './hooks/usePageState';
 import HeroSection from './sections/HeroSection';
+import './styles/PortfolioAssistant.css';
 
 const AboutSection = lazy(() => import('./sections/AboutSection'));
 const AchievementsSection = lazy(() => import('./sections/AchievementsSection'));
+const ArticlesSection = lazy(() => import('./sections/ArticlesSection'));
 const ContactSection = lazy(() => import('./sections/ContactSection'));
+const EducationSection = lazy(() => import('./sections/EducationSection'));
 const IntegrationsSection = lazy(() => import('./sections/IntegrationsSection'));
 const JourneySection = lazy(() => import('./sections/JourneySection'));
 const ProjectsSection = lazy(() => import('./sections/ProjectsSection'));
 const SkillsSection = lazy(() => import('./sections/SkillsSection'));
+const ServicesSection = lazy(() => import('./sections/ServicesSection'));
 const TestimonialsSection = lazy(() => import('./sections/TestimonialsSection'));
 const CommandPalette = lazy(() => import('./components/overlays/CommandPalette'));
+const PortfolioAssistant = lazy(() => import('./components/overlays/PortfolioAssistant'));
 
 const deferredSections = new Map();
 let deferredSectionObserver;
+const DEFERRED_SECTION_OPTIONS = { rootMargin: '700px 0px' };
 
 function observeDeferredSection(element, callback) {
-  if (!('IntersectionObserver' in window)) {
+  if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
     callback();
     return () => {};
   }
@@ -41,7 +48,7 @@ function observeDeferredSection(element, callback) {
         deferredSectionObserver.disconnect();
         deferredSectionObserver = undefined;
       }
-    }, { rootMargin: '700px 0px' });
+    }, DEFERRED_SECTION_OPTIONS);
   }
 
   deferredSections.set(element, callback);
@@ -58,8 +65,9 @@ function observeDeferredSection(element, callback) {
 }
 
 function SectionFallback({ id, section, onRef }) {
+  const compactSections = ['education', 'services', 'skills', 'integrations', 'contact'].includes(id);
   return (
-    <section ref={onRef} id={id} className={`section-loading section-loading--${section}`} aria-busy="true" aria-label={`Loading ${section} section`}>
+    <section ref={onRef} id={id} className={`section-loading section-loading--${section}${compactSections ? ' section-loading--compact' : ''}`} aria-busy="true" aria-label={`Loading ${section} section`}>
       <div className="site-container">
         <div className="skeleton-block skeleton-eyebrow" />
         <div className="skeleton-block skeleton-title" />
@@ -76,23 +84,38 @@ function SectionFallback({ id, section, onRef }) {
 
 function DeferredSection({ id, section, Component }) {
   const placeholderRef = useRef(null);
-  const [shouldLoad, setShouldLoad] = useState(() => {
-    const hash = window.location.hash.slice(1);
-    if (hash === id) return true;
-    const sectionOrder = ['about', 'journey', 'skills', 'integrations', 'projects', 'achievements', 'impact', 'contact'];
-    return hash && sectionOrder.indexOf(id) <= sectionOrder.indexOf(hash);
-  });
+  const [shouldLoad, setShouldLoad] = useState(false);
 
   useEffect(() => {
     if (shouldLoad) return undefined;
-    const placeholder = placeholderRef.current;
-    if (!placeholder) {
+
+    const loadForHash = () => {
+      const targetIndex = observedSectionIds.indexOf(window.location.hash.slice(1));
+      const currentIndex = observedSectionIds.indexOf(id);
+      if (targetIndex >= 0 && currentIndex <= targetIndex) setShouldLoad(true);
+    };
+
+    const targetIndex = observedSectionIds.indexOf(window.location.hash.slice(1));
+    const currentIndex = observedSectionIds.indexOf(id);
+    if (targetIndex >= 0 && currentIndex <= targetIndex) {
       setShouldLoad(true);
       return undefined;
     }
 
-    return observeDeferredSection(placeholder, () => setShouldLoad(true));
-  }, [shouldLoad]);
+    window.addEventListener('hashchange', loadForHash);
+
+    const placeholder = placeholderRef.current;
+    if (!placeholder) {
+      setShouldLoad(true);
+      return () => window.removeEventListener('hashchange', loadForHash);
+    }
+
+    const stopObserving = observeDeferredSection(placeholder, () => setShouldLoad(true));
+    return () => {
+      window.removeEventListener('hashchange', loadForHash);
+      stopObserving();
+    };
+  }, [id, shouldLoad]);
 
   if (!shouldLoad) return <SectionFallback id={id} section={section} onRef={placeholderRef} />;
 
@@ -109,10 +132,13 @@ const PortfolioContent = memo(function PortfolioContent() {
       <HeroSection />
       <TechMarquee />
       <DeferredSection id="about" section="profile" Component={AboutSection} />
+      <DeferredSection id="education" section="education" Component={EducationSection} />
       <DeferredSection id="journey" section="journey" Component={JourneySection} />
       <DeferredSection id="skills" section="skills" Component={SkillsSection} />
+      <DeferredSection id="services" section="services" Component={ServicesSection} />
       <DeferredSection id="integrations" section="integrations" Component={IntegrationsSection} />
       <DeferredSection id="projects" section="projects" Component={ProjectsSection} />
+      <DeferredSection id="articles" section="articles" Component={ArticlesSection} />
       <DeferredSection id="achievements" section="achievements" Component={AchievementsSection} />
       <DeferredSection id="impact" section="impact" Component={TestimonialsSection} />
       <DeferredSection id="contact" section="contact" Component={ContactSection} />
@@ -123,6 +149,18 @@ const PortfolioContent = memo(function PortfolioContent() {
 export default function App() {
   const { activeSection, headerScrolled, showScrollTop } = usePageState();
   const { commandPaletteOpen, openCommandPalette, closeCommandPalette } = useCommandPalette();
+  const [assistantOpen, setAssistantOpen] = useState(false);
+  const assistantLauncherRef = useRef(null);
+  const closeAssistant = useCallback(() => {
+    setAssistantOpen(false);
+    window.requestAnimationFrame(() => assistantLauncherRef.current?.focus());
+  }, []);
+
+  useEffect(() => {
+    const openAssistant = () => setAssistantOpen(true);
+    window.addEventListener('portfolio:assistant-open', openAssistant);
+    return () => window.removeEventListener('portfolio:assistant-open', openAssistant);
+  }, []);
 
   return (
     <>
@@ -135,6 +173,22 @@ export default function App() {
         <Footer />
         <ScrollTopButton visible={showScrollTop} />
       </div>
+      <button
+        ref={assistantLauncherRef}
+        className="assistant-launcher"
+        type="button"
+        aria-haspopup="dialog"
+        aria-expanded={assistantOpen}
+        onClick={() => setAssistantOpen((current) => !current)}
+      >
+        <i className="bi bi-stars" aria-hidden="true" />
+        {assistantOpen ? 'Close assistant' : 'Ask about my work'}
+      </button>
+      {assistantOpen && (
+        <Suspense fallback={null}>
+          <PortfolioAssistant open onClose={closeAssistant} />
+        </Suspense>
+      )}
       {commandPaletteOpen && (
         <Suspense fallback={null}>
           <CommandPalette open onClose={closeCommandPalette} />

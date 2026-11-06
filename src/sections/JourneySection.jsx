@@ -4,15 +4,15 @@ import { Reveal, SectionHeading } from '../components/shared/ui';
 import '../styles/sections/JourneySection.css';
 
 const formatMilestoneNumber = (index) => String(index + 1).padStart(2, '0');
+const journeyYears = [...new Set(journey.map(({ period }) => period.match(/\b20\d{2}\b/)?.[0]).filter(Boolean))];
+const journeyCompanies = [...new Set(journey.map(({ company }) => company).filter(Boolean))];
 
 export default function JourneySection() {
   const [year, setYear] = useState('all');
   const [company, setCompany] = useState('all');
-  const years = [...new Set(journey.map(({ period }) => period.match(/\b20\d{2}\b/)?.[0]).filter(Boolean))];
-  const companies = [...new Set(journey.map(({ company: name }) => name ?? 'Engineering growth'))];
   const visibleJourney = useMemo(() => journey.filter((item) => (
     (year === 'all' || item.period.includes(year))
-    && (company === 'all' || (item.company ?? 'Engineering growth') === company)
+    && (company === 'all' || item.company === company)
   )), [company, year]);
 
   return (
@@ -32,20 +32,19 @@ export default function JourneySection() {
             <span>Year</span>
             <select value={year} onChange={(event) => setYear(event.target.value)}>
               <option value="all">All years</option>
-              {years.map((value) => <option key={value} value={value}>{value}</option>)}
+              {journeyYears.map((value) => <option key={value} value={value}>{value}</option>)}
             </select>
           </label>
           <label>
             <span>Company / chapter</span>
             <select value={company} onChange={(event) => setCompany(event.target.value)}>
               <option value="all">All companies</option>
-              {companies.map((value) => <option key={value} value={value}>{value}</option>)}
+              {journeyCompanies.map((value) => <option key={value} value={value}>{value}</option>)}
             </select>
           </label>
           {(year !== 'all' || company !== 'all') && (
             <button type="button" onClick={() => { setYear('all'); setCompany('all'); }}>Reset filters</button>
           )}
-          <span className="visually-hidden" aria-live="polite">Showing {visibleJourney.length} of {journey.length} career chapters.</span>
         </div>
 
         <ol className="journey-archive" aria-label="Career milestones">
@@ -58,11 +57,11 @@ export default function JourneySection() {
                 <article className="journey-archive__card">
                   <header>
                     <span>CHAPTER / {formatMilestoneNumber(index + 1)}</span>
-                    {item.company ? (
+                    {item.company && (
                       <a href={item.companyUrl} target="_blank" rel="noreferrer" className="journey-archive__company">
                         {item.company}<i className="bi bi-arrow-up-right" aria-hidden="true" />
                       </a>
-                    ) : <span className="journey-archive__company">Engineering growth</span>}
+                    )}
                   </header>
                   <h3>{item.title}</h3>
                   <p>{item.text}</p>

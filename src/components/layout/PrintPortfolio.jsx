@@ -1,4 +1,4 @@
-import { integrations, journey, proof, projects, skills } from '../../data/portfolio';
+import { education, integrations, journey, proof, projects, services, skills } from '../../data/portfolio';
 import './PrintPortfolio.css';
 
 export default function PrintPortfolio() {
@@ -38,6 +38,19 @@ export default function PrintPortfolio() {
       </section>
 
       <section>
+        <h2>Education</h2>
+        <ul className="print-portfolio__skills">
+          {education.map((item) => (
+            <li key={`${item.institution}-${item.graduationYear}`}>
+              <strong>{item.degree}</strong>
+              <span>{item.institution}, {item.city} · {item.graduationYear}</span>
+              <p>{item.university}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section>
         <h2>Selected systems</h2>
         <ul className="print-portfolio__projects">
           {projects.map((project) => <li key={project.slug}><strong>{project.title}</strong><span>{project.category}</span><p>{project.text}</p></li>)}
@@ -48,6 +61,13 @@ export default function PrintPortfolio() {
         <h2>Engineering toolkit</h2>
         <ul className="print-portfolio__skills">
           {skills.map((skill) => <li key={skill.title}><strong>{skill.title}</strong><p>{skill.description}</p></li>)}
+        </ul>
+      </section>
+
+      <section>
+        <h2>Services</h2>
+        <ul className="print-portfolio__skills">
+          {services.map((service) => <li key={service.title}><strong>{service.title}</strong><p>{service.description}</p></li>)}
         </ul>
       </section>
 

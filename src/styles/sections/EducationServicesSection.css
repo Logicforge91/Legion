@@ -1,0 +1,39 @@
+.education-section,
+.services-section { position: relative; }
+
+.education-list { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
+.education-card { position: relative; display: grid; grid-template-columns: 150px minmax(0, 1fr) auto; align-items: center; gap: 26px; min-width: 0; overflow: hidden; padding: clamp(22px, 3vw, 34px); border: 1px solid color-mix(in srgb, var(--accent-2) 24%, var(--line)); border-radius: 6px 18px 18px 18px; background: radial-gradient(ellipse at 0 100%, color-mix(in srgb, var(--accent-2) 8%, transparent), transparent 48%), var(--card); }
+.education-card__year { display: grid; gap: 5px; padding-right: 22px; border-right: 1px solid var(--line); }
+.education-card__year span,
+.education-card__index { color: var(--accent-2); font: .56rem var(--font-mono); letter-spacing: .09em; }
+.education-card__year time { color: var(--text); font: 600 clamp(2.2rem, 4vw, 3.5rem)/1 var(--font-heading); letter-spacing: -.07em; }
+.education-card__details { min-width: 0; }
+.education-card__details h3 { max-width: 42ch; margin: 10px 0 8px; color: var(--text); font: 600 clamp(1.2rem, 2vw, 1.7rem)/1.25 var(--font-heading); letter-spacing: -.025em; }
+.education-card__details p { margin: 0; color: var(--soft); font-size: .83rem; }
+.education-card__university { display: block; margin-top: 6px; color: var(--muted); font-size: .73rem; }
+.education-card__mark { align-self: start; color: color-mix(in srgb, var(--accent-2) 24%, transparent); font: 600 clamp(2rem, 4vw, 3.4rem)/1 var(--font-mono); letter-spacing: -.1em; }
+
+.services-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.service-card { display: flex; min-width: 0; min-height: 245px; flex-direction: column; align-items: flex-start; padding: clamp(20px, 2.5vw, 28px); border: 1px solid var(--line); border-radius: 6px 16px 16px 16px; background: linear-gradient(140deg, color-mix(in srgb, var(--accent-2) 5%, var(--card)), var(--card) 65%); transition: transform .2s ease, border-color .2s ease; }
+.service-card:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--accent-2) 34%, var(--line)); }
+.service-card__header { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 12px; color: var(--accent-2); font: .55rem var(--font-mono); letter-spacing: .08em; }
+.service-card__header i { display: grid; width: 40px; height: 40px; place-items: center; border: 1px solid color-mix(in srgb, var(--accent-2) 25%, var(--line)); border-radius: 9px; color: var(--accent-2); background: color-mix(in srgb, var(--accent-2) 8%, transparent); font-size: 1rem; }
+.service-card h3 { margin: 20px 0 8px; color: var(--text); font: 600 clamp(1.15rem, 1.7vw, 1.45rem)/1.25 var(--font-heading); }
+.service-card p { margin: 0 0 16px; color: var(--muted); font-size: .78rem; line-height: 1.7; }
+.service-card__capability { margin-top: auto; color: var(--muted); font: .49rem/1.6 var(--font-mono); letter-spacing: .055em; text-transform: uppercase; }
+.service-card > a { display: inline-flex; align-items: center; gap: 7px; margin-top: 12px; color: var(--accent-2); font-size: .7rem; text-decoration: none; }
+.service-card > a:hover { color: var(--accent); }
+
+@media (max-width: 720px) {
+  .education-card { grid-template-columns: 92px minmax(0, 1fr); gap: 17px; padding: 20px; }
+  .education-card__year { padding-right: 14px; }
+  .education-card__mark { display: none; }
+}
+@media (max-width: 560px) {
+  .services-grid { grid-template-columns: 1fr; }
+  .service-card { min-height: 220px; }
+  .education-card { grid-template-columns: 1fr; gap: 15px; }
+  .education-card__year { grid-template-columns: auto 1fr; align-items: baseline; gap: 12px; padding: 0 0 11px; border-right: 0; border-bottom: 1px solid var(--line); }
+  .education-card__year time { font-size: 2rem; }
+}
+@media (prefers-reduced-motion: reduce) { .service-card { transition: none; } }

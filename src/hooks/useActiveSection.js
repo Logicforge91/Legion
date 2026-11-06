@@ -3,14 +3,13 @@ import { observedSectionIds } from '../config/navigation';
 
 const SECTION_OBSERVER_OPTIONS = { rootMargin: '-38% 0px -54%' };
 
-function observeMatchingSections(element, sectionIds, observer) {
-  if (element.matches('section[id]') && sectionIds.has(element.id)) {
-    observer.observe(element);
-  }
-
+function collectMatchingSections(element, sectionIds) {
+  const matches = [];
+  if (element.matches?.('section[id]') && sectionIds.has(element.id)) matches.push(element);
   element.querySelectorAll?.('section[id]').forEach((section) => {
-    if (sectionIds.has(section.id)) observer.observe(section);
+    if (sectionIds.has(section.id)) matches.push(section);
   });
+  return matches;
 }
 
 export function useActiveSection() {
@@ -20,13 +19,13 @@ export function useActiveSection() {
     if (!('IntersectionObserver' in window) || !('MutationObserver' in window)) return undefined;
 
     const sectionIds = new Set(observedSectionIds);
+    const sections = new Map();
     const observer = new IntersectionObserver((entries) => {
       if (!entries.some((entry) => entry.isIntersecting)) return;
 
       const readingLine = window.innerHeight * 0.42;
-      const sections = [...document.querySelectorAll('section[id]')]
-        .filter((section) => sectionIds.has(section.id));
-      const currentSection = sections.find((section) => {
+      const currentSection = observedSectionIds.map((id) => sections.get(id)).find((section) => {
+        if (!section) return false;
         const bounds = section.getBoundingClientRect();
         return bounds.top <= readingLine && bounds.bottom > readingLine;
       });
@@ -37,13 +36,32 @@ export function useActiveSection() {
       }
     }, SECTION_OBSERVER_OPTIONS);
 
+    const observeNode = (element) => {
+      collectMatchingSections(element, sectionIds).forEach((section) => {
+        if (sections.get(section.id) === section) return;
+        sections.set(section.id, section);
+        observer.observe(section);
+      });
+    };
+
+    const unobserveNode = (element) => {
+      collectMatchingSections(element, sectionIds).forEach((section) => {
+        if (sections.get(section.id) !== section) return;
+        sections.delete(section.id);
+        observer.unobserve(section);
+      });
+    };
+
     const content = document.getElementById('content') ?? document.body;
-    observeMatchingSections(content, sectionIds, observer);
+    observeNode(content);
 
     const mutationObserver = new MutationObserver((records) => {
       records.forEach((record) => {
+        record.removedNodes.forEach((node) => {
+          if (node instanceof Element) unobserveNode(node);
+        });
         record.addedNodes.forEach((node) => {
-          if (node instanceof Element) observeMatchingSections(node, sectionIds, observer);
+          if (node instanceof Element) observeNode(node);
         });
       });
     });

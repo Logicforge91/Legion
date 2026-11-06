@@ -36,9 +36,12 @@ export default function Footer() {
         <nav className="footer-nav" aria-label="Footer navigation">
           <p>Explore</p>
           <a href="#about">The Engineer</a>
+          <a href="#education">Education</a>
           <a href="#journey">Career archive</a>
           <a href="#skills">Toolkit</a>
+          <a href="#services">Services</a>
           <a href="#projects">Systems</a>
+          <a href="#articles">Articles</a>
         </nav>
 
         <div className="footer-nav">

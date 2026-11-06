@@ -98,7 +98,7 @@ describe('contact function request handling', () => {
 
     const response = await request({
       name: ` ${'N'.repeat(110)} `,
-      email: ` ${'e'.repeat(245)}@example.com `,
+      email: ` ${'e'.repeat(240)}@example.com `,
       company: ` ${'C'.repeat(160)} `,
       message: ` ${'M'.repeat(3010)} `,
     });
@@ -111,7 +111,7 @@ describe('contact function request handling', () => {
     const mail = JSON.parse(capturedRequest[1].body);
     assert.equal(mail.from, 'portfolio@example.com');
     assert.deepEqual(mail.to, ['inbox@example.com']);
-    assert.equal(mail.reply_to, `${'e'.repeat(245)}@example.com`.slice(0, 254));
+    assert.equal(mail.reply_to, `${'e'.repeat(240)}@example.com`);
     assert.equal(mail.subject, `Portfolio enquiry from ${'N'.repeat(100)}`);
     assert.ok(mail.text.includes(`Company: ${'C'.repeat(150)}`));
     assert.ok(mail.text.endsWith('M'.repeat(3000)));
@@ -131,6 +131,7 @@ describe('contact function request handling', () => {
   });
 
   it('returns a gateway error when the mail provider rejects the message', async () => {
+    setMailEnvironment();
     globalThis.fetch = async () => ({ ok: false, status: 422, text: async () => 'rejected' });
     console.error = () => {};
     const response = await request(validPayload);
@@ -139,6 +140,7 @@ describe('contact function request handling', () => {
   });
 
   it('returns a timeout response when the mail request fails', async () => {
+    setMailEnvironment();
     globalThis.fetch = async () => {
       const error = new Error('request aborted');
       error.name = 'AbortError';

@@ -1,6 +1,6 @@
-import { useRef, useState } from 'react';
-import { useMotionVisibility } from '../../hooks/useMotionVisibility';
-import { useReducedMotion } from '../../hooks/useReducedMotion';
+import { useRef } from 'react';
+import { MotionToggle } from './ui';
+import { useLoopMotion } from '../../hooks/useLoopMotion';
 import '../../styles/sections/TechIndex.css';
 
 const technologyGroups = [
@@ -67,11 +67,8 @@ const technologyLanes = [
 ];
 
 export default function TechMarquee() {
-  const reducedMotion = useReducedMotion();
   const flowRef = useRef(null);
-  const [paused, setPaused] = useState(false);
-  const motionVisible = useMotionVisibility(flowRef);
-  const isPaused = paused || reducedMotion || !motionVisible;
+  const { reducedMotion, paused, togglePaused, isPaused } = useLoopMotion(flowRef);
 
   return (
     <section className="tech-index-section" aria-labelledby="techIndexTitle">
@@ -102,15 +99,13 @@ export default function TechMarquee() {
             {reducedMotion ? (
               <span className="tech-flow__motion-note">Motion minimized</span>
             ) : (
-              <button
+              <MotionToggle
                 className="tech-flow__toggle"
-                type="button"
-                aria-pressed={paused}
-                onClick={() => setPaused((current) => !current)}
-              >
-                <i className={`bi ${paused ? 'bi-play-fill' : 'bi-pause-fill'}`} aria-hidden="true" />
-                {paused ? 'Resume flow' : 'Pause flow'}
-              </button>
+                paused={paused}
+                onToggle={togglePaused}
+                pauseLabel="Pause flow"
+                resumeLabel="Resume flow"
+              />
             )}
           </div>
 

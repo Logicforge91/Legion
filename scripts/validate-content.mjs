@@ -1,5 +1,5 @@
 import { access, readFile, readdir } from 'node:fs/promises';
-import { projects, proof, skills } from '../src/data/portfolio.js';
+import { articles, education, profile, projects, proof, services, skills } from '../src/data/portfolio.js';
 import { projectFilters } from '../src/config/projectFilters.js';
 
 async function collectSourceFiles(directory) {
@@ -13,6 +13,30 @@ async function collectSourceFiles(directory) {
 }
 
 const requiredText = ['slug', 'category', 'title', 'text'];
+for (const field of ['name', 'role', 'location', 'availability', 'summary', 'introduction', 'approach']) {
+  if (typeof profile[field] !== 'string' || !profile[field].trim()) {
+    throw new Error(`Portfolio profile is missing ${field}.`);
+  }
+}
+if (!Array.isArray(profile.focus) || !profile.focus.length || profile.focus.some((item) => typeof item !== 'string' || !item.trim())) {
+  throw new Error('Portfolio profile needs a list of focus areas.');
+}
+if (!education.length) throw new Error('Portfolio must include at least one education record.');
+for (const [index, item] of education.entries()) {
+  for (const field of ['degree', 'institution', 'city', 'university']) {
+    if (typeof item[field] !== 'string' || !item[field].trim()) {
+      throw new Error(`Education record ${index + 1} is missing ${field}.`);
+    }
+  }
+  if (!Number.isInteger(item.graduationYear) || item.graduationYear < 1900 || item.graduationYear > 2100) {
+    throw new Error(`Education record ${index + 1} has an invalid graduation year.`);
+  }
+}
+if (!services.length || services.some((service) => (
+  ['title', 'description', 'capability', 'icon'].some((field) => typeof service[field] !== 'string' || !service[field].trim())
+))) {
+  throw new Error('Each portfolio service needs a title, description, capability, and icon.');
+}
 const slugs = new Set();
 const allowedFilters = new Set(projectFilters.map(([value]) => value).filter((value) => value !== 'all'));
 
@@ -56,6 +80,32 @@ for (const [index, item] of proof.entries()) {
       throw new Error(`Proof metric ${index + 1} is missing ${field}.`);
     }
   }
+}
+
+const articleSlugs = new Set();
+for (const [index, article] of articles.entries()) {
+  for (const field of ['slug', 'topic', 'title', 'summary', 'readTime']) {
+    if (typeof article[field] !== 'string' || !article[field].trim()) {
+      throw new Error(`Article ${index + 1} is missing ${field}.`);
+    }
+  }
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(article.slug) || articleSlugs.has(article.slug)) {
+    throw new Error(`Article ${index + 1} has an invalid or duplicate slug: ${article.slug}`);
+  }
+  if (!Array.isArray(article.tags) || !article.tags.length || !Array.isArray(article.sections) || !article.sections.length) {
+    throw new Error(`Article "${article.title}" needs topic tags and tutorial sections.`);
+  }
+  for (const section of article.sections) {
+    if (
+      typeof section.heading !== 'string' || !section.heading.trim()
+      || typeof section.body !== 'string' || !section.body.trim()
+      || !Array.isArray(section.points) || !section.points.length
+      || section.points.some((point) => typeof point !== 'string' || !point.trim())
+    ) {
+      throw new Error(`Article "${article.title}" has an incomplete tutorial section.`);
+    }
+  }
+  articleSlugs.add(article.slug);
 }
 
 await Promise.all([
@@ -108,4 +158,4 @@ const unusedIcons = [...configuredIcons].filter((icon) => !usedIcons.has(icon)).
 if (missingIcons.length) throw new Error(`Missing icon selectors: ${missingIcons.join(', ')}`);
 if (unusedIcons.length) console.warn(`Unused icon selectors: ${unusedIcons.join(', ')}`);
 
-console.log(`Content check passed: ${projects.length} projects, ${skills.length} skills, ${proof.length} proof metrics, ${usedIcons.size} icons, and ${webManifest.icons.length} valid app icons.`);
+console.log(`Content check passed: ${projects.length} projects, ${articles.length} articles, ${skills.length} skills, ${proof.length} proof metrics, ${usedIcons.size} icons, and ${webManifest.icons.length} valid app icons.`);

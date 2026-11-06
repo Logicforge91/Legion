@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react';
 
 export function useMotionVisibility(ref) {
   const [isOnScreen, setIsOnScreen] = useState(false);
-  const [pageVisible, setPageVisible] = useState(() => document.visibilityState === 'visible');
+  const [pageVisible, setPageVisible] = useState(() => (
+    typeof document === 'undefined' || document.visibilityState === 'visible'
+  ));
 
   useEffect(() => {
     const element = ref.current;
-    if (!element || !('IntersectionObserver' in window)) {
+    if (!element || typeof window === 'undefined' || !('IntersectionObserver' in window)) {
       setIsOnScreen(true);
       return undefined;
     }

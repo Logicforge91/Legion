@@ -1,4 +1,5 @@
 import { Reveal, Spotlight } from '../components/shared/ui';
+import { profile } from '../data/portfolio.js';
 import '../styles/sections/AboutSection.css';
 
 const values = [
@@ -39,7 +40,7 @@ function ProfileCard() {
         <div className="profile-ring"><span>SK</span></div>
         <div className="profile-card__intro">
           <h3>Suman K S</h3>
-          <p>Backend engineer for workflow-heavy products, integrations, and data systems that need to hold up under real use.</p>
+          <p>{profile.summary}</p>
         </div>
         <dl className="profile-facts">
           <div><dt>Focus</dt><dd>Laravel · Java · APIs · system design</dd></div>
@@ -59,14 +60,10 @@ export default function AboutSection() {
           <EngineerIdentity />
           <h2 id="aboutTitle">Laravel-first. Java-forward. Grounded in production reality.</h2>
           <p>
-            I am Suman K S, a Bengaluru-based backend engineer building reliable APIs,
-            intentional data flows, and operationally sane systems for real products.
+            {profile.introduction}
           </p>
           <p>
-            My work sits at the point where business rules, payments, permissions, and
-            integrations meet production reality. I care about what breaks in the edge
-            cases, how the next engineer understands it, and how the system behaves when
-            traffic, failures, and support questions begin to pile up.
+            {profile.approach}
           </p>
           <div className="value-list">
             {values.map(([icon, text]) => (

@@ -10,7 +10,20 @@ function observeElement(element, callback, options) {
   if (!pool) {
     const callbacks = new Map();
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => callbacks.get(entry.target)?.(entry));
+      entries.forEach((entry) => {
+        const callback = callbacks.get(entry.target);
+        if (!callback) return;
+        callback(entry);
+        if (entry.isIntersecting) {
+          observer.unobserve(entry.target);
+          callbacks.delete(entry.target);
+        }
+      });
+
+      if (!callbacks.size) {
+        observer.disconnect();
+        observerPools.delete(key);
+      }
     }, options);
     pool = { callbacks, observer };
     observerPools.set(key, pool);
@@ -37,7 +50,7 @@ export function useInView({ rootMargin = '0px', threshold = 0 } = {}) {
   useEffect(() => {
     const node = ref.current;
     if (visible) return undefined;
-    if (!node || !('IntersectionObserver' in window) || reducedMotion) {
+    if (!node || typeof window === 'undefined' || !('IntersectionObserver' in window) || reducedMotion) {
       setVisible(true);
       return undefined;
     }
